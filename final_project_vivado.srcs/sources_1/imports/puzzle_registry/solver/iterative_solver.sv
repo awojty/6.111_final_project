@@ -390,7 +390,25 @@ module iterative_solver(
 
 
                         //while
-                            if(mod_cols_in[0] +mod_cols_in[1] +mod_cols_in[2] +mod_cols_in[3] + mod_cols_in[4] +mod_cols_in[5] +mod_cols_in[9]>0) begin
+                            if(~while_loop_started) begin
+
+                            //__________________________TODO_______________________________________________
+
+                            //TODO: negate the wjile_loop_staretd when you are done with the second for loop
+
+
+                                //we have just finished the while loop - checking if we need to reenter or output the solution :')
+                                if(mod_cols_in[0] +mod_cols_in[1] +mod_cols_in[2] +mod_cols_in[3] + mod_cols_in[4] +mod_cols_in[5]+mod_cols_in[6]+mod_cols_in[7] + +mod_cols_in[8] + mod_cols_in[9]>0) begin
+                                    while_loop_started <=1;
+                                    //cursed but okey 
+                                end else begin
+                                    while_loop_started <=0;
+                                end
+
+                            end else begin
+
+                            //we are already in teh while  loop so keep going
+                                
                             // mod_cols_in_progress<=1;
                                 if(start_i_range_w_part) begin
 

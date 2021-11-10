@@ -78,7 +78,7 @@ module generate_rows(
     logic [4:0] permutations_min_length_list [29:0]; //at most 30 permuations
 
 
-    logic [11:0] permutations_list [29:0]; //at most 30 permuations
+    logic [11:0] permutations_list [29:0]; //at most 30 permuations for a agiven set of constraints
 
 
     always_ff @(posedge clk_in) begin
@@ -124,51 +124,89 @@ module generate_rows(
 
         end else if (permutation_started) begin
 
-            permutations_list[counter] <= permutation_out;
+            permutations_list[counter] <= permutation_out; // save the "basic" state of the row (shifted to right hand side) => in the NEXT STATE we need to shof it to the right :')
             counter <=counter +1;
             if(counter == permutation_count-1) begin
                 create_rows_from_permutations <=1;
                 permutation_started<=0
                 counter<=0;
-                data_collected <=1;
-                generate_states_from_permutations<=1;
+                permutation_counter<=0; // used i nthe next state 
+                
+                generate_states_from_permutations<=1; // okey now we need to shift each basic state kill me
                 
             end
 
+        end else if (generate_states_from_permutations) begin
+            //we are done with gerneating all the "basic" states for a given csontrin set > shift each basic set to left
 
-        end else if (data_collected) begin
 
-            //WRONG
+                if(~started_shifting) begin
 
-            if(generate_states_from_permutations) begin
-                current_min_length <=permutations_min_length_list[permutation_counter];
-                shifts_limit <= 20 - current_min_length;
-                started_shifting <=1;
+                //we either just entered this state or we are done with shofting for  agiven basci state > introduce a enw basic state to new_row
 
-                if(started_shifting) begin
-                    count<=count+1;
-                    new_row <= permutation; 
-                end else begin if( permutation_counter == permutation_count-1 ) begin
-                    done<=1;
+                    new_row <=permutations_list[permutation_counter];
+                    permutation_counter <= permutation_counter +1;
+                    started_shifting <= started_shifting +1;
+                    shifts_limit <= 20 - permutations_min_length_list[permutation_counter]; //20 - min_length 
+                    shifts <=0;
                     
-                
                 end else begin
-    
+
+                //we are in the rpocess of shofting a given state 
+
                     if(shifts < shifts_limit) begin
+                    //we are still allowed to shift
                         new_row <= {new_row<<2, 2'b10};
-                        shifts <=shifts-2;
+                        shifts <=shifts+2;
                         
                     end else begin
                         started_shifting <=0;
-                        permutation<=permutations_list[permutation_counter];
+                        
+                       
                         
                     end
 
 
-
+                    
                 end
 
                 
+
+                // if(started_shifting) begin
+                //     count<=count+1;
+                //     new_row <= permutation; 
+                // end else begin if( permutation_counter == permutation_count-1 ) begin
+                //     done<=1;
+                    
+                
+                // end else begin
+    
+                //     if(shifts < shifts_limit) begin
+                //         new_row <= {new_row<<2, 2'b10};
+                //         shifts <=shifts-2;
+                        
+                //     end else begin
+                //         started_shifting <=0;
+                //         //permutation<=permutations_list[permutation_counter];
+                //         new_row <=permutations_list[permutation_counter];
+                        
+                //     end
+
+
+
+                // end
+
+
+
+
+
+
+
+        end else if (data_collected) begin
+
+            //WRONG wow so helpful 
+
+            
 
             //we have collected all the permutatiosn but now we need to shift them
 
@@ -238,7 +276,7 @@ module generate_rows(
                 end
 
             end else begin
-                //we can genreates statees "logically"
+                //we can genreates statees "logically" - f
 
                 permutation_started <=1;
                 data_collected<=0;
