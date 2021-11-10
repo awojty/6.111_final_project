@@ -1,6 +1,7 @@
 module fir31(
   input  clk_in,rst_in,
   input [4:0] index_in,
+  input [4:0] index_end,
   input [10:0] array_in,
   
   output logic y_out
@@ -14,6 +15,7 @@ module fir31(
   
   logic [7:0] sample;  // 32 element array each 8 bits wide
   logic [4:0] offset;
+  
 
 
   always_ff @(posedge clk_in) begin

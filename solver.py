@@ -275,6 +275,7 @@ def deduce(hr, vr):
     can_do= []
 
     for r in rows:
+        print("allwable(r)", allowable(r))
         can_do.append(allowable(r))
     
  
@@ -408,5 +409,17 @@ def printAllKLengthRec(set, prefix, n, k):
          
         # k is decreased, because
         # we have added a new character
-        printAllKLengthRec(set, newPrefix, n, k - 1)
+        # printAllKLengthRec(set, newPrefix, n, k - 1)
+        
+        #overallping from both sdies
+        
+		# 		int start = solv->row_runs[i][j].s;0
+		# 		int end = solv->row_runs[i][j].e; 10
+		# 		int u = 10 - 0 + 1 - 6; = 6
+
+		# 		for (int k = start + u = 6 ; k <= end - u = 4  8; k++) {
+		# 			int status = solu->set(i, k, p->row_constraints[i][j].color);
+		# 			if (status == CONFLICT) conflict = true;
+		# 			if (status == PROGRESS) progress = true;
+		# 		}
 

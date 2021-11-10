@@ -10,7 +10,7 @@ module get_permutations(
 //most signifcant bits encode numebrs
                     output logic [11:0] breaks, //  mak of 4 breaks, eahc max encoded by 3 bits 4*3 ==12
                     output logic done,
-                    output logic count //returns the tola nbumber of optison returend for a given setging
+                    output logic [5:0] count //returns the tola nbumber of optison returend for a given setging
 
 
     );  
@@ -365,7 +365,7 @@ always_ff @(posedge clk_in) begin
 end
 
 endmodule
-101010101
+
 
 `default_nettype wire
 
