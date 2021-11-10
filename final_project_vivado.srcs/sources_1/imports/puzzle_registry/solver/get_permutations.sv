@@ -23,16 +23,17 @@ always_ff @(posedge clk_in) begin
 
     if (rst_in) begin
         done <=0;
-        break_1<=0;
-        break_2<=0;
-        break_3<=0;
-        break_4<=0;
-        break_5<=0;
-        break_6<=0;
+
+        //why is it here ?
+        // break_1<=0;
+        // break_2<=0;
+        // break_3<=0;
+        // break_4<=0;
+        // break_5<=0;
+        // break_6<=0;
         counter <=0;
         counter<=0;
 
-10101
 
 //5 is the max amount of space to fill (4 bits)
 
@@ -43,7 +44,132 @@ always_ff @(posedge clk_in) begin
         
     end else if (counting) begin
 
-        if(number_of_breaks == 2) begin
+        if(number_of_breaks == 1) begin
+
+            if(space_to_fill ==0) begin
+
+                case(counter)
+                    4'b0: 12'b00000000_0000;
+                    default: 12'b000000000000
+                
+                endcase
+
+                if(counter ==0) begin
+                    counting <=0;
+                    done<=1;
+                end
+
+            end else if (space_to_fill ==1) begin
+                case(counter)
+                    4'b0: 12'b00000000_0001;
+                    default: 12'b000000000000
+                
+                endcase
+
+                if(counter ==1) begin
+                    counting <=0;
+                    done<=1;
+                end
+
+            end else if (space_to_fill ==2) begin
+                case(counter)
+                    4'b0: 12'b00000000_0010;
+                    default: 12'b000000000000
+                
+                endcase
+
+                if(counter ==1) begin
+                    counting <=0;
+                    done<=1;
+                end
+
+            end else if (space_to_fill ==3) begin
+                case(counter)
+                    4'b0: 12'b00000000_0011;
+                    default: 12'b000000000000
+                
+                endcase
+
+                if(counter ==1) begin
+                    counting <=0;
+                    done<=1;
+                end
+
+            end else if (space_to_fill ==4) begin
+
+                case(counter)
+                    4'b0: 12'b00000000_0100;
+                    default: 12'b000000000000
+                
+                endcase
+
+                if(counter ==1) begin
+                    counting <=0;
+                    done<=1;
+                end
+
+            end else if (space_to_fill ==5) begin
+
+                case(counter)
+                    4'b0: 12'b00000000_0101;
+                    default: 12'b000000000000
+                
+                endcase
+
+                if(counter ==1) begin
+                    counting <=0;
+                    done<=1;
+                end
+
+            end else if (space_to_fill ==6) begin
+
+                case(counter)
+                    4'b0: 12'b00000000_0110;
+                    default: 12'b000000000000
+                
+                endcase
+
+                if(counter ==1) begin
+                    counting <=0;
+                    done<=1;
+                end
+
+            end else if (space_to_fill ==7) begin
+
+                case(counter)
+                    4'b0: 12'b00000000_0111;
+                    default: 12'b000000000000
+                
+                endcase
+
+                if(counter ==1) begin
+                    counting <=0;
+                    done<=1;
+                end
+
+            end else if (space_to_fill ==8) begin
+
+                case(counter)
+                    4'b0: 12'b00000000_1000;
+                    default: 12'b000000000000
+                
+                endcase
+
+                if(counter ==1) begin
+                    counting <=0;
+                    done<=1;
+                end
+
+            end
+
+
+
+
+
+
+
+
+        end else if(number_of_breaks == 2) begin
 
             if(space_to_fill ==0) begin
 

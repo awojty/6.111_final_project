@@ -1,5 +1,6 @@
 `default_nettype none
-
+//TODO - FSM is wrong
+// get assginements > gerneate all pemutations (n umerical) for the assingement > based on each permutaion, gernate a basic row > shoft eahc basic row as much as psosible > move to the next basic row
 //implmentation for at most 6 breaks sorry hardcoded
 module generate_rows(   
                     input wire clk_in,
@@ -12,6 +13,9 @@ module generate_rows(
 
 
     );  
+
+    //TODO - only start gneraiotn when new start_in is received BC it's possiblr to have two same assigemnet snext to each other and then we would not return anythgin in hat case 
+        // TODO: ^^ might be worn due to how iterative sovler operates  - check how start_in is asserted
 
     //you cna have state
 
@@ -54,8 +58,6 @@ module generate_rows(
         .min_length(permutation_min_lengt) //retusn the min length fomr black to black that covers all blacks
     );
 
-
-
     get_permutations my_get_permutations(   
                     .clk_in(clk_in),
                     .start_in(),
@@ -81,6 +83,9 @@ module generate_rows(
     logic [11:0] permutations_list [29:0]; //at most 30 permuations for a agiven set of constraints
 
 
+    logic in_progress;
+
+
     always_ff @(posedge clk_in) begin
 
         if(reset_in) begin
@@ -96,14 +101,17 @@ module generate_rows(
             create_rows_from_permutations <=0;
             permutation_counter <=0;
             count<=0;
+            in_progress <=0;
 
-        end else if (create_rows_from_permutations) begin
+        end else if (create_a_row_from_permutations) begin
+
+        // create BASIC rows 
 
             if(~generating || done_generation) begin
                 counter <=counter +1;
                 generating<=1;
                 started_generator <=1;
-                permutation <= permutations_list[counter]; // input to create_a_row module
+                permutation <= permutations_list[counter]; // input to create_a_row module - it only retusn ONE row per permutaiont numerbs - the basic one, shifted to the left 
                 
             end else if (generating) begin
                 
@@ -113,9 +121,10 @@ module generate_rows(
             if(counter == permutation_count-1) begin
 
                 //i have created and output all the rows for given cosntrinats
-                create_rows_from_permutations <=0;
+                create_a_row_from_permutations <=0;
                 permutation_started<=0
                 done<=1;
+                in_progress <=0;
                 generate_states_from_permutations <=1;
                 data_collected <=1;
                 
@@ -127,7 +136,7 @@ module generate_rows(
             permutations_list[counter] <= permutation_out; // save the "basic" state of the row (shifted to right hand side) => in the NEXT STATE we need to shof it to the right :')
             counter <=counter +1;
             if(counter == permutation_count-1) begin
-                create_rows_from_permutations <=1;
+                create_a_row_from_permutations <=1;
                 permutation_started<=0
                 counter<=0;
                 permutation_counter<=0; // used i nthe next state 
@@ -149,6 +158,17 @@ module generate_rows(
                     started_shifting <= started_shifting +1;
                     shifts_limit <= 20 - permutations_min_length_list[permutation_counter]; //20 - min_length 
                     shifts <=0;
+                    started_shifting <=1;
+                    if(permutation_counter == permutation_count -1) begin
+
+                        done<=1; // finish the whole genratE_row
+                        generate_states_from_permutations <=0; // [otenailly need  ozero all the staes here ust to make sure
+
+
+                        
+                    end
+
+
                     
                 end else begin
 
@@ -170,47 +190,12 @@ module generate_rows(
                     
                 end
 
-                
-
-                // if(started_shifting) begin
-                //     count<=count+1;
-                //     new_row <= permutation; 
-                // end else begin if( permutation_counter == permutation_count-1 ) begin
-                //     done<=1;
-                    
-                
-                // end else begin
-    
-                //     if(shifts < shifts_limit) begin
-                //         new_row <= {new_row<<2, 2'b10};
-                //         shifts <=shifts-2;
-                        
-                //     end else begin
-                //         started_shifting <=0;
-                //         //permutation<=permutations_list[permutation_counter];
-                //         new_row <=permutations_list[permutation_counter];
-                        
-                //     end
-
-
-
-                // end
-
-
-
-
-
-
 
         end else if (data_collected) begin
 
-            //WRONG wow so helpful 
-
-            
-
             //we have collected all the permutatiosn but now we need to shift them
 
-            end else if(min_length == 20) begin
+            if(min_length == 20) begin
 
                 for(interger i; i<18; i=i+2) begin
                     if(i <assignment[3:0]*2) begin
@@ -274,6 +259,20 @@ module generate_rows(
 
 
                 end
+            end else if(number_of_numbers == 2) begin
+            //why did i put 3 bits :'''''(
+            // hack this such that for a single break we are using 4 bits B)
+
+            
+
+
+
+
+
+
+
+
+
 
             end else begin
                 //we can genreates statees "logically" - f
@@ -283,8 +282,11 @@ module generate_rows(
             end
             
             
-        end else begin
+        end else if (start_in && ~in_progress) begin
+
+            //we have provided new data in assingemtne > syart the whole fsm again 
             data_collected<=1;
+            in_progress <=1;
             constrain1<=assignment[3:0];
             constrain2<=assignment[7:4];
             constrain3<=assignment[11:8];
