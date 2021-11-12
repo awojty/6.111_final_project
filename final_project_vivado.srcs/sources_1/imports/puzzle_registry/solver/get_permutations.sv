@@ -1,12 +1,11 @@
 `default_nettype none
-
 //implmentation for at most 6 breaks sorry hardcoded
 module get_permutations(   
                     input wire clk_in,
                     input wire reset_in,
                     input wire start_in,
-                    input wire [2:0] number_of_breaks,//at most 4 breaks
-                    input wire [2:0] space_to_fill_left, // at most 5 space left
+                    input wire [2:0] number_of_breaks_in,//at most 4 breaks
+                    input wire [2:0] space_to_fill_in, // at most 5 space left
 //most signifcant bits encode numebrs
                     output logic [11:0] permutation_out, //  mak of 4 breaks, eahc max encoded by 3 bits 4*3 ==12
                     output logic done,
@@ -21,270 +20,280 @@ module get_permutations(
 
 
 logic [5:0] counter;
+logic counting;
 
+logic  [2:0] number_of_breaks;//at most 4 breaks
+logic [2:0] space_to_fill; // at most 5 space left
 
+    always_ff @(posedge clk_in) begin
 
-always_ff @(posedge clk_in) begin
+        if (reset_in) begin
+            done <=0;
+            counter <=0;
+            counting <=0;
+            
+            total_counter <=0;
+            permutation_out<=0;
+            number_of_breaks<=0;
+            space_to_fill<=0;
 
-    if (reset_in) begin
-        done <=0;
-        counter <=0;
-        counter<=0;
-        total_counter <=0;
-        permutation_out<=0;
-
-    end else if (start_in) begin
+        end else if (start_in && ~counting) begin
         
-        counting <=1;
-        done<=0;
-
+            counting <=1;
+            done<=0;
+            number_of_breaks<=number_of_breaks_in;
+            space_to_fill<=space_to_fill_in; 
         
-    end else if (counting) begin
-        counter<=counter +1;
+        end else if (counting) begin
+            counter<=counter +1;
 
-        if(number_of_breaks == 1) begin
+            if(number_of_breaks == 1) begin
 
-            if(space_to_fill ==0) begin
+                if(space_to_fill ==0) begin
+                    counter<=counter +1;
 
-                case(counter)
-                    4'b0: permutation_out<=12'b0000_0000_0000;
-                    default: permutation_out<= 12'b000_000000000
-                
-                endcase
 
-                if(counter ==0) begin
-                    counting <=0;
-                    total_counter <=total_counter + 1;
-                    done<=1;
+                    case(counter)
+                        6'b0: permutation_out<=12'b0000_0000_0000;
+                        default: permutation_out<= 12'b000_000000000;
+                    endcase
+
+                    if(counter ==0) begin
+                        counting <=0;
+                        total_counter <=total_counter + 1;
+                        done<=1;
+                    end
+
+                end else if (space_to_fill ==1) begin
+                counter<=counter +1;
+
+                    case(counter)
+                        4'b0: permutation_out <= 12'b00000000_0001;
+                        default: permutation_out<= 12'b000000000000;
+                    
+                    endcase
+
+                    if(counter ==0) begin
+                        counting <=1;
+                        counter<=0;
+                        total_counter <=total_counter + 1;
+                        space_to_fill <=space_to_fill - 1;
+                    end
+
+                end else if (space_to_fill ==2) begin
+                counter<=counter +1;
+                    case(counter)
+                        4'b0: permutation_out<= 12'b00000000_0010;
+                        default: permutation_out<= 12'b000000000000;
+                    
+                    endcase
+
+                    if(counter ==0) begin
+                        counting <=1;
+                        counter<=0;
+                        total_counter <=total_counter + 1;
+                        space_to_fill <=space_to_fill - 1;
+                    end
+
+                end else if (space_to_fill ==3) begin
+                    case(counter)
+                        4'b0: permutation_out<= 12'b00000000_0011;
+                        default: permutation_out<= 12'b000000000000;
+                    
+                    endcase
+
+                    if(counter ==0) begin
+                        counting <=1;
+                        counter<=0;
+                        total_counter <=total_counter + 1;
+                        space_to_fill <=space_to_fill - 1;
+                    end
+
+                end else if (space_to_fill ==4) begin
+                counter<=counter +1;
+
+                    case(counter)
+                        4'b0: permutation_out<= 12'b00000000_0100;
+                        default: permutation_out<= 12'b000000000000;
+                    
+                    endcase
+
+                    if(counter ==0) begin
+                        counting <=1;
+                        counter<=0;
+                        total_counter <=total_counter + 1;
+                        space_to_fill <=space_to_fill - 1;
+                    end
+
+                end else if (space_to_fill ==5) begin
+
+                    case(counter)
+                        4'b0: permutation_out<= 12'b00000000_0101;
+                        default: permutation_out<= 12'b000000000000;
+                    
+                    endcase
+
+                    if(counter ==0) begin
+                        counting <=1;
+                        counter<=0;
+                        total_counter <=total_counter + 1;
+                        space_to_fill <=space_to_fill - 1;
+                    end
+
+                end else if (space_to_fill ==6) begin
+
+                    case(counter)
+                        16'b0: permutation_out<=12'b00000000_0110;
+                        default: permutation_out<=12'b000000000000;
+                    endcase
+
+                    if(counter ==0) begin
+                        counting <=1;
+                        counter<=0;
+                        total_counter <=total_counter + 1;
+                        space_to_fill <=space_to_fill - 1;
+                    end
+
+                end else if (space_to_fill ==7) begin
+
+                    case(counter)
+                        4'b0: permutation_out<=12'b00000000_0111;
+                        default: permutation_out<=12'b000000000000;
+                    
+                    endcase
+
+                    if(counter ==0) begin
+                        counting <=1;
+                        counter<=0;
+                        total_counter <=total_counter + 1;
+                        space_to_fill <=space_to_fill - 1;
+                    end
+
+                end else if (space_to_fill ==8) begin
+
+                    case(counter)
+                        4'b0: permutation_out<=12'b00000000_1000;
+                        default: permutation_out<=12'b000000000000;
+                    
+                    endcase
+
+                    if(counter ==0) begin
+                        counting <=1;
+                        counter<=0;
+                        total_counter <=total_counter + 1;
+                        space_to_fill <=space_to_fill - 1;
+                    end
                 end
 
-            end else if (space_to_fill ==1) begin
+            
 
-                case(counter)
-                    4'b0: permutation_out <= 12'b00000000_0001;
-                    default: permutation_out<= 12'b000000000000
-                
-                endcase
+            end else if(number_of_breaks == 2) begin
 
-                if(counter ==0) begin
-                    counting <=1;
-                    counter<=0;
-                    total_counter <=total_counter + 1;
-                    space_to_fill <=space_to_fill - 1;
-                end
+                if(space_to_fill ==0) begin
 
-            end else if (space_to_fill ==2) begin
-                case(counter)
-                    4'b0: permutation_out<= 12'b00000000_0010;
-                    default: permutation_out<= 12'b000000000000
-                
-                endcase
+                    case(counter)
+                        4'b0: permutation_out<=12'b000000000000;
+                        default: permutation_out<=12'b000000000000;
+                    
+                    endcase
 
-                if(counter ==0) begin
-                    counting <=1;
-                    counter<=0;
-                    total_counter <=total_counter + 1;
-                    space_to_fill <=space_to_fill - 1;
-                end
+                    if(counter ==0) begin
+                        counting <=0;
+                        done<=1;
+                        total_counter <=total_counter + 1;
+                    end
 
-            end else if (space_to_fill ==3) begin
-                case(counter)
-                    4'b0: permutation_out<= 12'b00000000_0011;
-                    default: permutation_out<= 12'b000000000000
-                
-                endcase
+                end else if (space_to_fill ==1) begin
 
-                if(counter ==0) begin
-                    counting <=1;
-                    counter<=0;
-                    total_counter <=total_counter + 1;
-                    space_to_fill <=space_to_fill - 1;
-                end
+                    case(counter)
+                        6'b0: permutation_out<=12'b000000_000_001; // each break is encoded by 3 bits
+                        6'b1: permutation_out<=12'b000000_001_000;
+                        default: permutation_out<=12'b000000000000;
+                    
+                    endcase
 
-            end else if (space_to_fill ==4) begin
+                    if(counter ==1) begin
+                        counting <=1;
+                        counter<=0;
+                        total_counter <=total_counter + 2;
+                        space_to_fill <=space_to_fill - 1;
+                    end
 
-                case(counter)
-                    4'b0: permutation_out<= 12'b00000000_0100;
-                    default: permutation_out<= 12'b000000000000
-                
-                endcase
+                end else if (space_to_fill ==2) begin
 
-                if(counter ==0) begin
-                    counting <=1;
-                    counter<=0;
-                    total_counter <=total_counter + 1;
-                    space_to_fill <=space_to_fill - 1;
-                end
+                    case(counter)
+                        6'b0: permutation_out<=12'b000_000_001_001; // 11
+                        6'd1: permutation_out<=12'b000_000_000_010; //02
+                        6'd2: permutation_out<=12'b000_000_010_000; //20
+                        default: permutation_out<=12'b000000000000;
+                    
+                    endcase
 
-            end else if (space_to_fill ==5) begin
+                    if(counter ==2) begin
+                        counting <=1;
+                        counter<=0;
+                        total_counter <=total_counter + 3;
+                        space_to_fill <=space_to_fill - 1;
+                    end
 
-                case(counter)
-                    4'b0: permutation_out<= 12'b00000000_0101;
-                    default: permutation_out<= 12'b000000000000
-                
-                endcase
+                end else if (space_to_fill ==3) begin
 
-                if(counter ==0) begin
-                    counting <=1;
-                    counter<=0;
-                    total_counter <=total_counter + 1;
-                    space_to_fill <=space_to_fill - 1;
-                end
+                    case(counter)
+                        6'b0: permutation_out<=12'b000_000_001_010; // 12
+                        6'd1: permutation_out<=12'b000_000_010_001; //21
+                        6'd2: permutation_out<=12'b000_000_000_011; //03
+                        6'd3: permutation_out<=12'b000_000_011_000; //30
+                        default: permutation_out<=12'b000000000000;
+                    
+                    endcase
 
-            end else if (space_to_fill ==6) begin
+                    if(counter ==3) begin
+                        counting <=1;
+                        counter<=0;
+                        total_counter <=total_counter + 4;
+                        space_to_fill <=space_to_fill - 1;
+                    end
 
-                case(counter)
-                    4'b0: permutation_out<=12'b00000000_0110;
-                    default: permutation_out<=12'b000000000000
-                
-                endcase
+                end else if (space_to_fill ==4) begin
 
-                if(counter ==0) begin
-                    counting <=1;
-                    counter<=0;
-                    total_counter <=total_counter + 1;
-                    space_to_fill <=space_to_fill - 1;
-                end
+                    case(counter)
+                        6'b0: permutation_out<=12'b000_000_010_010; // 22
+                        6'd1: permutation_out<=12'b000_000_011_001; //31
+                        6'd2: permutation_out<=12'b000_000_011_001; //13
+                        6'd3: permutation_out<=12'b000_000_100_000; //40
+                        6'd4: permutation_out<=12'b000_000_000_100; //04
+                        default: permutation_out<=12'b000000000000;
+                    
+                    endcase
 
-            end else if (space_to_fill ==7) begin
+                    if(counter ==4) begin
+                        counting <=1;
+                        counter<=0;
+                        total_counter <=total_counter + 5;
+                        space_to_fill <=space_to_fill - 1;
+                    end
 
-                case(counter)
-                    4'b0: permutation_out<=12'b00000000_0111;
-                    default: permutation_out<=12'b000000000000
-                
-                endcase
+                end else if (space_to_fill ==5) begin
 
-                if(counter ==0) begin
-                    counting <=1;
-                    counter<=0;
-                    total_counter <=total_counter + 1;
-                    space_to_fill <=space_to_fill - 1;
-                end
+                    case(counter)
+                        6'b0: permutation_out<=12'b000_000_101_000; // 50
+                        6'd1: permutation_out<=12'b000_000_000_101; //05
+                        6'd2: permutation_out<=12'b000_000_100_001; //41
+                        6'd3: permutation_out<=12'b000_000_001_100; //14
+                        6'd4: permutation_out<=12'b000_000_011_010; //32
+                        6'd5: permutation_out<=12'b000_000_010_011; //23
+                        default: permutation_out<=12'b000000000000;
+                    endcase
 
-            end else if (space_to_fill ==8) begin
-
-                case(counter)
-                    4'b0: permutation_out<=12'b00000000_1000;
-                    default: permutation_out<=12'b000000000000
-                
-                endcase
-
-                if(counter ==0) begin
-                    counting <=1;
-                    counter<=0;
-                    total_counter <=total_counter + 1;
-                    space_to_fill <=space_to_fill - 1;
-                end
+                    if(counter ==5) begin
+                        counting <=1;
+                        counter<=0;
+                        total_counter <=total_counter + 6;
+                        space_to_fill <=space_to_fill - 1;
+                    end
 
             end
-
-        end else if(number_of_breaks == 2) begin
-
-            if(space_to_fill ==0) begin
-
-                case(counter)
-                    4'b0: permutation_out<=12'b000000000000;
-                    default: permutation_out<=12'b000000000000
-                
-                endcase
-
-                if(counter ==0) begin
-                    counting <=0;
-                    done<=1;
-                    total_counter <=total_counter + 1;
-                end
-
-            end else if (space_to_fill ==1) begin
-
-                case(counter)
-                    4'b0: 12'b000000_000_001; // each break is encoded by 3 bits
-                    4'b1: 12'b000000_001_000;
-                    default: 12'b000000000000
-                
-                endcase
-
-                if(counter ==1) begin
-                    counting <=1;
-                    counter<=0;
-                    total_counter <=total_counter + 2;
-                    space_to_fill <=space_to_fill - 1;
-                end
-
-            else if (space_to_fill ==2) begin
-
-                case(counter)
-                    4'b0: permutation_out<=12'b000_000_001_001; // 11
-                    4'd1: permutation_out<=12'b000_000_000_010; //02
-                    4'd2: permutation_out<=12'b000_000_010_000; //20
-                    default: permutation_out<=12'b000000000000
-                
-                endcase
-
-                if(counter ==2) begin
-                    counting <=1;
-                    counter<=0;
-                    total_counter <=total_counter + 3;
-                    space_to_fill <=space_to_fill - 1;
-                end
-
-            else if (space_to_fill ==3) begin
-
-                case(counter)
-                    4'b0: permutation_out<=12'b000_000_001_010; // 12
-                    4'd1: permutation_out<=12'b000_000_010_001; //21
-                    4'd2: permutation_out<=12'b000_000_000_011; //03
-                    4'd3: permutation_out<=12'b000_000_011_000; //30
-                    default: permutation_out<=12'b000000000000
-                
-                endcase
-
-                if(counter ==3) begin
-                    counting <=1;
-                    counter<=0;
-                    total_counter <=total_counter + 4;
-                    space_to_fill <=space_to_fill - 1;
-                end
-
-            else if (space_to_fill ==4) begin
-
-                case(counter)
-                    4'b0: 12'b000_000_010_010; // 22
-                    4'd1: 12'b000_000_011_001; //31
-                    4'd2: 12'b000_000_011_001; //13
-                    4'd3: 12'b000_000_100_000; //40
-                    4'd4: 12'b000_000_000_100; //04
-                    default: 12'b000000000000
-                
-                endcase
-
-                if(counter ==4) begin
-                    counting <=1;
-                    counter<=0;
-                    total_counter <=total_counter + 5;
-                    space_to_fill <=space_to_fill - 1;
-                end
-
-            end else if (space_to_fill ==5) begin
-
-                case(counter)
-                    4'b0: 12'b000_000_101_000; // 50
-                    4'd1: 12'b000_000_000_101; //05
-                    4'd2: 12'b000_000_100_001; //41
-                    4'd3: 12'b000_000_001_100; //14
-                    4'd4: 12'b000_000_011_010; //32
-                    4'd5: 12'b000_000_010_011; //23
-                    default: 12'b000000000000
-                
-                endcase
-
-                if(counter ==5) begin
-                    counting <=1;
-                    counter<=0;
-                    total_counter <=total_counter + 6;
-                    space_to_fill <=space_to_fill - 1;
-                end
-
-            end
+         
         
         end else if (number_of_breaks == 3) begin
 
@@ -292,7 +301,7 @@ always_ff @(posedge clk_in) begin
 
                 case(counter)
                     4'b0: permutation_out<= 12'b000000000_000;
-                    default: 12'b000000000000
+                    default: permutation_out<= 12'b000000000000;
                 
                 endcase
 
@@ -306,10 +315,10 @@ always_ff @(posedge clk_in) begin
 
 
                 case(counter)
-                    4'b0: permutation_out<=12'b000_000_000_001;
-                    4'd1: permutation_out<=12'b000_000_001_000;
-                    4'd2: permutation_out<=12'b000_001_000_000;
-                    default: permutation_out<=12'b000000000000
+                    6'b0: permutation_out<=12'b000_000_000_001;
+                    6'd1: permutation_out<=12'b000_000_001_000;
+                    6'd2: permutation_out<=12'b000_001_000_000;
+                    default: permutation_out<=12'b000000000000;
                 endcase
 
                 if(counter ==2) begin
@@ -321,13 +330,13 @@ always_ff @(posedge clk_in) begin
             end else if (space_to_fill ==2) begin
 
                 case(counter)
-                    4'b0: permutation_out<=12'b000_000_001_001;
-                    4'd1: permutation_out<=12'b000_001_001_000;
-                    4'd2: permutation_out<=12'b000_001_000_001;
-                    4'd3: permutation_out<=12'b000_000_000_010;
-                    4'd4: permutation_out<=12'b000_010_000_000;
-                    4'd5: permutation_out<=12'b000_000_010_000;
-                    default: permutation_out<=12'b000000000000
+                    6'b0: permutation_out<=12'b000_000_001_001;
+                    6'd1: permutation_out<=12'b000_001_001_000;
+                    6'd2: permutation_out<=12'b000_001_000_001;
+                    6'd3: permutation_out<=12'b000_000_000_010;
+                    6'd4: permutation_out<=12'b000_010_000_000;
+                    6'd5: permutation_out<=12'b000_000_010_000;
+                    default: permutation_out<=12'b000000000000;
                 endcase
 
                 if(counter ==5) begin
@@ -347,10 +356,10 @@ always_ff @(posedge clk_in) begin
                     4'd4: permutation_out<=12'b000_000_010_001; //021
                     4'd5: permutation_out<=12'b000_001_010_000; //120
                     4'd6: permutation_out<=12'b000_000_001_010; //012
-                    4'd7: permutation_out<=12'b000_010_001_000; //210
-                    4'd8: permutation_out<=12'b000_010_000_001; //201
-                    4'd9: permutation_out<=12'b000_001_000_010; //102
-                    default: permutation_out<=12'b000000000000
+                    6'd7: permutation_out<=12'b000_010_001_000; //210
+                    6'd8: permutation_out<=12'b000_010_000_001; //201
+                    6'd9: permutation_out<=12'b000_001_000_010; //102
+                    default: permutation_out<=12'b000000000000;
                 endcase
 
                 if(counter ==9) begin
@@ -376,7 +385,7 @@ always_ff @(posedge clk_in) begin
                     4'd8: permutation_out<=12'b000_011_001_000; //310
                     4'd9: permutation_out<=12'b000_000_010_010; //022
                     4'd10: permutation_out<=12'b000_010_010_000; //220
-                    default: permutation_out<=12'b000_000_000_000
+                    default: permutation_out<=12'b000_000_000_000;
                 endcase
 
                 if(counter ==10) begin
@@ -406,13 +415,13 @@ always_ff @(posedge clk_in) begin
                     4'd10: permutation_out<=12'b000_001_011_001; //131
                     4'd11: permutation_out<=12'b000_001_001_011; //113
 
-                    4'd12: permutation_out<=12'b000_000_001_100; //014
-                    4'd13: permutation_out<=12'b000_100_001_000; //410
-                    4'd14: permutation_out<=12'b000_000_100_001; //041
-                    4'd15: permutation_out<=12'b000_001_100_000; //140
-                    4'd16: permutation_out<=12'b000_100_000_001; //401
-                    4'd17: permutation_out<=12'b000_100_000_100; //104
-                    default: permutation_out<=12'b000_000_000_000
+                    6'd12: permutation_out<=12'b000_000_001_100; //014
+                    6'd13: permutation_out<=12'b000_100_001_000; //410
+                    6'd14: permutation_out<=12'b000_000_100_001; //041
+                    6'd15: permutation_out<=12'b000_001_100_000; //140
+                    6'd16: permutation_out<=12'b000_100_000_001; //401
+                    6'd17: permutation_out<=12'b000_100_000_100; //104
+                    default: permutation_out<=12'b000_000_000_000;
                 endcase
 
                 if(counter ==17) begin
@@ -421,168 +430,167 @@ always_ff @(posedge clk_in) begin
                     total_counter <=total_counter + 18;
                     space_to_fill <=space_to_fill - 1;
                 end
+                
+          end
+
+            end else if (number_of_breaks == 4) begin
 
 
+                if (space_to_fill ==0) begin
+
+                
+                    case(counter)
+                        4'b0: permutation_out<=12'b000_000_000_000;
+                        default: permutation_out<=12'b000000000000;
+                    endcase
+
+                    if(counter ==0) begin
+                        counting <=0;
+                        total_counter <=total_counter + 1;
+                        done<=1;
+                    end
+
+                end else if (space_to_fill ==1) begin
+
+                    case(counter)
+                        6'b0: permutation_out<=12'b000_000_000_001;
+                        6'd1: permutation_out<=12'b000_000_001_000;
+                        6'd2: permutation_out<=12'b000_001_000_000;
+                        6'd3: permutation_out<=12'b001_000_000_000;
+                        default: permutation_out<=12'b000000000000;
+                    endcase
+
+                    if(counter ==3) begin
+                        counting <=1;
+                        counter<=0;
+                        total_counter <=total_counter + 4;
+                        space_to_fill <=space_to_fill - 1;
+                    end
+
+                end else if (space_to_fill ==2) begin
+
+                    case(counter)
+                        4'b0: permutation_out<=12'b000_000_001_001; //0011
+                        4'd1: permutation_out<=12'b000_001_001_000; //0110
+                        4'd2: permutation_out<=12'b001_001_000_000; //1100
+                        4'd3: permutation_out<=12'b000_001_000_001; //0101
+                        4'd4: permutation_out<=12'b001_000_001_000; //1010
+                        4'd5: permutation_out<=12'b001_000_000_001; //1001
+                        4'd6: permutation_out<=12'b000_000_000_010; //0002
+                        4'd7: permutation_out<=12'b000_000_010_000; //0020
+                        4'd8: permutation_out<=12'b000_010_000_000; //0200
+                        4'd9: permutation_out<=12'b010_000_000_000; //2000
+                        default: permutation_out<=12'b000000000000;
+                    endcase
+
+                    if(counter ==9) begin
+                        counting <=1;
+                        counter<=0;
+                        total_counter <=total_counter + 10;
+                        space_to_fill <=space_to_fill - 1;
+                    end
+
+                end else if (space_to_fill ==3) begin
+
+                    case(counter)
+                        4'b0: permutation_out<=12'b000_000_001_010; //0012
+                        4'd1: permutation_out<=12'b000_001_010_000; //0120
+                        4'd2: permutation_out<=12'b001_010_000_000; //1200
+                        4'd3: permutation_out<=12'b000_001_000_010; //0102
+                        4'd4: permutation_out<=12'b001_000_010_000; //1020
+                        4'd5: permutation_out<=12'b001_000_000_010; //1002
+                        4'd6: permutation_out<=12'b000_000_010_001; //0021
+                        4'd7: permutation_out<=12'b000_010_001_000; //0210
+                        4'd8: permutation_out<=12'b010_001_000_000; //2100
+                        4'd9: permutation_out<=12'b000_010_000_001; //0201
+                        4'd10: permutation_out<=12'b010_000_001_000; //2010
+                        4'd11: permutation_out<=12'b010_000_000_001; //2001
 
 
+                        4'd12: permutation_out<=12'b000_000_000_011; //0003
+                        4'd13: permutation_out<=12'b000_000_011_000; //0030
+                        4'd14: permutation_out<=12'b000_011_000_000; //0300
+                        4'd15: permutation_out<=12'b011_000_000_000; //3000
 
+                        6'd16: permutation_out<=12'b000_001_001_001; //0111
+                        6'd17: permutation_out<=12'b001_001_001_000; //1110
+                        6'd18: permutation_out<=12'b001_001_000_001; //1101
+                        6'd19: permutation_out<=12'b001_000_001_001; //1011
+                        default: permutation_out<=12'b000000000000;
+                    endcase
+
+                    if(counter ==19) begin
+                        counting <=1;
+                        counter<=0;
+                        total_counter <=total_counter + 20;
+                        space_to_fill <=space_to_fill - 1;
+                    end
+
+                end else if (space_to_fill ==4) begin
+                    case(counter)
+                        4'b0: permutation_out<=12'b000_000_000_100; //0004
+                        4'd1: permutation_out<=12'b000_000_100_000; //0040
+                        4'd2: permutation_out<=12'b000_100_000_000; //0400
+                        4'd3: permutation_out<=12'b100_000_000_000; //4000
+                        4'd4: permutation_out<=12'b000_000_011_001; //0031
+                        4'd5: permutation_out<=12'b000_011_001_000; //0310
+                        4'd6: permutation_out<=12'b011_001_000_000; //3100
+                        4'd7: permutation_out<=12'b000_000_001_011; //0013
+                        4'd8: permutation_out<=12'b000_001_011_000; //0130
+                        4'd9: permutation_out<=12'b001_011_000_000; //1300
+                        4'd10: permutation_out<=12'b000_011_000_001; //0301
+                        4'd11: permutation_out<=12'b011_000_001_000; //3010
+                        4'd11: permutation_out<=12'b000_001_000_011; //0103
+                        4'd12: permutation_out<=12'b001_000_011_000; //1030
+                        4'd13: permutation_out<=12'b011_000_000_001; //3001
+                        4'd14: permutation_out<=12'b001_000_000_011; //1003
+                        4'd15: permutation_out<=12'b000_000_010_010; //0022
+                        6'd16: permutation_out<=12'b000_010_000_010; //0202
+                        6'd17: permutation_out<=12'b001_001_001_000; //2002
+                        6'd18: permutation_out<=12'b001_001_000_001; //2020
+                        6'd19: permutation_out<=12'b001_000_001_001; //2200
+                        6'd20: permutation_out<=12'b000_001_001_001; //1111
+
+                        6'd21: permutation_out<=12'b001_001_001_000; //0112
+                        6'd22: permutation_out<=12'b001_001_000_001; //1120
+                        6'd23: permutation_out<=12'b001_001_000_001; //1102
+                        6'd24: permutation_out<=12'b001_001_000_001; //1012
+
+                        6'd25: permutation_out<=12'b001_000_001_001; //0121
+                        6'd26: permutation_out<=12'b000_001_001_001; //1210
+                        6'd27: permutation_out<=12'b001_000_001_001; //1021
+                        6'd28: permutation_out<=12'b000_001_001_001; //1201
+
+
+                        6'd29: permutation_out<=12'b001_001_001_000; //0211
+                        6'd30: permutation_out<=12'b001_001_000_001; //2101
+                        6'd31: permutation_out<=12'b001_001_001_000; //0211
+                        6'd32: permutation_out<=12'b001_001_000_001; //2011
+
+                        default: permutation_out<=12'b000000000000;
+                    endcase
+
+                    if(counter ==31) begin
+                        counting <=1;
+                        counter<=0;
+                        total_counter <=total_counter + 32;
+                        space_to_fill <=space_to_fill - 1;
+                    end
+
+
+                end else if (space_to_fill ==5) begin
             
-        end else if (number_of_breaks == 4) begin
-
-
-            if (space_to_fill ==0) begin
-
+                //TODO
             
-                case(counter)
-                    4'b0: permutation_out<=12'b000_000_000_000;
-                    default: permutation_out<=12'b000000000000
-                endcase
-
-                if(counter ==0) begin
-                    counting <=0;
-                    total_counter <=total_counter + 1;
-                    done<=1;
-                end
-
-            end else if (space_to_fill ==1) begin
-
-                case(counter)
-                    4'b0: permutation_out<=12'b000_000_000_001;
-                    4'd1: permutation_out<=12'b000_000_001_000;
-                    4'd2: permutation_out<=12'b000_001_000_000;
-                    4'd3: permutation_out<=12'b001_000_000_000;
-                    default: permutation_out<=12'b000000000000
-                endcase
-
-                if(counter ==3) begin
+                    space_to_fill <=space_to_fill - 1;
                     counting <=1;
                     counter<=0;
-                    total_counter <=total_counter + 4;
-                    space_to_fill <=space_to_fill - 1;
-                end
 
-            end else if (space_to_fill ==2) begin
-
-                case(counter)
-                    4'b0: permutation_out<=12'b000_000_001_001; //0011
-                    4'd1: permutation_out<=12'b000_001_001_000; //0110
-                    4'd2: permutation_out<=12'b001_001_000_000; //1100
-                    4'd3: permutation_out<=12'b000_001_000_001; //0101
-                    4'd4: permutation_out<=12'b001_000_001_000; //1010
-                    4'd5: permutation_out<=12'b001_000_000_001; //1001
-                    4'd6: permutation_out<=12'b000_000_000_010; //0002
-                    4'd7: permutation_out<=12'b000_000_010_000; //0020
-                    4'd8: permutation_out<=12'b000_010_000_000; //0200
-                    4'd9: permutation_out<=12'b010_000_000_000; //2000
-                    default: permutation_out<=12'b000000000000
-                endcase
-
-                if(counter ==9) begin
-                    counting <=1;
-                    counter<=0;
-                    total_counter <=total_counter + 10;
-                    space_to_fill <=space_to_fill - 1;
-                end
-
-            end else if (space_to_fill ==3) begin
-
-                case(counter)
-                    4'b0: permutation_out<=12'b000_000_001_010; //0012
-                    4'd1: permutation_out<=12'b000_001_010_000; //0120
-                    4'd2: permutation_out<=12'b001_010_000_000; //1200
-                    4'd3: permutation_out<=12'b000_001_000_010; //0102
-                    4'd4: permutation_out<=12'b001_000_010_000; //1020
-                    4'd5: permutation_out<=12'b001_000_000_010; //1002
-                    4'd6: permutation_out<=12'b000_000_010_001; //0021
-                    4'd7: permutation_out<=12'b000_010_001_000; //0210
-                    4'd8: permutation_out<=12'b010_001_000_000; //2100
-                    4'd9: permutation_out<=12'b000_010_000_001; //0201
-                    4'd10: permutation_out<=12'b010_000_001_000; //2010
-                    4'd11: permutation_out<=12'b010_000_000_001; //2001
-
-
-                    4'd12: permutation_out<=12'b000_000_000_011; //0003
-                    4'd13: permutation_out<=12'b000_000_011_000; //0030
-                    4'd14: permutation_out<=12'b000_011_000_000; //0300
-                    4'd15: permutation_out<=12'b011_000_000_000; //3000
-
-                    4'd16: permutation_out<=12'b000_001_001_001; //0111
-                    4'd17: permutation_out<=12'b001_001_001_000; //1110
-                    4'd18: permutation_out<=12'b001_001_000_001; //1101
-                    4'd19: permutation_out<=12'b001_000_001_001; //1011
-                    default: permutation_out<=12'b000000000000
-                endcase
-
-                if(counter ==19) begin
-                    counting <=1;
-                    counter<=0;
-                    total_counter <=total_counter + 20;
-                    space_to_fill <=space_to_fill - 1;
-                end
-
-            end else if (space_to_fill ==4) begin
-                case(counter)
-                    4'b0: permutation_out<=12'b000_000_000_100; //0004
-                    4'd1: permutation_out<=12'b000_000_100_000; //0040
-                    4'd2: permutation_out<=12'b000_100_000_000; //0400
-                    4'd3: permutation_out<=12'b100_000_000_000; //4000
-                    4'd4: permutation_out<=12'b000_000_011_001; //0031
-                    4'd5: permutation_out<=12'b000_011_001_000; //0310
-                    4'd6: permutation_out<=12'b011_001_000_000; //3100
-                    4'd7: permutation_out<=12'b000_000_001_011; //0013
-                    4'd8: permutation_out<=12'b000_001_011_000; //0130
-                    4'd9: permutation_out<=12'b001_011_000_000; //1300
-                    4'd10: permutation_out<=12'b000_011_000_001; //0301
-                    4'd11: permutation_out<=12'b011_000_001_000; //3010
-                    4'd11: permutation_out<=12'b000_001_000_011; //0103
-                    4'd12: permutation_out<=12'b001_000_011_000; //1030
-                    4'd13: permutation_out<=12'b011_000_000_001; //3001
-                    4'd14: permutation_out<=12'b001_000_000_011; //1003
-                    4'd15: permutation_out<=12'b000_000_010_010; //0022
-                    4'd16: permutation_out<=12'b000_010_000_010; //0202
-                    4'd17: permutation_out<=12'b001_001_001_000; //2002
-                    4'd18: permutation_out<=12'b001_001_000_001; //2020
-                    4'd19: permutation_out<=12'b001_000_001_001; //2200
-                    4'd20: permutation_out<=12'b000_001_001_001; //1111
-
-
-
-
-                    4'd21: permutation_out<=12'b001_001_001_000; //0112
-                    4'd22: permutation_out<=12'b001_001_000_001; //1120
-                    4'd23: permutation_out<=12'b001_001_000_001; //1102
-                    4'd24: permutation_out<=12'b001_001_000_001; //1012
-
-                    4'd25: permutation_out<=12'b001_000_001_001; //0121
-                    4'd26: permutation_out<=12'b000_001_001_001; //1210
-                    4'd27: permutation_out<=12'b001_000_001_001; //1021
-                    4'd28: permutation_out<=12'b000_001_001_001; //1201
-
-
-                    4'd29: permutation_out<=12'b001_001_001_000; //0211
-                    4'd30: permutation_out<=12'b001_001_000_001; //2101
-                    4'd31: permutation_out<=12'b001_001_001_000; //0211
-                    4'd32: permutation_out<=12'b001_001_000_001; //2011
-
-                    default: permutation_out<=12'b000000000000
-                endcase
-
-                if(counter ==31) begin
-                    counting <=1;
-                    counter<=0;
-                    total_counter <=total_counter + 32;
-                    space_to_fill <=space_to_fill - 1;
-                end
-
-
-            end else if (space_to_fill ==5) begin
-
-
-    end
-end
+                end //sapce to fill
+            end //n of breaks
+        end // if coutnign
+    end // always_ff
 
 endmodule
-
-
 `default_nettype wire
 

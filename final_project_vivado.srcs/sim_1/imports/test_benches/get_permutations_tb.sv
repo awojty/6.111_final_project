@@ -11,7 +11,7 @@ module get_permutations_tb;
        logic [2:0] space_to_fill_left;
        
        //out
-       logic [31:0] address_out;
+       
        logic done;
        logic [11:0] permutation_out;
        logic [5:0] total_counter;
@@ -22,8 +22,8 @@ module get_permutations_tb;
                     .clk_in(clk),
                     .start_in(confirm_in),
                     .reset_in(rst_in),
-                    .number_of_breaks(number_of_breaks),
-                    .space_to_fill_left(space_to_fill_left),
+                    .number_of_breaks_in(number_of_breaks),
+                    .space_to_fill_in(space_to_fill_left),
                     .permutation_out(permutation_out),
                     .total_counter(total_counter),
                    .done(done)); 
@@ -36,7 +36,7 @@ module get_permutations_tb;
         clk = 0;
         confirm_in = 0;
         rst_in = 0;
-        index_in = 0;
+        
         number_of_breaks = 0;
         space_to_fill_left =0;
 
@@ -47,11 +47,9 @@ module get_permutations_tb;
         #10;
         rst_in = 0;
         confirm_in=1; // free the button 
-
-        #10;
         
         number_of_breaks = 1'd1;
-        space_to_fill_left = 1'd4;
+        space_to_fill_left = 3'd4;
         #200;
 
 
