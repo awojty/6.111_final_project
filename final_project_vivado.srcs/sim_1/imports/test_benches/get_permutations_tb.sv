@@ -1,66 +1,61 @@
 `timescale 1ns / 1ps
-////////////////////////////////////////////////////////////////////////////////
 
 module get_permutations_tb;
 
        // Inputs
        logic clk;
-       logic [5:0] index; //actual numebr of the nonogram selected by teh user
-        logic btnc; //user confirms the slection of the nonogram 
-
-       
+       logic confirm_in;
        logic rst_in;
-
-
-
+       
+       logic [2:0] number_of_breaks;
+       logic [2:0] space_to_fill_left;
+       
        //out
-       logic [799:0] assignment_out2;
+       logic [31:0] address_out;
        logic done;
-       logic sending;
-
+       logic [11:0] permutation_out;
+       logic [5:0] total_counter;
    
        // Instantiate the Unit Under Test (UUT)
        //one_hz_period changed to 4 cycles so simulations don't take forever.
-    get_permutations uut(   
+        get_permutations uut(   
                     .clk_in(clk),
-                    .index(index),
-                    .btnc(btnc),
-                    .rst_in(rst_in),
-                    .assignment_out1(assignment_out2),
-                    .done(done),
-                    .sending(sending)
-
-    ); 
+                    .start_in(confirm_in),
+                    .reset_in(rst_in),
+                    .number_of_breaks(number_of_breaks),
+                    .space_to_fill_left(space_to_fill_left),
+                    .permutation_out(permutation_out),
+                    .total_counter(total_counter),
+                   .done(done)); 
 
         always #5 clk = !clk;
    
         initial begin
-            // Initialize Inputs
-            clk = 0;
-            index = 0;
-            btnc = 0;
-            rst_in=0;
+        // Initialize Inputs
 
-       
-            #100;
-            rst_in=1;
-            #10;
+        clk = 0;
+        confirm_in = 0;
+        rst_in = 0;
+        index_in = 0;
+        number_of_breaks = 0;
+        space_to_fill_left =0;
 
-            rst_in=0;
-            btnc = 1; //confirm
-            index = 0; //nonogram at index 0
+        #100;
+        //get t_arm
+        rst_in = 1;
 
-            #500;// 25 clocl cycles just inc ase - technically 23 shoudl be no
+        #10;
+        rst_in = 0;
+        confirm_in=1; // free the button 
 
-            btnc = 1; //confirm
-            index = 0; //nonogram at index 0
-            #10;
-            btnc = 0; //free the button (as the user would)
-            #500;//
-
-
+        #10;
+        
+        number_of_breaks = 1'd1;
+        space_to_fill_left = 1'd4;
+        #200;
 
 
+        
         
       // Add stimulus here
 
