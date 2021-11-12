@@ -231,9 +231,16 @@ def deduce(hr, vr):
         for x in cols[n]:
             if fits(x, c):
                 results.append(x)
+                
+                
+        print("resutls,", len(results), results)
         cols[n] = results
 
         allowed_things = allowable(results)
+        
+        print("allowed, linths",allowed_things)
+        
+        print("candohere", can_do, len(can_do))# it alwasy has length 9 
 
         for i, x in enumerate(allowed_things):
             if x != can_do[i][n]:
@@ -277,6 +284,8 @@ def deduce(hr, vr):
     for r in rows:
         print("allwable(r)", allowable(r))
         can_do.append(allowable(r))
+        
+    print("lenf cado", len(can_do), can_do, len(rows))
     
  
     # Initially mark all columns for update.
