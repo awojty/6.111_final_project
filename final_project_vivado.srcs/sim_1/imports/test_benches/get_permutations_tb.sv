@@ -48,8 +48,11 @@ module get_permutations_tb;
         rst_in = 0;
         confirm_in=1; // free the button 
         
-        number_of_breaks = 1'd1;
-        space_to_fill_left = 3'd4;
+        number_of_breaks = 3'd2;
+        space_to_fill_left = 3'd5;
+        
+        #10;
+        confirm_in=0; 
         #200;
 
 

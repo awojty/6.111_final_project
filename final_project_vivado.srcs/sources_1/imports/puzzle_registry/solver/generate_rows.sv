@@ -39,20 +39,23 @@ module generate_rows(
 
     logic [4:0] permutation_min_length;
 
+    logic [2:0] number_of_numbers; // 5 is the max numer 
+
 
     create_a_row my_create_a_row (
         .clk_in(clk_in),
         .reset_in(reset_in),
+        .new_data(new_data),
         .constrain1(constrain1),
         .constrain2(constrain2),
         .constrain3(constrain3),
         .constrain4(constrain4),
         .constrain5(constrain5),
         .number_of_constraints(number_of_numbers)
-        .break1(permutation[0:2]),
-        .break2(permutation[3:5]),
-        .break3(permutation[6:8]),
-        .break4(permutation[9:11]),
+        .break1(permutation[2:0]),
+        .break2(permutation[5:3]),
+        .break3(permutation[8:6]),
+        .break4(permutation[11:9]),
         .assignment_out(new_row),
         .done(done_generation),
         .min_length(permutation_min_lengt) //retusn the min length fomr black to black that covers all blacks
