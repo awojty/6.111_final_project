@@ -29,7 +29,7 @@ logic [4:0] running_sum_7;
 logic [4:0] running_sum_8;
 
 logic [19:0] new_row; //saves progrss
-parameter limit = 19;
+parameter limit = 20;
 
 parameter original = 20'b10101010101010101010;
 logic done_counting;
@@ -47,6 +47,14 @@ always_ff @(posedge clk_in) begin
         assignment_out<=0;
         done<=0;
         min_length<=0;
+        running_sum_1<=0; //5 bits sinnce max numebr is 20
+        running_sum_2<=0;
+        running_sum_3 <=0;
+        running_sum_4<=0;
+        running_sum_5<=0;
+        running_sum_6<=0;
+        running_sum_7<=0;
+        running_sum_8<=0;
         
 
     end else if (new_data && ~start_counting) begin
@@ -68,14 +76,16 @@ always_ff @(posedge clk_in) begin
         new_row <=original;
         done_counting <=0;
         start_counting <=1;
+        done <=0;
 
         
     end else begin
 
-        if((i == limit-2) || done_counting) begin
+        if((i == limit) || done_counting) begin
             done <=1;
             assignment_out <= new_row;
             start_counting <=0;
+            done_counting<=0;
 
 
         end else begin

@@ -1,12 +1,14 @@
 `default_nettype none
-//TODO - FSM is wrong
 // get assginements > gerneate all pemutations (n umerical) for the assingement > based on each permutaion, gernate a basic row > shoft eahc basic row as much as psosible > move to the next basic row
 //implmentation for at most 6 breaks sorry hardcoded
+
+
+//TODO - new data vs start_generaor? 
 module generate_rows(   
                     input wire clk_in,
                     input wire start_in,
                     input wire reset_in,
-                    input wire [19:0] assignment,
+                    input wire [19:0] assignment, // at most 5 sontrains of length 4 
                     output logic done,
                     output logic outputing, //asserted when the new_row is ready on the output (fully)
                     output logic [19:0] new_row,
@@ -29,13 +31,16 @@ module generate_rows(
     parameter original = 20'b10101010101010101010;
 
     logic [5:0] i; //counter in for llop for 20 row genration
-
-
     logic  [2:0] number_of_breaks;
     logic  [2:0] space_to_fill_left;
     logic [11:0] breaks;
-    logic done;
-    logic [6:0] count;
+    logic start_generator;
+    
+    logic data_collected;
+    logic permutation_started;
+    
+    logic started_shifting;
+    
 
     logic [3:0] constrain1;
     logic [3:0] constrain2;
@@ -60,23 +65,45 @@ module generate_rows(
     logic [19:0] basic_row_storage [60:0]; //stores actual rows - at most 60 row states 
     
     
+    logic create_a_row_from_permutations;
     
+    logic [6:0] permutation_counter;
     
     
     logic in_progress;
+    logic new_data; //asserete when new input to create_a_row is given 
+    
+    logic done_generation;
+    logic generating;
+    logic generate_rows_from_basic;
+    
+    logic [6:0] shifts_limit;
+    logic [6:0] shifts;
+    logic [6:0] min_length;
+    logic generate_states_from_permutations;
+    logic len_1_started;
 
+    logic [4:0] running_sum_1; //5 bits sinnce max numebr is 20
+    logic [4:0] running_sum_2;
+    logic [4:0] running_sum_3;
+    logic [4:0] running_sum_4;
+    logic [4:0] running_sum_5;
+    logic [4:0] running_sum_6;
+    logic [4:0] running_sum_7;
+    logic [4:0] running_sum_8;
+    logic [19:0] new_row1;
 
     create_a_row my_create_a_row (
         .clk_in(clk_in),
         .reset_in(reset_in),
-        .start_in(start_generator),
-        .new_data(new_data),
+        .new_data(start_generator),
+        
         .constrain1(constrain1),
         .constrain2(constrain2),
         .constrain3(constrain3),
         .constrain4(constrain4),
         .constrain5(constrain5),
-        .number_of_constraints(number_of_numbers)
+        .number_of_constraints(number_of_numbers),
         .break1(permutation[3:0]),
         .break2(permutation[7:4]),
         .break3(permutation[11:8]),
@@ -88,36 +115,68 @@ module generate_rows(
 
     get_permutations my_get_permutations(   
                     .clk_in(clk_in),
+                    .reset_in(reset_in),
                     .start_in(permutation_started), // asserted when we want to start generating permutations
-                    .number_of_breaks(number_of_breaks),//at most 4 breaks
-                    .space_to_fill_left(space_to_fill_left), // at most 5 space left (exclude teh compuslory break on the left)
-                    .breaks(permutation_out), //  mak of 4 breaks, eahc max encoded by 3 bits 4*3 ==12
+                    .number_of_breaks_in(number_of_breaks),//at most 4 breaks
+                    .space_to_fill_in(space_to_fill_left), // at most 5 space left (exclude teh compuslory break on the left)
+                    .permutation_out(permutation_out), //  mak of 4 breaks, eahc max encoded by 3 bits 4*3 ==12
                     .done(returned_all_permutations),
-
                     .total_counter(permutation_count) //returns the tola nbumber of optison returend for a given setging
-
     );
-
-
-
 
     always_ff @(posedge clk_in) begin
 
         if(reset_in) begin
 
+            //counters
+            shifts <=0;
             number_of_breaks<=0;
             space_to_fill_left<=0;
-            start_in<=0;
-            new_row<=20'b0;
-            output_counter <=0;
+            shifts_limit<=0;
             counter<=0;
-            permutation_started<=0
-            data_collected<=0;
-            create_rows_from_permutations <=0;
             permutation_counter <=0;
-            count<=0;
+            i<=0;
+
+            //FSM
             in_progress <=0;
+            len_1_started<=0;
+            create_a_row_from_permutations<=0;
+            done_generation<=0;
+            generating<=0;
+            generate_rows_from_basic<=0;
+            permutation_started<=0;
+            data_collected<=0;
+            generate_states_from_permutations <=0;
+            start_generator <=0;
+            returned_all_permutations<=0;
+
+            //outputs
+            outputing<=0;
+            count<=0;
+            done <=0;
+            total_count <=0;
+            new_row<=20'b0;
+            new_row1<=20'b0;
             
+            //regs
+            permutation_out <=0;
+
+            running_sum_1<=0; //5 bits sinnce max numebr is 20
+            running_sum_2<=0;
+            running_sum_3 <=0;
+            running_sum_4<=0;
+            running_sum_5<=0;
+            running_sum_6<=0;
+            running_sum_7<=0;
+            running_sum_8<=0;
+
+            //storage
+
+//            permutations_min_length_list<=304'b0; //61 arryas of 5 bits ? 
+//            permutations_list <=0; //stroes numebrs -at most 30 permuations for a agiven set of constraints
+    
+//            basic_row_storage <=0; //stores actual rows - at most 60 row states 
+    
 
         end else if (create_a_row_from_permutations) begin
 
@@ -127,12 +186,12 @@ module generate_rows(
                 counter <=counter +1;
                 generating<=1;
                 start_generator <=1;
-                new_data <=1; //used in create a row to mark incommingn new data
+                 //used in create a row to mark incommingn new data
                 permutation <= permutations_list[counter]; // input to create_a_row module - it only retusn ONE row per permutaiont numerbs - the basic one, shifted to the left 
                 
             end else if (generating) begin
                 start_generator <=0;
-                new_data <=0; //used in create a row to mark incommingn new data
+                 //used in create a row to mark incommingn new data
             end else if (done_generation) begin
                 //save returned row
                 basic_row_storage[counter] <= new_row;
@@ -145,7 +204,7 @@ module generate_rows(
 
                 //i have created and output all the rows for given cosntrinats
                 create_a_row_from_permutations <=0;
-                permutation_started<=0
+                permutation_started<=0;
                 
 
                 in_progress <=0;
@@ -165,7 +224,7 @@ module generate_rows(
             counter <=counter +1;
             if(returned_all_permutations) begin
                 create_a_row_from_permutations <=1;
-                permutation_started<=0
+                permutation_started<=0;
                 counter<=0;
                 permutation_counter<=0; // used i nthe next state 
                 
@@ -203,7 +262,7 @@ module generate_rows(
 
                     if(shifts < shifts_limit) begin
                     //we are still allowed to shift
-                        new_row <= {new_row<<2, 2'b10};
+                        new_row <= {new_row, 2'b10};
                         shifts <=shifts+2;
                         outputing <=1;
                         count <= count +1;
@@ -211,8 +270,6 @@ module generate_rows(
                     end else begin
                         started_shifting <=0;
                         outputing <=0;
-                        
-                       
                         
                     end
 
@@ -225,45 +282,46 @@ module generate_rows(
 
             //we have collected all the permutatiosn but now we need to shift them
 
-            if(min_length == 20) begin
+            if(min_length == 10) begin
                 //if it's the "best case scenario" - we have onyl one posible way to create a row - return it right away
                 i<=i+2;
 
-                
-                if(i <assignment[3:0]+assignment[3:0]) begin
-                            new_row[i] <= 1;
-                            new_row[i+1] <= 0;
-                    end else if( i == assignment[3:0]+assignment[3:0]) else begin
-                            new_row[i] <= 0;
-                            new_row[i+1] <= 1;
-                    end else if(i <assignment[7:4]+assignment[7:4]) begin
-                            new_row[i] <= 1;
-                            new_row[i+1] <= 0;
-                    end else if( i == assignment[7:4]+assignment[7:4]) else begin
-                            new_row[i] <= 0;
-                            new_row[i+1] <= 1;
-                    end else if(i <assignment[11:8]+assignment[11:8]) begin
-                            new_row[i] <= 1;
-                            new_row[i+1] <= 0;
-                    end else if( i == assignment[11:8]+assignment[11:8]) else begin
-                            new_row[i] <= 0;
-                            new_row[i+1] <= 1;
-                    end else if(i <assignment[15:12]+assignment[15:12]) begin
-                            new_row[i] <= 1;
-                            new_row[i+1] <= 0;
-                    end else if( i == assignment[15:12]+assignment[15:12]) else begin
-                            new_row[i] <= 0;
-                            new_row[i+1] <= 1;
-                    end else if( i < assignment[19:16]+assignment[19:16) else begin
-                            new_row[i] <= 0;
-                            new_row[i+1] <= 1;
-                end
-
-                if(i == min_length-2) begin
+                if(i == 20) begin
                     done<=1;
                     count<=1;
+                    total_count <=1;
                     i<=0;
+                    new_row <=new_row1;
+                end else if(i <running_sum_1) begin
+                            new_row1[i] <= 1'b1;
+                            new_row1[i+1] <= 1'b0;
+                end else if( i == running_sum_1) begin
+                            new_row1[i] <= 1'b0;
+                            new_row1[i+1] <= 1'b1;
+                end else if(i < running_sum_2 && i > running_sum_1) begin
+                            new_row1[i] <= 1'b1;
+                            new_row1[i+1] <= 1'b0;
+                end else if( i ==  running_sum_2) begin
+                            new_row1[i] <= 1'b0;
+                            new_row1[i+1] <= 1'b1;
+                end else if(i < running_sum_3 && i >  running_sum_2) begin
+                            new_row1[i] <= 1'b1;
+                            new_row1[i+1] <= 1'b0;
+                end else if( i ==  running_sum_3) begin
+                            new_row1[i] <= 0;
+                            new_row1[i+1] <= 1;
+                end else if(i < running_sum_4 && i >  running_sum_3 ) begin
+                            new_row1[i] <= 1'b1;
+                            new_row1[i+1] <= 1'b0;
+                end else if( i ==  running_sum_4) begin
+                            new_row1[i] <= 1'b0;
+                            new_row1[i+1] <= 1'b1;
+                end else if( i <  running_sum_5 && i >  running_sum_4) begin
+                            new_row1[i] <= 1'b1;
+                            new_row1[i+1] <= 1'b0;
                 end
+
+
 
                         
 
@@ -275,7 +333,7 @@ module generate_rows(
                     
                     count <= count+1; //increment the "idnex" of the returend row
 
-                    new_row <= new_row <<1; //shoft one to the left
+                    new_row <= {new_row, 2'b10}; //shoft one to the left
 
                     if(count == total_count-1) begin
                         done <=1;
@@ -288,31 +346,26 @@ module generate_rows(
 
                 end else begin
                     //start internal fsm to shift
-                    
-                    total_count <= 7'd20 - assignment[3:0] +1'd1; // total number of rows toreturn 
+                    total_count <= 7'd10 - assignment[3:0] +1'd1; // total number of rows toreturn 
                     
                     i<=i+2;
-                    
-                    if(i <assignment[3:0] + assignment[3:0]) begin
-                            new_row[i] = 1;
-                            new_row[i+1] = 0;
-                    end else begin
-                            new_row[i] = 0;
-                            new_row[i+1] = 1;
-                    end
-
-                    if( i == 18) begin
+                
+                    if( i > 18) begin
                         len_1_started<=1;
                         outputing<=1;
                         i<=0;
-                        count <=count+1;
+                        new_row<=new_row1;
+                        //count <=count+1;
                         
+                    end else if(i <(assignment[3:0] + assignment[3:0])) begin
+                            new_row1[i] = 1;
+                            new_row1[i+1] = 0;
+                    end else begin
+                            new_row1[i] = 0;
+                            new_row1[i+1] = 1;
                     end
 
                         
-                    end
-
-
                 end
 
 
@@ -321,10 +374,12 @@ module generate_rows(
 
                 permutation_started <=1;
                 data_collected<=0;
+                count<=0;
+                
             end
             
             
-        end else if (start_in && ~in_progress) begin
+        end else if (start_in && (~in_progress)) begin
 
             //we have provided new data in assingemtne > syart the whole fsm again 
             data_collected<=1;
@@ -335,50 +390,78 @@ module generate_rows(
             count <=0;
             done <=0;
             outputing <=0;
+            
+            i<=0;
 
             constrain1<=assignment[3:0];
             constrain2<=assignment[7:4];
             constrain3<=assignment[11:8];
             constrain4<=assignment[15:12];
-            constrain5<=assignment[19:16;
+            constrain5<=assignment[19:16];
+
+            running_sum_1 <= assignment[3:0] + assignment[3:0]; // always add tiwce sicne we migrate from 10 to 20
+            running_sum_2 <= assignment[3:0] + assignment[3:0] + 2 + assignment[7:4] + assignment[7:4] ;
+            running_sum_3 <= assignment[3:0] + assignment[3:0] + 2 + assignment[7:4] + assignment[7:4] + 2 + assignment[11:8] + assignment[11:8];
+            running_sum_4 <= assignment[3:0] + assignment[3:0] + 2 + assignment[7:4] + assignment[7:4] + 2 + assignment[11:8] + assignment[11:8] + 2 + assignment[15:12] + assignment[15:12];
+            running_sum_5 <= assignment[3:0] + assignment[3:0] + 2 + assignment[7:4] + assignment[7:4] + 2 + assignment[11:8] + assignment[11:8] + 2 + assignment[15:12] + assignment[15:12] + 2 + assignment[19:16] + assignment[19:16];
+
 
             //gernate numebr of breaks and spaces lef based on the passed cosntraints 
 
-            if(assignment[3:0]>0) begin
-                min_length <= number_of_constraints + assignment[3:0] -1;
-                number_of_breaks<=3'd0;
-                number_of_numbers<=3'd1;
-                space_to_fill_left <= 20 - assignment[3:0] - assignment[7:4] - assignment[11:8] - assignment[15:12] - assignment[19:16];
+            if (assignment[3:0] > 4'b0000 && assignment[7:4]<=4'b0000) begin
+                min_length <= assignment[3:0];
+                number_of_breaks <= 3'd0;
+                number_of_numbers <= 3'd1;
+                space_to_fill_left <= 10 - assignment[3:0];
+                
+                running_sum_1 <= assignment[3:0] + assignment[3:0]; // always add tiwce sicne we migrate from 10 to 20
+                running_sum_2 <= assignment[3:0] + assignment[3:0];
+                running_sum_3 <= assignment[3:0] + assignment[3:0];
+                running_sum_4 <= assignment[3:0] + assignment[3:0];
+                running_sum_5 <= assignment[3:0] + assignment[3:0];
 
-            end else if (assignment[7:4]>0) begin
+
+
+            end else if (assignment[7:4]>4'b0000 && assignment[11:8]<=4'b0000) begin
                 number_of_breaks<=1;
                 number_of_numbers<=2;
-                min_length <= number_of_constraints + assignment[3:0] + assignment[7:4] -1;
-                space_to_fill_left <= 20 - assignment[3:0] - assignment[7:4] - assignment[11:8] - assignment[15:12] - assignment[19:16] - 1;
+                min_length <= assignment[3:0] + assignment[7:4] +1;
+                space_to_fill_left <= 10 - assignment[3:0] - assignment[7:4] - assignment[11:8] - assignment[15:12] - assignment[19:16] - 1;
+
+                running_sum_1 <= assignment[3:0] + assignment[3:0]; // always add tiwce sicne we migrate from 10 to 20
+                running_sum_2 <= assignment[3:0] + assignment[3:0] + 2 + assignment[7:4] + assignment[7:4] ;
+                running_sum_3 <=5'b11111;
+                running_sum_4 <= 5'b11111;
+                running_sum_5 <= 5'b11111;
 
                 
-            end else if (assignment[11:8]>0) begin
+            end else if (assignment[11:8]>0 && assignment[15:12]<=1'b0) begin
                 number_of_breaks<=2;
                 number_of_numbers<=3;
-                space_to_fill_left <= 20 - assignment[3:0] - assignment[7:4] - assignment[11:8]  - 2;
+                space_to_fill_left <= 10 - assignment[3:0] - assignment[7:4] - assignment[11:8]  - 2;
 
 
                 min_length <= assignment[3:0] + assignment[7:4] + assignment[11:8] + 2; // min lenght of the run
+                running_sum_1 <= assignment[3:0] + assignment[3:0]; // always add tiwce sicne we migrate from 10 to 20
+                running_sum_2 <= assignment[3:0] + assignment[3:0] + 2 + assignment[7:4] + assignment[7:4] ;
+                running_sum_3 <= assignment[3:0] + assignment[3:0] + 2 + assignment[7:4] + assignment[7:4] + 2 + assignment[11:8] + assignment[11:8];
+                running_sum_4 <= 5'b11111;
+                running_sum_5 <= 5'b11111;
 
                 
-            end else if (assignment[15:12]>0) begin
+            end else if (assignment[15:12]>1'b0 && assignment[19:16]<=1'b0) begin
                 number_of_breaks<=3;
                 number_of_numbers<=4;
-                space_to_fill_left <= 20 - assignment[3:0] - assignment[7:4] - assignment[11:8] - assignment[15:12]  - 3;
+                space_to_fill_left <= 10 - assignment[3:0] - assignment[7:4] - assignment[11:8] - assignment[15:12]  - 3;
 
                 min_length <= assignment[3:0] + assignment[7:4] + assignment[11:8] + assignment[15:12] + 3; // min lenght of the run
 
                 
-            end else if (assignment[19:16]>0) begin
+            end else if (assignment[19:16]>1'b0) begin
                 number_of_breaks<=4;
                 number_of_numbers<=5;
                 min_length <= assignment[3:0] + assignment[7:4] + assignment[11:8] + assignment[15:12] + assignment[19:16] + 4; // min lenght of the run
-                space_to_fill_left <= 20 - (assignment[3:0] + assignment[7:4] +assignment[11:8]  + assignment[15:12] + assignment[19:16]) -4;
+                space_to_fill_left <= 10 - (assignment[3:0] + assignment[7:4] +assignment[11:8]  + assignment[15:12] + assignment[19:16]) -4;
 
                 
             end

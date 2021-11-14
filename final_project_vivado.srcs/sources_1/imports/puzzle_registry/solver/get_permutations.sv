@@ -10,6 +10,7 @@ module get_permutations(
 //most signifcant bits encode numebrs
                     output logic [15:0] permutation_out, //  mak of 4 breaks, eahc max encoded by 3 bits 4*3 ==12
                     output logic done,
+                    output logic counting, //asserted when it actuall starts sending permutation
                     output logic [5:0] total_counter //returns the tola nbumber of optison returend for a given setging
 
 
@@ -21,7 +22,7 @@ module get_permutations(
 
 
 logic [5:0] counter;
-logic counting;
+
 
 logic  [2:0] number_of_breaks;//at most 4 breaks
 logic [2:0] space_to_fill; // at most 5 space left
@@ -63,6 +64,7 @@ logic [2:0] space_to_fill; // at most 5 space left
                         counting <=0;
                         total_counter <=total_counter + 1;
                         done<=1;
+                        
                     end
 
                 end else if (space_to_fill ==1) begin
@@ -82,7 +84,7 @@ logic [2:0] space_to_fill; // at most 5 space left
                     end
 
                 end else if (space_to_fill ==2) begin
-                counter<=counter +1;
+                    counter<=counter +1;
                     case(counter)
                         6'b0: permutation_out<= 12'b00000000_0010;
                         default: permutation_out<= 12'b000000000000;
@@ -258,11 +260,11 @@ logic [2:0] space_to_fill; // at most 5 space left
                 end else if (space_to_fill ==4) begin
 
                     case(counter)
-                        6'b0: permutation_out<=12'b000_000_010_010; // 22
-                        6'd1: permutation_out<=12'b000_000_011_001; //31
-                        6'd2: permutation_out<=12'b000_000_011_001; //13
-                        6'd3: permutation_out<=12'b000_000_100_000; //40
-                        6'd4: permutation_out<=12'b000_000_000_100; //04
+                        6'b0: permutation_out<=16'b0000_0000_0010_0010; // 22
+                        6'd1: permutation_out<=16'b0000_0000_0011_0001; //31
+                        6'd2: permutation_out<=16'b0000_0000_0011_0001; //13
+                        6'd3: permutation_out<=16'b0000_0000_0100_0000; //40
+                        6'd4: permutation_out<=16'b0000_0000_0000_0100; //04
                         default: permutation_out<=12'b000000000000;
                     
                     endcase
@@ -277,12 +279,12 @@ logic [2:0] space_to_fill; // at most 5 space left
                 end else if (space_to_fill ==5) begin
 
                     case(counter)
-                        6'b0: permutation_out<=12'b000_000_101_000; // 50
-                        6'd1: permutation_out<=12'b000_000_000_101; //05
-                        6'd2: permutation_out<=12'b000_000_100_001; //41
-                        6'd3: permutation_out<=12'b000_000_001_100; //14
-                        6'd4: permutation_out<=12'b000_000_011_010; //32
-                        6'd5: permutation_out<=12'b000_000_010_011; //23
+                        6'b0: permutation_out<=16'b0000_0000_0101_0000; // 50
+                        6'd1: permutation_out<=16'b000_0000_0000_0101; //05
+                        6'd2: permutation_out<=16'b0000_0000_0100_0001; //41
+                        6'd3: permutation_out<=16'b0000_0000_0001_0100; //14
+                        6'd4: permutation_out<=16'b0000_0000_0011_0010; //32
+                        6'd5: permutation_out<=16'b0000_0000_0010_0011; //23
                         default: permutation_out<=12'b000000000000;
                     endcase
 

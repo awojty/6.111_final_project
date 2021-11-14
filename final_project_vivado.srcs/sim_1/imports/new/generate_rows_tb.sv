@@ -10,22 +10,25 @@ module generate_rows_tb;
        
        
        //out
-       logic [31:0] address_out;
+       logic outputing;
        logic done;
        logic [19:0] new_row;
        logic [6:0] count; //totoal number of rows returned
+       logic [6:0] total_count;
 
    
        // Instantiate the Unit Under Test (UUT)
        //one_hz_period changed to 4 cycles so simulations don't take forever.
-        get_rows uut(   
+        generate_rows uut(   
                     .clk_in(clk),
                     .start_in(start_in),
                     .reset_in(reset_in),
                     .assignment(assignment),
-                    .done(done),
+                   .done(done),
+                    .outputing(outputing), //asserted when the new_row is ready on the output (fully)
                     .new_row(new_row),
-                    .count(count) //returns the tola nbumber of optison returend for a given setging
+                    .count(count), //current index of the row in the set of that we are oging to return 
+                    .total_count(total_count) //returns the tola nbumber of optison returend for a given setging
                    ); 
 
         always #5 clk = !clk;
@@ -33,22 +36,24 @@ module generate_rows_tb;
         initial begin
         // Initialize Inputs
 
-        clk = 0;
-        confirm_in = 0;
-        rst_in = 0;
-        index_in = 0;
+         clk =0;
+         start_in =0;
+         reset_in = 0;
+         assignment =0 ;
 
 
         #100;
-        //get t_arm
-        confirm_in=1;
-        rst_in = 1;
-        #10;
-        rst_in = 0;
-        index_in = 0;
-        #20
-        confirm_in=0; // free the button 
-        
+         reset_in = 1;
+
+         #10;
+         reset_in = 0;
+         assignment =20'b0000_0000_0000_0000_1000; //24
+         start_in =1;
+         //get t_arm
+         
+         #10;
+         start_in =0;
+
         
       // Add stimulus here
 

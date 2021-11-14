@@ -431,4 +431,20 @@ def printAllKLengthRec(set, prefix, n, k):
 		# 			if (status == CONFLICT) conflict = true;
 		# 			if (status == PROGRESS) progress = true;
 		# 		}
+  
+  
+s1 = "1010_0101010101010101"
+     #"10010101010101010100"
+     #"1010101010101010010"
+s2 =  "10010101010101010110"
+s3 = "01010101010101011010"
+
+a1 = hex(int(s1, 2))
+a2 = hex(int(s2, 2))
+a3 = hex(int(s3, 2))
+
+
+a4 = bin(int("55552", 16))[2:]
+
+print(a1,a2,a3, a4)
 
