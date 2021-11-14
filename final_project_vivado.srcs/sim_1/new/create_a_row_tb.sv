@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-module get_permutations_tb;
+module create_a_row_tb;
 
        // Inputs
        logic clk;

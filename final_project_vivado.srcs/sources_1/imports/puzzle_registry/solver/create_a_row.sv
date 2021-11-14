@@ -44,6 +44,9 @@ always_ff @(posedge clk_in) begin
         done_counting <=0;
         new_row <=0;
         start_counting <=0;
+        assignment_out<=0;
+        done<=0;
+        min_length<=0;
         
 
     end else if (new_data && ~start_counting) begin
