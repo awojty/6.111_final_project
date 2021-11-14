@@ -581,11 +581,76 @@ logic [2:0] space_to_fill; // at most 5 space left
 
                 end else if (space_to_fill ==5) begin
             
-                //TODO
-            
-                    space_to_fill <=space_to_fill - 1;
-                    counting <=1;
-                    counter<=0;
+                
+                    case(counter)
+                        6'b0: permutation_out<=12'b000_000_000_100; //0005
+                        6'd1: permutation_out<=12'b000_000_100_000; //0050
+                        6'd2: permutation_out<=12'b000_100_000_000; //0500
+                        6'd3: permutation_out<=12'b100_000_000_000; //5000
+                        6'd4: permutation_out<=12'b000_000_011_001; //0041
+                        6'd5: permutation_out<=12'b000_011_001_000; //0410
+                        6'd6: permutation_out<=12'b011_001_000_000; //4100
+                        6'd7: permutation_out<=12'b000_000_001_011; //0014
+                        6'd8: permutation_out<=12'b000_001_011_000; //0140
+                        6'd9: permutation_out<=12'b001_011_000_000; //1400
+                        6'd10: permutation_out<=12'b000_011_000_001; //0401
+                        6'd11: permutation_out<=12'b011_000_001_000; //4010
+                        6'd11: permutation_out<=12'b000_001_000_011; //0104
+                        6'd12: permutation_out<=12'b001_000_011_000; //1040
+                        6'd13: permutation_out<=12'b011_000_000_001; //4001
+                        6'd14: permutation_out<=12'b001_000_000_011; //1004
+                        6'd15: permutation_out<=12'b000_000_010_010; //0023
+                        6'd16: permutation_out<=12'b000_010_000_010; //0203
+                        6'd17: permutation_out<=12'b010_000_000_010; //2003
+                        6'd18: permutation_out<=12'b010_000_010_000; //2030
+                        6'd19: permutation_out<=12'b010_010_000_000; //2300
+                        6'd20: permutation_out<=12'b000_000_010_010; //0032
+                        6'd21: permutation_out<=12'b000_010_000_010; //0302
+                        6'd22: permutation_out<=12'b010_000_000_010; //3002
+                        6'd23: permutation_out<=12'b010_000_010_000; //3020
+                        6'd24: permutation_out<=12'b010_010_000_000; //3200
+                        6'd25: permutation_out<=12'b000_010_000_010; //0302
+                        6'd26: permutation_out<=12'b010_000_000_010; //3002
+                        6'd27: permutation_out<=12'b010_000_010_000; //3020
+                        6'd28: permutation_out<=12'b010_010_000_000; //3200
+                        6'd29: permutation_out<=12'b000_000_010_010; //1112
+                        6'd30: permutation_out<=12'b000_000_010_010; //1121
+                        6'd31: permutation_out<=12'b000_000_010_010; //1211
+                        6'd32: permutation_out<=12'b000_000_010_010; //2111
+                        6'd33: permutation_out<=12'b000_001_001_010; //0113
+                        6'd34: permutation_out<=12'b001_001_010_000; //1130
+                        6'd35: permutation_out<=12'b001_001_000_010; //1103
+                        6'd36: permutation_out<=12'b001_000_001_010; //1013
+                        6'd37: permutation_out<=12'b000_001_010_001; //0131
+                        6'd38: permutation_out<=12'b001_010_001_000; //1310
+                        6'd39: permutation_out<=12'b001_000_010_001; //1031
+                        6'd40: permutation_out<=12'b001_010_000_001; //1301
+                        6'd41: permutation_out<=12'b000_010_001_001; //0311
+                        6'd42: permutation_out<=12'b010_001_000_001; //3101
+                        6'd43: permutation_out<=12'b000_010_001_001; //0311
+                        6'd44: permutation_out<=12'b010_000_001_001; //3011
+                        6'd45: permutation_out<=12'b000_001_001_010; //0221
+                        6'd46: permutation_out<=12'b001_001_010_000; //2210
+                        6'd47: permutation_out<=12'b001_001_000_010; //2201
+                        6'd48: permutation_out<=12'b001_000_001_010; //2021
+                        6'd49: permutation_out<=12'b000_001_010_001; //0212
+                        6'd50: permutation_out<=12'b001_010_001_000; //2120
+                        6'd51: permutation_out<=12'b001_000_010_001; //2012
+                        6'd52: permutation_out<=12'b001_010_000_001; //2102
+                        6'd53: permutation_out<=12'b000_010_001_001; //0122
+                        6'd54: permutation_out<=12'b010_001_000_001; //1202
+                        6'd55: permutation_out<=12'b000_010_001_001; //0122
+                        6'd56: permutation_out<=12'b010_000_001_001; //1022
+
+                        default: permutation_out<=12'b000000000000;
+                    endcase
+
+                    if(counter ==56) begin
+                        counting <=1;
+                        counter<=0;
+                        total_counter <=total_counter + 57;
+                        space_to_fill <=space_to_fill - 1;
+                    end
 
                 end //sapce to fill
             end //n of breaks
