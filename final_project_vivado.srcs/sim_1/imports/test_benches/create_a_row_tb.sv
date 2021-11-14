@@ -52,25 +52,43 @@ module get_permutations_tb;
         // Initialize Inputs
 
         clk = 0;
-        confirm_in = 0;
-        rst_in = 0;
-        
-        number_of_breaks = 0;
-        space_to_fill_left =0;
 
+       
+        reset_in=0;
+        new_data=0;
+
+        constrain1=0;
+        constrain2=0;
+        constrain3=0;
+        constrain4=0;
+        constrain5=0;
+        number_of_constraints=0;
+        break1=0;
+        break2=0;
+        break3=0;
+        break4=0;
+    
         #100;
         //get t_arm
-        rst_in = 1;
+        reset_in = 1;
 
         #10;
-        rst_in = 0;
-        confirm_in=1; // free the button 
-        
-        number_of_breaks = 3'd2;
-        space_to_fill_left = 3'd5;
-        
+        reset_in = 0;
+        constrain1=2;
+        constrain2=3;
+        constrain3=2;
+        constrain4=0;
+        constrain5=0;
+        number_of_constraints=2;
+        break1=1;
+        break2=1;
+        break3=0;
+        break4=0;
+        new_data=1;
+  
         #10;
-        confirm_in=0; 
+        new_data=0;
+        
         #200;
 
 

@@ -1,7 +1,7 @@
 module create_a_row(
     input wire clk_in,
     input wire reset_in, 
-    input wire new_data,
+    input wire new_data, // assertes if sth new appears on the input (new cosntrins)
     input wire [3:0] constrain1,
     input wire [3:0] constrain2,
     input wire [3:0] constrain3,
@@ -33,6 +33,7 @@ parameter limit = 19;
 
 parameter original = 20'b10101010101010101010;
 logic done_counting;
+logic start_counting;
 
 always_ff @(posedge clk_in) begin
 
@@ -42,9 +43,10 @@ always_ff @(posedge clk_in) begin
         i<=0;
         done_counting <=0;
         new_row <=0;
+        start_counting <=0;
         
 
-    end else if (new_data) begin
+    end else if (new_data && ~start_counting) begin
         //2 bit encoding 
 
         //tODO how to map the fact that we have 2 btos per cell ? 
@@ -62,6 +64,7 @@ always_ff @(posedge clk_in) begin
 
         new_row <=original;
         done_counting <=0;
+        start_counting <=1;
 
         
     end else begin
@@ -69,6 +72,7 @@ always_ff @(posedge clk_in) begin
         if((i == limit-2) || done_counting) begin
             done <=1;
             assignment_out <= new_row;
+            start_counting <=0;
 
 
         end else begin
@@ -114,6 +118,7 @@ always_ff @(posedge clk_in) begin
             end else if(i >=running_sum_8) begin
                 //marked the rest as unmarked ( but will be remvoed anyways ? )
                 done_counting<=1;
+                start_counting <=0;
             end
 
 
