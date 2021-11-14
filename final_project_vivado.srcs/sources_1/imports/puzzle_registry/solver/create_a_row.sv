@@ -7,11 +7,11 @@ module create_a_row(
     input wire [3:0] constrain3,
     input wire [3:0] constrain4,
     input wire [3:0] constrain5,
-    input wire [2:0] number_of_constraints,
-    input wire [2:0] break1,
-    input wire [2:0] break2,
-    input wire [2:0] break3,
-    input wire [2:0] break4,
+    input wire [3:0] number_of_constraints,
+    input wire [3:0] break1,
+    input wire [3:0] break2,
+    input wire [3:0] break3,
+    input wire [3:0] break4,
     output logic [19:0] assignment_out, // 2- bit row output sic eeach cell encode by 2 bits
     output logic done,
     output logic [4:0] min_length

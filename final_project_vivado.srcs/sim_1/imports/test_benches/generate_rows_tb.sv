@@ -1,27 +1,32 @@
 `timescale 1ns / 1ps
 
-module get_rows_tb;
+module generate_rows_tb;
 
        // Inputs
        logic clk;
-       logic confirm_in;
-       logic rst_in;
-       logic [5:0] index_in;
+       logic start_in;
+       logic reset_in;
+       logic [19:0] assignment;
+       
        
        //out
        logic [31:0] address_out;
        logic done;
+       logic [19:0] new_row;
+       logic [6:0] count; //totoal number of rows returned
 
    
        // Instantiate the Unit Under Test (UUT)
        //one_hz_period changed to 4 cycles so simulations don't take forever.
         get_rows uut(   
                     .clk_in(clk),
-                    .confirm_in(confirm_in),
-                    .reset_in(rst_in),
-                    .index_in(index_in),
-                    .address_out(address_out),
-                   .done_out(done)); 
+                    .start_in(start_in),
+                    .reset_in(reset_in),
+                    .assignment(assignment),
+                    .done(done),
+                    .new_row(new_row),
+                    .count(count) //returns the tola nbumber of optison returend for a given setging
+                   ); 
 
         always #5 clk = !clk;
    
