@@ -59,10 +59,10 @@ module generate_rows(
     logic [5:0] permutation_count;
     logic [5:0] counter; //used to coutn permutations when they are being returned
     
-    logic [4:0] permutations_min_length_list [60:0]; //61 arryas of 5 bits ? 
-    logic [16:0] permutations_list [60:0]; //stroes numebrs -at most 30 permuations for a agiven set of constraints
+    logic [4:0] permutations_min_length_list [7:0]; //61 arryas of 5 bits ? 
+    logic [16:0] permutations_list [7:0]; //stroes numebrs -at most 30 permuations for a agiven set of constraints
     
-    logic [19:0] basic_row_storage [60:0]; //stores actual rows - at most 60 row states 
+    logic [19:0] basic_row_storage [7:0]; //stores actual rows - at most 60 row states 
     
     
     logic create_a_row_from_permutations;
@@ -92,6 +92,7 @@ module generate_rows(
     logic [4:0] running_sum_7;
     logic [4:0] running_sum_8;
     logic [19:0] new_row1;
+    logic [19:0] new_row_from_create_a_row;
 
     create_a_row my_create_a_row (
         .clk_in(clk_in),
@@ -108,7 +109,7 @@ module generate_rows(
         .break2(permutation[7:4]),
         .break3(permutation[11:8]),
         .break4(permutation[15:10]),
-        .assignment_out(new_row),
+        .assignment_out(new_row_from_create_a_row),
         .done(done_generation),
         .min_length(permutation_min_length) //retusn the min length fomr black to black that covers all blacks
     );
@@ -121,8 +122,12 @@ module generate_rows(
                     .space_to_fill_in(space_to_fill_left), // at most 5 space left (exclude teh compuslory break on the left)
                     .permutation_out(permutation_out), //  mak of 4 breaks, eahc max encoded by 3 bits 4*3 ==12
                     .done(returned_all_permutations),
+                    .counting(started_outputing_permutations),
                     .total_counter(permutation_count) //returns the tola nbumber of optison returend for a given setging
     );
+
+    logic started_outputing_permutations;
+    logic [6:0] create_a_row_counter;
 
     always_ff @(posedge clk_in) begin
 
@@ -136,6 +141,7 @@ module generate_rows(
             counter<=0;
             permutation_counter <=0;
             i<=0;
+            create_a_row_counter <=0;
 
             //FSM
             in_progress <=0;
@@ -157,6 +163,7 @@ module generate_rows(
             total_count <=0;
             new_row<=20'b0;
             new_row1<=20'b0;
+            new_row_from_create_a_row<=20'b0;
             
             //regs
             permutation_out <=0;
@@ -183,24 +190,25 @@ module generate_rows(
             // create BASIC rows 
 
             if(~generating) begin
-                counter <=counter +1;
+                
                 generating<=1;
                 start_generator <=1;
                  //used in create a row to mark incommingn new data
-                permutation <= permutations_list[counter]; // input to create_a_row module - it only retusn ONE row per permutaiont numerbs - the basic one, shifted to the left 
+                permutation <= permutations_list[create_a_row_counter]; // input to create_a_row module - it only retusn ONE row per permutaiont numerbs - the basic one, shifted to the left 
                 
-            end else if (generating) begin
+            end else if (generating && ~done_generation) begin
                 start_generator <=0;
                  //used in create a row to mark incommingn new data
-            end else if (done_generation) begin
+            end else if (done_generation && generating) begin
                 //save returned row
-                basic_row_storage[counter] <= new_row;
-                permutations_min_length_list[counter] <= permutation_min_length;
+                basic_row_storage[create_a_row_counter] <= new_row_from_create_a_row;
+                permutations_min_length_list[create_a_row_counter] <= permutation_min_length;
                 generating<=0;
+                create_a_row_counter <=create_a_row_counter +1;
 
             end
 
-            if(counter == permutation_count-1) begin
+            if(create_a_row_counter == permutation_count) begin
 
                 //i have created and output all the rows for given cosntrinats
                 create_a_row_from_permutations <=0;
@@ -211,6 +219,7 @@ module generate_rows(
 
                 generate_rows_from_basic <=1;
                 counter <=0;
+                create_a_row_counter <=0;
                 new_data <=0;
                 
             end
@@ -218,10 +227,14 @@ module generate_rows(
 
         end else if (permutation_started) begin
 
-            permutations_list[counter] <= permutation_out; // save the "basic" state of the row (shifted to right hand side) => in the NEXT STATE we need to shof it to the right :')
-            
-            
-            counter <=counter +1;
+            if(started_outputing_permutations) begin
+                permutations_list[counter] <= permutation_out; 
+                
+                counter <=counter +1;
+                
+            end
+
+
             if(returned_all_permutations) begin
                 create_a_row_from_permutations <=1;
                 permutation_started<=0;

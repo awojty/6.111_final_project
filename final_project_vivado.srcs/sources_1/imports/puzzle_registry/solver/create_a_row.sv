@@ -19,14 +19,14 @@ module create_a_row(
 
 logic [4:0] i; //acts as afor loop counter
 
-logic [4:0] running_sum_1; //5 bits sinnce max numebr is 20
-logic [4:0] running_sum_2;
-logic [4:0] running_sum_3;
-logic [4:0] running_sum_4;
-logic [4:0] running_sum_5;
-logic [4:0] running_sum_6;
-logic [4:0] running_sum_7;
-logic [4:0] running_sum_8;
+logic [5:0] running_sum_1; //5 bits sinnce max numebr is 20
+logic [5:0] running_sum_2;
+logic [5:0] running_sum_3;
+logic [5:0] running_sum_4;
+logic [5:0] running_sum_5;
+logic [5:0] running_sum_6;
+logic [5:0] running_sum_7;
+logic [5:0] running_sum_8;
 
 logic [19:0] new_row; //saves progrss
 parameter limit = 20;
@@ -64,22 +64,77 @@ always_ff @(posedge clk_in) begin
 
         //TODO : this is wrong since the _len will be udpated in the nextclcockcycle
 
-        running_sum_1 <= constrain1 + constrain1 + break1+ break1; // always add tiwce sicne we migrate from 10 to 20
-        running_sum_2 <= constrain1 + constrain1 + break1+ break1 + constrain2 + constrain2 ;
-        running_sum_3 <= constrain1 + constrain1 + break1+ break1 + constrain2 + constrain2 + break2 + break2;
-        running_sum_4 <= constrain1 + constrain1 + break1+ break1 + constrain2 + constrain2 + break2 + break2 + constrain3 + constrain3;
-        running_sum_5 <= constrain1 + constrain1 + break1+ break1 + constrain2 + constrain2 + break2 + break2 + constrain3 + constrain3 + break3 + break3;
-        running_sum_6 <= constrain1 + constrain1 + break1+ break1 + constrain2 + constrain2 + break2 + break2 + constrain3 + constrain3 + break3 + break3 + constrain4 + constrain4;
-        running_sum_7 <= constrain1 + constrain1 + break1+ break1 + constrain2 + constrain2 + break2 + break2 + constrain3 + constrain3 + break3 + break3 + constrain4 + constrain4 + break4 + break4;
-        running_sum_8 <= constrain1 + constrain1 + break1+ break1 + constrain2 + constrain2 + break2 + break2 + constrain3 + constrain3 + break3 + break3 + constrain4 + constrain4 + break4 + break4 + constrain5 +constrain5 ;
+        //we omit oen sicne create row is never called on one constrni set ups
+
+//        running_sum_1 <= constrain1 + constrain1 + break1+ break1 +2'd2; // always add tiwce sicne we migrate from 10 to 20
+//            running_sum_2 <= constrain1 + constrain1 + break1+ break1 + constrain2 + constrain2 +2'd2;
+//            running_sum_3 <= constrain1 + constrain1 + break1+ break1 + constrain2 + constrain2 + break2 + break2 +2'd2;
+//            running_sum_4 <= constrain1 + constrain1 + break1+ break1 + constrain2 + constrain2 + break2 + break2 + constrain3 + constrain3 +2'd2;
+//            running_sum_5 <= constrain1 + constrain1 + break1+ break1 + constrain2 + constrain2 + break2 + break2 + constrain3 + constrain3 + break3 + break3 +2'd2;
+//            running_sum_6 <= constrain1 + constrain1 + break1+ break1 + constrain2 + constrain2 + break2 + break2 + constrain3 + constrain3 + break3 + break3 + constrain4 + constrain4 +2'd2;
+//            running_sum_7 <= constrain1 + constrain1 + break1+ break1 + constrain2 + constrain2 + break2 + break2 + constrain3 + constrain3 + break3 + break3 + constrain4 + constrain4 + break4 + break4 +2'd2;
+//            running_sum_8 <= constrain1 + constrain1 + break1+ break1 + constrain2 + constrain2 + break2 + break2 + constrain3 + constrain3 + break3 + break3 + constrain4 + constrain4 + break4 + break4 + constrain5 +constrain5 + 2'd2;
+
+
+
+        if(number_of_constraints == 2) begin
+            
+
+            running_sum_1 <= constrain1 + constrain1 + break1+ break1 +2; // always add tiwce sicne we migrate from 10 to 20
+            running_sum_2 <= constrain1 + constrain1 + break1+ break1 + constrain2 + constrain2 +2;
+            running_sum_3 <= constrain1 + constrain1 + break1+ break1 + constrain2 + constrain2 + break2 + break2 +2'd2;
+            running_sum_4 <= constrain1 + constrain1 + break1+ break1 + constrain2 + constrain2 + break2 + break2 + constrain3 + constrain3 +2'd2;
+            running_sum_5 <= constrain1 + constrain1 + break1+ break1 + constrain2 + constrain2 + break2 + break2 + constrain3 + constrain3 + break3 + break3 +2'd2;
+            running_sum_6 <= constrain1 + constrain1 + break1+ break1 + constrain2 + constrain2 + break2 + break2 + constrain3 + constrain3 + break3 + break3 + constrain4 + constrain4 +2'd2;
+            running_sum_7 <= constrain1 + constrain1 + break1+ break1 + constrain2 + constrain2 + break2 + break2 + constrain3 + constrain3 + break3 + break3 + constrain4 + constrain4 + break4 + break4 +2'd2;
+            running_sum_8 <= constrain1 + constrain1 + break1+ break1 + constrain2 + constrain2 + break2 + break2 + constrain3 + constrain3 + break3 + break3 + constrain4 + constrain4 + break4 + break4 + constrain5 +constrain5 + 2'd2;
+
+        end else if(number_of_constraints == 3) begin
+
+            running_sum_1 <= constrain1 + constrain1 + break1+ break1 +2; // always add tiwce sicne we migrate from 10 to 20
+            running_sum_2 <= constrain1 + constrain1 + break1+ break1 + constrain2 + constrain2 +2;
+            running_sum_3 <= constrain1 + constrain1 + break1+ break1 + constrain2 + constrain2 + break2 + break2 +4;
+            running_sum_4 <= constrain1 + constrain1 + break1+ break1 + constrain2 + constrain2 + break2 + break2 + constrain3 + constrain3 +4;
+            running_sum_5 <= constrain1 + constrain1 + break1+ break1 + constrain2 + constrain2 + break2 + break2 + constrain3 + constrain3 + break3 + break3 +4;
+            running_sum_6 <= constrain1 + constrain1 + break1+ break1 + constrain2 + constrain2 + break2 + break2 + constrain3 + constrain3 + break3 + break3 + constrain4 + constrain4 +4;
+            running_sum_7 <= constrain1 + constrain1 + break1+ break1 + constrain2 + constrain2 + break2 + break2 + constrain3 + constrain3 + break3 + break3 + constrain4 + constrain4 + break4 + break4 +4;
+            running_sum_8 <= constrain1 + constrain1 + break1+ break1 + constrain2 + constrain2 + break2 + break2 + constrain3 + constrain3 + break3 + break3 + constrain4 + constrain4 + break4 + break4 + constrain5 +constrain5 +4;
+
+        end else if(number_of_constraints == 4) begin
+
+            running_sum_1 <= constrain1 + constrain1 + break1+ break1 +2; // always add tiwce sicne we migrate from 10 to 20
+            running_sum_2 <= constrain1 + constrain1 + break1+ break1 + constrain2 + constrain2 +2 ;
+            running_sum_3 <= constrain1 + constrain1 + break1+ break1 + constrain2 + constrain2 + break2 + break2 +4;
+            running_sum_4 <= constrain1 + constrain1 + break1+ break1 + constrain2 + constrain2 + break2 + break2 + constrain3 + constrain3 +4;
+            running_sum_5 <= constrain1 + constrain1 + break1+ break1 + constrain2 + constrain2 + break2 + break2 + constrain3 + constrain3 + break3 + break3 +6;
+            running_sum_6 <= constrain1 + constrain1 + break1+ break1 + constrain2 + constrain2 + break2 + break2 + constrain3 + constrain3 + break3 + break3 + constrain4 + constrain4 +6;
+            running_sum_7 <= constrain1 + constrain1 + break1+ break1 + constrain2 + constrain2 + break2 + break2 + constrain3 + constrain3 + break3 + break3 + constrain4 + constrain4 + break4 + break4 +6;
+            running_sum_8 <= constrain1 + constrain1 + break1+ break1 + constrain2 + constrain2 + break2 + break2 + constrain3 + constrain3 + break3 + break3 + constrain4 + constrain4 + break4 + break4 + constrain5 +constrain5 +6;
+            
+        end  else if(number_of_constraints == 5) begin                
+            
+            running_sum_1 <= constrain1 + constrain1 + break1+ break1 +2; // always add tiwce sicne we migrate from 10 to 20
+            running_sum_2 <= constrain1 + constrain1 + break1+ break1 + constrain2 + constrain2 +2 ;
+            running_sum_3 <= constrain1 + constrain1 + break1+ break1 + constrain2 + constrain2 + break2 + break2 +4;
+            running_sum_4 <= constrain1 + constrain1 + break1+ break1 + constrain2 + constrain2 + break2 + break2 + constrain3 + constrain3 +4;
+            running_sum_5 <= constrain1 + constrain1 + break1+ break1 + constrain2 + constrain2 + break2 + break2 + constrain3 + constrain3 + break3 + break3 +6;
+            running_sum_6 <= constrain1 + constrain1 + break1+ break1 + constrain2 + constrain2 + break2 + break2 + constrain3 + constrain3 + break3 + break3 + constrain4 + constrain4 +6;
+            running_sum_7 <= constrain1 + constrain1 + break1+ break1 + constrain2 + constrain2 + break2 + break2 + constrain3 + constrain3 + break3 + break3 + constrain4 + constrain4 + break4 + break4 +8;
+            running_sum_8 <= constrain1 + constrain1 + break1+ break1 + constrain2 + constrain2 + break2 + break2 + constrain3 + constrain3 + break3 + break3 + constrain4 + constrain4 + break4 + break4 + constrain5 +constrain5 +8;
+
+        end
+
+
+
 
         new_row <=original;
         done_counting <=0;
         start_counting <=1;
         done <=0;
+        i<=0;
 
         
-    end else begin
+    end else if (start_counting) begin
 
         if((i == limit) || done_counting) begin
             done <=1;
@@ -100,9 +155,6 @@ always_ff @(posedge clk_in) begin
             end else if((i >=(constrain1 + constrain1)) && (i <running_sum_1)) begin
                 new_row[i] <= 0;
                 new_row[i+1] <= 1;
-
-
-
             end else if((i >=running_sum_1) && (i <running_sum_2)) begin
                 new_row[i] <= 1;
                 new_row[i+1] <= 0;
@@ -131,7 +183,7 @@ always_ff @(posedge clk_in) begin
             end else if(i >=running_sum_8) begin
                 //marked the rest as unmarked ( but will be remvoed anyways ? )
                 done_counting<=1;
-                start_counting <=0;
+                
             end
 
 
