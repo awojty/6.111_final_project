@@ -60,12 +60,12 @@ module generate_rows(
     logic [5:0] permutation_count;
     logic [5:0] counter; //used to coutn permutations when they are being returned
     
-    logic [4:0] permutations_min_length_list [30:0]; //61 arryas of 5 bits ? 
-    logic [16:0] permutations_list [30:0]; //stroes numebrs -at most 30 permuations for a agiven set of constraints
+    logic [4:0] permutations_min_length_list [40:0]; //61 arryas of 5 bits ? 
+    logic [16:0] permutations_list [40:0]; //stroes numebrs -at most 30 permuations for a agiven set of constraints
     
-    logic [19:0] basic_row_storage [30:0]; //stores actual rows - at most 60 row states 
+    logic [19:0] basic_row_storage [40:0]; //stores actual rows - at most 60 row states 
 
-    logic [19:0] all_row_storage [30:0]; //stores actual rows - at most 60 row states 
+    logic [19:0] all_row_storage [40:0]; //stores actual rows - at most 60 row states 
     
     
     
