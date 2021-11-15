@@ -64,6 +64,9 @@ module generate_rows(
     logic [16:0] permutations_list [7:0]; //stroes numebrs -at most 30 permuations for a agiven set of constraints
     
     logic [19:0] basic_row_storage [7:0]; //stores actual rows - at most 60 row states 
+
+    logic [19:0] all_row_storage [27:0]; //stores actual rows - at most 60 row states 
+    
     
     
     logic create_a_row_from_permutations;
@@ -83,6 +86,8 @@ module generate_rows(
     logic [6:0] min_length;
     logic generate_states_from_permutations;
     logic len_1_started;
+    
+    logic [6:0] all_rows_counter;
 
     logic [4:0] running_sum_1; //5 bits sinnce max numebr is 20
     logic [4:0] running_sum_2;
@@ -94,6 +99,8 @@ module generate_rows(
     logic [4:0] running_sum_8;
     logic [19:0] new_row1;
     logic [19:0] new_row_from_create_a_row;
+
+    logic [5:0] total_permutation_count;
 
     create_a_row my_create_a_row (
         .clk_in(clk_in),
@@ -148,6 +155,8 @@ module generate_rows(
             permutation_counter <=0;
             i<=0;
             create_a_row_counter <=0;
+
+            total_permutation_count<=0;
 
             //FSM
             in_progress <=0;
@@ -227,7 +236,7 @@ module generate_rows(
 
             end
 
-            if(create_a_row_counter == permutation_count) begin
+            if(create_a_row_counter >= total_permutation_count) begin
 
                 //i have created and output all the rows for given cosntrinats
                 create_a_row_from_permutations <=0;
@@ -252,6 +261,7 @@ module generate_rows(
                 permutations_list[counter] <= permutation_out; 
                 
                 counter <=counter +1;
+
                 
             end
 
@@ -261,6 +271,9 @@ module generate_rows(
                 permutation_started<=0;
                 counter<=0;
                 permutation_counter<=0; // used i nthe next state 
+                permutation_count <=counter;
+                total_permutation_count <=counter;
+                all_rows_counter<=0;
                 
                 
             end
@@ -274,16 +287,18 @@ module generate_rows(
                 //we either just entered this state or we are done with shofting for  agiven basci state > introduce a enw basic state to new_row
 
                     new_row <=basic_row_storage[permutation_counter];
-                    outputing <=1;
-                    count <= count +1;
+                    all_row_storage[all_rows_counter] <= basic_row_storage[permutation_counter];
+                    all_rows_counter <=all_rows_counter+1;
+                    // outputing <=1;
+                    // count <= count +1;
                     permutation_counter <= permutation_counter +1;
                     started_shifting <= 1;
 
-                    shifts_limit <= 20 - permutations_min_length_list[permutation_counter]; //20 - min_length 
+                    shifts_limit <= 20 - permutations_min_length_list[permutation_counter] ; //20 - min_length 
                     shifts <=0;
                     started_shifting <=1;
 
-                    if(permutation_counter == permutation_count -1) begin
+                    if(permutation_counter == total_permutation_count) begin
                         done<=1; // finish the whole genratE_row
                         generate_states_from_permutations <=0; // [otenailly need  ozero all the staes here ust to make sure
                     end
@@ -292,14 +307,18 @@ module generate_rows(
                     
                 end else begin
 
+                    //save this whole thing to bram wbc clickcyclses suckkkk instead of returning avery clock cycle 
+
                 //we are in the rpocess of shofting a given state 
 
                     if(shifts < shifts_limit) begin
                     //we are still allowed to shift
                         new_row <= {new_row, 2'b10};
                         shifts <=shifts+2;
-                        outputing <=1;
-                        count <= count +1;
+                        // outputing <=1;
+                        // count <= count +1;
+                        all_row_storage[all_rows_counter] <= {new_row, 2'b10};
+                        all_rows_counter <=all_rows_counter+1;
                         
                     end else begin
                         started_shifting <=0;

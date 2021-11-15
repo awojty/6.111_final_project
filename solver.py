@@ -176,7 +176,7 @@ my_gen_rows(10, [6,1])
 
         
 
- 
+
  
 from functools import reduce
  
@@ -454,4 +454,5 @@ a4 = bin(int("96a55", 16))[2:]
 #"101010.//01.01//.10.//01.01.01.01
 
 print(a1,a2,a3, a4)
+print(len(gen_row(10, [4,1])))
 
