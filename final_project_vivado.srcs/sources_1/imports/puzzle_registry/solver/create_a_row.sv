@@ -58,6 +58,7 @@ always_ff @(posedge clk_in) begin
         
 
     end else if (new_data && ~start_counting) begin
+        done<=0;
         //2 bit encoding 
 
         //tODO how to map the fact that we have 2 btos per cell ? 
@@ -136,7 +137,7 @@ always_ff @(posedge clk_in) begin
         
     end else if (start_counting) begin
 
-        if((i == limit) || done_counting) begin
+        if((i == limit-1) || done_counting) begin
             done <=1;
             assignment_out <= new_row;
             start_counting <=0;
@@ -173,12 +174,14 @@ always_ff @(posedge clk_in) begin
             end else if((i>=running_sum_6) && (i <running_sum_7)) begin
                 new_row[i] <= 0;
                 new_row[i+1] <= 1;
-            end else if((i>=running_sum_7) && (i <running_sum_8)) begin
+            end else if((i>=running_sum_7) && (i <=running_sum_8)) begin
                 new_row[i] <= 1;
                 new_row[i+1] <= 0;
 
 
-            end else if(i >=running_sum_8) begin
+            end 
+            
+            if(i >running_sum_8) begin
                 //marked the rest as unmarked ( but will be remvoed anyways ? )
                 done_counting<=1;
                 

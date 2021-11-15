@@ -47,8 +47,9 @@ module generate_rows(
     logic [3:0] constrain3;
     logic [3:0] constrain4;
     logic [3:0] constrain5;
+
     logic [4:0] permutation_min_length;
-    logic [2:0] number_of_numbers; // 5 is the max numer 
+    logic [3:0] number_of_numbers; // 5 is the max numer 
     logic [2:0] number_of_breaks;
     logic [2:0] space_to_fill_left;
 
@@ -128,10 +129,15 @@ module generate_rows(
 
     logic started_outputing_permutations;
     logic [6:0] create_a_row_counter;
+    logic wait_clock;
+
+    logic [19:0] old_version;
 
     always_ff @(posedge clk_in) begin
 
         if(reset_in) begin
+
+            wait_clock<=0;
 
             //counters
             shifts <=0;
@@ -177,6 +183,8 @@ module generate_rows(
             running_sum_7<=0;
             running_sum_8<=0;
 
+            old_version <=0;
+
             //storage
 
 //            permutations_min_length_list<=304'b0; //61 arryas of 5 bits ? 
@@ -189,22 +197,33 @@ module generate_rows(
 
             // create BASIC rows 
 
-            if(~generating) begin
+            if(~wait_clock) begin
+                wait_clock <=1;
+                
+            end else if(~generating && wait_clock) begin
                 
                 generating<=1;
                 start_generator <=1;
                  //used in create a row to mark incommingn new data
                 permutation <= permutations_list[create_a_row_counter]; // input to create_a_row module - it only retusn ONE row per permutaiont numerbs - the basic one, shifted to the left 
                 
-            end else if (generating && ~done_generation) begin
-                start_generator <=0;
+//            end else if (generating && ~done_generation) begin
+//                start_generator <=0;
                  //used in create a row to mark incommingn new data
             end else if (done_generation && generating) begin
                 //save returned row
-                basic_row_storage[create_a_row_counter] <= new_row_from_create_a_row;
-                permutations_min_length_list[create_a_row_counter] <= permutation_min_length;
+                old_version <=new_row_from_create_a_row;
+
+                if (old_version != new_row_from_create_a_row) begin
+                    basic_row_storage[create_a_row_counter] <= new_row_from_create_a_row;
+                    permutations_min_length_list[create_a_row_counter] <= permutation_min_length;
+                    create_a_row_counter <=create_a_row_counter +1;
+                end
+                
+                
                 generating<=0;
-                create_a_row_counter <=create_a_row_counter +1;
+                wait_clock <=0;
+                start_generator<=0;
 
             end
 
@@ -221,6 +240,8 @@ module generate_rows(
                 counter <=0;
                 create_a_row_counter <=0;
                 new_data <=0;
+                wait_clock<=0;
+                generating <=0;
                 
             end
 
