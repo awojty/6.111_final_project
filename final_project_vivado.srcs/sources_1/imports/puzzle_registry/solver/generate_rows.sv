@@ -60,12 +60,12 @@ module generate_rows(
     logic [5:0] permutation_count;
     logic [5:0] counter; //used to coutn permutations when they are being returned
     
-    logic [4:0] permutations_min_length_list [7:0]; //61 arryas of 5 bits ? 
-    logic [16:0] permutations_list [7:0]; //stroes numebrs -at most 30 permuations for a agiven set of constraints
+    logic [4:0] permutations_min_length_list [30:0]; //61 arryas of 5 bits ? 
+    logic [16:0] permutations_list [30:0]; //stroes numebrs -at most 30 permuations for a agiven set of constraints
     
-    logic [19:0] basic_row_storage [7:0]; //stores actual rows - at most 60 row states 
+    logic [19:0] basic_row_storage [30:0]; //stores actual rows - at most 60 row states 
 
-    logic [19:0] all_row_storage [27:0]; //stores actual rows - at most 60 row states 
+    logic [19:0] all_row_storage [30:0]; //stores actual rows - at most 60 row states 
     
     
     
@@ -200,17 +200,10 @@ module generate_rows(
             return_counter <=0;
             start_returning <=0;
 
-            //storage
-
-//            permutations_min_length_list<=304'b0; //61 arryas of 5 bits ? 
-//            permutations_list <=0; //stroes numebrs -at most 30 permuations for a agiven set of constraints
-    
-//            basic_row_storage <=0; //stores actual rows - at most 60 row states 
-
 
         end else if (start_returning) begin 
 
-            if (return_counter <  all_rows_counter) begin
+            if (return_counter <  all_rows_counter-1) begin
 
                 return_counter <= return_counter +1;
                 outputing <=1;
@@ -218,15 +211,68 @@ module generate_rows(
                 
             end else begin
 
+                //on done reset the whole state machine
+
                 done <=1;
                 outputing <=0;
                 return_counter <=0;
                 total_count<= all_rows_counter-1;
 
+                //reset the state machine
+
+                wait_clock<=0;
+
+                //counters
+                shifts <=0;
+                number_of_breaks<=0;
+                space_to_fill_left<=0;
+                shifts_limit<=0;
+                counter<=0;
+                permutation_counter <=0;
+                i<=0;
+                create_a_row_counter <=0;
+
+                total_permutation_count<=0;
+
+                //FSM
+                in_progress <=0;
+                len_1_started<=0;
+                create_a_row_from_permutations<=0;
+                done_generation<=0;
+                generating<=0;
+                generate_rows_from_basic<=0;
+                permutation_started<=0;
+                data_collected<=0;
+                generate_states_from_permutations <=0;
+                start_generator <=0;
+                returned_all_permutations<=0;
+
+                //outputs
+                outputing<=0;
+                count<=0;
+                
+                
+                new_row<=20'b0;
+                new_row1<=20'b0;
+                new_row_from_create_a_row<=20'b0;
+            
+                //regs
+                permutation_out <=0;
+
+                running_sum_1<=0; //5 bits sinnce max numebr is 20
+                running_sum_2<=0;
+                running_sum_3 <=0;
+                running_sum_4<=0;
+                running_sum_5<=0;
+                running_sum_6<=0;
+                running_sum_7<=0;
+                running_sum_8<=0;
+
+                old_version <=0;
+                return_counter <=0;
+                start_returning <=0;
+
             end
-
-
-    
 
         end else if (create_a_row_from_permutations) begin
 
@@ -242,9 +288,6 @@ module generate_rows(
                  //used in create a row to mark incommingn new data
                 permutation <= permutations_list[create_a_row_counter]; // input to create_a_row module - it only retusn ONE row per permutaiont numerbs - the basic one, shifted to the left 
                 
-//            end else if (generating && ~done_generation) begin
-//                start_generator <=0;
-                 //used in create a row to mark incommingn new data
             end else if (done_generation && generating) begin
                 //save returned row
                 old_version <=new_row_from_create_a_row;
