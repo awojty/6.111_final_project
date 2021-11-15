@@ -140,6 +140,10 @@ module generate_rows(
 
     logic [19:0] old_version;
 
+    logic [6:0]  return_counter;
+
+    logic start_returning;
+
     always_ff @(posedge clk_in) begin
 
         if(reset_in) begin
@@ -193,6 +197,8 @@ module generate_rows(
             running_sum_8<=0;
 
             old_version <=0;
+            return_counter <=0;
+            start_returning <=0;
 
             //storage
 
@@ -200,6 +206,26 @@ module generate_rows(
 //            permutations_list <=0; //stroes numebrs -at most 30 permuations for a agiven set of constraints
     
 //            basic_row_storage <=0; //stores actual rows - at most 60 row states 
+
+
+        end else if (start_returning) begin 
+
+            if (return_counter <  all_rows_counter) begin
+
+                return_counter <= return_counter +1;
+                outputing <=1;
+                new_row <=all_row_storage[return_counter];
+                
+            end else begin
+
+                done <=1;
+                outputing <=0;
+                return_counter <=0;
+                total_count<= all_rows_counter-1;
+
+            end
+
+
     
 
         end else if (create_a_row_from_permutations) begin
@@ -299,7 +325,9 @@ module generate_rows(
                     started_shifting <=1;
 
                     if(permutation_counter == total_permutation_count) begin
-                        done<=1; // finish the whole genratE_row
+
+                        start_returning <=1;
+                        //done<=1; // finish the whole genratE_row
                         generate_states_from_permutations <=0; // [otenailly need  ozero all the staes here ust to make sure
                     end
 
