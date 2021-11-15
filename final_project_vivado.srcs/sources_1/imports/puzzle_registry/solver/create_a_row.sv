@@ -158,26 +158,24 @@ always_ff @(posedge clk_in) begin
             end else if((i >=running_sum_1) && (i <running_sum_2)) begin
                 new_row[i] <= 1;
                 new_row[i+1] <= 0;
+            end else if((i>=running_sum_2) && (i <running_sum_3)) begin
+                new_row[i] <= 0;
+                new_row[i+1] <= 1;
             end else if((i>=running_sum_3) && (i <running_sum_4)) begin
-                new_row[i] <= 0;
-                new_row[i+1] <= 1;
-
-
-
+                new_row[i] <= 1;
+                new_row[i+1] <= 0;
             end else if((i>=running_sum_4) && (i <running_sum_5)) begin
-                new_row[i] <= 1;
-                new_row[i+1] <= 0;
+                new_row[i] <= 0;
+                new_row[i+1] <= 1;
             end else if((i>=running_sum_5) && (i <running_sum_6)) begin
-                new_row[i] <= 0;
-                new_row[i+1] <= 1;
-
-
-            end else if((i>=running_sum_6) && (i <running_sum_7)) begin
                 new_row[i] <= 1;
                 new_row[i+1] <= 0;
-            end else if((i>=running_sum_7) && (i <running_sum_8)) begin
+            end else if((i>=running_sum_6) && (i <running_sum_7)) begin
                 new_row[i] <= 0;
                 new_row[i+1] <= 1;
+            end else if((i>=running_sum_7) && (i <running_sum_8)) begin
+                new_row[i] <= 1;
+                new_row[i+1] <= 0;
 
 
             end else if(i >=running_sum_8) begin
