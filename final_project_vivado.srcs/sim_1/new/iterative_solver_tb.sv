@@ -64,7 +64,7 @@ module iterative_solver_tb;
 
        #10;
        reset_in = 0;
-       assignment_in =20'b0000_0000_0000_0010_0010; //24
+       assignment_in =20'b0000_0000_0000_0000_1000; //24
        index_in<=0;
        start_sending_nonogram =1;
        column_number_in=10;
@@ -72,10 +72,10 @@ module iterative_solver_tb;
       //get t_arm
          
        #10;
-       assignment_in =20'b0000_0000_0000_0001_0010; //14
+       assignment_in =20'b0000_0000_0000_0000_1000; //14
        index_in<=1;
        #10;
-       assignment_in =20'b0000_0000_0000_0010_0010; //24
+       assignment_in =20'b0000_0000_0000_0000_1000; //24
        index_in<=2;
        #10;
        index_in<=3;
@@ -86,14 +86,26 @@ module iterative_solver_tb;
        #10;
        index_in<=6;
        #10;
+       assignment_in =20'b0000_0000_0000_0000_1000; //24
+
+       
        index_in<=7;
        #10;
+       assignment_in =20'b0000_0000_0000_0000_1000; //24
+
        index_in<=8;
        #10;
+       assignment_in =20'b0000_0000_0000_0000_1000; //24
        index_in<=9;
+       //last row
+
        #10;
+//       assignment_in =20'b0000_0000_0000_0000_0000; //24
        index_in<=10;
+       
        #10;
+       //assignment_in =20'b1000_0000_0000_0000_0000; //24
+
        index_in<=11;
        #10;
        index_in<=12;

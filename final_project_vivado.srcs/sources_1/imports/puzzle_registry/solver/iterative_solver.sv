@@ -1,5 +1,8 @@
 `default_nettype none
 //TODO - rememebr the can do - each elemtn is two bits long
+
+
+//TODO - doesnt stop calling genrate rows when we run our of columsn but keps runngin and returnign some shit
 module iterative_solver(   
                     input wire clk_in,
                    
@@ -232,8 +235,8 @@ module iterative_solver(
     logic [29:0] results [19:0]; // this can potenailly store all the permutations (which is about 30 for 10x10 case)
     logic results_counter;
 
-    logic  [11:0] fake_row_assignment_collector  [9:0]; //collects the constraint assginemtns for bram testing
-    logic [9:0] fake_col_assignment_collector [11:0]; //collects the constraint assginemtns for bram testing
+    logic [19:0] fake_row_assignment_collector  [9:0] ; //collects the constraint assginemtns for bram testing
+    logic [19:0] fake_col_assignment_collector [9:0]; //collects the constraint assginemtns for bram testing
 
 
     logic [15:0] fake_row_permutation_collector [100:0]; //collects the constraint assginemtns for bram testing
@@ -375,26 +378,28 @@ module iterative_solver(
             fix_row_section_started <=0;
            for_range_h_ended <=0;
            old_index<=0;
+
+           selected_assignment<=0;
             
 
               
             
             
         end else begin
-            if(start_sending_nonogram && ~move_to_row_generating && ~saving) begin
+            if(start_sending_nonogram && ~move_to_row_generating) begin
                 //we have just started sending a nongoram - send constrina lien by csontrint, first rows then columns
-                addr_constraint_row <= addr_constraint_row+1;
+                //addr_constraint_row <= addr_constraint_row+1;
                 
                 column_number <= column_number_in;
                 row_number <= row_number_in;
-                saving <=1;
+//                saving <=1;
                 done_generation <=0; //marked as 0 if we finished generating al states for all comuns and rows
                 limit <= row_number_in + column_number_in; // remebr to subtract 1 sicne we need to zero index
 
-                fake_row_assignment_collector[addr_constraint_row] <= assignment_in;
+//                fake_row_assignment_collector[addr_constraint_row] <= assignment_in;
 
-            end else if (saving) begin
-                if(addr_constraint_column >= column_number -1) begin
+//            end else if (saving) begin
+                if(addr_constraint_column >= 10) begin
 
                     //we have saved everything
 
@@ -404,9 +409,9 @@ module iterative_solver(
                     write_constraint_row <=0;
                     //addr_constraint_column <= 0;
                     addr_constraint_row <= 0;
-                    move_to_solving<=1;
+                    move_to_row_generating<=1;
                 end else begin
-                    if(index_in >= (row_number -1)) begin
+                    if(index_in >= 10 && index_in<=19) begin
                         //SENDING COLS
                         //we are always sending 
 
@@ -428,7 +433,7 @@ module iterative_solver(
 
                         old_index <=index_in;
                         
-                        if(old_index!= index_in) begin
+//                        if(old_index!= index_in) begin
                         
                             write_constraint_column <=0;
                             
@@ -439,7 +444,7 @@ module iterative_solver(
                         
                         
                         
-                        end
+//                        end
 
 
                     end
@@ -469,21 +474,21 @@ module iterative_solver(
                     if(~row_done) begin
                         //when im currently gerneting rows
                         
-                        selected_assignment <= data_from_row_bram;
+                        selected_assignment <= fake_row_assignment_collector[addr_row_permutation];
                         //start_addresses[addr_constraint+1] <=addr_row;
                         //addr_constraint_row <= addr_constraint_row+1;
                         //write_permutation_count_row <=1;
                         write_permutation_count_column <=0;
                         //fake_row_permutation_counter[addr_constraint_row] <= n_of_constraints;
 
-                        row_start_addresses[addr_constraint_column] <= addr_column_permutation;
+                        row_start_addresses[addr_constraint_row] <= addr_row_permutation;
 
 
                     end else begin
                         //when im currently gerneting cols
 
                         //data_to_permutation_count_column_bram <= n_of_constraints;
-                        selected_assignment <= data_from_column_bram;
+                        selected_assignment <= fake_col_assignment_collector[addr_column_permutation];
 
                         //column_start_addresses[addr_constraint_column] <= addr_column_permutation;
 
@@ -491,9 +496,7 @@ module iterative_solver(
                         write_permutation_count_row <=0;
 
                         column_start_addresses[addr_constraint_column] <= addr_column_permutation;
-                        //write_permutation_count_column <=1;
-
-                        //fake_col_permutation_counter[addr_constraint_column] <= n_of_constraints;
+                        
                     end
 
                     //we finished genreating all the possible rows and cols > switch to another row

@@ -157,6 +157,8 @@ module generate_rows(
             permutation_counter <=0;
             i<=0;
             create_a_row_counter <=0;
+            
+            number_of_numbers <=0;
 
             total_permutation_count<=0;
 
