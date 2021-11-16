@@ -249,7 +249,7 @@ def deduce(hr, vr):
 
         for i, x in enumerate(allowed_things):
             if x != can_do[i][n]:
-                #mod_rows.add(i)
+                #mod_rows.add(i) 11 01
                 print("can_do[i][n]", can_do[i][n])
                 print("x", x)
                 

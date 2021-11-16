@@ -4,14 +4,14 @@ module iterative_solver(
                     input wire clk_in,
                    
                     input wire reset_in,
-                    input wire [7:0] index_in, //idnex of row/col beign send
-                    input wire [7:0] column_number_in, //grid size
-                    input wire [7:0] row_number_in, //grid size
-                    input wire [31:0] address_in,
-                    input wire [19:0] assignment_in, // array of cosntraitnrs in
-                    input wire [31:0] counter_in,
+                    input wire [5:0] index_in, //idnex of row/col beign send - max is 20 so 6 bits
+                    input wire [3:0] column_number_in, //grid size - max 10
+                    input wire [3:0] row_number_in, //grid size - max 10
+                    
+                    input wire [19:0] assignment_in, // array of cosntraitnrs in - max of 20 btis since 4 btis * 5 slots
+                    
                     input wire start_sending_nonogram, //if asserted to 1, im in the rpcoess of sendifg the puzzle
-                    input wire testing, //only for the sake of testing wheterh we saved things correctly in the test bench
+                     //only for the sake of testing wheterh we saved things correctly in the test bench
                     output logic solution_out
                     
     );  
@@ -31,8 +31,8 @@ module iterative_solver(
 
     logic [31:0] addr;
 
-    logic [7:0] col_number;
-    logic [7:0] row_number;
+    logic [3:0] col_number;
+    logic [3:0] row_number;
     logic write;
 
     logic number_of_breaks;
@@ -58,7 +58,11 @@ module iterative_solver(
     logic write_permutation_row;
 
     //bram taht stroes all posilbe rows for each row assingemnet given 
-    current_assignment_bram all_possible_rows(
+    //row_bram - for all genrated states of cols/rows
+    //height 10*40 = 400
+    //width = 20
+    
+    row_bram all_possible_rows(
             .addra(addr_row_permutation), 
             .clka(clk_in), 
             .dina(data_to_row_permutation_bram), 
@@ -72,8 +76,9 @@ module iterative_solver(
     logic [19:0]data_from_column_permutation_bram;
     logic write_permutation_column;
 
-    //bram taht stroes all posilbe cols states for each col assingemnet given 
-    current_assignment_bram all_possible_columns(
+    //bram taht stroes all posilbe cols states for each col assingemnet given
+    //dows it creat diff sintances of bram ?  
+    row_bram all_possible_columns(
             .addra(addr_column_permutation), 
             .clka(clk_in), 
             .dina(data_to_column_permutation_bram), 
@@ -90,6 +95,11 @@ module iterative_solver(
     logic write_permutation_count_column;
     logic [7:0] data_from_permutation_count_column_bram;
     logic [7:0] data_to_permutation_count_column_bram;
+    
+    //permutation_count_bram
+    //height  -10
+    //wodth max 50 > 6 bits width
+    
     
     permutation_count_bram my_permutation_count_bram_column(
             .addra(addr_column), 
@@ -113,7 +123,7 @@ module iterative_solver(
             .wea(write_permutation_count_row)); 
 
     //stores constraints to eachcolumn (from left to right)
-    constraints_bram col_constraints_bram(
+    row_bram col_constraints_bram(
             .addra(addr_constraint_column), 
             .clka(clk_in), 
             .dina(data_to_column_bram), 
@@ -129,7 +139,7 @@ module iterative_solver(
    
 
     //stores constraints to each row (from top to bottom)
-    constraints_bram row_constraints_bram(
+    row_bram row_constraints_bram(
             .addra(addr_constraint_row), 
             .clka(clk_in), 
             .dina(data_to_row_bram), 
@@ -141,24 +151,7 @@ module iterative_solver(
    logic [19:0] data_from_row_bram;
    logic write_constraint_row; 
    logic [3:0] addr_constraint_row; //sicne 10 at msot
-
-    //stores number of "numbers" above each row (so n_of_breaks = n_of_numbers - 1)
-    //new module to implemetn registry to store that numbers is necessary 
-    count_of_constraints count_contraints_column_bram(
-            .addra(addr), 
-            .clka(clk_in), 
-            .dina(data_to_bram), 
-            .douta(data_from_bram), 
-            .ena(1), 
-            .wea(write));  
-
-    count_of_constraints count_contraints_row_bram(
-            .addra(addr), 
-            .clka(clk_in), 
-            .dina(data_to_bram), 
-            .douta(data_from_bram), 
-            .ena(1), 
-            .wea(write)); 
+ 
     generate_rows my_generate_rows(   
                     .clk_in(clk_in),
                     .reset_in(reset_in),
@@ -196,22 +189,22 @@ module iterative_solver(
     logic [19:0] allowable_input; //20 bits since each cell impelemned as 2 bit number
 
 
-    solution_bram solution_bram_column(
-            .addra(addr_column_solution), 
-            .clka(clk_in), 
-            .dina(data_to_solution_column_bram), 
-            .douta(data_from_solution_column_bram), 
-            .ena(1), 
-            .wea(write_solution_column)); 
+//    solution_bram solution_bram_column(
+//            .addra(addr_column_solution), 
+//            .clka(clk_in), 
+//            .dina(data_to_solution_column_bram), 
+//            .douta(data_from_solution_column_bram), 
+//            .ena(1), 
+//            .wea(write_solution_column)); 
             
             
-    solution_bram solution_bram_row(
-            .addra(addr_row_solution), 
-            .clka(clk_in), 
-            .dina(data_to_solution_row_bram), 
-            .douta(data_from_solution_row_bram), 
-            .ena(1), 
-            .wea(write_solution_row)); 
+//    solution_bram solution_bram_row(
+//            .addra(addr_row_solution), 
+//            .clka(clk_in), 
+//            .dina(data_to_solution_row_bram), 
+//            .douta(data_from_solution_row_bram), 
+//            .ena(1), 
+//            .wea(write_solution_row)); 
             
    logic write_solution_row;
    logic data_from_solution_row_bram;
@@ -314,6 +307,8 @@ module iterative_solver(
     logic for_range_h_ended;
     
     logic [3:0] range_h_i;
+    
+    logic [5:0] old_index;
                 
     
 
@@ -342,6 +337,7 @@ module iterative_solver(
             
             //counters
             allowable_counter <=0;
+            addr_constraint_row<=0;
             
             addr_constraint<=0;
             move_to_row_generating<=0;
@@ -353,6 +349,7 @@ module iterative_solver(
             allowed_thing_counter<=0; //for 10 len
             allowed_thing_index_counter<=0; //for 20 len
             range_h_i<=0;
+            addr_constraint_column <=0;
                 
             
             
@@ -377,31 +374,27 @@ module iterative_solver(
             for_range_h_started <=0;
             fix_row_section_started <=0;
            for_range_h_ended <=0;
+           old_index<=0;
             
 
               
             
             
         end else begin
-            if(start_sending_nonogram && ~move_to_row_generating) begin
+            if(start_sending_nonogram && ~move_to_row_generating && ~saving) begin
                 //we have just started sending a nongoram - send constrina lien by csontrint, first rows then columns
                 addr_constraint_row <= addr_constraint_row+1;
-
+                
                 column_number <= column_number_in;
                 row_number <= row_number_in;
-
                 saving <=1;
-                
-               
                 done_generation <=0; //marked as 0 if we finished generating al states for all comuns and rows
                 limit <= row_number_in + column_number_in; // remebr to subtract 1 sicne we need to zero index
 
                 fake_row_assignment_collector[addr_constraint_row] <= assignment_in;
 
-
-            
             end else if (saving) begin
-                if(addr_constraint_column > column_number -1) begin
+                if(addr_constraint_column >= column_number -1) begin
 
                     //we have saved everything
 
@@ -409,30 +402,44 @@ module iterative_solver(
                     //addr <= 0;
                     write_constraint_column <=0;
                     write_constraint_row <=0;
-                    addr_constraint_column <= 0;
+                    //addr_constraint_column <= 0;
                     addr_constraint_row <= 0;
                     move_to_solving<=1;
                 end else begin
-                    if(addr_constraint_row > row_number -1 && addr_constraint_column <column_number) begin
+                    if(index_in >= (row_number -1)) begin
                         //SENDING COLS
                         //we are always sending 
 
                         //we have finished sending all the rows, now we are sending all the columsn 
+
+                        old_index <= index_in;
+//                        if (index_in !=old_index) begin
                         write_constraint_column <=1;
                         write_constraint_row <=0;
                         addr_constraint_column <= addr_constraint_column +1;
-                        data_to_column_bram  <= assignment_in;
-                        fake_col_assignment_collector[addr_column] <= assignment_in;
-                        
+                       data_to_column_bram  <= assignment_in;
+                        fake_col_assignment_collector[addr_constraint_column] <= assignment_in;
+                       
+
                     end else begin
                         //SENDING ROWS
 
                         //we are still sending rows
-                        write_constraint_column <=0;
-                        write_constraint_row <=1;
-                        addr_constraint_row <= addr_constraint_row+1;
-                        data_to_row_bram  <= assignment_in; 
-                        fake_row_assignment_collector[addr_constraint_row] <= assignment_in;
+
+                        old_index <=index_in;
+                        
+                        if(old_index!= index_in) begin
+                        
+                            write_constraint_column <=0;
+                            
+                            write_constraint_row <=1;
+                            addr_constraint_row <= addr_constraint_row+1;
+                            data_to_row_bram  <= assignment_in; 
+                            fake_row_assignment_collector[addr_constraint_row] <= assignment_in;
+                        
+                        
+                        
+                        end
 
 
                     end
