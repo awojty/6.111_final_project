@@ -14,9 +14,7 @@ module generate_rows(
                     output logic [19:0] new_row,
                     output logic [6:0] count, //current index of the row in the set of that we are oging to return 
                     output logic [6:0] total_count //returns the tola nbumber of optison returend for a given setging
-
-
-    );  
+);  
 
     //TODO - only start gneraiotn when new start_in is received BC it's possiblr to have two same assigemnet snext to each other and then we would not return anythgin in hat case 
         // TODO: ^^ might be worn due to how iterative sovler operates  - check how start_in is asserted

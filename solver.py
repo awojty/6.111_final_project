@@ -198,6 +198,11 @@ def deduce(hr, vr):
         return reduce(lambda a, b: [x | y for x, y in zip(a, b)], row)
  
     def fits(a, b):
+        print("ab",a,b)
+        
+        print("zipab", list(zip(a, b)))
+        print("res", [x & y for x, y in zip(a, b)])
+        print("ans", all(x & y for x, y in zip(a, b)))
         return all(x & y for x, y in zip(a, b))
  
     def fix_col(n):
@@ -245,13 +250,19 @@ def deduce(hr, vr):
         for i, x in enumerate(allowed_things):
             if x != can_do[i][n]:
                 #mod_rows.add(i)
+                print("can_do[i][n]", can_do[i][n])
+                print("x", x)
+                
                 mod_rows_in[i] = 1
                 can_do[i][n] &= x
+                print("can_do[i][n]", can_do[i][n])
+
+                
  
     def fix_row(n):
         """Ditto, for rows."""
         c = can_do[n]
-        print("B", rows[n]) #get all possible states of row at index n in the puzzle
+        #print("B", rows[n]) #get all possible states of row at index n in the puzzle
         rows[n] = [x for x in rows[n] if fits(x, c)]
         for i, x in enumerate(allowable(rows[n])):
             if x != can_do[n][i]:
@@ -282,10 +293,10 @@ def deduce(hr, vr):
     can_do= []
 
     for r in rows:
-        print("allwable(r)", allowable(r))
+        #print("allwable(r)", allowable(r))
         can_do.append(allowable(r))
         
-    print("lenf cado", len(can_do), can_do, len(rows))
+   # print("lenf cado", len(can_do), can_do, len(rows))
     
  
     # Initially mark all columns for update.
@@ -294,8 +305,11 @@ def deduce(hr, vr):
     mod_rows_in = [0]*h
 
     mod_cols_in = [1]*w
+    
+    counter = 0
 
     while sum(mod_cols_in) >0:
+        counter+=1
         for i in range(w):
             if mod_cols_in[i]:
                 fix_col(i)
@@ -304,6 +318,7 @@ def deduce(hr, vr):
             if mod_rows_in[j]:
                 fix_row(j)
         mod_rows_in = [0] * h
+    print("coutner", counter)
 
 
  
@@ -357,12 +372,14 @@ def solve(s, show_runs=True):
    
     print("Horizontal runs:", s[0])
     print("Vertical runs:", s[1])
+    
+    #deduce(ho,ve)
    
     deduce([[3], [2, 1], [3, 2], [2, 2], [6], [1, 5], [6], [1], [2]], [[1, 2], [3, 1], [1, 5], [7, 1], [5], [3], [4], [3]])
 
 
-ho = [[3], [2, 1], [3, 2], [2, 2], [6], [1, 5], [6], [1], [2]]
-ve=  [[1, 2], [3, 1], [1, 5], [7, 1], [5], [3], [4], [3]]
+ho = [[2]]
+ve=  [[1],[1]]
 
 solve([ho,ve])
 

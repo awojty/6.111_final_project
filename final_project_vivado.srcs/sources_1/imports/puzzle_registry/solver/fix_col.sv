@@ -43,13 +43,8 @@ module fix_col(
             .ena(1), 
             .wea(write_results_bram)); 
 
-
-
     logic [9:0] can_do [19:0]; // arrya of 10 items fo elnght 20 (20bits)
-
     logic [9:0] mod_rows;
-
-
 
     always_ff @(posedge clk_in) begin
 
