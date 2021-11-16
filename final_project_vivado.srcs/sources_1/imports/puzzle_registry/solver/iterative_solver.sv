@@ -334,7 +334,7 @@ module iterative_solver(
             column_done <=0;
             addr_row_permutation <=0;
             addr_column_permutation<=0;
-            mod_cols_in <=10'b0;
+            mod_cols_in <=10'b1111111111;
             mod_rows_in <=10'b0;
             c <=20'b0;
             allowable_result <= 20'b0;
@@ -617,7 +617,7 @@ module iterative_solver(
                     current_permutation_count <= fake_col_permutation_counter[row_counter_allowable];
                     move_to_allowable_section<=1;
                     
-                end if (allowable_for_a_row_started) begin
+                end if (allowable_for_a_row_started && ~save_allowable_result) begin
 
                    
 
@@ -635,7 +635,7 @@ module iterative_solver(
                     can_do[row_counter_allowable] <=allowable_result;
                     row_counter_allowable <=row_counter_allowable +1;
                     save_allowable_result<=0;
-                     allowable_for_a_row_started <=0;
+                    allowable_for_a_row_started <=0;
 
 
                 end
@@ -644,9 +644,11 @@ module iterative_solver(
 
                 //10 or 9 ??
 
-                if(row_counter_allowable == 10) begin 
+                if(row_counter_allowable == 9) begin 
 
                     move_to_allowable_section<=0;
+                    allowable_for_a_row_started <=0;
+                    save_allowable_result <=0;
                     move_to_for_loop_section<=1;
                     row_counter_allowable<=0;
                     addr_row_permutation <=0;
@@ -655,12 +657,12 @@ module iterative_solver(
                             
 
 
-            end else if(move_to_for_loop_section && ~move_to_allowable_section) begin
+            end else if(move_to_for_loop_section) begin
 
 
                 if(mod_cols_in[0] + mod_cols_in[1] +mod_cols_in[2] +mod_cols_in[3] +mod_cols_in[4] + mod_cols_in[5] +mod_cols_in[6] +mod_cols_in[7] +mod_cols_in[8] +mod_cols_in[9] >0) begin
-                    for_range_w_started <=1;
-                    move_to_for_loop_section<=0;
+                    for_range_w_started <=1'b1;
+                    move_to_for_loop_section<=1'b0;
                 end else begin
                     move_to_output <=1;
                     move_to_for_loop_section<=0;
@@ -688,10 +690,10 @@ module iterative_solver(
 
                 if (~done_create_c_array) begin
 
-                    c[fix_col_counter] <= can_do[fix_col_counter][range_w_i_index+:1];
-                    fix_col_counter <= fix_col_counter+1;
+                    c[fix_col_counter+:1] <= can_do[fix_col_counter][range_w_i_index+:1];
+                    fix_col_counter <= fix_col_counter+2;
                                                 //len_can_do = 9
-                    if(fix_col_counter == 9) begin
+                    if(fix_col_counter == 19) begin
 
                         done_create_c_array <=1;
                         fix_col_counter <=0;
