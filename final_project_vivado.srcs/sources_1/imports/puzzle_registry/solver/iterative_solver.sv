@@ -268,7 +268,7 @@ module iterative_solver(
     logic move_to_solving;
     logic called_generate_rows;
     
-    logic addr_constraint;
+    logic [6:0] addr_constraint;
     
     logic [8:0] row_start_addresses [9:0]; //starting address for thethe state of each row;
     logic [8:0] column_start_addresses [9:0];
@@ -312,6 +312,8 @@ module iterative_solver(
     logic [3:0] range_h_i;
     
     logic [5:0] old_index;
+    logic wait_on_clock;
+    logic left_to_rest;
                 
     
 
@@ -380,13 +382,15 @@ module iterative_solver(
            old_index<=0;
 
            selected_assignment<=0;
+           wait_on_clock <=0;
+           left_to_rest<=0;
             
 
               
             
             
         end else begin
-            if(start_sending_nonogram && ~move_to_row_generating) begin
+            if(start_sending_nonogram && ~left_to_rest) begin
                 //we have just started sending a nongoram - send constrina lien by csontrint, first rows then columns
                 //addr_constraint_row <= addr_constraint_row+1;
                 
@@ -407,8 +411,9 @@ module iterative_solver(
                     //addr <= 0;
                     write_constraint_column <=0;
                     write_constraint_row <=0;
-                    //addr_constraint_column <= 0;
+                    addr_constraint_column <= 0;
                     addr_constraint_row <= 0;
+                    left_to_rest<=1;
                     move_to_row_generating<=1;
                 end else begin
                     if(index_in >= 10 && index_in<=19) begin
@@ -438,7 +443,7 @@ module iterative_solver(
                             write_constraint_column <=0;
                             
                             write_constraint_row <=1;
-                            addr_constraint_row <= addr_constraint_row+1;
+                            addr_constraint_row <= addr_constraint_row+1; // selects teh cosntrin the the to that we passed at teh beginign 
                             data_to_row_bram  <= assignment_in; 
                             fake_row_assignment_collector[addr_constraint_row] <= assignment_in;
                         
@@ -456,39 +461,21 @@ module iterative_solver(
                 //----------------------row generating---------------------------------
 
                 //1) gerenate all rows for each row
-                if(~called_generate_rows) begin 
-                    //start calling generate rows
 
+                if (~wait_on_clock) begin
+                    wait_on_clock<=1;
                     start_generating <=1;
-                    called_generate_rows <=1;
-
-                    write_permutation_count_row <=0;
-                    write_permutation_count_column <=0;
-                    write_permutation_column <=0;
-                    write_permutation_row <=0;
-                    addr_constraint<=addr_constraint+1; // sum total number of rwos/cols that we have looked at 
-
-
-                    //start a new assingemnt genertaiont - put new inputs to the gerneate_rows
-
                     if(~row_done) begin
                         //when im currently gerneting rows
-                        
-                        selected_assignment <= fake_row_assignment_collector[addr_row_permutation];
-                        //start_addresses[addr_constraint+1] <=addr_row;
-                        //addr_constraint_row <= addr_constraint_row+1;
-                        //write_permutation_count_row <=1;
+                        selected_assignment <= fake_row_assignment_collector[addr_constraint_row];
                         write_permutation_count_column <=0;
-                        //fake_row_permutation_counter[addr_constraint_row] <= n_of_constraints;
-
                         row_start_addresses[addr_constraint_row] <= addr_row_permutation;
 
 
                     end else begin
                         //when im currently gerneting cols
-
                         //data_to_permutation_count_column_bram <= n_of_constraints;
-                        selected_assignment <= fake_col_assignment_collector[addr_column_permutation];
+                        selected_assignment <= fake_col_assignment_collector[addr_constraint_column];
 
                         //column_start_addresses[addr_constraint_column] <= addr_column_permutation;
 
@@ -498,6 +485,21 @@ module iterative_solver(
                         column_start_addresses[addr_constraint_column] <= addr_column_permutation;
                         
                     end
+                    
+                end else if(~called_generate_rows && wait_on_clock) begin 
+                    //start calling generate rows
+
+                    
+                    called_generate_rows <=1;
+
+                    write_permutation_count_row <=0;
+                    write_permutation_count_column <=0;
+                    write_permutation_column <=0;
+                    write_permutation_row <=0;
+                    addr_constraint<=addr_constraint+1; // sum total number of rwos/cols that we have looked at 
+                    //start a new assingemnt genertaiont - put new inputs to the gerneate_rows
+
+
 
                     //we finished genreating all the possible rows and cols > switch to another row
 
@@ -514,7 +516,7 @@ module iterative_solver(
                         //if im genreating rows
                         addr_row_permutation <= addr_row_permutation+1;
                         data_to_row_permutation_bram <= new_row_version;
-                        fake_row_permutation_collector[addr_row_permutation] <= new_row_version;
+                        fake_row_permutation_collector[addr_row_permutation] <= new_row_version; // this index is sued o put new states of the row to th sotrgae - can be mroe than one per row
                         write_permutation_column <=0;
                         write_permutation_row <=1;
                         write_permutation_count_row <=0;
@@ -539,16 +541,15 @@ module iterative_solver(
                     //generate rows finished outptuing for a gvien assignemtn - save length and mvoe to the sart of fsm 
 
                     called_generate_rows<=0; //restart the fsm
+                    wait_on_clock<=0;
 
                     //we have just consdiered the last row and wer are savign datat for the last row > change 
-                    if(addr_constraint == row_number) begin
+                    if(addr_constraint == 9) begin
                         row_done <=1;
                         column_done <=0;
                         write_permutation_row <=0;
                         
                     end 
-
-
 
                     if(~row_done) begin
                         //when im currently gerneting rows
@@ -566,7 +567,7 @@ module iterative_solver(
                         //when im currently gerneting cols
 
                         data_to_permutation_count_column_bram <= n_of_constraints;
-                        selected_assignment <= data_from_column_bram;
+                        //selected_assignment <= data_from_column_bram;
 
                         addr_constraint_column <= addr_constraint_column+1;
                         write_permutation_count_row <=0;
@@ -576,7 +577,7 @@ module iterative_solver(
                     end
 
                     
-                    if(addr_constraint == row_number + col_number -1) begin
+                    if(addr_constraint >= 19) begin
 
                         //possibel bug that teh alst one is not saved ? 
 
@@ -589,6 +590,12 @@ module iterative_solver(
                         addr_column <= 0;
                         move_to_allowable_section <=1;
                         move_to_row_generating <=0;
+                        addr_constraint <=0;
+
+                        addr_row_permutation <=0;
+                        addr_column_permutation <=0;
+                        
+                        save_allowable_result<=0;
 
                         allowable_counter <=allowable_counter+1; //counts if we submitted all the permutations
 
@@ -602,9 +609,19 @@ module iterative_solver(
                     //i have collected all nthe possibel assignements
                         //2) do consolidate allowed rows (allowable function)
 
-                if (allowable_for_a_row_started) begin
+                
 
-                    allowable_result <= allowable_result || data_from_row_permutation_bram;
+                if (~allowable_for_a_row_started) begin
+                    allowable_for_a_row_started <=1;
+                    permutation_counter_allowable_section <=0;
+                    current_permutation_count <= fake_col_permutation_counter[row_counter_allowable];
+                    move_to_allowable_section<=1;
+                    
+                end if (allowable_for_a_row_started) begin
+
+                   
+
+                    allowable_result <= allowable_result || fake_row_permutation_collector[addr_row_permutation];
                     addr_row_permutation <= addr_row_permutation+1;
 
                     permutation_counter_allowable_section <= permutation_counter_allowable_section+1;
@@ -613,18 +630,13 @@ module iterative_solver(
                         save_allowable_result <=1;
                     end
 
-                end else if (save_allowable_result) begin
-                    allowable_for_a_row_started<=0;
+                end else if (save_allowable_result && allowable_for_a_row_started) begin
+                    //allowable_for_a_row_started<=0;
                     can_do[row_counter_allowable] <=allowable_result;
                     row_counter_allowable <=row_counter_allowable +1;
                     save_allowable_result<=0;
+                     allowable_for_a_row_started <=0;
 
-
-                end else begin
-                    allowable_for_a_row_started<=1;
-                    permutation_counter_allowable_section <=0;
-                    current_permutation_count <= fake_col_permutation_counter[row_counter_allowable];
-                
 
                 end
 
@@ -636,12 +648,14 @@ module iterative_solver(
 
                     move_to_allowable_section<=0;
                     move_to_for_loop_section<=1;
+                    row_counter_allowable<=0;
+                    addr_row_permutation <=0;
                     
                 end
                             
 
 
-            end else if(move_to_for_loop_section) begin
+            end else if(move_to_for_loop_section && ~move_to_allowable_section) begin
 
 
                 if(mod_cols_in[0] + mod_cols_in[1] +mod_cols_in[2] +mod_cols_in[3] +mod_cols_in[4] + mod_cols_in[5] +mod_cols_in[6] +mod_cols_in[7] +mod_cols_in[8] +mod_cols_in[9] >0) begin
