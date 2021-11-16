@@ -288,7 +288,7 @@ module iterative_solver(
     logic [8:0] current_permutation_count;
     logic [8:0] permutation_counter_allowable_section;
 
-    logic [3:0] fix_col_counter; //max 10 so 4 bits
+    logic [4:0] fix_col_counter; //20 
     
     logic [3:0] range_w_i;
     
@@ -314,6 +314,12 @@ module iterative_solver(
     logic [5:0] old_index;
     logic wait_on_clock;
     logic left_to_rest;
+
+    logic [4:0] fix_col_counter_small;
+
+    logic blob;
+    logic blab;
+    logic [19:0] can_do_seq;
                 
     
 
@@ -355,6 +361,8 @@ module iterative_solver(
             allowed_thing_index_counter<=0; //for 20 len
             range_h_i<=0;
             addr_constraint_column <=0;
+
+            fix_col_counter_small <=0;
                 
             
             
@@ -618,10 +626,11 @@ module iterative_solver(
                     move_to_allowable_section<=1;
                     
                 end if (allowable_for_a_row_started && ~save_allowable_result) begin
+                    can_do_seq <=fake_row_permutation_collector[addr_row_permutation];
 
                    
 
-                    allowable_result <= allowable_result || fake_row_permutation_collector[addr_row_permutation];
+                    allowable_result <= allowable_result | fake_row_permutation_collector[addr_row_permutation];
                     addr_row_permutation <= addr_row_permutation+1;
 
                     permutation_counter_allowable_section <= permutation_counter_allowable_section+1;
@@ -642,7 +651,7 @@ module iterative_solver(
 
                 //we have consdeiredall teh rows
 
-                //10 or 9 ??
+                //10 or 9 ?? >> 10
 
                 if(row_counter_allowable == 10) begin 
 
@@ -691,17 +700,23 @@ module iterative_solver(
                 if (~done_create_c_array) begin
 
                     // okey so the rpbelm is that we have n that is scaled on 10 whiel we are accesisng eh bit lenght of 20 due to encoding 
-
+                    //TODO ficco lcounter fo can_do first idnx must be out of 10 :'''()
                     //Idenxing here is wrong but i dont have the rbain power to solve it rn
 
-                    c[fix_col_counter] <= can_do[fix_col_counter][range_w_i_index];
-                    c[fix_col_counter+1] <= can_do[fix_col_counter][range_w_i_index+1];
+                    c[fix_col_counter] <= can_do[fix_col_counter_small][range_w_i_index];
+                    c[fix_col_counter+1] <= can_do[fix_col_counter_small][range_w_i_index+1];
+                    blob <=can_do[fix_col_counter_small][range_w_i_index];
+                    blab <= can_do[fix_col_counter_small][range_w_i_index+1];
+                    can_do_seq <=can_do[fix_col_counter_small];
+                    
                     fix_col_counter <= fix_col_counter+2;
+                    fix_col_counter_small <= fix_col_counter_small+1;
                                                 //len_can_do = 9
                     if(fix_col_counter == 18) begin
 
                         done_create_c_array <=1;
                         fix_col_counter <=0;
+                        fix_col_counter_small <=0;
                                                                     
                     end
 
