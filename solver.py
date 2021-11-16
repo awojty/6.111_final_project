@@ -224,7 +224,8 @@ def deduce(hr, vr):
 
         for i in range(len(can_do)):
             c.append(can_do[i][n])
-        print("c",c)
+            print("elelemntn", can_do[i][n])
+        print("nc",n, c, len(c))
 
         # c = [x[n] for x in can_do]
         # print("c2",c)

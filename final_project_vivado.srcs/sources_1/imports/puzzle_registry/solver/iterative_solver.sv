@@ -544,7 +544,7 @@ module iterative_solver(
                     wait_on_clock<=0;
 
                     //we have just consdiered the last row and wer are savign datat for the last row > change 
-                    if(addr_constraint == 9) begin
+                    if(addr_constraint == 10) begin
                         row_done <=1;
                         column_done <=0;
                         write_permutation_row <=0;
@@ -577,7 +577,7 @@ module iterative_solver(
                     end
 
                     
-                    if(addr_constraint >= 19) begin
+                    if(addr_constraint >= 20) begin
 
                         //possibel bug that teh alst one is not saved ? 
 
@@ -644,7 +644,7 @@ module iterative_solver(
 
                 //10 or 9 ??
 
-                if(row_counter_allowable == 9) begin 
+                if(row_counter_allowable == 10) begin 
 
                     move_to_allowable_section<=0;
                     allowable_for_a_row_started <=0;
@@ -690,10 +690,15 @@ module iterative_solver(
 
                 if (~done_create_c_array) begin
 
-                    c[fix_col_counter+:1] <= can_do[fix_col_counter][range_w_i_index+:1];
+                    // okey so the rpbelm is that we have n that is scaled on 10 whiel we are accesisng eh bit lenght of 20 due to encoding 
+
+                    //Idenxing here is wrong but i dont have the rbain power to solve it rn
+
+                    c[fix_col_counter] <= can_do[fix_col_counter][range_w_i_index];
+                    c[fix_col_counter+1] <= can_do[fix_col_counter][range_w_i_index+1];
                     fix_col_counter <= fix_col_counter+2;
                                                 //len_can_do = 9
-                    if(fix_col_counter == 19) begin
+                    if(fix_col_counter == 18) begin
 
                         done_create_c_array <=1;
                         fix_col_counter <=0;
