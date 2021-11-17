@@ -240,6 +240,8 @@ module generate_rows(
 
                 //on done reset the whole state machine
 
+                //HERE
+
                 finished_returning <=1;
 
                 done <=1;
@@ -434,7 +436,8 @@ module generate_rows(
                         
                     end else begin
                         started_shifting <=0;
-                        outputing <=0;
+                        outputing <=0; // why ? 
+
 
                         if(permutation_counter == total_permutation_count) begin
 
@@ -511,6 +514,10 @@ module generate_rows(
                     new_row <= {new_row, 2'b10}; //shoft one to the left
 
                     if(count == total_count-1) begin
+
+                        //TODO - add one more FSM state to have one clock cycel delay between outpuing and done  ? 
+
+                        //HERE - done up, out down
                         done <=1;
                         data_collected<=0;
                         

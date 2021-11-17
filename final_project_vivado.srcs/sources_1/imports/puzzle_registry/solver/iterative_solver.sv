@@ -239,11 +239,11 @@ module iterative_solver(
     logic [19:0] fake_col_assignment_collector [9:0]; //collects the constraint assginemtns for bram testing
 
 
-    logic [15:0] fake_row_permutation_collector [150:0]; //collects the constraint assginemtns for bram testing
-    logic [15:0] fake_col_permutation_collector [150:0]; //collects the constraint assginemtns for bram testing
+    logic [19:0] fake_row_permutation_collector [150:0]; //terrrible naming - the are ROW versions (not numbers)
+    logic [19:0] fake_col_permutation_collector [150:0]; //collects the constraint assginemtns for bram testing
 
 
-    logic [15:0] fake_row_permutation_counter [9:0]; //collbram testing
+    logic [15:0] fake_row_permutation_counter [9:0]; //collbram testing - count is whtaever numer fo bits, cna be more since it will trunctae it anyways
     logic [15:0] fake_col_permutation_counter [9:0]; //collng
 
 
@@ -320,8 +320,11 @@ module iterative_solver(
     logic blob;
     logic blab;
     logic [19:0] can_do_seq;
+    logic move_to_x;
+
+    //TODO tarck with counter not outputing od do one clock cycle delay inoutputing vs done
                 
-    
+    logic [6:0] tracker;
 
 
     always_ff @(posedge clk_in) begin
@@ -333,6 +336,9 @@ module iterative_solver(
             column_number <=0;
             row_number <=0;
             write <=0;
+            move_to_x<=0;
+
+            tracker <=0;
 
             
 
@@ -471,8 +477,8 @@ module iterative_solver(
                 //1) gerenate all rows for each row
 
                 if (~wait_on_clock) begin
-                    wait_on_clock<=1;
-                    start_generating <=1;
+                    
+                    
                     if(~row_done) begin
                         //when im currently gerneting rows
                         selected_assignment <= fake_row_assignment_collector[addr_constraint_row];
@@ -493,36 +499,38 @@ module iterative_solver(
                         column_start_addresses[addr_constraint_column] <= addr_column_permutation;
                         
                     end
-                    
-                end else if(~called_generate_rows && wait_on_clock) begin 
-                    //start calling generate rows
 
-                    
                     called_generate_rows <=1;
+                    wait_on_clock <=1;
 
-                    write_permutation_count_row <=0;
-                    write_permutation_count_column <=0;
-                    write_permutation_column <=0;
-                    write_permutation_row <=0;
-                    addr_constraint<=addr_constraint+1; // sum total number of rwos/cols that we have looked at 
-                    //start a new assingemnt genertaiont - put new inputs to the gerneate_rows
+                end else if (called_generate_rows) begin
+                     called_generate_rows <=0;
+                     start_generating <=1;
+                     move_to_x<=1;
 
+                    
+                
+                    
 
-
-                    //we finished genreating all the possible rows and cols > switch to another row
-
-
-                end else if (~done_generation && called_generate_rows && ~generate_rows_outputing) begin
+                end else if (move_to_x) begin
                     start_generating <=0; // we dont need to hold it on 
+                    wait_on_clock<=1;
+                    move_to_x <=0;
                     
                     
-                end else if (generate_rows_outputing && called_generate_rows) begin
+                    
+                end else if (generate_rows_outputing) begin
+
+
+                    tracker <= tracker + 1;
+                    start_generating <=0; //maybe?
 
                     //geenrate rows finally outputs
 
                     if( ~row_done) begin
                         //if im genreating rows
                         addr_row_permutation <= addr_row_permutation+1;
+
                         data_to_row_permutation_bram <= new_row_version;
                         fake_row_permutation_collector[addr_row_permutation] <= new_row_version; // this index is sued o put new states of the row to th sotrgae - can be mroe than one per row
                         write_permutation_column <=0;
@@ -545,23 +553,27 @@ module iterative_solver(
                         write_permutation_count_column <=0;
                     end
 
-                end else if (done_generation &&  ~generate_rows_outputing) begin
+                //end else if (tracker >= total_n_of_row_versions )
+
+                end else if (done_generation && tracker >= (total_n_of_row_versions-1)  ) begin
                     //generate rows finished outptuing for a gvien assignemtn - save length and mvoe to the sart of fsm 
 
                     called_generate_rows<=0; //restart the fsm
                     wait_on_clock<=0;
+                    tracker <=0;
 
                     //we have just consdiered the last row and wer are savign datat for the last row > change 
-                    if(addr_constraint == 10) begin
+                    if(addr_constraint_row == 9) begin
                         row_done <=1;
                         column_done <=0;
                         write_permutation_row <=0;
+                        addr_constraint_row = 0;
                         
                     end 
 
                     if(~row_done) begin
                         //when im currently gerneting rows
-                        data_to_permutation_count_row_bram <= n_of_constraints;
+                        data_to_permutation_count_row_bram <= total_n_of_row_versions;
                         
                         //start_addresses[addr_constraint+1] <=addr_row;
                         addr_constraint_row <= addr_constraint_row+1;
@@ -585,7 +597,7 @@ module iterative_solver(
                     end
 
                     
-                    if(addr_constraint >= 20) begin
+                    if(addr_constraint_column == 9) begin
 
                         //possibel bug that teh alst one is not saved ? 
 

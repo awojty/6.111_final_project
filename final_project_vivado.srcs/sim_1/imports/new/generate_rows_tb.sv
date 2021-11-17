@@ -54,15 +54,15 @@ module generate_rows_tb;
          
          start_in =0;
 //         #10000;
-//         assignment =20'b0000_0000_0001_0011_0001; //24
-//         start_in =1;
+         assignment =20'b0000_0000_0000_0000_0010; //24
+         start_in =1;
          
          
          //start_in =1;
          //get t_arm
          #10;
          start_in =0;
-//         #10000;
+         #10000;
          assignment =20'b0000_0000_0001_0001_0010; //24
          start_in =1;
          #10;

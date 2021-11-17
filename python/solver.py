@@ -324,6 +324,12 @@ def deduce(hr, vr):
     # print("rwos", rows)
     # print("cols", cols)
     
+    print("lastlow", rows[-2])
+    
+    print("length", list(map(len, rows)))
+    print("lengthsum", sum(list(map(len, rows))))
+    print("lengthsum-col", sum(list(map(len, cols))))
+    
     rows_len = []
     
 
@@ -553,7 +559,7 @@ a4 = bin(int("995a5", 16))[2:]
 #"10./01./10/.01.01.01.//10.10.//01.01
 
 print(a1,a2,a3, a4)
-print(len(gen_row(10, [1,1,2])))
+print(len(gen_row(10, [3])))
 
 
 # a  = gen_row(10, [1,3,1])
