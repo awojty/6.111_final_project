@@ -38,6 +38,8 @@ module generate_rows(
     logic permutation_started;
     
     logic started_shifting;
+
+    logic [19:0] new_row1;
     
 
     logic [3:0] constrain1;
@@ -123,7 +125,7 @@ module generate_rows(
     get_permutations my_get_permutations(   
                     .clk_in(clk_in),
                     .reset_in(reset_in),
-                    .start_in(permutation_started), // asserted when we want to start generating permutations
+                    .start_in(starter), // asserted when we want to start generating permutations
                     .number_of_breaks_in(number_of_breaks),//at most 4 breaks
                     .space_to_fill_in(space_to_fill_left), // at most 5 space left (exclude teh compuslory break on the left)
                     .permutation_out(permutation_out), //  mak of 4 breaks, eahc max encoded by 3 bits 4*3 ==12
@@ -142,6 +144,11 @@ module generate_rows(
 
     logic start_returning;
     logic finished_returning;
+    logic starter;
+
+    logic [5:0] min_length;
+
+    logic [19:0] new_row2;
 
 
     always_ff @(posedge clk_in) begin
@@ -155,6 +162,7 @@ module generate_rows(
             constrain3<=0;
             constrain4<=0;
             constrain5<=0;
+            new_row1<=0;
 
             permutation_min_length<=0;
             number_of_numbers<=0; // 5 is the max numer 
@@ -214,11 +222,15 @@ module generate_rows(
             return_counter <=0;
             start_returning <=0;
             finished_returning <=0;
+            min_length<=0;
+
+            new_row2 <=0;
+            started_shifting<=0;
 
 
         end else if (start_returning) begin 
 
-            if (return_counter <  all_rows_counter-1) begin
+            if (return_counter <=  (all_rows_counter-1)) begin
 
                 return_counter <= return_counter +1;
                 outputing <=1;
@@ -233,11 +245,13 @@ module generate_rows(
                 done <=1;
                 outputing <=0;
                 return_counter <=0;
-                total_count<= all_rows_counter-1;
+                total_count<= all_rows_counter;
 
                 //reset the state machine
 
                 wait_clock<=0;
+
+                permutation<=0;
 
                 //counters
                 shifts <=0;
@@ -250,6 +264,8 @@ module generate_rows(
                 create_a_row_counter <=0;
 
                 total_permutation_count<=0;
+
+                min_length <=0;
 
                 //FSM
                 in_progress <=0;
@@ -271,6 +287,7 @@ module generate_rows(
                 
                 new_row<=20'b0;
                 new_row1<=20'b0;
+                new_row2<=20'b0;
                 new_row_from_create_a_row<=20'b0;
             
                 //regs
@@ -288,6 +305,8 @@ module generate_rows(
                 old_version <=0;
                 return_counter <=0;
                 start_returning <=0;
+                starter <=0;
+                started_shifting<=0;
 
             end
 
@@ -305,6 +324,9 @@ module generate_rows(
                  //used in create a row to mark incommingn new data
                 permutation <= permutations_list[create_a_row_counter]; // input to create_a_row module - it only retusn ONE row per permutaiont numerbs - the basic one, shifted to the left 
                 
+            end else if (generating && start_generator) begin
+                start_generator <=0;
+            
             end else if (done_generation && generating) begin
                 //save returned row
                 old_version <=new_row_from_create_a_row;
@@ -343,6 +365,8 @@ module generate_rows(
 
         end else if (permutation_started) begin
 
+            starter <=0;
+
             if(started_outputing_permutations) begin
                 permutations_list[counter] <= permutation_out; 
                 
@@ -370,42 +394,42 @@ module generate_rows(
 
                 if(~started_shifting) begin
 
-                //we either just entered this state or we are done with shofting for  agiven basci state > introduce a enw basic state to new_row
+                    //we either just entered this state or we are done with shofting for  agiven basci state > introduce a enw basic state to new_row
 
-                    new_row <=basic_row_storage[permutation_counter];
+                    new_row2 <=basic_row_storage[permutation_counter];
                     all_row_storage[all_rows_counter] <= basic_row_storage[permutation_counter];
                     all_rows_counter <=all_rows_counter+1;
+
                     // outputing <=1;
                     // count <= count +1;
+
                     permutation_counter <= permutation_counter +1;
                     shifts <=0;
-                    
 
-                    if(permutations_min_length_list[permutation_counter] <20) begin
-                        shifts_limit <= 20 - permutations_min_length_list[permutation_counter] ; //20 - min_length 
-                        shifts <=0;
-                        started_shifting <=1;
+                    min_length <=permutations_min_length_list[permutation_counter];
+
+                    started_shifting <=1;
+
+                    // if(permutations_min_length_list[permutation_counter] <20) begin
+                    //     shifts_limit <= 20 - permutations_min_length_list[permutation_counter] ; //20 - min_length 
+                    //     shifts <=0;
+                    //     started_shifting <=1;
                         
-                    end
+                    // end
 
-
-
-
-
-                    
                 end else begin
 
                     //save this whole thing to bram wbc clickcyclses suckkkk instead of returning avery clock cycle 
 
-                //we are in the rpocess of shofting a given state 
+                    //we are in the rpocess of shofting a given state 
 
-                    if(shifts < shifts_limit) begin
+                    if(min_length < 5'd20) begin
                     //we are still allowed to shift
-                        new_row <= {new_row, 2'b10};
-                        shifts <=shifts+2;//01.01.01. 10.10.10.10.01.01.10
+                        new_row2 <= {new_row2, 2'b10};
+                        min_length <=min_length+ 2'b10;//01.01.01. 10.10.10.10.01.01.10
                         // outputing <=1; 01.01.01.  10.10.10.10.10. 01.01
                         // count <= count +1; 01.01.01.01. 10.10.10.10.01.01
-                        all_row_storage[all_rows_counter] <= {new_row, 2'b10};
+                        all_row_storage[all_rows_counter] <= {new_row2, 2'b10};
                         all_rows_counter <=all_rows_counter+1;
                         
                     end else begin
@@ -414,9 +438,9 @@ module generate_rows(
 
                         if(permutation_counter == total_permutation_count) begin
 
-                        start_returning <=1; //10.01.01.01101001011010
-                        //done<=1; // finish the whole genratE_row
-                        generate_states_from_permutations <=0; // [otenailly need  ozero all the staes here ust to make sure
+                            start_returning <=1; //10.01.01.01101001011010
+                            //done<=1; // finish the whole genratE_row
+                            generate_states_from_permutations <=0; // [otenailly need  ozero all the staes here ust to make sure
                     end
                         
                     end
@@ -524,6 +548,7 @@ module generate_rows(
                 //we can genreates statees "logically" - f
 
                 permutation_started <=1;
+                starter <=1;
                 data_collected<=0;
                 count<=0;
                 
@@ -577,7 +602,7 @@ module generate_rows(
                 number_of_breaks<=1;
                 number_of_numbers<=2;
                 min_length <= assignment[3:0] + assignment[7:4] +1;
-                space_to_fill_left <= 10 - assignment[3:0] - assignment[7:4] - assignment[11:8] - assignment[15:12] - assignment[19:16] - 1;
+                space_to_fill_left <= 10 - assignment[3:0] - assignment[7:4] - 1;
 
                 running_sum_1 <= assignment[3:0] + assignment[3:0]; // always add tiwce sicne we migrate from 10 to 20
                 running_sum_2 <= assignment[3:0] + assignment[3:0] + 2 + assignment[7:4] + assignment[7:4] ;
@@ -586,10 +611,10 @@ module generate_rows(
                 running_sum_5 <= 5'b11111;
 
                 
-            end else if (assignment[11:8]>0 && assignment[15:12]<=1'b0) begin
+            end else if ((assignment[11:8]>4'b0000) && assignment[15:12]<=1'b0) begin
                 number_of_breaks<=2;
                 number_of_numbers<=3;
-                space_to_fill_left <= 10 - assignment[3:0] - assignment[7:4] - assignment[11:8]  - 2;
+                space_to_fill_left <= 10 - assignment[3:0] - assignment[7:4] - assignment[11:8]  - 2'd2;
 
 
                 min_length <= assignment[3:0] + assignment[7:4] + assignment[11:8] + 2; // min lenght of the run

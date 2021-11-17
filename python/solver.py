@@ -548,22 +548,22 @@ a3 = hex(int(s3, 2))
 #96a55  10.01.01.//10.10.10.//01.01.01.01
 
 #a5a55 10.10.01.01.10.10.01.01.01.01 1
-a4 = bin(int("96a55", 16))[2:]
+a4 = bin(int("995a5", 16))[2:]
 
-#"101010.//01.01//.10.//01.01.01.01
+#"10./01./10/.01.01.01.//10.10.//01.01
 
 print(a1,a2,a3, a4)
-print(len(gen_row(10, [1,1])))
+print(len(gen_row(10, [1,1,2])))
 
 
-a  = gen_row(10, [2,1])
+# a  = gen_row(10, [1,3,1])
 
-for index,el in enumerate(a):
-    a[index] = tuple(el)
+# for index,el in enumerate(a):
+#     a[index] = tuple(el)
     
-a = set(a)
+# a = set(a)
 
-print(len(a))
+# print(len(a))
     
 
 

@@ -56,8 +56,8 @@ logic [2:0] space_to_fill; // at most 5 space left
 
 
                     case(counter)
-                        6'b0: permutation_out<=12'b0000_0000_0000;
-                        default: permutation_out<= 12'b000_000000000;
+                        6'b0: permutation_out<=16'b0000_0000_0000;
+                        default: permutation_out<= 16'b000_000000000;
                     endcase
 
                     if(counter ==0) begin
@@ -78,8 +78,8 @@ logic [2:0] space_to_fill; // at most 5 space left
                 counter<=counter +1;
 
                     case(counter)
-                        4'b0: permutation_out <= 12'b00000000_0001;
-                        default: permutation_out<= 12'b000000000000;
+                        4'b0: permutation_out <= 16'b00000000_0001;
+                        default: permutation_out<= 16'b000000000000;
                     
                     endcase
 
@@ -93,8 +93,8 @@ logic [2:0] space_to_fill; // at most 5 space left
                 end else if (space_to_fill ==2) begin
                     counter<=counter +1;
                     case(counter)
-                        6'b0: permutation_out<= 12'b00000000_0010;
-                        default: permutation_out<= 12'b000000000000;
+                        6'b0: permutation_out<= 16'b00000000_0010;
+                        default: permutation_out<= 16'b000000000000;
                     
                     endcase
 
@@ -107,8 +107,8 @@ logic [2:0] space_to_fill; // at most 5 space left
 
                 end else if (space_to_fill ==3) begin
                     case(counter)
-                        4'b0: permutation_out<= 12'b00000000_0011;
-                        default: permutation_out<= 12'b000000000000;
+                        4'b0: permutation_out<= 16'b00000000_0011;
+                        default: permutation_out<= 16'b000000000000;
                     
                     endcase
 
@@ -123,8 +123,8 @@ logic [2:0] space_to_fill; // at most 5 space left
                 counter<=counter +1;
 
                     case(counter)
-                        4'b0: permutation_out<= 12'b00000000_0100;
-                        default: permutation_out<= 12'b000000000000;
+                        4'b0: permutation_out<= 16'b00000000_0100;
+                        default: permutation_out<= 16'b000000000000;
                     
                     endcase
 
@@ -138,8 +138,8 @@ logic [2:0] space_to_fill; // at most 5 space left
                 end else if (space_to_fill ==5) begin
 
                     case(counter)
-                        6'b0: permutation_out<= 12'b00000000_0101;
-                        default: permutation_out<= 12'b000000000000;
+                        6'b0: permutation_out<= 16'b00000000_0101;
+                        default: permutation_out<= 16'b000000000000;
                     
                     endcase
 
@@ -223,8 +223,8 @@ logic [2:0] space_to_fill; // at most 5 space left
                 end else if (space_to_fill ==1) begin
 
                     case(counter)
-                        6'b0: permutation_out<=12'b000000_000_001; // each break is encoded by 3 bits
-                        6'b1: permutation_out<=12'b000000_001_000;
+                        6'b0: permutation_out<=16'b0000_0000_0000_0001; // each break is encoded by 3 bits
+                        6'b1: permutation_out<=16'b0000_0000_0001_0000;
                         default: permutation_out<=12'b000000000000;
                     
                     endcase
@@ -239,10 +239,10 @@ logic [2:0] space_to_fill; // at most 5 space left
                 end else if (space_to_fill ==2) begin
 
                     case(counter)
-                        6'b0: permutation_out<=12'b000_000_001_001; // 11
-                        6'd1: permutation_out<=12'b000_000_000_010; //02
-                        6'd2: permutation_out<=12'b000_000_010_000; //20
-                        default: permutation_out<=12'b000000000000;
+                        6'b0: permutation_out<=16'b0000_0000_0001_0001; // 11
+                        6'd1: permutation_out<=16'b0000_0000_0000_0010; //02
+                        6'd2: permutation_out<=16'b0000_0000_0010_0000; //20
+                        default: permutation_out<=16'b000000000000;
                     
                     endcase
 
@@ -256,10 +256,10 @@ logic [2:0] space_to_fill; // at most 5 space left
                 end else if (space_to_fill ==3) begin
 
                     case(counter)
-                        6'b0: permutation_out<=12'b000_000_001_010; // 12
-                        6'd1: permutation_out<=12'b000_000_010_001; //21
-                        6'd2: permutation_out<=12'b000_000_000_011; //03
-                        6'd3: permutation_out<=12'b000_000_011_000; //30
+                        6'b0: permutation_out<=16'b0000_0000_0001_0010; // 12
+                        6'd1: permutation_out<=16'b0000_0000_0010_0001; //21
+                        6'd2: permutation_out<=16'b0000_0000_0000_0011; //03
+                        6'd3: permutation_out<=16'b0000_0000_0011_0000; //30
                         default: permutation_out<=12'b000000000000;
                     
                     endcase
@@ -276,7 +276,7 @@ logic [2:0] space_to_fill; // at most 5 space left
                     case(counter)
                         6'b0: permutation_out<=16'b0000_0000_0010_0010; // 22
                         6'd1: permutation_out<=16'b0000_0000_0011_0001; //31
-                        6'd2: permutation_out<=16'b0000_0000_0011_0001; //13
+                        6'd2: permutation_out<=16'b0000_0000_0001_0011; //13
                         6'd3: permutation_out<=16'b0000_0000_0100_0000; //40
                         6'd4: permutation_out<=16'b0000_0000_0000_0100; //04
                         default: permutation_out<=12'b000000000000;
@@ -317,8 +317,8 @@ logic [2:0] space_to_fill; // at most 5 space left
             if(space_to_fill ==0) begin
 
                 case(counter)
-                    4'b0: permutation_out<= 12'b000000000_000;
-                    default: permutation_out<= 12'b000000000000;
+                    4'b0: permutation_out<= 12'b000000000_0000;
+                    default: permutation_out<= 12'b0000000000000;
                 
                 endcase
 
@@ -339,9 +339,9 @@ logic [2:0] space_to_fill; // at most 5 space left
 
 
                 case(counter)
-                    6'b0: permutation_out<=12'b000_000_000_001;
-                    6'd1: permutation_out<=12'b000_000_001_000;
-                    6'd2: permutation_out<=12'b000_001_000_000;
+                    6'b0: permutation_out<=16'b0000_0000_0000_0001;
+                    6'd1: permutation_out<=16'b0000_0000_0001_0000;
+                    6'd2: permutation_out<=16'b0000_0001_0000_0000;
                     default: permutation_out<=12'b000000000000;
                 endcase
 
@@ -361,13 +361,13 @@ logic [2:0] space_to_fill; // at most 5 space left
             end else if (space_to_fill ==2) begin
 
                 case(counter)
-                    6'b0: permutation_out<=12'b000_000_001_001;
-                    6'd1: permutation_out<=12'b000_001_001_000;
-                    6'd2: permutation_out<=12'b000_001_000_001;
-                    6'd3: permutation_out<=12'b000_000_000_010;
-                    6'd4: permutation_out<=12'b000_010_000_000;
-                    6'd5: permutation_out<=12'b000_000_010_000;
-                    default: permutation_out<=12'b000000000000;
+                    6'b0: permutation_out<=16'b0000_0000_0001_0001;
+                    6'd1: permutation_out<=16'b0000_0001_0001_0000;
+                    6'd2: permutation_out<=16'b0000_0001_0000_0001;
+                    6'd3: permutation_out<=16'b0000_0000_0000_0010;
+                    6'd4: permutation_out<=16'b0000_0010_0000_0000;
+                    6'd5: permutation_out<=16'b0000_0000_0010_0000;
+                    default: permutation_out<=16'b000000000000;
                 endcase
 
                 if(counter ==5) begin
@@ -380,16 +380,16 @@ logic [2:0] space_to_fill; // at most 5 space left
             end else if (space_to_fill ==3) begin
 
                 case(counter)
-                    4'b0: permutation_out<=12'b000_001_001_001; //111
-                    4'd1: permutation_out<=12'b000_000_000_011; //003
-                    4'd2: permutation_out<=12'b000_000_011_000; //030
-                    4'd3: permutation_out<=12'b000_011_000_000; //300
-                    4'd4: permutation_out<=12'b000_000_010_001; //021
-                    4'd5: permutation_out<=12'b000_001_010_000; //120
-                    4'd6: permutation_out<=12'b000_000_001_010; //012
-                    6'd7: permutation_out<=12'b000_010_001_000; //210
-                    6'd8: permutation_out<=12'b000_010_000_001; //201
-                    6'd9: permutation_out<=12'b000_001_000_010; //102
+                    4'b0: permutation_out<=16'b0000_0001_0001_0001; //111
+                    4'd1: permutation_out<=16'b0000_0000_0000_0011; //003
+                    4'd2: permutation_out<=16'b0000_0000_0011_0000; //030
+                    4'd3: permutation_out<=16'b0000_0011_0000_0000; //300
+                    4'd4: permutation_out<=16'b0000_0000_0010_0001; //021
+                    4'd5: permutation_out<=16'b0000_0001_0010_0000; //120
+                    4'd6: permutation_out<=16'b0000_0000_0001_0010; //012
+                    6'd7: permutation_out<=16'b0000_0010_0001_0000; //210
+                    6'd8: permutation_out<=16'b0000_0010_0000_0001; //201
+                    6'd9: permutation_out<=16'b0000_0001_0000_0010; //102
                     default: permutation_out<=12'b000000000000;
                 endcase
 
@@ -405,18 +405,18 @@ logic [2:0] space_to_fill; // at most 5 space left
 
             
                 case(counter)
-                    4'b0: permutation_out<=12'b000_000_100_000; //004
-                    4'd1: permutation_out<=12'b000_000_000_100; //040
-                    4'd2: permutation_out<=12'b000_100_000_000; //400
-                    4'd3: permutation_out<=12'b000_000_011_001; //031
-                    4'd4: permutation_out<=12'b000_001_000_011; //103
-                    4'd5: permutation_out<=12'b000_001_011_000; //130
-                    4'd6: permutation_out<=12'b000_011_000_001; //301
-                    4'd7: permutation_out<=12'b000_000_010_011; //013
-                    4'd8: permutation_out<=12'b000_011_001_000; //310
-                    4'd9: permutation_out<=12'b000_000_010_010; //022
-                    4'd10: permutation_out<=12'b000_010_010_000; //220
-                    default: permutation_out<=12'b000_000_000_000;
+                    4'b0: permutation_out<=16'b0000_0000_0100_0000; //004
+                    4'd1: permutation_out<=16'b0000_0000_0000_0100; //040
+                    4'd2: permutation_out<=16'b0000_0100_0000_0000; //400
+                    4'd3: permutation_out<=16'b0000_0000_0011_0001; //031
+                    4'd4: permutation_out<=16'b0000_0001_0000_0011; //103
+                    4'd5: permutation_out<=16'b0000_0001_0011_0000; //130
+                    4'd6: permutation_out<=16'b0000_0011_0000_0001; //301
+                    4'd7: permutation_out<=16'b0000_0000_0010_0011; //013
+                    4'd8: permutation_out<=16'b0000_0011_0001_0000; //310
+                    4'd9: permutation_out<=16'b0000_0000_0010_0010; //022
+                    4'd10: permutation_out<=16'b0000_0010_0010_0000; //220
+                    default: permutation_out<=16'b0000_0000_0000_0000;
                 endcase
 
                 if(counter ==10) begin
@@ -431,28 +431,28 @@ logic [2:0] space_to_fill; // at most 5 space left
             end else if (space_to_fill ==5) begin
 
                 case(counter)
-                    4'b0: permutation_out<=12'b000_000_000_101; //005
-                    4'd1: permutation_out<=12'b000_000_101_000; //050
-                    4'd2: permutation_out<=12'b000_101_000_000; //500
+                    4'b0: permutation_out<=16'b0000_0000_0000_0101; //005
+                    4'd1: permutation_out<=16'b0000_0000_0101_0000; //050
+                    4'd2: permutation_out<=16'b0000_0101_0000_0000; //500
 
-                    4'd3: permutation_out<=12'b000_000_011_010; //032
-                    4'd4: permutation_out<=12'b000_010_011_000; //230
-                    4'd5: permutation_out<=12'b000_000_010_011; //023
-                    4'd6: permutation_out<=12'b000_011_010_000; //320
-                    4'd7: permutation_out<=12'b000_010_000_011; //203
-                    4'd8: permutation_out<=12'b000_011_000_010; //302
+                    4'd3: permutation_out<=16'b0000_0000_0011_0010; //032
+                    4'd4: permutation_out<=16'b0000_0010_0011_0000; //230
+                    4'd5: permutation_out<=16'b0000_0000_0010_0011; //023
+                    4'd6: permutation_out<=16'b0000_0011_0010_0000; //320
+                    4'd7: permutation_out<=16'b0000_0010_0000_0011; //203
+                    4'd8: permutation_out<=16'b0000_0011_0000_0010; //302
 
-                    4'd9: permutation_out<=12'b000_011_001_001; //311
-                    4'd10: permutation_out<=12'b000_001_011_001; //131
-                    4'd11: permutation_out<=12'b000_001_001_011; //113
+                    4'd9: permutation_out<=16'b0000_0011_0001_0001; //311
+                    4'd10: permutation_out<=16'b0000_0001_0011_0001; //131
+                    4'd11: permutation_out<=16'b0000_0001_0001_0011; //113
 
-                    6'd12: permutation_out<=12'b000_000_001_100; //014
-                    6'd13: permutation_out<=12'b000_100_001_000; //410
-                    6'd14: permutation_out<=12'b000_000_100_001; //041
-                    6'd15: permutation_out<=12'b000_001_100_000; //140
-                    6'd16: permutation_out<=12'b000_100_000_001; //401
-                    6'd17: permutation_out<=12'b000_100_000_100; //104
-                    default: permutation_out<=12'b000_000_000_000;
+                    6'd12: permutation_out<=16'b0000_0000_0001_0100; //014
+                    6'd13: permutation_out<=16'b0000_0100_0001_0000; //410
+                    6'd14: permutation_out<=16'b0000_0000_0100_0001; //041
+                    6'd15: permutation_out<=16'b0000_0001_0100_0000; //140
+                    6'd16: permutation_out<=16'b0000_0100_0000_0001; //401
+                    6'd17: permutation_out<=16'b0000_0100_0000_0100; //104
+                    default: permutation_out<=12'b0000_0000_000_0000;
                 endcase
 
                 if(counter ==17) begin
@@ -491,11 +491,11 @@ logic [2:0] space_to_fill; // at most 5 space left
                 end else if (space_to_fill ==1) begin
 
                     case(counter)
-                        6'b0: permutation_out<=12'b000_000_000_001;
-                        6'd1: permutation_out<=12'b000_000_001_000;
-                        6'd2: permutation_out<=12'b000_001_000_000;
-                        6'd3: permutation_out<=12'b001_000_000_000;
-                        default: permutation_out<=12'b000000000000;
+                        6'b0: permutation_out<=16'b0000_0000_0000_0001;
+                        6'd1: permutation_out<=16'b0000_0000_0001_0000;
+                        6'd2: permutation_out<=16'b0000_0001_0000_0000;
+                        6'd3: permutation_out<=16'b0001_0000_0000_0000;
+                        default: permutation_out<=16'b000000000000;
                     endcase
 
                     if(counter ==3) begin

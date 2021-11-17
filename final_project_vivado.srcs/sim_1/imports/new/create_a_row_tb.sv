@@ -89,7 +89,24 @@ module create_a_row_tb;
         #10;
         new_data=0;
         
-        #200;
+        #1000;
+        
+        #10;
+        reset_in = 0;
+        constrain1=2;
+        constrain2=3;
+        constrain3=1;
+        constrain4=0;
+        constrain5=0;
+        number_of_constraints=3;
+        break1=1;
+        break2=0;
+        break3=0;
+        break4=0;
+        new_data=1;
+        #10;
+        
+        new_data=0;
 
 
         
