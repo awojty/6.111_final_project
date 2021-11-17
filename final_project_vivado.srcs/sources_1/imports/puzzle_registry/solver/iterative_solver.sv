@@ -283,10 +283,10 @@ module iterative_solver(
     logic allowable_for_a_row_started;
     logic save_allowable_result;
     logic move_to_for_loop_section;
-    logic [3:0] row_counter_allowable; //at moste 10 so 4 bits
+    logic [8:0] row_counter_allowable; //at moste 10 so 4 bits
     
-    logic [8:0] current_permutation_count;
-    logic [8:0] permutation_counter_allowable_section;
+    logic [15:0] current_permutation_count;
+    logic [15:0] permutation_counter_allowable_section;
 
     logic [4:0] fix_col_counter; //20 
     
@@ -567,7 +567,7 @@ module iterative_solver(
                         row_done <=1;
                         column_done <=0;
                         write_permutation_row <=0;
-                        addr_constraint_row = 0;
+                        //addr_constraint_row = 0;
                         
                     end 
 
@@ -616,8 +616,10 @@ module iterative_solver(
                         addr_column_permutation <=0;
                         
                         save_allowable_result<=0;
+                        addr_constraint_row <=0;
+                        row_counter_allowable<=0;
 
-                        allowable_counter <=allowable_counter+1; //counts if we submitted all the permutations
+                        //counts if we submitted all the permutations
 
                     end
                     
@@ -629,34 +631,46 @@ module iterative_solver(
                     //i have collected all nthe possibel assignements
                         //2) do consolidate allowed rows (allowable function)
 
-                
+
+                        // its deost pick up the first permutation ? 
 
                 if (~allowable_for_a_row_started) begin
                     allowable_for_a_row_started <=1;
                     permutation_counter_allowable_section <=0;
-                    current_permutation_count <= fake_col_permutation_counter[row_counter_allowable];
+                    current_permutation_count <= fake_row_permutation_counter[row_counter_allowable];
                     move_to_allowable_section<=1;
                     
-                end if (allowable_for_a_row_started && ~save_allowable_result) begin
+                end else if (allowable_for_a_row_started && ~ save_allowable_result) begin
                     can_do_seq <=fake_row_permutation_collector[addr_row_permutation];
 
-                   
-
                     allowable_result <= allowable_result | fake_row_permutation_collector[addr_row_permutation];
-                    addr_row_permutation <= addr_row_permutation+1;
 
                     permutation_counter_allowable_section <= permutation_counter_allowable_section+1;
 
-                    if(permutation_counter_allowable_section == current_permutation_count-1) begin
+                    if(permutation_counter_allowable_section == (current_permutation_count-1)) begin
                         save_allowable_result <=1;
-                    end
+                    end 
 
-                end else if (save_allowable_result && allowable_for_a_row_started) begin
+                    addr_row_permutation <= addr_row_permutation+1;
+
+                end else if (save_allowable_result && allowable_for_a_row_started ) begin
                     //allowable_for_a_row_started<=0;
                     can_do[row_counter_allowable] <=allowable_result;
                     row_counter_allowable <=row_counter_allowable +1;
                     save_allowable_result<=0;
                     allowable_for_a_row_started <=0;
+                    allowable_result <=0;
+
+                    if(row_counter_allowable == 9) begin 
+
+                        move_to_allowable_section<=0;
+                        allowable_for_a_row_started <=0;
+                        save_allowable_result <=0;
+                        move_to_for_loop_section<=1;
+                        row_counter_allowable<=0;
+                        addr_row_permutation <=0;
+                        
+                    end
 
 
                 end
@@ -665,16 +679,7 @@ module iterative_solver(
 
                 //10 or 9 ?? >> 10
 
-                if(row_counter_allowable == 10) begin 
 
-                    move_to_allowable_section<=0;
-                    allowable_for_a_row_started <=0;
-                    save_allowable_result <=0;
-                    move_to_for_loop_section<=1;
-                    row_counter_allowable<=0;
-                    addr_row_permutation <=0;
-                    
-                end
                             
 
 

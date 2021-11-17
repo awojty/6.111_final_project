@@ -324,9 +324,18 @@ def deduce(hr, vr):
     # print("rwos", rows)
     # print("cols", cols)
     
+    """
+    length [8, 28, 15, 21, 5, 10, 5, 10, 9, 11]
+    length col [28, 21, 10, 3, 6, 8, 7, 8, 11, 11]
+    lengthsum 122
+    lengthsum-col 113
+    
+    """
+    
     print("lastlow", rows[-2])
     
     print("length", list(map(len, rows)))
+    print("length col", list(map(len, cols)))
     print("lengthsum", sum(list(map(len, rows))))
     print("lengthsum-col", sum(list(map(len, cols))))
     
@@ -337,22 +346,44 @@ def deduce(hr, vr):
 
     for i,r in enumerate(rows):
         r_new = [tuple(x) for x in r]
-        print("r_new", r_new)
-        print()
+        # print("r_new", r_new)
+        # print()
         
-        print("rnewset", set(r_new))
-        print("idnex", i)
-        print("len",len(r_new))
+        # print("rnewset", set(r_new))
+        # print("idnex", i)
+        # print("len",len(r_new))
+        
+        for el in r:
+            
+        
+            f = str(bin(el)).zfill(2)
+            
         
        
         rows_len.append(len(list(set(r_new))))
         #print("allwable(r)", allowable(r))
         can_do.append(allowable(r))
         
-    print("lenght of permituaiont", rows_len)
-    print("titla_count", sum(rows_len))
+    print("cando", can_do)
+    """
+    [[3, 3, 3, 3, 3, 3, 3, 3, 3, 3], 
+    [3, 3, 3, 3, 3, 3, 3, 3, 3, 3], 
+    [3, 3, 3, 3, 3, 3, 3, 3, 3, 3], 
+    [3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+    [3, 3, 3, 3, 1, 1, 3, 3, 3, 3], 
+    [3, 3, 3, 3, 3, 1, 1, 3, 3, 3], 
+    [3, 3, 3, 3, 1, 1, 3, 3, 3, 3], 
+    [3, 3, 3, 3, 3, 3, 3, 3, 3, 3], 
+    [3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+    [2, 2, 2, 2, 2, 2, 2, 2, 2, 2]]
+    
+    """
+    
+    
+    # print("lenght of permituaiont", rows_len)
+    # print("titla_count", sum(rows_len))
         
-    print("past allowable can do")
+    # print("past allowable can do")
     
     
 #     lenght of permituaiont [8, 28, 15, 21, 5, 10, 5, 10, 9, 11]
