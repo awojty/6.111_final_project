@@ -141,12 +141,25 @@ module generate_rows(
     logic [6:0]  return_counter;
 
     logic start_returning;
+    logic finished_returning;
+
 
     always_ff @(posedge clk_in) begin
 
-        if(reset_in) begin
+        if(reset_in || finished_returning) begin
 
             wait_clock<=0;
+
+            constrain1<=0;
+            constrain2<=0;
+            constrain3<=0;
+            constrain4<=0;
+            constrain5<=0;
+
+            permutation_min_length<=0;
+            number_of_numbers<=0; // 5 is the max numer 
+            number_of_breaks<=0;
+            space_to_fill_left<=0;
 
             //counters
             shifts <=0;
@@ -161,6 +174,7 @@ module generate_rows(
             number_of_numbers <=0;
 
             total_permutation_count<=0;
+            all_rows_counter<=0;
 
             //FSM
             in_progress <=0;
@@ -199,6 +213,7 @@ module generate_rows(
             old_version <=0;
             return_counter <=0;
             start_returning <=0;
+            finished_returning <=0;
 
 
         end else if (start_returning) begin 
@@ -212,6 +227,8 @@ module generate_rows(
             end else begin
 
                 //on done reset the whole state machine
+
+                finished_returning <=1;
 
                 done <=1;
                 outputing <=0;
@@ -361,18 +378,18 @@ module generate_rows(
                     // outputing <=1;
                     // count <= count +1;
                     permutation_counter <= permutation_counter +1;
-                    started_shifting <= 1;
-
-                    shifts_limit <= 20 - permutations_min_length_list[permutation_counter] ; //20 - min_length 
                     shifts <=0;
-                    started_shifting <=1;
+                    
 
-                    if(permutation_counter == total_permutation_count) begin
-
-                        start_returning <=1;
-                        //done<=1; // finish the whole genratE_row
-                        generate_states_from_permutations <=0; // [otenailly need  ozero all the staes here ust to make sure
+                    if(permutations_min_length_list[permutation_counter] <20) begin
+                        shifts_limit <= 20 - permutations_min_length_list[permutation_counter] ; //20 - min_length 
+                        shifts <=0;
+                        started_shifting <=1;
+                        
                     end
+
+
+
 
 
                     
@@ -385,17 +402,27 @@ module generate_rows(
                     if(shifts < shifts_limit) begin
                     //we are still allowed to shift
                         new_row <= {new_row, 2'b10};
-                        shifts <=shifts+2;
-                        // outputing <=1;
-                        // count <= count +1;
+                        shifts <=shifts+2;//01.01.01. 10.10.10.10.01.01.10
+                        // outputing <=1; 01.01.01.  10.10.10.10.10. 01.01
+                        // count <= count +1; 01.01.01.01. 10.10.10.10.01.01
                         all_row_storage[all_rows_counter] <= {new_row, 2'b10};
                         all_rows_counter <=all_rows_counter+1;
                         
                     end else begin
                         started_shifting <=0;
                         outputing <=0;
+
+                        if(permutation_counter == total_permutation_count) begin
+
+                        start_returning <=1; //10.01.01.01101001011010
+                        //done<=1; // finish the whole genratE_row
+                        generate_states_from_permutations <=0; // [otenailly need  ozero all the staes here ust to make sure
+                    end
                         
                     end
+
+                    
+
 
 
                     

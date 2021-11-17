@@ -239,12 +239,12 @@ module iterative_solver(
     logic [19:0] fake_col_assignment_collector [9:0]; //collects the constraint assginemtns for bram testing
 
 
-    logic [15:0] fake_row_permutation_collector [100:0]; //collects the constraint assginemtns for bram testing
-    logic [15:0] fake_col_permutation_collector [100:0]; //collects the constraint assginemtns for bram testing
+    logic [15:0] fake_row_permutation_collector [150:0]; //collects the constraint assginemtns for bram testing
+    logic [15:0] fake_col_permutation_collector [150:0]; //collects the constraint assginemtns for bram testing
 
 
-    logic [15:0] fake_row_permutation_counter [100:0]; //collects the constraint assginemtns for bram testing
-    logic [15:0] fake_col_permutation_counter [100:0]; //collects the constraint assginemtns for bram testing
+    logic [15:0] fake_row_permutation_counter [9:0]; //collbram testing
+    logic [15:0] fake_col_permutation_counter [9:0]; //collng
 
 
 
@@ -727,16 +727,16 @@ module iterative_solver(
 
                     //if whole row is zero that means it has been deled so you can omit it iwith if statement 
                     if((fake_col_permutation_collector[range_w_i]!=10'b0) && (
-                            ( (c[1:0] && fake_col_permutation_collector[range_w_i][1:0])     >0) &&
-                            ( (c[3:2] && fake_col_permutation_collector[range_w_i][3:2])     >0) &&
-                            ( (c[5:4] && fake_col_permutation_collector[range_w_i][5:4])     >0) &&
-                            ( (c[7:6] && fake_col_permutation_collector[range_w_i][7:6])     >0) &&
-                            ( (c[9:8] && fake_col_permutation_collector[range_w_i][9:8])     >0) &&
-                            ( (c[11:10] && fake_col_permutation_collector[range_w_i][11:10]) >0) &&
-                            ( (c[13:12] && fake_col_permutation_collector[range_w_i][13:12]) >0) &&
-                            ( (c[15:14] && fake_col_permutation_collector[range_w_i][15:14]) >0) &&
-                            ( (c[17:16] && fake_col_permutation_collector[range_w_i][17:16]) >0) &&
-                            ( (c[19:18] && fake_col_permutation_collector[range_w_i][19:18]) >0)) ) begin
+                            ( (c[1:0] & fake_col_permutation_collector[range_w_i][1:0])     >0) &&
+                            ( (c[3:2] & fake_col_permutation_collector[range_w_i][3:2])     >0) &&
+                            ( (c[5:4] & fake_col_permutation_collector[range_w_i][5:4])     >0) &&
+                            ( (c[7:6] & fake_col_permutation_collector[range_w_i][7:6])     >0) &&
+                            ( (c[9:8] & fake_col_permutation_collector[range_w_i][9:8])     >0) &&
+                            ( (c[11:10] & fake_col_permutation_collector[range_w_i][11:10]) >0) &&
+                            ( (c[13:12] & fake_col_permutation_collector[range_w_i][13:12]) >0) &&
+                            ( (c[15:14] & fake_col_permutation_collector[range_w_i][15:14]) >0) &&
+                            ( (c[17:16] & fake_col_permutation_collector[range_w_i][17:16]) >0) &&
+                            ( (c[19:18] & fake_col_permutation_collector[range_w_i][19:18]) >0)) ) begin
                             
 
                         allowed_things <= allowed_things || fake_col_permutation_collector[range_w_i];
@@ -768,7 +768,7 @@ module iterative_solver(
                 
                     if(allowed_things[allowed_thing_index_counter+:1] != can_do[allowed_thing_counter][range_w_i_index +:1]) begin
                         mod_rows_in[allowed_thing_counter] <= 1;
-                        can_do[allowed_thing_counter][range_w_i_index +:1] <= can_do[allowed_thing_counter][range_w_i_index +:1] && allowed_things[allowed_thing_index_counter+:1];
+                        can_do[allowed_thing_counter][range_w_i_index +:1] <= can_do[allowed_thing_counter][range_w_i_index +:1] & allowed_things[allowed_thing_index_counter+:1];
                     end
 
                     if(allowed_thing_counter == 19) begin

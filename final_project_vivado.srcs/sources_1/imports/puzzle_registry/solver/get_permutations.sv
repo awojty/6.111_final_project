@@ -64,7 +64,14 @@ logic [2:0] space_to_fill; // at most 5 space left
                         counting <=0;
                         total_counter <=total_counter + 1;
                         done<=1;
+                        counter <=0;
+                        counting <=0;
                         
+                        total_counter <=0;
+                        permutation_out<=0;
+                        number_of_breaks<=0;
+                        space_to_fill<=0;
+                                    
                     end
 
                 end else if (space_to_fill ==1) begin
@@ -204,6 +211,13 @@ logic [2:0] space_to_fill; // at most 5 space left
                         counting <=0;
                         done<=1;
                         total_counter <=total_counter + 1;
+                        counter <=0;
+                        counting <=0;
+                        
+                        total_counter <=0;
+                        permutation_out<=0;
+                        number_of_breaks<=0;
+                        space_to_fill<=0;
                     end
 
                 end else if (space_to_fill ==1) begin
@@ -312,6 +326,13 @@ logic [2:0] space_to_fill; // at most 5 space left
                     counting <=0;
                     total_counter <=total_counter + 1;
                     done<=1;
+                        counter <=0;
+                        counting <=0;
+                        
+                        total_counter <=0;
+                        permutation_out<=0;
+                        number_of_breaks<=0;
+                        space_to_fill<=0;
                 end
 
             end else if (space_to_fill ==1) begin
@@ -328,6 +349,13 @@ logic [2:0] space_to_fill; // at most 5 space left
                     counting <=0;
                     done<=1;
                     counter <=0;
+                                            counter <=0;
+                        counting <=0;
+                        
+                        total_counter <=0;
+                        permutation_out<=0;
+                        number_of_breaks<=0;
+                        space_to_fill<=0;
                 end
 
             end else if (space_to_fill ==2) begin
@@ -451,6 +479,13 @@ logic [2:0] space_to_fill; // at most 5 space left
                         counting <=0;
                         total_counter <=total_counter + 1;
                         done<=1;
+                                                counter <=0;
+                        counting <=0;
+                        
+                        total_counter <=0;
+                        permutation_out<=0;
+                        number_of_breaks<=0;
+                        space_to_fill<=0;///01.01.01/.10/.01.01.10./10.10.10
                     end
 
                 end else if (space_to_fill ==1) begin

@@ -69,7 +69,7 @@ def my_gen_rows(length, setting):
         while limit >=0:
             print(len([2]*limit + [1]*setting[0] +[2]*offset))
             ans.append([2]*limit + [1]*setting[0] +[2]*offset )
-            print("asn", ans)
+            # print("asn", ans)
             offset +=1
             limit -=1
 
@@ -91,13 +91,13 @@ def my_gen_rows(length, setting):
         counter = 0
         
         for s in setting:
-            print("s", s)
+            
             for i in range(counter, s+counter):
                 start[i] = 1
             print(start)
             
             counter = counter + s+1 #give a sapce break
-        print("start here", start)
+        
         ans.append(start)
     
         limit = length - min_len
@@ -136,10 +136,10 @@ def my_gen_rows(length, setting):
 
                     else:
                         counter = counter + s+1 #give a sapce break
-                print("sart", start)
+                
 
                 element = start[:min_len]
-                print("element", element, min_len)
+               
 
                 limit = length - min_len
                 offset = 0
@@ -159,7 +159,7 @@ def my_gen_rows(length, setting):
     return ans
 
 
-my_gen_rows(10, [6,1])
+
 10101
 #brute foerce all teh pemrutaions for space 3 for a given number left
 #000
@@ -191,18 +191,21 @@ def gen_row(w, s):
  
     return [x[1:] for x in gen_seg([[1] * i for i in s], w + 1 - sum(s))]
  
- 
+
+
+
 def deduce(hr, vr):
     """Fix inevitable value of cells, and propagate."""
     def allowable(row):
+        print("row", row)
         return reduce(lambda a, b: [x | y for x, y in zip(a, b)], row)
  
     def fits(a, b):
-        print("ab",a,b)
+        # print("ab",a,b)
         
-        print("zipab", list(zip(a, b)))
-        print("res", [x & y for x, y in zip(a, b)])
-        print("ans", all(x & y for x, y in zip(a, b)))
+        # print("zipab", list(zip(a, b)))
+        # print("res", [x & y for x, y in zip(a, b)])
+        # print("ans", all(x & y for x, y in zip(a, b)))
         return all(x & y for x, y in zip(a, b))
  
     def fix_col(n):
@@ -216,16 +219,16 @@ def deduce(hr, vr):
         
         """
 
-        print("n", n)
-        print("cando", can_do)
+        # print("n", n)
+        # print("cando", can_do) [8, 28, 15, 21, 5, 10, 5, 10, 9, 1]
         
 
         c = []
 
         for i in range(len(can_do)):
             c.append(can_do[i][n])
-            print("elelemntn", can_do[i][n])
-        print("nc",n, c, len(c))
+        #     print("elelemntn", can_do[i][n])
+        # print("nc",n, c, len(c))
 
         # c = [x[n] for x in can_do]
         # print("c2",c)
@@ -239,24 +242,24 @@ def deduce(hr, vr):
                 results.append(x)
                 
                 
-        print("resutls,", len(results), results)
+        # print("resutls,", len(results), results)
         cols[n] = results
 
         allowed_things = allowable(results)
         
-        print("allowed, linths",allowed_things)
+        # print("allowed, linths",allowed_things)
         
-        print("candohere", can_do, len(can_do))# it alwasy has length 9 
+        # print("candohere", can_do, len(can_do))# it alwasy has length 9 
 
         for i, x in enumerate(allowed_things):
             if x != can_do[i][n]:
-                #mod_rows.add(i) 11 01
-                print("can_do[i][n]", can_do[i][n])
-                print("x", x)
+                #mod_rows.add(i) 11 01 > 01
+                # print("can_do[i][n]", can_do[i][n])
+                # print("x", x)
                 
                 mod_rows_in[i] = 1
                 can_do[i][n] &= x
-                print("can_do[i][n]", can_do[i][n])
+                # print("can_do[i][n]", can_do[i][n])
 
                 
  
@@ -270,11 +273,38 @@ def deduce(hr, vr):
                 mod_cols_in[i] = 1
                 #mod_cols.add(i) #at index i of array mod_cols, set it to 1
                 can_do[n][i] &= x
+                
+                
+    def get_bin(x):
+        """
+        Get the binary representation of x.
+
+        Parameters
+        ----------
+        x : int
+        n : int
+            Minimum number of digits. If x needs less digits in binary, the rest
+            is filled with zeros.
+
+        Returns
+        -------
+        str
+        """
+        return format(x, 'b').zfill(2)
  
     def show_gram(m):
         # If there's 'x', something is wrong.
         # If there's '?', needs more work.
+        
+        print("m", m )
         for x in m:
+            row = "".join(list(map(get_bin, x)))
+            # print(len(row))
+            
+            # decimal_representation = int(row, 2)
+            # hexadecimal_string = hex(decimal_representation)
+            # #print(row)
+            # print(hexadecimal_string)
             print(" ".join("x#.?"[i] for i in x))
         print()
  
@@ -286,16 +316,42 @@ def deduce(hr, vr):
     #ps2 mouse
     #eithe tnumebr recognition or 2 bit image to the nonogram
 
-    rows = [my_gen_rows(w, x) for x in hr]
-    cols = [my_gen_rows(h, x) for x in vr]
-    # rows = [gen_row(w, x) for x in hr]
-    # cols = [gen_row(h, x) for x in vr]
+    # rows = [my_gen_rows(w, x) for x in hr]
+    # cols = [my_gen_rows(h, x) for x in vr]
+    rows = [gen_row(w, x) for x in hr] 
+    cols = [gen_row(h, x) for x in vr] 
+    
+    # print("rwos", rows)
+    # print("cols", cols)
+    
+    rows_len = []
+    
 
     can_do= []
 
-    for r in rows:
+    for i,r in enumerate(rows):
+        r_new = [tuple(x) for x in r]
+        print("r_new", r_new)
+        print()
+        
+        print("rnewset", set(r_new))
+        print("idnex", i)
+        print("len",len(r_new))
+        
+       
+        rows_len.append(len(list(set(r_new))))
         #print("allwable(r)", allowable(r))
         can_do.append(allowable(r))
+        
+    print("lenght of permituaiont", rows_len)
+    print("titla_count", sum(rows_len))
+        
+    print("past allowable can do")
+    
+    
+#     lenght of permituaiont [8, 28, 15, 21, 5, 10, 5, 10, 9, 11]
+# titla_count 122
+# past allowable can do
         
    # print("lenf cado", len(can_do), can_do, len(rows))
     
@@ -375,14 +431,39 @@ def solve(s, show_runs=True):
     print("Vertical runs:", s[1])
     
     #deduce(ho,ve)
+    
+
+    
+    deduce(s[0],s[1])
    
-    deduce([[3], [2, 1], [3, 2], [2, 2], [6], [1, 5], [6], [1], [2]], [[1, 2], [3, 1], [1, 5], [7, 1], [5], [3], [4], [3]])
+    # deduce(
+    #     [[3], [2, 1], [3, 2], [2, 2], [6], [1, 5], [6], [1], [2]], 
+    #        [[1, 2], [3, 1], [1, 5], [7, 1], [5], [3], [4], [3]])
 
 
 ho = [[2]]
 ve=  [[1],[1]]
 
-solve([ho,ve])
+l1 = [[3],[2,1],[2,3],[1,2,1],[2,1],[1,1],[1,3],[3,4],[4,4],[4,2]]
+    
+l2 = [
+        [2],
+        [4],
+        [4],
+        [8],
+        [1,1],
+        [1,1],
+        [1,1,2],
+        [1,1,4],
+        [1,1,4],
+        [9]
+    ]
+
+a1 =  [[3], [2, 1], [3, 2], [2, 2], [6], [1, 5], [6], [1], [2], [0]] #row constraitns - left to righ 
+
+a2 =  [[1, 2], [3, 1], [1, 5], [7, 1], [5], [3], [4], [3], [0], [0]] #column constraints
+
+solve([a1,a2])
 
 
 ##use this code to generate teh numbers n ipytohn and just store them in registr"
@@ -473,4 +554,16 @@ a4 = bin(int("96a55", 16))[2:]
 
 print(a1,a2,a3, a4)
 print(len(gen_row(10, [1,1])))
+
+
+a  = gen_row(10, [2,1])
+
+for index,el in enumerate(a):
+    a[index] = tuple(el)
+    
+a = set(a)
+
+print(len(a))
+    
+
 

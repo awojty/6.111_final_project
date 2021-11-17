@@ -65,7 +65,7 @@ always_ff @(posedge clk_in) begin
 
         //TODO : this is wrong since the _len will be udpated in the nextclcockcycle
 
-        //we omit oen sicne create row is never called on one constrni set ups
+        //we omit oen sicne create row is never called on one constrni set ups 01.01.01.01.101010100101
 
 //        running_sum_1 <= constrain1 + constrain1 + break1+ break1 +2'd2; // always add tiwce sicne we migrate from 10 to 20
 //            running_sum_2 <= constrain1 + constrain1 + break1+ break1 + constrain2 + constrain2 +2'd2;
@@ -137,11 +137,12 @@ always_ff @(posedge clk_in) begin
         
     end else if (start_counting) begin
 
-        if((i == limit-1) || done_counting) begin
+        if( done_counting) begin
             done <=1;
             assignment_out <= new_row;
             start_counting <=0;
             done_counting<=0;
+            i<=0;
 
 
         end else begin
@@ -174,15 +175,15 @@ always_ff @(posedge clk_in) begin
             end else if((i>=running_sum_6) && (i <running_sum_7)) begin
                 new_row[i] <= 0;
                 new_row[i+1] <= 1;
-            end else if((i>=running_sum_7) && (i <=running_sum_8)) begin
+            end else if((i>=running_sum_7) && (i <running_sum_8)) begin
                 new_row[i] <= 1;
                 new_row[i+1] <= 0;
 
 
             end 
             
-            if(i >running_sum_8) begin
-                //marked the rest as unmarked ( but will be remvoed anyways ? )
+            if(i >=running_sum_8) begin
+                //marked the rest as unmarked ( but will be remvoed anyways ? ) 10.01.01.01.10.10.10.10.01.01
                 done_counting<=1;
                 
             end

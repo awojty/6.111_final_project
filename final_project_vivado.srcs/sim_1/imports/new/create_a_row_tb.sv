@@ -57,8 +57,8 @@ module create_a_row_tb;
         reset_in=0;
         new_data=0;
 
-        constrain1=4'd0;
-        constrain2=4'd0;
+        constrain1=0;
+        constrain2=0;
         constrain3=0;
         constrain4=0;
         constrain5=0;
@@ -73,39 +73,23 @@ module create_a_row_tb;
         reset_in = 1;
 
         #10;
-        reset_in = 4'd0;
-        constrain1=4'd4;
-        constrain2=4'd2;
-        constrain3=4'd0;
-        constrain4=4'd0;
-        constrain5=4'd0;
-        number_of_constraints=3'd2;
-        break1=3'd0;
-        break2=3'd0;
-        break3=3'd0;
-        break4=3'd0;
-         #10;
-        new_data=1'b1;
+        reset_in = 0;
+        constrain1=2;
+        constrain2=3;
+        constrain3=0;
+        constrain4=0;
+        constrain5=0;
+        number_of_constraints=2;
+        break1=4;
+        break2=0;
+        break3=0;
+        break4=0;
+        new_data=1;
+  
         #10;
-
-        
-        
+        new_data=0;
         
         #200;
-        
-        constrain1=4'd4;
-        constrain2=4'd2;
-        constrain3=4'd0;
-        constrain4=4'd0;
-        constrain5=4'd0;
-        number_of_constraints=3'd2;
-        break1=3'd1;
-        break2=3'd0;
-        break3=3'd0;
-        break4=3'd0;
-         
-        new_data=1'b1;
-        #100;
 
 
         
