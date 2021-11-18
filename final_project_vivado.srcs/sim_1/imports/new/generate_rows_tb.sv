@@ -54,7 +54,7 @@ module generate_rows_tb;
          
          start_in =0;
 //         #10000;
-         assignment =20'b0000_0000_0000_0000_0010; //24
+         assignment =20'b0000_0000_0000_0000_0000; //24
          start_in =1;
          
          
@@ -63,7 +63,17 @@ module generate_rows_tb;
          #10;
          start_in =0;
          #10000;
-         assignment =20'b0000_0000_0001_0001_0010; //24
+         assignment =20'b0000_0000_0000_0000_1000; //24
+         start_in =1;
+         #10;
+         start_in =0;
+         #10000;
+         assignment =20'b0000_0000_0000_0000_1000; //24
+         start_in =1;
+         #10;
+         start_in =0;
+         #10000;
+         assignment =20'b0000_0000_0000_0000_0000; //24
          start_in =1;
          #10;
          start_in =0;

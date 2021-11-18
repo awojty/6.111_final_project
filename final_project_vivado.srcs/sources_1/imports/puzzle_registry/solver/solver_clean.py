@@ -222,14 +222,16 @@ def deduce(hr, vr):
         c = []
 
         for i in range(len(can_do)):
-            print("_________________________________")
-            print("in", i, n)
-            print("can_do[i]",can_do[i])
-            print("can_do[i][n",can_do[i][n])
+            # print("_________________________________")
+            # print("in", i, n)
+            # print("can_do[i]",can_do[i])
+            # print("can_do[i][n",can_do[i][n])
             c.append(can_do[i][n])
-        print("_)))))))))))))))))))))))))))))))))___")
+        # print("_)))))))))))))))))))))))))))))))))___")
             
-        print("2c-array", iteration, c, len(c))
+        # print("2c-array", iteration, c, len(c))
+        
+        print(can_do)
         
 
         results = []
@@ -316,7 +318,10 @@ def deduce(hr, vr):
     rows = [gen_row(w, x) for x in hr] 
     cols = [gen_row(h, x) for x in vr] 
     
+    print("HAHHHHHHHHHH", len(gen_row(10,[0])))
+    
   
+    
     
     
   

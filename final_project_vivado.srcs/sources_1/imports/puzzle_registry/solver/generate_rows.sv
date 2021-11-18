@@ -150,6 +150,8 @@ module generate_rows(
 
     logic [19:0] new_row2;
 
+    logic [19:0] assignment_stored;
+
 
     always_ff @(posedge clk_in) begin
 
@@ -226,6 +228,7 @@ module generate_rows(
 
             new_row2 <=0;
             started_shifting<=0;
+            assignment_stored<=0;
 
 
         end else if (start_returning) begin 
@@ -309,6 +312,8 @@ module generate_rows(
                 start_returning <=0;
                 starter <=0;
                 started_shifting<=0;
+                assignment_stored<=0;
+                new_data <=0;
 
             end
 
@@ -460,7 +465,26 @@ module generate_rows(
 
             //we have collected all the permutatiosn but now we need to shift them
 
-            if(min_length == 10) begin
+            if (assignment_stored == 20'b0) begin
+
+                count <= count+1;
+
+                if(count == 11) begin
+                    done <=1;
+                    outputing <=0;
+                    finished_returning <=1;
+                    total_count<= 11;
+                end else begin
+                    new_row <= original;
+                    outputing <=1;
+                    done <=0;
+
+                end
+
+                
+                
+            
+            end else if(min_length == 10) begin
                 //if it's the "best case scenario" - we have onyl one posible way to create a row - return it right away
                 i<=i+2;
 
@@ -470,6 +494,7 @@ module generate_rows(
                     total_count <=1;
                     i<=0;
                     new_row <=new_row1;
+                    finished_returning <=1;
                 end else if(i <running_sum_1) begin
                             new_row1[i] <= 1'b1;
                             new_row1[i+1] <= 1'b0;
@@ -575,6 +600,8 @@ module generate_rows(
             outputing <=0;
             
             i<=0;
+
+            assignment_stored <=assignment;
 
             constrain1<=assignment[3:0];
             constrain2<=assignment[7:4];
