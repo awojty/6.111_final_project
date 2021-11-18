@@ -326,6 +326,10 @@ module iterative_solver(
                 
     logic [6:0] tracker;
 
+    logic [8:0] start_address;
+
+    logic starter_marker;
+
 
     always_ff @(posedge clk_in) begin
 
@@ -370,6 +374,9 @@ module iterative_solver(
 
             fix_col_counter_small <=0;
                 
+            start_address<=0;
+
+            starter_marker<=0;
             
             
             //FSM
@@ -697,28 +704,46 @@ module iterative_solver(
 
             end else if(for_range_w_started) begin
 
-                if (range_w_i ==10) begin
+                if (range_w_i ==9) begin
                     for_range_w_ended <=1;
                     for_range_w_started<=0;
                     range_w_i <=0;
                     range_w_i_index <=0;
+                    starter_marker<=0;
                 end else begin
-                    range_w_i<=range_w_i+1; //for 10 len
-                    range_w_i_index <= range_w_i_index+2; //for 20 len
+                    if(starter_marker>0) begin
+                        range_w_i<=range_w_i+1; //for 10 len
+                        range_w_i_index <= range_w_i_index+2; //for 20 len // dont increment
+
+                        
+                    end
                     for_range_w_started<=0;
-                    fix_col_section_started<=1;
+
+                    if(mod_cols_in[range_w_i]) begin
+                        fix_col_section_started<=1;
+                        
+                    end else begin
+                        fix_col_section_started<=0;
+
+                    end
+                    
+                    c<=0;
 
 
                 end
 
             end else if (fix_col_section_started) begin
-                //TODO
+                
 
-                if (~done_create_c_array) begin
+                starter_marker <=1;
 
-                    // okey so the rpbelm is that we have n that is scaled on 10 whiel we are accesisng eh bit lenght of 20 due to encoding 
-                    //TODO ficco lcounter fo can_do first idnx must be out of 10 :'''()
-                    //Idenxing here is wrong but i dont have the rbain power to solve it rn
+                if (~done_create_c_array && ~start_enumerate_for_loop_row) begin
+
+        
+
+                    // n =range_w_i_index
+
+                    // i = fix_col_counter_small
 
                     c[fix_col_counter] <= can_do[fix_col_counter_small][range_w_i_index];
                     c[fix_col_counter+1] <= can_do[fix_col_counter_small][range_w_i_index+1];
@@ -734,12 +759,20 @@ module iterative_solver(
                         done_create_c_array <=1;
                         fix_col_counter <=0;
                         fix_col_counter_small <=0;
+
+                        start_address <=column_start_addresses[range_w_i];
+
+                        //TODO
+
+                        //starting_address <=starting_address_register[range_w_i]
                                                                     
                     end
 
-                end else if (done_create_c_array) begin
+                end else if (done_create_c_array && ~start_enumerate_for_loop_row) begin
 
                     for_c_coln_counter<=for_c_coln_counter+1;
+
+                    
                     
 
                     //if whole row is zero that means it has been deled so you can omit it iwith if statement 
@@ -756,7 +789,7 @@ module iterative_solver(
                             ( (c[19:18] & fake_col_permutation_collector[range_w_i][19:18]) >0)) ) begin
                             
 
-                        allowed_things <= allowed_things || fake_col_permutation_collector[range_w_i];
+                        allowed_things <= allowed_things | fake_col_permutation_collector[start_address + for_c_coln_counter]; // range_w_i - why ? 
                     end else begin
                                 //fit retursn false so decrese teh avilaible numebr of permutations and zero the registr  (as deleted)
                         
@@ -776,7 +809,7 @@ module iterative_solver(
                             for_c_coln_counter<=0;
                     end
 
-                end else if (start_enumerate_for_loop_row) begin
+                end else if (start_enumerate_for_loop_row && ~done_create_c_array) begin
 
                     //this for loop always gors from 0 to 9 inclsuvei since to goes through the itsm in the allwoablae things which is a single arrya f length 10 
                     //TODO - remember they are two bit numbers 
@@ -785,7 +818,9 @@ module iterative_solver(
                 
                     if(allowed_things[allowed_thing_index_counter+:1] != can_do[allowed_thing_counter][range_w_i_index +:1]) begin
                         mod_rows_in[allowed_thing_counter] <= 1;
-                        can_do[allowed_thing_counter][range_w_i_index +:1] <= can_do[allowed_thing_counter][range_w_i_index +:1] & allowed_things[allowed_thing_index_counter+:1];
+                        can_do[allowed_thing_counter][range_w_i_index] <= can_do[allowed_thing_counter][range_w_i_index] & allowed_things[allowed_thing_index_counter];
+
+                        can_do[allowed_thing_counter][range_w_i_index +1] <= can_do[allowed_thing_counter][range_w_i_index +1] & allowed_things[allowed_thing_index_counter+1];
                     end
 
                     if(allowed_thing_counter == 19) begin
@@ -794,6 +829,7 @@ module iterative_solver(
                         start_enumerate_for_loop_row<=0;
                         allowed_thing_counter<=0;
                          allowed_thing_index_counter<=0;
+                         fix_col_section_started <=0;
                     end
                                                 
                     
@@ -802,23 +838,125 @@ module iterative_solver(
 
             end else if (fix_row_section_started) begin
                 //TODO - for now just increments to move forward through the for loop 
-                for_range_h_started <=1;
+                starter_marker_h <=1;
+
+                if (~done_create_c_array_h && ~start_enumerate_for_loop_row_h) begin
+
+        
+
+                    // n =range_w_i_index
+
+                    // i = fix_col_counter_small
+                    c<=can_do[range_h_i];
+
+
+                    done_create_c_array_h <=1;
+
+                    start_address_h <=row_start_addresses[range_h_i];
+
+                        //starting_address <=starting_address_register[range_w_i]
+                                                                    
+                end else if (done_create_c_array_h && ~start_enumerate_for_loop_row_h) begin
+
+                    for_c_row_counter_h<=for_c_row_counter_h+1;
+
+                    
+                    
+
+                    //if whole row is zero that means it has been deled so you can omit it iwith if statement 
+                    if((fake_row_permutation_collector[range_h_i]!=10'b0) && (
+                            ( (c[1:0] & fake_row_permutation_collector[range_h_i][1:0])     >0) &&
+                            ( (c[3:2] & fake_row_permutation_collector[range_h_i][3:2])     >0) &&
+                            ( (c[5:4] & fake_row_permutation_collector[range_h_i][5:4])     >0) &&
+                            ( (c[7:6] & fake_row_permutation_collector[range_h_i][7:6])     >0) &&
+                            ( (c[9:8] & fake_row_permutation_collector[range_h_i][9:8])     >0) &&
+                            ( (c[11:10] & fake_row_permutation_collector[range_h_i][11:10]) >0) &&
+                            ( (c[13:12] & fake_row_permutation_collector[range_h_i][13:12]) >0) &&
+                            ( (c[15:14] & fake_row_permutation_collector[range_h_i][15:14]) >0) &&
+                            ( (c[17:16] & fake_row_permutation_collector[range_h_i][17:16]) >0) &&
+                            ( (c[19:18] & fake_row_permutation_collector[range_h_i][19:18]) >0)) ) begin
+                            
+
+                        allowed_things_h <= allowed_things_h | fake_row_permutation_collector[start_address_h + for_c_row_counter_h]; // range_w_i - why ? 
+                    end else begin
+                                //fit retursn false so decrese teh avilaible numebr of permutations and zero the registr  (as deleted)
+                        
+                       // data_to_results_bram <= 10'b0; //mark as all zeross if deldeted
+                        //permutation_count <= permutation_count-1;
+
+                        fake_row_permutation_collector[range_h_i] <=0;
+                        //fake_col_permutation_counter[addr_col] <=fake_col_permutation_counter[addr_col]-1; do we actually need to decrease it? consider zero ??
+                        //allowed_things <= allowed_things || 10'b0;
+                    end
+
+                        
+                    if(for_c_row_counter_h == fake_row_permutation_counter[range_h_i]-1) begin
+                        //we finished the for loop to create resutl array                
+                            start_enumerate_for_loop_row_h <=1;
+                            done_create_c_array_h<=0;
+                            for_c_row_counter_h<=0;
+                    end
+                    
+
+
+
+
+                end else if (start_enumerate_for_loop_row_h) begin
+
+                                    //this for loop always gors from 0 to 9 inclsuvei since to goes through the itsm in the allwoablae things which is a single arrya f length 10 
+                    //TODO - remember they are two bit numbers 
+                    allowed_thing_counter_h<=allowed_thing_counter_h+1; //for 10 len
+                    allowed_thing_index_counter_h<=allowed_thing_index_counter_h+2; //for 20 len
+                
+                    if(allowed_things_h[allowed_thing_index_counter_h+:1] != can_do[range_h_i][allowed_thing_index_counter_h+:1]) begin
+                        mod_cols_in[allowed_thing_counter_h] <= 1;
+                        can_do[range_h_i][allowed_thing_index_counter_h] <= can_do[range_h_i][allowed_thing_index_counter_h] & allowed_things_h[allowed_thing_index_counter_h];
+
+                        can_do[range_h_i][allowed_thing_index_counter_h+1] <= can_do[range_h_i][allowed_thing_index_counter_h+1] & allowed_things_h[allowed_thing_index_counter_h+1];
+                    end
+
+                    if(allowed_thing_counter_h == 19) begin
+                        for_range_h_started <=1; // to increment the  i in for loop 
+                        
+                        start_enumerate_for_loop_row_h<=0;
+                        allowed_thing_counter_h<=0;
+                         allowed_thing_index_counter_h<=0;
+                         fix_row_section_started <=0;
+                    end
 
 
             end else if (for_range_w_ended) begin
-                mod_cols_in<=20'b0;
+                mod_rows_in<=20'b0;
                 for_range_w_ended<=0;
-                for_range_h_started<=0;
+                for_range_h_started<=1;
 
                 
             end else if (for_range_h_started) begin
-                if (range_h_i ==10) begin
+                if (range_h_i ==9) begin
                     for_range_h_ended <=1;
                     for_range_h_started<=0;
+                    range_h_i <=0;
+                    range_h_i_index <=0;
+                    starter_marker_h<=0;
                 end else begin
-                    range_h_i<=range_h_i+1;
+                    if(starter_marker_h>0) begin
+                        range_h_i<=range_h_i+1; //for 10 len
+                        range_h_i_index <= range_h_i_index+2; //for 20 len // dont increment
+
+                        
+                    end
                     for_range_h_started<=0;
-                    fix_row_section_started<=1;
+
+                    if(mod_row_in[range_h_i]) begin
+                        fix_row_section_started<=1;
+                        
+                    end else begin
+                        fix_row_section_started<=0;
+
+                    end
+                    
+                    c<=0;
+
 
                 end
 

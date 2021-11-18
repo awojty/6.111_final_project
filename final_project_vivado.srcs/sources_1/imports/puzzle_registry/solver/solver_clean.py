@@ -10,7 +10,7 @@ question about indexing with input vairabels to verilog or register valeus doe s
 def gen_row(w, s):
     """Create all patterns of a row or col that match given runs."""
     def gen_seg(o, sp):
-        print("o", o)
+        
         if not o:
             return [[2] * sp]
         return [[2] * x + o[0] + tail
@@ -19,7 +19,7 @@ def gen_row(w, s):
 
     a = [x[1:] for x in gen_seg([[1] * i for i in s], w + 1 - sum(s))]
 
-    print("hello", a)
+    
  
     return a
 
@@ -42,7 +42,7 @@ def gen_row(w, s):
 def my_gen_rows(length, setting):
     address = {i:0 for i in range(400)}
     start = [2]*length
-    print("satrt", start)
+    
     n_settings = len(setting)
     min_len = sum(setting) + n_settings - 1
     ans = []
@@ -58,8 +58,7 @@ def my_gen_rows(length, setting):
 
             
             counter = counter + s+1 #give a sapce break
-        print("blob")
-        print(start)
+        
         return [start]
     elif len(setting) == 1:
         #works
@@ -67,9 +66,9 @@ def my_gen_rows(length, setting):
         limit = length - setting[0]
         offset = 0
         while limit >=0:
-            print(len([2]*limit + [1]*setting[0] +[2]*offset))
+           
             ans.append([2]*limit + [1]*setting[0] +[2]*offset )
-            # print("asn", ans)
+            
             offset +=1
             limit -=1
 
@@ -94,7 +93,7 @@ def my_gen_rows(length, setting):
             
             for i in range(counter, s+counter):
                 start[i] = 1
-            print(start)
+            
             
             counter = counter + s+1 #give a sapce break
         
@@ -152,10 +151,7 @@ def my_gen_rows(length, setting):
                 shift = shift+1
                 min_len = sum(setting) + (n_settings) + shift-1 - 1
 
-    print("a",len(ans))
-    print(len(set(map(lambda x: tuple(x), ans))))
 
-    print("ans", ans)
     return ans
 
 
@@ -197,18 +193,20 @@ def gen_row(w, s):
 def deduce(hr, vr):
     """Fix inevitable value of cells, and propagate."""
     def allowable(row):
-        print("row", row)
+        
         return reduce(lambda a, b: [x | y for x, y in zip(a, b)], row)
  
     def fits(a, b):
-        # print("ab",a,b)
         
-        # print("zipab", list(zip(a, b)))
-        # print("res", [x & y for x, y in zip(a, b)])
-        # print("ans", all(x & y for x, y in zip(a, b)))
+        # print("a",a)
+        # print("b",b)
+        # print(all(x & y for x, y in zip(a, b)))
+        # print(zip(a,b))
+        #print([x & y for x, y in zip(a, b)])
+
         return all(x & y for x, y in zip(a, b))
  
-    def fix_col(n):
+    def fix_col(n, iteration = 0):
         """See if any value in a given column is fixed;
         if so, mark its corresponding row for future fixup.
 
@@ -219,32 +217,29 @@ def deduce(hr, vr):
         
         """
 
-        # print("n", n)
-        # print("cando", can_do) [8, 28, 15, 21, 5, 10, 5, 10, 9, 1]
-        
+
 
         c = []
 
         for i in range(len(can_do)):
+            print("_________________________________")
+            print("in", i, n)
+            print("can_do[i]",can_do[i])
+            print("can_do[i][n",can_do[i][n])
             c.append(can_do[i][n])
-        #     print("elelemntn", can_do[i][n])
-        # print("nc",n, c, len(c))
-
-        # c = [x[n] for x in can_do]
-        # print("c2",c)
-        # cols[n] = [x for x in cols[n] if fits(x, c)] 
-        # 12000
+        print("_)))))))))))))))))))))))))))))))))___")
+            
+        print("2c-array", iteration, c, len(c))
+        
 
         results = []
         indexes_included = []
 
         for index,x in enumerate(cols[n]):
             if fits(x, c):
-                indexes_included.append(index)
                 results.append(x)
-
-                
-                
+                indexes_included.append(index)
+        #print("indexes_included, iteration, n ", indexes_included, iteration, n)
                 
                 
         # print("resutls,", len(results), results)
@@ -252,10 +247,7 @@ def deduce(hr, vr):
 
         allowed_things = allowable(results)
         
-        # print("allowed, linths",allowed_things)
-        
-        # print("candohere", can_do, len(can_do))# it alwasy has length 9 
-        
+        print("cando before", can_do[n], iteration)
         
 
         for i, x in enumerate(allowed_things):
@@ -267,9 +259,7 @@ def deduce(hr, vr):
                 mod_rows_in[i] = 1
                 can_do[i][n] &= x
                 # print("can_do[i][n]", can_do[i][n])
-                
-        print("cando after", can_do[n])
-
+        print("cando after", can_do[n], iteration)
 
                 
  
@@ -320,34 +310,16 @@ def deduce(hr, vr):
  
     w, h = len(vr), len(hr)
     #bram for rows and cols - 2000 entries (10^2*(10+10)) and 20(10 len*2 bits) width
-    # bram for number allocations 20 col+rows 5 numbers above a given row/col 10 is the biggest (4bits)
-    # 20 entries per nanogram 5*4 = 20
-    # for a given nonogram you need 5*4*20 = 400 bits 
-    #ps2 mouse
-    #eithe tnumebr recognition or 2 bit image to the nonogram
 
     # rows = [my_gen_rows(w, x) for x in hr]
     # cols = [my_gen_rows(h, x) for x in vr]
     rows = [gen_row(w, x) for x in hr] 
     cols = [gen_row(h, x) for x in vr] 
     
-    # print("rwos", rows)
-    # print("cols", cols)
+  
     
-    """
-    length [8, 28, 15, 21, 5, 10, 5, 10, 9, 11]
-    length col [28, 21, 10, 3, 6, 8, 7, 8, 11, 11]
-    lengthsum 122
-    lengthsum-col 113
     
-    """
-    
-    print("lastlow", rows[-2])
-    
-    print("length", list(map(len, rows)))
-    print("length col", list(map(len, cols)))
-    print("lengthsum", sum(list(map(len, rows))))
-    print("lengthsum-col", sum(list(map(len, cols))))
+  
     
     rows_len = []
     
@@ -355,73 +327,104 @@ def deduce(hr, vr):
     can_do= []
     
     can_d_hex = []
+    
+    def turn_into_hex(row):
+        #print("row", row)
+        a = []
+        
+        for i,r in enumerate(row):
 
-    for i,r in enumerate(rows):
-        r_new = [tuple(x) for x in r]
-        # print("r_new", r_new)
-        # print()
+            ans = ""
+            for j in r:
+                f = '{0:02b}'.format(j)
+                
+                ans+=f
+            a.append(hex(int("0b" +(str(ans)),2)))
+            
+        return a
+    
+    def turn_into_hex1(row):
+            #print("row", row)
+        a = []
+        ans = ""
+        print(row)
         
-        # print("rnewset", set(r_new))
-        # print("idnex", i)
-        # print("len",len(r_new))
-        
-        for el in r:
-            print(el)
+        for i,r in enumerate(row):
 
             
+            
+            f = '{0:02b}'.format(r)
+                
+            ans+=f[2:]
+            
+        print(ans)
+            
+            
+        return hex(int("0b" +(str(ans)),2))
+    
+
+    """
+    
+    hexrows [
+        ['0x56aaa', '0x95aaa', '0xa56aa', '0xa95aa', '0xaa56a', '0xaa95a', '0xaaa56', '0xaaa95'],
         
+        ['0x59aaa', '0x5a6aa', '0x5a9aa', '0x5aa6a', '0x5aa9a', '0x5aaa6', '0x5aaa9', '0x966aa', 
+        '0x969aa', '0x96a6a', '0x96a9a', '0x96aa6', '0x96aa9', '0xa59aa', '0xa5a6a', '0xa5a9a', 
+        '0xa5aa6', '0xa5aa9', '0xa966a', '0xa969a', '0xa96a6', '0xa96a9', '0xaa59a', '0xaa5a6', 
+        '0xaa5a9', '0xaa966', '0xaa969', '0xaaa59'],
+        
+        ['0x565aa', '0x5696a', '0x56a5a', '0x56a96', '0x56aa5', '0x9596a', '0x95a5a', '0x95a96', '0x95aa5',
+        '0xa565a', '0xa5696', '0xa56a5', '0xa9596', '0xa95a5', '0xaa565'], 
+        
+        ['0x596aa', '0x5a5aa', '0x5a96a', '0x5aa5a', '0x5aa96', '0x5aaa5', 
+        '0x965aa', '0x9696a', '0x96a5a', '0x96a96', '0x96aa5', '0xa596a', 
+        '0xa5a5a', '0xa5a96', '0xa5aa5', '0xa965a', '0xa9696', 
+        '0xa96a5', '0xaa596', '0xaa5a5', '0xaa965'], 
+        
+        ['0x555aa', '0x9556a', '0xa555a', '0xa9556', '0xaa555'],
+        
+        ['0x6556a', '0x6955a', '0x6a556', '0x6a955', '0x9955a', '0x9a556',
+        '0x9a955', '0xa6556', '0xa6955', '0xa9955'],
+        
+        ['0x555aa', '0x9556a', '0xa555a', '0xa9556', '0xaa555'], 
+        
+        ['0x6aaaa', '0x9aaaa', '0xa6aaa', '0xa9aaa', '0xaa6aa', '0xaa9aa', '0xaaa6a', '0xaaa9a', '0xaaaa6', '0xaaaa9'], 
+        
+        ['0x5aaaa', '0x96aaa', '0xa5aaa', '0xa96aa', '0xaa5aa', '0xaa96a', '0xaaa5a', '0xaaa96', '0xaaaa5'], 
+        
+        ['0xaaaaa', '0xaaaaa', '0xaaaaa', '0xaaaaa', '0xaaaaa', '0xaaaaa', '0xaaaaa', '0xaaaaa', '0xaaaaa', '0xaaaaa', '0xaaaaa']]
+        """
+    hex_cols = []
+    
+    #print("hexrows", hex_rows)
+                
+    for i,r in enumerate(rows):
+        r_new = [tuple(x) for x in r]
+
        
         rows_len.append(len(list(set(r_new))))
-        #print("allwable(r)", allowable(r))
         
         allowabler = allowable(r)
         ans = ""
         for i in allowabler:
             f = '{0:02b}'.format(i)
-            print("3f", f)
+            
             ans+=f
-        print("ans", ans)
+        
         can_d_hex.append(hex(int("0b" +(str(ans)),2)))
         can_do.append(allowable(r))
         
-    print("1candohexs", can_do)
-    print(can_d_hex)
-    """
-    ['0xfffff', 
-    '0xfffff', 
-    '0xfffff', 
-    '0xfffff', 
-    '0x3ffff', 
-    '0x3ffff', 
-    '0x3ffff',// 
-    '0xfffff', 
-    '0xfffff', 
-    '0xaaaaa']
-    [[3, 3, 3, 3, 3, 3, 3, 3, 3, 3], 
-    [3, 3, 3, 3, 3, 3, 3, 3, 3, 3], 
-    [3, 3, 3, 3, 3, 3, 3, 3, 3, 3], 
-    [3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
-    [3, 3, 3, 3, 1, 1, 3, 3, 3, 3], 
-    [3, 3, 3, 3, 3, 1, 1, 3, 3, 3], 
-    [3, 3, 3, 3, 1, 1, 3, 3, 3, 3], //inverted 01 here > 01 in untitled
-    [3, 3, 3, 3, 3, 3, 3, 3, 3, 3], 
-    [3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
-    [2, 2, 2, 2, 2, 2, 2, 2, 2, 2]]
+    hex_rows = list(map(turn_into_hex, rows))
     
-    """
+    #print("candohex", turn_into_hex1(can_do))
+    
+    print("bb",can_d_hex)
     
     
-    # print("lenght of permituaiont", rows_len)
-    # print("titla_count", sum(rows_len))
+    print("CAND)", can_do)
         
-    # print("past allowable can do")
-    
-    
-#     lenght of permituaiont [8, 28, 15, 21, 5, 10, 5, 10, 9, 11]
-# titla_count 122
-# past allowable can do
-        
-   # print("lenf cado", len(can_do), can_do, len(rows))
+
+
     
  
     # Initially mark all columns for update.
@@ -434,38 +437,29 @@ def deduce(hr, vr):
     counter = 0
 
     while sum(mod_cols_in) >0:
-        counter+=1
+        
         for i in range(w):
             if mod_cols_in[i]:
-                fix_col(i)
+                fix_col(i, counter)
         mod_cols_in = [0] * w
         
-        print("oteration mod rows in", mod_rows_in, counter)
+        #print("oteration mod rows in", mod_rows_in, counter)
         for j in range(h):
             if mod_rows_in[j]:
                 fix_row(j)
         mod_rows_in = [0] * h
-    print("coutner", counter)
+        counter+=1
+    #print("coutner", counter)
 
 
  
-    # while mod_cols:
-    #     for i in mod_cols:
-    #     #go through the mod_colls 0/1 array and get the indexeds that are actually 1 which will hen server as the range(or rahter oteration) for i 
-    #         fix_col(i)
-    #     mod_cols = set() #sero all the thinfs in the array
-    #     for i in mod_rows:
-    #         fix_row(i)
-    #     mod_rows = set()
  
     if all(can_do[i][j] in (1, 2) for j in range(w) for i in range(h)):
         print("Solution would be unique")  # but could be incorrect!
     else:
         print("Solution may not be unique, doing exhaustive search:")
 
-    print()
-    print("AAAAAAAAAAAA")
-    show_gram(can_do)
+   
  
     # We actually do exhaustive search anyway. Unique solution takes
     # no time in this phase anyway, but just in case there's no
@@ -484,16 +478,7 @@ def deduce(hr, vr):
             out[n] = x
             sol += try_all(n + 1)
         return sol
- 
-    # n = try_all()
-    # if not n:
-    #     print("No solution.")
-    # elif n == 1:
-    #     print("Unique solution.")
-    # else:
-    #     print(n, "solutions.")
-    # print()
- 
+
  
 def solve(s, show_runs=True):
    
@@ -529,15 +514,11 @@ l2 = [
         [9]
     ]
 
-
-b1 =[[0],[3],[3],[3],[0]]
-b2 =[[0],[3],[3],[3],[0]]
-
 a1 =  [[3], [2, 1], [3, 2], [2, 2], [6], [1, 5], [6], [1], [2], [0]] #row constraitns - left to righ 
 
 a2 =  [[1, 2], [3, 1], [1, 5], [7, 1], [5], [3], [4], [3], [0], [0]] #column constraints
 
-solve([b1,b2])
+solve([a1,a2])
 
 
 ##use this code to generate teh numbers n ipytohn and just store them in registr"
@@ -558,87 +539,5 @@ def subset_sum(numbers, target, partial=[]):
         subset_sum(remaining, target, partial + [n]) 
    
 
-# Python 3 program to print all
-# possible strings of length k
-     
-# The method that prints all
-# possible strings of length k.
-# It is mainly a wrapper over
-# recursive function printAllKLengthRec()
-def printAllKLength(set, k):
- 
-    n = len(set)
-    printAllKLengthRec(set, "", n, k)
- 
-# The main recursive method
-# to print all possible
-# strings of length k
-def printAllKLengthRec(set, prefix, n, k):
-     
-    # Base case: k is 0,
-    # print prefix
-    if (k == 0) :
-        print(prefix)
-        return
- 
-    # One by one add all characters
-    # from set and recursively
-    # call for k equals to k-1
-    for i in range(n):
- 
-        # Next character of input added
-        newPrefix = prefix + set[i]
-         
-        # k is decreased, because
-        # we have added a new character
-        # printAllKLengthRec(set, newPrefix, n, k - 1)
-        
-        #overallping from both sdies
-        
-		# 		int start = solv->row_runs[i][j].s;0
-		# 		int end = solv->row_runs[i][j].e; 10
-		# 		int u = 10 - 0 + 1 - 6; = 6
-
-		# 		for (int k = start + u = 6 ; k <= end - u = 4  8; k++) {
-		# 			int status = solu->set(i, k, p->row_constraints[i][j].color);
-		# 			if (status == CONFLICT) conflict = true;
-		# 			if (status == PROGRESS) progress = true;
-		# 		}
-  
-  
-s1 = "1010_0101010101010101"
-     #"10010101010101010100"
-     #"1010101010101010010"
-s2 =  "10010101010101010110"
-s3 = "01010101010101011010"
-
-a1 = bin(int("bf7ff", 16))
-print("a1",a1)
-a2 = hex(int(s2, 2))
-a3 = hex(int(s3, 2))
-
-#a655 10.10.10.01.01.//10.//01.01.01.01 0  0b 10.11.11.11.01.11.11.11.11.11 2333133333
-
-#5aa55  01.01.10.10.10.10.01.01.01.01 3
-#96a55  10.01.01.//10.10.10.//01.01.01.01
-
-#a5a55 10.10.01.01.10.10.01.01.01.01 1
-a4 = bin(int("995a5", 16))[2:]
-
-#"10./01./10/.01.01.01.//10.10.//01.01
-
-print(a1,a2,a3, a4)
-print(len(gen_row(10, [3])))
-
-
-# a  = gen_row(10, [1,3,1])
-
-# for index,el in enumerate(a):
-#     a[index] = tuple(el)
-    
-# a = set(a)
-
-# print(len(a))
-    
 
 
