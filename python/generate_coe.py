@@ -254,7 +254,16 @@ def decode_nonogram(index):
 
 if __name__ == "__main__":
     print()
-    nonograms = [example]
+    nonograms = [
+    
+    [[10,10],
+    [[3], [1,2], [2,3], [2, 2], [6], [5,1], [6], [1], [2], [0]],
+    [[2,1], [1,3], [ 5,1], [ 1,7], [5], [3], [4], [3], [0], [0]]]
+ 
+ 
+    
+]
+
     a = generate_coe(nonograms)
     #decode_nonogram(1)
     
