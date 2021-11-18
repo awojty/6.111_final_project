@@ -220,6 +220,8 @@ module iterative_solver(
    logic data_to_solution_column_bram;
    logic addr_column_solution;
    
+   logic [7:0] start_address_h;
+   
    
 
 
@@ -329,12 +331,31 @@ module iterative_solver(
     logic [8:0] start_address;
 
     logic starter_marker;
+    logic starter_marker_h;
+    
+    logic start_enumerate_for_loop_row_h;
+    
+    logic [5:0] range_h_i_index;
+    logic [7:0] for_c_row_counter_h;
+    
+    
+ logic [4:0]    allowed_thing_counter_h;
+ logic [4:0] allowed_thing_index_counter_h;
+                        
+
+ logic [19:0] allowed_things_h;
+ 
+ logic done_create_c_array_h;
+ logic start_enumerate_for_loop_row_h;
 
 
     always_ff @(posedge clk_in) begin
 
         if(reset_in) begin
             // on init, nitilzie he bram to all zeros :)
+            
+            done_create_c_array_h <=0;
+            start_enumerate_for_loop_row_h <=0;
             counter_out <=0;
             started<=0;
             column_number <=0;
@@ -343,6 +364,16 @@ module iterative_solver(
             move_to_x<=0;
 
             tracker <=0;
+            range_h_i_index <=0;
+            for_c_row_counter_h<=0;
+            
+            allowed_thing_counter_h<=0;
+            allowed_thing_index_counter_h<=0;
+                        
+
+            allowed_things_h<=0;
+            
+            start_address_h<=0;
 
             
 
@@ -377,6 +408,7 @@ module iterative_solver(
             start_address<=0;
 
             starter_marker<=0;
+            starter_marker_h<=0;
             
             
             //FSM
@@ -387,6 +419,8 @@ module iterative_solver(
             allowable_for_a_row_started<=0;
             save_allowable_result <=0;
             move_to_for_loop_section<=0;
+            
+            start_enumerate_for_loop_row_h<=0;
             
             current_permutation_count <=0;
             move_to_output<=0;
@@ -828,8 +862,12 @@ module iterative_solver(
                         
                         start_enumerate_for_loop_row<=0;
                         allowed_thing_counter<=0;
-                         allowed_thing_index_counter<=0;
-                         fix_col_section_started <=0;
+                        allowed_thing_index_counter<=0;
+                        fix_col_section_started <=0;
+                        allowed_things<=0;
+
+
+
                     end
                                                 
                     
@@ -842,20 +880,10 @@ module iterative_solver(
 
                 if (~done_create_c_array_h && ~start_enumerate_for_loop_row_h) begin
 
-        
-
-                    // n =range_w_i_index
-
-                    // i = fix_col_counter_small
                     c<=can_do[range_h_i];
-
-
                     done_create_c_array_h <=1;
-
                     start_address_h <=row_start_addresses[range_h_i];
-
-                        //starting_address <=starting_address_register[range_w_i]
-                                                                    
+                                      
                 end else if (done_create_c_array_h && ~start_enumerate_for_loop_row_h) begin
 
                     for_c_row_counter_h<=for_c_row_counter_h+1;
@@ -899,9 +927,7 @@ module iterative_solver(
                     
 
 
-
-
-                end else if (start_enumerate_for_loop_row_h) begin
+                end else if (start_enumerate_for_loop_row_h && ~done_create_c_array_h) begin
 
                                     //this for loop always gors from 0 to 9 inclsuvei since to goes through the itsm in the allwoablae things which is a single arrya f length 10 
                     //TODO - remember they are two bit numbers 
@@ -920,9 +946,12 @@ module iterative_solver(
                         
                         start_enumerate_for_loop_row_h<=0;
                         allowed_thing_counter_h<=0;
-                         allowed_thing_index_counter_h<=0;
-                         fix_row_section_started <=0;
+                        allowed_thing_index_counter_h<=0;
+                        fix_row_section_started <=0;
+
+                        allowed_things_h<=0;
                     end
+                end
 
 
             end else if (for_range_w_ended) begin
@@ -947,7 +976,7 @@ module iterative_solver(
                     end
                     for_range_h_started<=0;
 
-                    if(mod_row_in[range_h_i]) begin
+                    if(mod_rows_in[range_h_i]) begin
                         fix_row_section_started<=1;
                         
                     end else begin
