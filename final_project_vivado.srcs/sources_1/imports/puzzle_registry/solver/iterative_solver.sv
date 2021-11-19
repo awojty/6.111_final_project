@@ -762,7 +762,9 @@ module iterative_solver(
                         for_range_w_started<=0;
                         increment_range_w<=1;
 
-                    end
+                    end //10.10.10.10.10.10.//01.01.01//.10
+
+                    //10.10.10.10.10.10.//01//.10.//01.01
                     
                     c<=0;
                     allowable_counter<=0;

@@ -455,6 +455,8 @@ def deduce(hr, vr):
         mod_rows_in = [0] * h
         counter+=1
     #print("coutner", counter)
+    
+    show_gram(can_do)
 
 
  
