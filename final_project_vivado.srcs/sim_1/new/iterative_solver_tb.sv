@@ -72,40 +72,42 @@ module iterative_solver_tb;
        row_number_in=10;
 
    
-       assignment_in =20'b00000000000000000011;//
+       //assignment_in =20'b00000000000000000011;//
+       assignment_in =20'b00000000000000000000;
        index_in<=0;
        #10;
        
        
-        assignment_in =20'b00000000000000010010;//
+        //assignment_in =20'b00000000000000010010;//
+        assignment_in =20'b000000000000000001000;//
         index_in<=1;
        #10;
        
-    assignment_in =20'b00000000000000100011;//
+    assignment_in =20'b0000000000000000001000;//
         index_in<=2;
        #10;
        
-    assignment_in =20'b00000000000000100010;//
+    assignment_in =20'b0000000000000001000;//
         index_in<=3;
        #10;
        
-    assignment_in =20'b00000000000000000110;//
+    assignment_in =20'b00000000000000001000;//
         index_in<=4;
        #10;
        
-    assignment_in =20'b00000000000001010001;//
+    assignment_in =20'b0000000000000001000;//
         index_in<=5;
        #10;
        
-    assignment_in =20'b00000000000000000110;//
+    assignment_in =20'b00000000000000001000;//
         index_in<=6;
        #10;
        
-    assignment_in =20'b00000000000000000001;//
+    assignment_in =20'b0000000000000001000;//
         index_in<=7;
        #10;
        
-    assignment_in =20'b00000000000000000010;//
+    assignment_in =20'b00000000000000001000;//
         index_in<=8;
        #10;
        
@@ -113,39 +115,39 @@ module iterative_solver_tb;
         index_in<=9;
        #10;
        
-    assignment_in =20'b00000000000000100001;//
+    assignment_in =20'b00000000000000000000;//
         index_in<=10;
        #10;
        
-    assignment_in =20'b00000000000000010011;//
+    assignment_in =20'b0000000000000001000;//
         index_in<=11;
        #10;
        
-    assignment_in =20'b00000000000001010001;//
+    assignment_in =20'b000000000000001000;//
         index_in<=12;
        #10;
        
-    assignment_in =20'b00000000000000010111;//
+    assignment_in =20'b0000000000000001000;//
         index_in<=13;
        #10;
        
-    assignment_in =20'b00000000000000000101;//
+    assignment_in =20'b0000000000000001000;//
         index_in<=14;
        #10;
        
-    assignment_in =20'b00000000000000000011;//
+    assignment_in =20'b0000000000000001000;//
         index_in<=15;
        #10;
        
-    assignment_in =20'b00000000000000000100;
+    assignment_in =20'b00000000000000001000;
         index_in<=16;
        #10;
        
-    assignment_in =20'b00000000000000000011;
+    assignment_in =20'b0000000000000001000;
         index_in<=17;
        #10;
        
-    assignment_in =20'b00000000000000000000;
+    assignment_in =20'b00000000000000001000;
         index_in<=18;
        #10;
        
