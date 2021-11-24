@@ -7,7 +7,7 @@ module assignments_registry(
                     input wire [7:0] row_number_in,
                     input wire [7:0] col_number_in,
                     input wire [31:0] address_in,
-                    output logic [799:0] assignment_out,
+                    output logic [19:0] assignment_out,
                     output logic [31:0] counter_out,
                     output logic done,
                     output logic sending

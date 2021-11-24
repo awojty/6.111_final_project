@@ -1,13 +1,16 @@
 `timescale 1ns / 1ps
 
 module top_level_nonogram_generator(
-   input clk_65mhz,
+   input logic clk_65mhz,
+   input logic start_in,
+   input logic reset_in,
    input[15:0] sw,
    input btnc, btnu, btnl, btnr, btnd,
    input [7:0] ja, //pixel data from camera
    input [2:0] jb, //other data from camera (including clock return)
-   output   jbclk, //clock FPGA drives the camera with
    input [2:0] jd,
+
+   output   jbclk, //clock FPGA drives the camera with
    output   jdclk,
    output[3:0] vga_r,
    output[3:0] vga_b,
@@ -19,11 +22,11 @@ module top_level_nonogram_generator(
    output[15:0] led,
    output ca, cb, cc, cd, ce, cf, cg, dp,  // segments a-g, dp
 
-
    output hs,
    output vs,
    output b, 
    output rgb,
+   output nonogram_generator_done
 
    );
 
@@ -50,9 +53,7 @@ module top_level_nonogram_generator(
 
 
     // btnc button is user reset
-    wire reset;
-    debounce db1(.reset_in(reset),.clock_in(clk_65mhz),.noisy_in(btnc),.clean_out(reset));
-   
+
    
     logic xclk;
     logic[1:0] xclk_count;
@@ -96,7 +97,7 @@ module top_level_nonogram_generator(
     
     always_ff @(posedge pclk_in)begin
         if (frame_done_out)begin
-            move_to_digi<=1;
+            move_to_downsampling<=1;
             pixel_addr_in <= 17'b0;  
         end else if (valid_pixel)begin
             pixel_addr_in <= pixel_addr_in +1;  
@@ -104,87 +105,124 @@ module top_level_nonogram_generator(
     end
 
     filter my_filter(   
-                    input wire clk_in,
-                    input wire reset_in,
+                    .clk_in(clk_65mhz),
+                    .reset_in(reset_in),
                     .start_in(filter_start_in), //when asserte, start accumulating
-                    input [320:0] wire [240:0] photo_in,
-                    output logic done, //320 by 240
-                    output logic [40:0] rescaled_out [30:0]//for the sake of testing // since thre are 10 fields and each field has two bits (3 states) > 10*2 = 20
-
+                    .photo_in(digitized_photo),
+                    .done(filter_done), //320 by 240
+                    .rescaled_out(rescaled_photo_out)//for the sake of testing // since thre are 10 fields and each field has two bits (3 states) > 10*2 = 20
     ); 
 
 
     constraint_generator my_constraint_generator(   
-                    input wire clk_in,
-                    input wire reset_in,
+                    .clk_in(clk_65mhz),
+                    .reset_in(reset_in),
                     .start_in(start_constraint_generator), //when asserte, start accumulating
-                    input [39:0] wire [29:0] image_in,
-                    output  logic [119:0] constraints_out [69:0],
-                    output logic done //320 by 240
+                    .image_in(rescaled_photo_out),
+                    .constraints_out(constraint_generator_returned),
+                    .done(constraint_generator_done) //320 by 240
 
     ); 
 
 
+    logic in_progress;
 
+    logic [39:0] rescaled_photo_out [29:0];
+    logic filter_done;
+    logic constraint_generator_done;
+
+    logic [119:0] constraint_generator_returned [69:0]
+    logic start_constraint_generator;
 
 
     
     always_ff @(posedge clk_65mhz) begin
 
-        if(~move_to_downsampling) begin
+        if(reset_in) begin
+            in_progress <= 0;
 
-            pclk_buff <= jb[0];//WAS JB
-            vsync_buff <= jb[1]; //WAS JB
-            href_buff <= jb[2]; //WAS JB
-            pixel_buff <= ja;
-            pclk_in <= pclk_buff;
-            vsync_in <= vsync_buff;
-            href_in <= href_buff;
-            pixel_in <= pixel_buff;
-            old_output_pixels <= output_pixels;
-            xclk_count <= xclk_count + 2'b01;
+            //fsm
+            constraint_generator_done <=0;
+            filter_done <=0;
+            start_constraint_generator <=0;
+            
+        end else begin
 
-            if(((output_pixels[15:12] >>2) + (output_pixels[10:7]>>1) + (output_pixels[4:1]>>2))>5) begin
-                processed_pixels <= {4'b1111,4'b1111,4'b1111};
-                if((hcount<320) &&  (vcount<240)) begin
-                    digitized_photo[vount][hcount] <=0;
+
+            hs <= phsync;
+            vs <= pvsync;
+            b <= pblank;
+            
+            rgb <= cam;
+
+            if(start_in) begin
+                in_progress <=1;
+            end
+
+            if(~move_to_downsampling) begin
+
+                pclk_buff <= jb[0];//WAS JB
+                vsync_buff <= jb[1]; //WAS JB
+                href_buff <= jb[2]; //WAS JB
+                pixel_buff <= ja;
+                pclk_in <= pclk_buff;
+                vsync_in <= vsync_buff;
+                href_in <= href_buff;
+                pixel_in <= pixel_buff;
+                old_output_pixels <= output_pixels;
+                xclk_count <= xclk_count + 2'b01;
+
+                if(((output_pixels[15:12] >>2) + (output_pixels[10:7]>>1) + (output_pixels[4:1]>>2))>5) begin
+                    
+                    processed_pixels <= {4'b1111,4'b1111,4'b1111};
+                    if((hcount<320) &&  (vcount<240)) begin
+                        digitized_photo[vount][hcount] <=0;
+                    end
+                    
+                        
+                end else begin
+                    processed_pixels <= {4'b0000,4'b0000,4'b0000};
+                    if((hcount<320) &&  (vcount<240)) begin
+                        digitized_photo[vount][hcount] <=1;
+                    end
                     
                 end
+            
+            end else if (frame_done_out && in_progress) begin
+                //frame_done_out can be asserted like anytime we ress center BUT we want to move forwrd in fsm only after have in start_in
                 
-                    
-            end else begin
-                processed_pixels <= {4'b0000,4'b0000,4'b0000};
+                filter_start_in<=1;
+                photo_filter_input <=digitized_photo;
 
-                if((hcount<320) &&  (vcount<240)) begin
-                    digitized_photo[vount][hcount] <=1;
+
+            end else if (move_to_constraint_generator) begin
+                start_constraint_generator<=1;
+                image_in_generator <=rescaled_photo_out;
+
+                move_to_constraint_generator <=0;
+                wait_for_generator<=1;
+
+
+
+            end else if(wait_for_generator) begin
+
+                if(generator_done) begin
+
+                    nonogram_generator_done <=1;
+                    constraints_out <= constraint_generator_returned;
+
                 end
                 
             end
-            
-        end else if (frame_done_out) begin
-            filter_start_in<=1;
-            photo_filter_input <=digitized_photo;
-
-
-        end else if (move_to_constraint_generator) begin
-            start_constraint_generator<=1;
-            image_in_generator <=rescaled_photo_out;
-
-            move_to_constraint_generator <=0;
-            wait_for_generator<=1;
 
 
 
-        end else if(wait_for_generator) begin
 
-            if(generator_done) begin
 
-                nonogram_generator_done <=1;
-                constraints_out <= constraint_generator_returned;
-
-            end
-            
         end
+    
+
+        
     
     end
 
@@ -205,7 +243,7 @@ module top_level_nonogram_generator(
 
     wire phsync,pvsync,pblank;
 
-    pong_game pg(.vclock_in(clk_65mhz),.reset_in(reset),
+    pong_game pg(.vclock_in(clk_65mhz),.reset_in(reset_in),
                 .up_in(up),.down_in(down),.pspeed_in(sw[15:12]),
                 .hcount_in(hcount),.vcount_in(vcount),
                 .hsync_in(hsync),.vsync_in(vsync),.blank_in(blank),
@@ -214,18 +252,7 @@ module top_level_nonogram_generator(
 
 
     reg b,hs,vs;
-    always_ff @(posedge clk_65mhz) begin
 
-        //what is the prupose of pong gaem then if it just reassinges teh vlaleus, like it does nothign with them 
-
-         hs <= phsync;
-         vs <= pvsync;
-         b <= pblank;
-         
-         rgb <= cam;
-         
-      end
-    end
 
 //    assign rgb = sw[0] ? {12{border}} : pixel ; //{{4{hcount[7]}}, {4{hcount[6]}}, {4{hcount[5]}}};
 
