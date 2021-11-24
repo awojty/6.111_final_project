@@ -1,5 +1,6 @@
 `default_nettype none
-module top_bar( input wire clock,
+module top_bar( input wire pixel_clock,
+                input wire clock,
                 input wire reset,
                 input wire start, 
                 input wire top_values,
@@ -31,7 +32,27 @@ logic [11:0] empty;
 //register to store the number values
 
 //need to have a setup of all of the x,y ins for each blob instance 
-reg [40:0][19:0] top_vals; 
+ 
+reg [39:0] top_vals [19:0]  = {40'b0000_0000_0000_0000_0000_0000_0001_0010_0111_0011,
+                               40'b0000_0000_0000_0000_0000_0000_0001_0010_0111_0011,
+                               40'b0000_0000_0000_0000_0000_0000_0001_0010_0111_0011,
+                               40'b0000_0000_0000_0000_0000_0000_0001_0010_0111_0011,
+                               40'b0000_0000_0000_0000_0000_0000_0001_0010_0111_0011,
+                               40'b0000_0000_0000_0000_0000_0000_0001_0010_0111_0011,
+                               40'b0000_0000_0000_0000_0000_0000_0001_0010_0111_0011,
+                               40'b0000_0000_0000_0000_0000_0000_0001_0010_0111_0011,
+                               40'b0000_0000_0000_0000_0000_0000_0001_0010_0111_0011,
+                               40'b0000_0000_0000_0000_0000_0000_0001_0010_0111_0011,
+                               40'b0000_0000_0000_0000_0000_0000_0001_0010_0111_0011,
+                               40'b0000_0000_0000_0000_0000_0000_0001_0010_0111_0011,
+                               40'b0000_0000_0000_0000_0000_0000_0001_0010_0111_0011,
+                               40'b0000_0000_0000_0000_0000_0000_0001_0010_0111_0011,
+                               40'b0000_0000_0000_0000_0000_0000_0001_0010_0111_0011,
+                               40'b0000_0000_0000_0000_0000_0000_0001_0010_0111_0011,
+                               40'b0000_0000_0000_0000_0000_0000_0001_0010_0111_0011,
+                               40'b0000_0000_0000_0000_0000_0000_0001_0010_0111_0011,
+                               40'b0000_0000_0000_0000_0000_0000_0001_0010_0111_0011,
+                               40'b0000_0000_0000_0000_0000_0000_0001_0010_0111_0011};
 
 logic [4:0] row_addr;
 logic [6:0] col_addr;
@@ -47,9 +68,9 @@ always_ff @(posedge clock) begin
     end else if (filling & col_addr > 19) begin
         row_addr <= row_addr + 1;
         col_addr <= 0; 
-        top_vals[col_addr][row_addr] <= values;
+        top_vals[col_addr][row_addr] <= top_values;
     end else if (filling) begin
-        top_vals[col_addr][row_addr] <= values;
+        top_vals[col_addr][row_addr] <= top_values;
         col_addr <= col_addr +1;
     end 
 end
@@ -58,17 +79,14 @@ assign   address_x = (hcount - OFFSET) >> 4;
 assign  address_y = (vcount) >> 4;  
 assign upper_x = address_x<<2;
 assign num_val = top_vals[address_y][upper_x +: 3];
-assign empty = 12'h000;
+assign empty = 12'hfff;
 
 assign x_in = address_x << 4;
 assign y_in = address_y << 4;                     
-assign pixel_out = num_val==4'd0 ? pixel_0 : num_val==4'd1 ? pixel_1 : num_val==4'd2 ? 
-                   pixel_2 : num_val==4'd3 ? pixel_3 : num_val==4'd4 ? pixel_4 :
-                   num_val==4'd5 ? pixel_5 : num_val==4'd6 ? pixel_6 : num_val==4'd7 ?
-                   pixel_7 : num_val==4'd8 ? pixel_8 : num_val==4'd9 ? pixel_9 : empty;                       
+assign pixel_out =  num_val == 1 ? 12'h000 : 12'hfff;                       
 
 
-ones_pixels #(.WIDTH(16), .HEIGHT(16)) one(.pixel_clk_in(pixel_clock), .x_in(x_in), .y_in(y_in), .hcount_in(hcount), .vcount_in(vcount), .pixel_out(pixel_1));
+ones_pixels #(.WIDTH(16), .HEIGHT(16)) one(.pixel_clk_in(pixel_clock), .x_in(0), .y_in(0), .hcount_in(hcount), .vcount_in(vcount), .pixel_out(pixel_1));
 twos_pixels #(.WIDTH(16), .HEIGHT(16)) two(.pixel_clk_in(pixel_clock), .x_in(x_in), .y_in(y_in), .hcount_in(hcount), .vcount_in(vcount), .pixel_out(pixel_2));
 threes_pixels #(.WIDTH(16), .HEIGHT(16)) three(.pixel_clk_in(pixel_clock), .x_in(x_in), .y_in(y_in), .hcount_in(hcount), .vcount_in(vcount), .pixel_out(pixel_3));
 fours_pixels #(.WIDTH(16), .HEIGHT(16)) four(.pixel_clk_in(pixel_clock), .x_in(x_in), .y_in(y_in), .hcount_in(hcount), .vcount_in(vcount), .pixel_out(pixel_4));
@@ -79,7 +97,7 @@ eights_pixels #(.WIDTH(16), .HEIGHT(16)) eight(.pixel_clk_in(pixel_clock), .x_in
 nines_pixels #(.WIDTH(16), .HEIGHT(16)) nine(.pixel_clk_in(pixel_clock), .x_in(x_in), .y_in(y_in), .hcount_in(hcount), .vcount_in(vcount), .pixel_out(pixel_9));
 
 //assign none when not in desired region of screen
-assign pixel_out = (hcount > OFFSET & hcount < OFFSET + 16*20 & vcount < OFFSET + 1) ? pixel_out : 12'h000; 
+//assign pixel_out = (hcount > OFFSET & hcount < OFFSET + 16*20 & vcount < OFFSET + 1) ? pixel_out : 12'h000; 
     
 endmodule
 

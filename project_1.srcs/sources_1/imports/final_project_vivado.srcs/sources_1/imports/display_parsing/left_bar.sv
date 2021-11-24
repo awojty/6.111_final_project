@@ -1,7 +1,7 @@
 `default_nettype none
 module left_bar(input wire clock,
+                input wire pixel_clock,
                input wire reset,
-               input wire pixel_clock, 
                input wire [12:0] hcount, 
                input wire [12:0] vcount,
                input wire start, //starts the intake process of values from our 
@@ -49,9 +49,9 @@ always_ff @(posedge clock) begin
     end else if (filling & col_addr > 19) begin
         row_addr <= row_addr + 8;
         col_addr <= 0; 
-        left_vals[col_addr][row_addr +:7] <= values;
+        left_vals[col_addr][row_addr +:7] <= left_values;
     end else if (filling) begin
-        left_vals[col_addr][row_addr +:7] <= values;
+        left_vals[col_addr][row_addr +:7] <= left_values;
         col_addr <= col_addr +1;
     end 
 end
@@ -60,7 +60,7 @@ assign   address_x = (hcount - OFFSET) >> 4;
 assign  address_y = (vcount) >> 4;  
 assign upper_x = address_x<<2;
 assign num_val = left_vals[address_y][upper_x +: 3];
-assign empty = 12'h000;
+assign empty = 12'hfff;
 
 assign x_in = address_x << 4;
 assign y_in = address_y << 4;                     

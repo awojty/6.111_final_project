@@ -38,10 +38,11 @@ module top_level(
     
     
     SolutionParser parser(.done(done), .sol_vals(sol_vals),
-                           .clk_in(clk_100mhz), .reset(reset), .hcount(hcount),
+                           .clk_in(clk_100mhz), .reset(reset), .pixel_clock(clk_65mhz), .hcount(hcount),
                            .vcount(vcount), .left_vals(left), .top_vals(top), 
                            .pixel_out(pixel));
-
+    logic [11:0] pixel_test;
+    ones_pixels #(.WIDTH(16), .HEIGHT(16)) one(.pixel_clk_in(clk_65mhz), .x_in(0), .y_in(0), .hcount_in(hcount), .vcount_in(vcount), .pixel_out(pixel_test));
     logic b,hs,vs;
     always_ff @(posedge clk_65mhz) begin
          // default: pong
@@ -52,7 +53,7 @@ module top_level(
     end
     
     // the following lines are required for the Nexys4 VGA circuit - do not change
-    assign vga_r = ~b ? rgb[11:8]: 0;
+    assign vga_r = ~b ?  rgb[11:8]: 0;
     assign vga_g = ~b ? rgb[7:4] : 0;
     assign vga_b = ~b ? rgb[3:0] : 0;
     
