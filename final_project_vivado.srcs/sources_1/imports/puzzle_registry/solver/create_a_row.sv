@@ -17,6 +17,8 @@ module create_a_row(
     output logic [4:0] min_length
 );
 
+//tested - on new input 
+
 logic [4:0] i; //acts as afor loop counter
 
 logic [5:0] running_sum_1; //5 bits sinnce max numebr is 20
@@ -58,7 +60,7 @@ always_ff @(posedge clk_in) begin
         
 
     end else if (new_data && ~start_counting) begin
-        done<=0;
+        
         //2 bit encoding 
 
         //tODO how to map the fact that we have 2 btos per cell ? 
@@ -127,12 +129,16 @@ always_ff @(posedge clk_in) begin
 
 
 
-
+        //reset values on new input 
         new_row <=original;
         done_counting <=0;
         start_counting <=1;
         done <=0;
         i<=0;
+        assignment_out<=0;
+        
+        min_length<=0;
+
 
         
     end else if (start_counting) begin

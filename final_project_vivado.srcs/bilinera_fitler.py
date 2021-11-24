@@ -16,9 +16,9 @@ for row in img:
             
     #img[index] = [el[0], el[0], el[0]]
     
-cv2.imshow("Cute Kitens", img)
+# cv2.imshow("Cute Kitens", img)
 
-cv2.waitKey(0)
+# cv2.waitKey(0)
     
 
 original_img = img
@@ -55,19 +55,26 @@ for i in range(new_h):
         y_floor = math.floor(y) #smaller or equal to y so (y-y_floor) is positive or zero
         y_ceil = min(old_w - 1, math.ceil(y))
         
-        # print(x_floor,x_ceil,y_floor,y_ceil)
+        print(x,y,x_floor,x_ceil,y_floor,y_ceil)
 
         if (x_ceil == x_floor) and (y_ceil == y_floor):
+           
             q = original_img[int(x), int(y), :]
+            print("BBBBBBB", q)
         elif (x_ceil == x_floor):
+            print("DDDDDDD", q)
             q1 = original_img[int(x), int(y_floor), :]
             q2 = original_img[int(x), int(y_ceil), :]
+            print("q1,q2", q1, q2)
             q = q1 * (y_ceil - y) + q2 * (y - y_floor)
         elif (y_ceil == y_floor):
+            print("EEEEEEEEEE", q)
             q1 = original_img[int(x_floor), int(y), :]
             q2 = original_img[int(x_ceil), int(y), :]
+            print("q1,q2", q1, q2)
             q = (q1 * (x_ceil - x)) + (q2	 * (x - x_floor))
         else:
+            print("CCCCCCCC")
             v1 = original_img[x_floor, y_floor, :]
             v2 = original_img[x_ceil, y_floor, :]
             v3 = original_img[x_floor, y_ceil, :]
@@ -76,23 +83,38 @@ for i in range(new_h):
             q1 = v1 * (x_ceil - x) + v2 * (x - x_floor)
             q2 = v3 * (x_ceil - x) + v4 * (x - x_floor)
             q = q1 * (y_ceil - y) + q2 * (y - y_floor)
+            print("q", q)
     
             
         resized[i,j,:] = q
 ans = resized.astype(np.uint8)
+bit_image = []
+for row in ans:
+    st_row = ""
+    for el in row:
+        if sum(el) >0:
+            st_row += "0"
+        else:
+            st_row += "1"
+    bit_image.append(st_row)
+print(bit_image)
 
-print(ans)
-print(len(ans))
-print(len(ans[0]))
-print(ans[0])
+with open("bit_image.txt", "w") as f:  
+    for i,el in enumerate(bit_image):
+        f.write("image_in[" +str(i) + "] = " + el + ";\n")
+    f.close()
+            
+# print(len(ans))
+# print(len(ans[0]))
+# print(ans[0])
 
 
 # To read image from disk, we use
 # cv2.imread function, in below method,
 
-cv2.imshow("Cute Kitens", ans)
+# cv2.imshow("Cute Kitens", ans)
 
-cv2.waitKey(0)
+# cv2.waitKey(0)
 
 
 

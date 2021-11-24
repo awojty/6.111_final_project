@@ -47,32 +47,26 @@ module generate_rows_tb;
 
          #10;
          reset_in = 0;
-//         assignment =20'b0000_0000_0000_0100_0001; //24
-//         start_in =1;
-//         #200;
-         
-         
-         start_in =0;
-//         #10000;
          assignment =20'b0000_0000_0000_0000_0000; //24
          start_in =1;
-         
-         
-         //start_in =1;
-         //get t_arm
+
          #10;
          start_in =0;
+         
          #10000;
          assignment =20'b0000_0000_0000_0000_1000; //24
          start_in =1;
          #10;
          start_in =0;
+         
          #10000;
          assignment =20'b0000_0000_0000_0000_1000; //24
          start_in =1;
+         
          #10;
          start_in =0;
          #10000;
+         
          assignment =20'b0000_0000_0000_0000_0000; //24
          start_in =1;
          #10;

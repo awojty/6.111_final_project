@@ -1,9 +1,8 @@
 `default_nettype none
-//TODO - rememebr the can do - each elemtn is two bits long
+//TESTED on 11/24 - works with chicken and reset - resets the fsm aftersendinfg out BUT the output is still avialiable 
+//iterative_sover.sv DOESNT have a reset on new input but does return a correct output on a single input 
 
-
-//TODO - doesnt stop calling genrate rows when we run our of columsn but keps runngin and returnign some shit
-module iterative_solver(   
+module iterative_solver_wth_reset(   
                     input wire clk_in,
                    
                     input wire reset_in,
@@ -14,8 +13,20 @@ module iterative_solver(
                     input wire [19:0] assignment_in, // array of cosntraitnrs in - max of 20 btis since 4 btis * 5 slots
                     
                     input wire start_sending_nonogram, //if asserted to 1, im in the rpcoess of sendifg the puzzle
-                     //only for the sake of testing wheterh we saved things correctly in the test bench
-                    output logic solution_out
+
+                    
+                    
+                    output logic solution_out,
+                    output logic [19:0] row1,
+                    output logic [19:0] row2,
+                    output logic [19:0] row3,
+                    output logic [19:0] row4,
+                    output logic [19:0] row5,
+                    output logic [19:0] row6,
+                    output logic [19:0] row7,
+                    output logic [19:0] row8,
+                    output logic [19:0] row9,
+                    output logic [19:0] row10
                     
     );  
     
@@ -349,6 +360,10 @@ module iterative_solver(
  logic start_enumerate_for_loop_row_h;
  logic increment_range_h;
  logic increment_range_w;
+ logic reset_internal;
+ logic stop_returning;
+ logic collecting_puzzle_in_progress;
+
 
 
     always_ff @(posedge clk_in) begin
@@ -364,6 +379,7 @@ module iterative_solver(
             row_number <=0;
             write <=0;
             move_to_x<=0;
+            reset_internal <=0;
 
             tracker <=0;
             range_h_i_index <=0;
@@ -376,6 +392,7 @@ module iterative_solver(
             allowed_things_h<=0;
             
             start_address_h<=0;
+            stop_returning <=0;
 
             
 
@@ -443,15 +460,42 @@ module iterative_solver(
            left_to_rest<=0;
            increment_range_h <=0;
            increment_range_w <=0;
-            
+           limit <=0;
 
-              
-            
-            
+           write_constraint_column<=0;
+
+            solution_out<=0;
+            row1 <=0;
+            row2 <=0;
+            row3 <=0;
+            row4 <=0;
+            row5 <=0;
+            row6 <=0;
+            row7 <=0;
+            row8 <=0;
+            row9 <=0;
+            row10 <=0;
+             data_to_row_bram<=0;
+             collecting_puzzle_in_progress<=0;
+
+
         end else begin
-            if(start_sending_nonogram && ~left_to_rest) begin
+            if((start_sending_nonogram && ~left_to_rest) || (collecting_puzzle_in_progress && ~left_to_rest)) begin
                 //we have just started sending a nongoram - send constrina lien by csontrint, first rows then columns
                 //addr_constraint_row <= addr_constraint_row+1;
+
+                //TODO - restvall counters here (like do resete but onte rest the hings you are incrementign here)
+                //COUNTERS RESET:-------------------
+
+                solution_out <= 0;
+                mod_cols_in <=10'b1111111111;
+                mod_rows_in <=10'b0;
+                collecting_puzzle_in_progress<=1;
+
+                //the reset is reset after the reurn of the solution 
+
+
+                //COUNTERS RESET END-------------------
                 
                 column_number <= column_number_in;
                 row_number <= row_number_in;
@@ -473,6 +517,7 @@ module iterative_solver(
                     addr_constraint_column <= 0;
                     addr_constraint_row <= 0;
                     left_to_rest<=1;
+                    collecting_puzzle_in_progress<=0;
                     move_to_row_generating<=1;
                 end else begin
                     if(index_in >= 10 && index_in<=19) begin
@@ -481,7 +526,7 @@ module iterative_solver(
 
                         //we have finished sending all the rows, now we are sending all the columsn 
 
-                        old_index <= index_in;
+                       // old_index <= index_in;
 //                        if (index_in !=old_index) begin
                         write_constraint_column <=1;
                         write_constraint_row <=0;
@@ -495,7 +540,7 @@ module iterative_solver(
 
                         //we are still sending rows
 
-                        old_index <=index_in;
+                        //old_index <=index_in;
                         
 //                        if(old_index!= index_in) begin
                         
@@ -765,6 +810,7 @@ module iterative_solver(
                     end //10.10.10.10.10.10.//01.01.01//.10
 
                     //10.10.10.10.10.10.//01//.10.//01.01
+                    //10.10...01.01//.10.10.//01.01.01.//10
                     
                     c<=0;
                     allowable_counter<=0;
@@ -1029,7 +1075,128 @@ module iterative_solver(
 
             end else if (move_to_output) begin
                 solution_out<=1;
+
+                row1 <= can_do[0];
+                row2 <= can_do[1];
+                row3 <= can_do[2];
+                row4 <= can_do[3];
+                row5 <= can_do[4];
+                row6 <= can_do[5];
+                row7 <= can_do[6];
+                row8 <= can_do[7];
+                row9 <= can_do[8];
+                row10 <= can_do[9];
+                stop_returning <=1;
+                move_to_output <=0;
+            end else if (stop_returning) begin
+                // just reset the whole fsm here to preapre for the new input 
+                
+                            
+                done_create_c_array_h <=0;
+                start_enumerate_for_loop_row_h <=0;
+                counter_out <=0;
+                started<=0;
+                column_number <=0;
+                row_number <=0;
+                write <=0;
+                move_to_x<=0;
+                reset_internal <=0;
+
+                tracker <=0;
+                range_h_i_index <=0;
+                for_c_row_counter_h<=0;
+                
+                allowed_thing_counter_h<=0;
+                allowed_thing_index_counter_h<=0;
+                        
+
+                allowed_things_h<=0;
+                
+                start_address_h<=0;
+                stop_returning <=0;
+
+            
+
+                row_done <=0;
+                column_done <=0;
+                addr_row_permutation <=0;
+                addr_column_permutation<=0;
+                
+                c <=20'b0;
+                allowable_result <= 20'b0;
+                allowed_things <=20'b0;
+            
+                //counters
+                allowable_counter <=0;
+                addr_constraint_row<=0;
+                
+                addr_constraint<=0;
+                move_to_row_generating<=0;
+                row_counter_allowable<=0;
+                permutation_counter_allowable_section<=0;
+                fix_col_counter<=0;
+                range_w_i<=0;
+                range_w_i_index<=0;
+                allowed_thing_counter<=0; //for 10 len
+                allowed_thing_index_counter<=0; //for 20 len
+                range_h_i<=0;
+                addr_constraint_column <=0;
+
+                fix_col_counter_small <=0;
+                    
+                start_address<=0;
+
+                starter_marker<=0;
+                starter_marker_h<=0;
+            
+            
+                //FSM
+                saving<=0;
+                move_to_solving<=0;
+                called_generate_rows<=0;
+                move_to_allowable_section <=0;
+                allowable_for_a_row_started<=0;
+                save_allowable_result <=0;
+                move_to_for_loop_section<=0;
+                
+                start_enumerate_for_loop_row_h<=0;
+                
+                current_permutation_count <=0;
+                move_to_output<=0;
+                for_range_w_started<=0;
+                for_range_w_ended<=0;
+                fix_col_section_started<=0;
+                
+                start_enumerate_for_loop_row <=0;
+                done_create_c_array<=0;
+                for_c_coln_counter<=0;
+                for_range_h_started <=0;
+                fix_row_section_started <=0;
+                for_range_h_ended <=0;
+                old_index<=0;
+
+                selected_assignment<=0;
+                wait_on_clock <=0;
+                left_to_rest<=0;
+                increment_range_h <=0;
+                increment_range_w <=0;
+                limit <=0;
+
+                write_constraint_column<=0;
+
+                data_to_row_bram<=0;
+                
             end
+
+
+
+
+
+
+
+
+
+            
 
                         
 
@@ -1037,24 +1204,12 @@ module iterative_solver(
         end
         
         end
-
-        //so the old solver works but the sovler with reset doesnt for some reason - on verstivget why it returns zeros ?
-
-        //10.10.10.10.10./01.01./10.10.10
-
-        
-                    // end //10.10.10.10.10.10.//01.01.01//.10
-
-                    // //10.10.10.10.10.10.//01//.10.//01.01
-                    //10101010.10.10.01.01.01.10
-
-                    //101010101010.//01.01.01.//10
-                    
         
         
 
         
     
+
 
 
 

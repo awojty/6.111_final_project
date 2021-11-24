@@ -1,6 +1,5 @@
 `default_nettype none
-//TODO - rememebr the can do - each elemtn is two bits long
-
+// tested - on changing input too
 module translator(   
                     input wire clk_in,
                     input wire reset_in,
@@ -27,7 +26,7 @@ module translator(
                     output logic [9:0] row9_out, 
                     output logic [9:0] row10_out, 
         
-                    output logic solution_out
+                    output logic done
                     
     ); 
 
@@ -60,6 +59,10 @@ module translator(
     logic done_collecting;
     logic start_returning;
     
+    logic [4:0] i; //4 btis since max 20 (i binary)
+    logic [4:0] i_big;
+    logic in_progress;
+    
 
 
     always_ff @(posedge clk_in) begin
@@ -67,6 +70,7 @@ module translator(
 
         if(reset_in) begin
             i<=0;
+            i_big<=0;
 
             done_collecting <=0;
             start_returning <=0;
@@ -92,13 +96,14 @@ module translator(
             row8_collect <=0;
             row9_collect <=0;
             row10_collect <=0;
+            in_progress<=0;
 
             
         end else begin
 
 
 
-            if(start_in && ~done_collecting) begin
+            if(start_in && ~in_progress) begin
 
                 row1_collect<=row1;
                 row2_collect<=row2;
@@ -112,6 +117,24 @@ module translator(
                 row10_collect<=row10;
 
                 done_collecting <=1;
+
+                //reset states on new input
+
+                row1_assign<=0;
+                row2_assign<=0;
+                row3_assign<=0;
+                row4_assign<=0;
+                row5_assign<=0;
+                row6_assign<=0;
+                row7_assign<=0;
+                row8_assign<=0;
+                row9_assign<=0;
+                row10_assign<=0;
+                i<=0;
+                i_big<=0;
+                start_returning <=0;
+                done <=0;
+                in_progress<=1;
                
 
             end else if (done_collecting) begin
@@ -125,7 +148,7 @@ module translator(
                 i<=i+1;
                 i_big <= i_big + 2;
 
-                if(row1_collect[i_big+1:i_big] == 1)begin
+                if((row1_collect[i_big] == 1) && (row1_collect[i_big+1] == 0))begin
                     row1_assign[i] <= 1'b1;
                     
                 end else begin
@@ -133,7 +156,7 @@ module translator(
 
                 end
 
-                if(row2_collect[i_big+1:i_big] == 1)begin
+                if((row2_collect[i_big] == 1) && (row2_collect[i_big+1] == 0))begin
                     row2_assign[i] <= 1'b1;
                     
                 end else begin
@@ -141,7 +164,7 @@ module translator(
 
                 end
 
-                if(row3_collect[i_big+1:i_big] == 1)begin
+                if((row3_collect[i_big] == 1) && (row3_collect[i_big+1] == 0))begin
                     row3_assign[i] <= 1'b1;
                     
                 end else begin
@@ -149,7 +172,7 @@ module translator(
 
                 end
 
-                if(row4_collect[i_big+1:i_big] == 1)begin
+                if((row4_collect[i_big] == 1) && (row4_collect[i_big+1] == 0))begin
                     row4_assign[i] <= 1'b1;
                     
                 end else begin
@@ -157,7 +180,7 @@ module translator(
 
                 end
 
-                if(row5_collect[i_big+1:i_big] == 1)begin
+                if((row5_collect[i_big] == 1) && (row5_collect[i_big+1] == 0))begin
                     row5_assign[i] <= 1'b1;
                     
                 end else begin
@@ -165,7 +188,7 @@ module translator(
 
                 end
 
-                if(row6_collect[i_big+1:i_big] == 1)begin
+                if((row6_collect[i_big] == 1) && (row6_collect[i_big+1] == 0))begin
                     row6_assign[i] <= 1'b1;
                     
                 end else begin
@@ -173,7 +196,7 @@ module translator(
 
                 end
 
-                if(row7_collect[i_big+1:i_big] == 1)begin
+                if((row7_collect[i_big] == 1) && (row7_collect[i_big+1] == 0))begin
                     row7_assign[i] <= 1'b1;
                     
                 end else begin
@@ -181,7 +204,7 @@ module translator(
 
                 end
 
-                if(row8_collect[i_big+1:i_big] == 1)begin
+                if((row8_collect[i_big] == 1) && (row8_collect[i_big+1] == 0))begin
                     row8_assign[i] <= 1'b1;
                     
                 end else begin
@@ -189,7 +212,7 @@ module translator(
 
                 end
 
-                if(row9_collect[i_big+1:i_big] == 1)begin
+                if((row9_collect[i_big] == 1) && (row9_collect[i_big+1] == 0))begin
                     row9_assign[i] <= 1'b1;
                     
                 end else begin
@@ -197,7 +220,7 @@ module translator(
 
                 end
 
-                if(row10_collect[i_big+1:i_big] == 1)begin
+                if((row10_collect[i_big] == 1) && (row10_collect[i_big+1] == 0))begin
                     row10_assign[i] <= 1'b1;
                     
                 end else begin
@@ -221,8 +244,7 @@ module translator(
                 row8_out <=row8_assign;
                 row9_out <=row9_assign;
                 row10_out <=row10_assign;
-
-
+                in_progress<=0;
             end
 
 
