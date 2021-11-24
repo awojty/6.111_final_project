@@ -156,7 +156,98 @@ module iterative_solver_chicken_tb;
        
        
 
-       #1000;
+       #40000;
+       
+       //test on new input
+       
+       
+       reset_in = 0;
+       
+       index_in<=0;
+       start_sending_nonogram =1;
+       column_number_in=10;
+       row_number_in=10;
+       assignment_in =20'b00000000000000000011;//
+       
+       #10;
+       
+       
+        assignment_in =20'b00000000000000010010;//
+        index_in<=1;
+        start_sending_nonogram =0; // like you are not pressign the button anymore
+       #10;
+       
+    assignment_in =20'b00000000000000100011;//
+        index_in<=2;
+       #10;
+       
+    assignment_in =20'b00000000000000100010;//
+        index_in<=3;
+       #10;
+       
+    assignment_in =20'b00000000000000000110;//
+        index_in<=4;
+       #10;
+       
+    assignment_in =20'b00000000000001010001;//
+        index_in<=5;
+       #10;
+       
+    assignment_in =20'b00000000000000000110;//
+        index_in<=6;
+       #10;
+       
+    assignment_in =20'b00000000000000000001;//
+        index_in<=7;
+       #10;
+       
+    assignment_in =20'b00000000000000000010;//
+        index_in<=8;
+       #10;
+       
+    assignment_in =20'b00000000000000000000;//
+        index_in<=9;
+       #10;
+       
+    assignment_in =20'b00000000000000100001;//
+        index_in<=10;
+       #10;
+       
+    assignment_in =20'b00000000000000010011;//
+        index_in<=11;
+       #10;
+       
+    assignment_in =20'b00000000000001010001;//
+        index_in<=12;
+       #10;
+       
+    assignment_in =20'b00000000000000010111;//
+        index_in<=13;
+       #10;
+       
+    assignment_in =20'b00000000000000000101;//
+        index_in<=14;
+       #10;
+       
+    assignment_in =20'b00000000000000000011;//
+        index_in<=15;
+       #10;
+       
+    assignment_in =20'b00000000000000000100;
+        index_in<=16;
+       #10;
+       
+    assignment_in =20'b00000000000000000011;
+        index_in<=17;
+       #10;
+       
+    assignment_in =20'b00000000000000000000;
+        index_in<=18;
+       #10;
+       
+    assignment_in =20'b00000000000000000000;
+        index_in<=19;
+       #10;
        
        
        end         
