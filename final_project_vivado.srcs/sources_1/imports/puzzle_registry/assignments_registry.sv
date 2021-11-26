@@ -33,6 +33,8 @@ module assignments_registry(
     //width of 20 height if at least 20 since at least for one nonogram
 
     logic [19:0] assignment_out1;
+    logic [19:0] assignment_buffer;
+    logic just_started;
 
 
     assignments_rom  my_assignment_rom(.clka(clk_in), .addra(address_input), .douta(assignment_out1));
@@ -47,28 +49,47 @@ module assignments_registry(
             address_input<=0;
             assignment_out<=0;
             limit <=0;
+            just_started <=0;
             
         end else begin
             if(start_in && ~started) begin
                 address_input <= address_in * 20 +1;
                 started <=1;
-                sending<=1;
+                counter_out <= 0;
+                
                
                 limit <= 20;
-                assignment_out <= assignment_out1;
+                just_started <=1;
+                //assignment_out <= assignment_out1;
+                //assignment_buffer <= assignment_out1;
             
             end else if (started) begin
-                if(counter_out == limit) begin
-                    done <=1;
-                    started<=0;
-                    sending<=0;
-                end else begin
+
+                if (just_started) begin
+                    just_started <=0;
+                    sending<=1;
                     address_input <=address_input+1;
-                    counter_out <=  address_input+1;
+                    counter_out <=  counter_out;
+                    assignment_buffer <= assignment_out1;
                     assignment_out <= assignment_out1;
+                    
+                end else begin
+                    if(counter_out == limit) begin
+                        done <=1;
+                        started<=0;
+                        sending<=0;
+                    end else begin
+                        sending<=1;
+                        address_input <=address_input+1;
+                        counter_out <=  counter_out+1;
+                        assignment_buffer <= assignment_out1;
+                        assignment_out <= assignment_out1;
+
+                    end
+
+
 
                 end
-
 
 
 

@@ -73,8 +73,8 @@ module top_level_nonogram_solver_tb;
 
         sw = 0; // get nonogram at idnex 0
         
-         #10;
-         start_in  = 0;
+        #10;
+        start_in  = 0;
 
        
        

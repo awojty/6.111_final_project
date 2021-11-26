@@ -48,11 +48,11 @@ module top_level_solver(
     iterative_solver_wth_reset my_iterative_solver(   
                     .clk_in(clk_in),
                     .reset_in(reset_in),
-                    .index_in(index_in), //idnex of row/col beign send - max is 20 so 6 bits
+                    .index_in(counter_out), //idnex of row/col beign send - max is 20 so 6 bits
                     .column_number_in(10), //grid size - max 10
                     .row_number_in(10), //grid size - max 10
                     .assignment_in(assignment_in_solver), // array of cosntraitnrs in - max of 20 btis since 4 btis * 5 slots
-                    .start_sending_nonogram(start_sending_nonogram), //if asserted to 1, im in the rpcoess of sendifg the puzzle
+                    .start_sending_nonogram(sending), //if asserted to 1, im in the rpcoess of sendifg the puzzle
                     .solution_out(nonogram_solver_done),
                     .row1(row1_in_translator),
                     .row2(row2_in_translator),
@@ -75,7 +75,7 @@ module top_level_solver(
         .reset_in(reset_in), 
         .start_in(start_getting_assignment),
         .address_in(sw[15:0]), 
-        .assignment_out(assignment_out1),
+        .assignment_out(assignment_in_solver),
         .sending(sending),
         .counter_out(counter_out),
         .done(done));
@@ -122,6 +122,7 @@ module top_level_solver(
    logic [5:0] counter_out;
 
    logic [5:0] index;
+   logic take_in;
 
 
 
@@ -142,6 +143,7 @@ module top_level_solver(
         row10_in_translator <= 0;
         assignment_in_solver<=0;
         sending <=0;
+        take_in <=0;
 
 
 
@@ -166,16 +168,20 @@ module top_level_solver(
             in_progress <=1;
             index <=0;
 
+
             
         end else if (sending) begin
-
             start_sending_nonogram<=1;
-            assignment_in_solver <=assignment_out1;
-            temporary_storage[index] <= assignment_out1;
+            //assignment_in_solver <=assignment_out1;
+            temporary_storage[index] <= assignment_in_solver;
             index <=index + 1;
+            start_getting_assignment <=0;
+
+
             //index_in_solver <= index_out_registry;
-        end else if (~sending && start_sending_nonogram) begin
+        end else if (~sending && start_sending_nonogram ) begin
             start_sending_nonogram<=0;
+            take_in <=0;
             
         end else if (nonogram_solver_done && ~move_to_translator) begin
 
