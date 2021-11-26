@@ -26,6 +26,17 @@ module iterative_solver_chicken_tb;
        
        //out
        logic solution_out;
+       logic [19:0] row1_out;
+       logic [19:0] row2_out;
+       logic [19:0] row3_out;
+       logic [19:0] row4_out;
+       logic [19:0] row5_out;
+       logic [19:0] row6_out;
+       logic [19:0] row7_out;
+       logic [19:0] row8_out;
+       logic [19:0] row9_out;
+       logic [19:0] row10_out;
+
 
        
        iterative_solver_wth_reset uut(   
@@ -40,7 +51,17 @@ module iterative_solver_chicken_tb;
                     
                     .start_sending_nonogram(start_sending_nonogram), //if asserted to 1, im in the rpcoess of sendifg the puzzle
                      //only for the sake of testing wheterh we saved things correctly in the test bench
-                    .solution_out(solution_out)
+                    .solution_out(solution_out),
+                    .row1(row1_out),
+                    .row2(row2_out),
+                    .row3(row3_out),
+                    .row4(row4_out),
+                    .row5(row5_out),
+                    .row6(row6_out),
+                    .row7(row7_out),
+                    .row8(row8_out),
+                    .row9(row9_out),
+                    .row10(row10_out)
        );
        
        //one_hz_period changed to 4 cycles so simulations don't take forever.

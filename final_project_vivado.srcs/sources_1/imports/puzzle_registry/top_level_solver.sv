@@ -1,8 +1,9 @@
 module top_level_solver(
-    input logic clk_in,
-    input logic start_in, // assered when in the correct stata
-    input logic [15:0] sw,
-    input logic btnc,
+    input wire clk_in,
+    input wire start_in, // assered when in the correct stata
+    input wire reset_in,
+    input wire [15:0] sw,
+    
     output logic [9:0] row1_out,
     output logic [9:0] row2_out, 
     output logic [9:0] row3_out, 
@@ -13,6 +14,7 @@ module top_level_solver(
     output logic [9:0] row8_out,
     output logic [9:0] row9_out, 
     output logic [9:0] row10_out, 
+    output logic top_level_solver_done
 
    );
 
@@ -43,7 +45,7 @@ module top_level_solver(
                     .done(translator_done));
 
 
-    iterative_solver my_iterative_solver(   
+    iterative_solver_wth_reset my_iterative_solver(   
                     .clk_in(clk_in),
                     .reset_in(reset_in),
                     .index_in(index_in), //idnex of row/col beign send - max is 20 so 6 bits
@@ -51,7 +53,7 @@ module top_level_solver(
                     .row_number_in(10), //grid size - max 10
                     .assignment_in(assignment_in_solver), // array of cosntraitnrs in - max of 20 btis since 4 btis * 5 slots
                     .start_sending_nonogram(start_sending_nonogram), //if asserted to 1, im in the rpcoess of sendifg the puzzle
-                    .solution_out(nonogram_solver_done)
+                    .solution_out(nonogram_solver_done),
                     .row1(row1_in_translator),
                     .row2(row2_in_translator),
                     .row3(row3_in_translator),
@@ -61,7 +63,7 @@ module top_level_solver(
                     .row7(row7_in_translator),
                     .row8(row8_in_translator),
                     .row9(row9_in_translator),
-                    .row10(row10_in_translator),
+                    .row10(row10_in_translator)
 
                     
     ); 
@@ -70,42 +72,56 @@ module top_level_solver(
 
     assignments_registry my_assignments_registry(
         .clk_in(clk_in), 
-        .rst_in(rst_in), 
-        .start_in(done_address),
-        .row_number_in(dimensions[15:7]),
-        .col_number_in(dimensions[6:0]),
-        .address_in(address), 
+        .reset_in(reset_in), 
+        .start_in(start_getting_assignment),
+        .address_in(sw[15:0]), 
         .assignment_out(assignment_out1),
         .sending(sending),
         .counter_out(counter_out),
         .done(done));
 
 
-    logic nonogram_solver_done;
-    logic start_sending_nonogram;
-    logic start_in_translator;
+   logic nonogram_solver_done;
+   logic start_sending_nonogram;
+   logic start_in_translator;
 
-    logic [19:0] row1_in_translator;
-    logic [19:0] row2_in_translator;
-    logic [19:0] row3_in_translator;
-    logic [19:0] row4_in_translator;
-    logic [19:0] row5_in_translator;
-    logic [19:0] row6_in_translator;
-    logic [19:0] row7_in_translator;
-    logic [19:0] row8_in_translator;
-    logic [19:0] row9_in_translator;
-    logic [19:0] row10_in_translator;
+   logic [19:0] row1_in_translator;
+   logic [19:0] row2_in_translator;
+   logic [19:0] row3_in_translator;
+   logic [19:0] row4_in_translator;
+   logic [19:0] row5_in_translator;
+   logic [19:0] row6_in_translator;
+   logic [19:0] row7_in_translator;
+   logic [19:0] row8_in_translator;
+   logic [19:0] row9_in_translator;
+   logic [19:0] row10_in_translator;
 
-    logic [9:0] row1_out_translator;
-    logic [9:0] row2_out_translator;
-    logic [9:0] row3_out_translator;
-    logic [9:0] row4_out_translator;
-    logic [9:0] row5_out_translator;
-    logic [9:0] row6_out_translator;
-    logic [9:0] row7_out_translator;
-    logic [9:0] row8_out_translator;
-    logic [9:0] row9_out_translator;
-    logic [9:0] row10_out_translator;
+   logic [9:0] row1_out_translator;
+   logic [9:0] row2_out_translator;
+   logic [9:0] row3_out_translator;
+   logic [9:0] row4_out_translator;
+   logic [9:0] row5_out_translator;
+   logic [9:0] row6_out_translator;
+   logic [9:0] row7_out_translator;
+   logic [9:0] row8_out_translator;
+   logic [9:0] row9_out_translator;
+   logic [9:0] row10_out_translator;
+   
+   logic in_progress;
+   logic move_to_translator;
+   
+   logic [19:0] assignment_in_solver;
+   logic start_getting_assignment;
+
+   logic [19:0] assignment_out1;
+   logic sending;
+
+   logic [19:0] temporary_storage [19:0];
+
+
+   logic [5:0] counter_out;
+
+   logic [5:0] index;
 
 
 
@@ -124,21 +140,21 @@ module top_level_solver(
         row8_in_translator <= 0;
         row9_in_translator <= 0;
         row10_in_translator <= 0;
+        assignment_in_solver<=0;
+        sending <=0;
 
-        row1_out_solver <=0;
-        row2_out_solver <=0;
-        row3_out_solver <=0;
-        row4_out_solver <=0;
-        row5_out_solver <=0;
-        row6_out_solver <=0;
-        row7_out_solver <=0;
-        row8_out_solver <=0;
-        row9_out_solver <=0;
-        row10_out_solver <=0;
+
 
         start_sending_nonogram<=0;
         nonogram_solver_done<=0;
         start_in_translator <=0;
+        top_level_solver_done<=0;
+        in_progress<=0;
+        move_to_translator<=0;
+        start_getting_assignment <=0;
+        assignment_out1<=0;
+        counter_out <=0;
+        index <=0;
         
 
     end else begin
@@ -148,13 +164,16 @@ module top_level_solver(
 
             start_getting_assignment <=1;
             in_progress <=1;
+            index <=0;
 
             
         end else if (sending) begin
 
             start_sending_nonogram<=1;
             assignment_in_solver <=assignment_out1;
-            index_in_solver <= index_out_registry;
+            temporary_storage[index] <= assignment_out1;
+            index <=index + 1;
+            //index_in_solver <= index_out_registry;
         end else if (~sending && start_sending_nonogram) begin
             start_sending_nonogram<=0;
             
