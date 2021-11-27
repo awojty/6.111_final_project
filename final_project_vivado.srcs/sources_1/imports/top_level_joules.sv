@@ -67,23 +67,23 @@ module top_level_joules(
     logic assignment_out_done;
 
     top_level_solver my_top_level_solver(
-    .clk_in(clk_65mhz),
-    .start_in(start_solver), // assered when in the correct stata
-    .reset_in(reset_in),
-    .get_output(get_output)
-    .sw(sw),
-    .row1_out(row1_solution),
-    .row2_out(row2_solution),
-    .row3_out(row3_solution),
-    .row4_out(row4_solution),
-    .row5_out(row5_solution),
-    .row6_out(row6_solution),
-    .row7_out(row7_solution),
-    .row8_out(row8_solution),
-    .row9_out(row9_solution),
-    .row10_out(row10_solution),
-    .top_level_solver_done(solver_done),
-    .assignment_out_done(assignment_out_done)
+        .clk_in(clk_65mhz),
+        .start_in(start_solver), // assered when in the correct stata
+        .reset_in(reset_in),
+        .get_output(get_output)
+        .sw(sw),
+        .row1_out(row1_solution),
+        .row2_out(row2_solution),
+        .row3_out(row3_solution),
+        .row4_out(row4_solution),
+        .row5_out(row5_solution),
+        .row6_out(row6_solution),
+        .row7_out(row7_solution),
+        .row8_out(row8_solution),
+        .row9_out(row9_solution),
+        .row10_out(row10_solution),
+        .top_level_solver_done(solver_done),
+        .assignment_out_done(assignment_out_done)
 
    );
 
@@ -133,20 +133,21 @@ module top_level_joules(
 
 
     top_level_nonogram_generator my_top_level_nonogram_generator (
-    .clk_65mhz(clk_65mhz),
-    .start_in(center_clean),
-    .reset_in(down_clean),
-    .vcount(vcount),
-    .hcount(hcount),
-    .take_a_snapshot(left_clean), // to assert taking a photot
-    .create_a_nonogram(up_clean), // to assert that we are happy with a photo and can move to cosntrinsat generation
-    .ja(ja), //pixel data from camera
-    .jb(jb), //other data from camera (including clock return)
-    .jd(jd),
-    .nonogram_generator_done(nonogram_generator_done),
-    .show_a_photo(show_a_photo),
-    .pixel_out(pixel_out_generator), 
-    .state_vals(state_vals)); // use din hex display to show the state 
+        .clk_65mhz(clk_65mhz),
+        .start_in(center_clean),
+        .reset_in(down_clean),
+        .vcount(vcount),
+        .hcount(hcount),
+        .take_a_snapshot(left_clean), // to assert taking a photot
+        .create_a_nonogram(up_clean), // to assert that we are happy with a photo and can move to cosntrinsat generation
+        .ja(ja), //pixel data from camera
+        .jb(jb), //other data from camera (including clock return)
+        .jd(jd),
+        .nonogram_generator_done(nonogram_generator_done),
+        .show_a_photo(show_a_photo),
+        .pixel_out(pixel_out_generator), 
+        .state_vals(state_vals)
+    ); // use din hex display to show the state 
 
 
 
@@ -166,7 +167,16 @@ module top_level_joules(
 
 
          if (sw[1:0]==2) begin
-             //manual solver - just display empty 
+             //manual solver - just display empty
+
+            if(~assignment_out_done) begin
+                get_output <=1;
+                 
+            end else begin
+                get_output <=0;
+
+            end
+
              
          end else if (sw[1:0]==3) begin
              //automatic solver - just display empty
