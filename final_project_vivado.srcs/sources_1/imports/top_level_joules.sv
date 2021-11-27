@@ -83,7 +83,8 @@ module top_level_joules(
         .row9_out(row9_solution),
         .row10_out(row10_solution),
         .top_level_solver_done(solver_done),
-        .assignment_out_done(assignment_out_done)
+        .assignment_out_done(assignment_out_done),
+        .assignment_out(sol_vals)
 
    );
 
@@ -113,10 +114,10 @@ module top_level_joules(
     clk_wiz_lab3 clkdivider(.clk_in1(clk_100mhz), .clk_out1(clk_65mhz));
     
     
-    // SolutionParser parser(.done(done), .sol_vals(sol_vals),
-    //                        .clk_in(clk_100mhz), .reset(reset), .pixel_clock(clk_65mhz), .hcount(hcount),
-    //                        .vcount(vcount), .left_vals(left), .top_vals(top), 
-    //                        .pixel_out(pixel));
+    SolutionParser parser(.done(done), .sol_vals(sol_vals),
+                           .clk_in(clk_100mhz), .reset(reset), .pixel_clock(clk_65mhz), .hcount(hcount),
+                           .vcount(vcount), .left_vals(left), .top_vals(top), 
+                           .pixel_out(pixel));
 
 
     logic down_clean;
