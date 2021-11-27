@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="iterative_solver_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="iterative_solver_tb" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="5416666fs"></ZoomStartTime>
+      <ZoomEndTime time="14516667fs"></ZoomEndTime>
+      <Cursor1Time time="13000000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="322"></NameColumnWidth>
+      <ValueColumnWidth column_width="91"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="22" />
+   <wvobject fp_name="/iterative_solver_tb/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/iterative_solver_tb/reset_in" type="logic">
+      <obj_property name="ElementShortName">reset_in</obj_property>
+      <obj_property name="ObjectShortName">reset_in</obj_property>
+   </wvobject>
+   <wvobject fp_name="/iterative_solver_tb/assignment_in" type="array">
+      <obj_property name="ElementShortName">assignment_in[19:0]</obj_property>
+      <obj_property name="ObjectShortName">assignment_in[19:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/iterative_solver_tb/index_in" type="array">
+      <obj_property name="ElementShortName">index_in[5:0]</obj_property>
+      <obj_property name="ObjectShortName">index_in[5:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/iterative_solver_tb/column_number_in" type="array">
+      <obj_property name="ElementShortName">column_number_in[3:0]</obj_property>
+      <obj_property name="ObjectShortName">column_number_in[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/iterative_solver_tb/row_number_in" type="array">
+      <obj_property name="ElementShortName">row_number_in[3:0]</obj_property>
+      <obj_property name="ObjectShortName">row_number_in[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/iterative_solver_tb/start_sending_nonogram" type="logic">
+      <obj_property name="ElementShortName">start_sending_nonogram</obj_property>
+      <obj_property name="ObjectShortName">start_sending_nonogram</obj_property>
+   </wvobject>
+   <wvobject fp_name="/iterative_solver_tb/solution_out" type="logic">
+      <obj_property name="ElementShortName">solution_out</obj_property>
+      <obj_property name="ObjectShortName">solution_out</obj_property>
+   </wvobject>
+   <wvobject fp_name="/iterative_solver_tb/uut/fake_row_assignment_collector" type="array">
+      <obj_property name="ElementShortName">fake_row_assignment_collector[9:0][19:0]</obj_property>
+      <obj_property name="ObjectShortName">fake_row_assignment_collector[9:0][19:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/iterative_solver_tb/uut/fake_col_assignment_collector" type="array">
+      <obj_property name="ElementShortName">fake_col_assignment_collector[9:0][19:0]</obj_property>
+      <obj_property name="ObjectShortName">fake_col_assignment_collector[9:0][19:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/iterative_solver_tb/uut/fake_row_permutation_counter" type="array">
+      <obj_property name="ElementShortName">fake_row_permutation_counter[9:0][15:0]</obj_property>
+      <obj_property name="ObjectShortName">fake_row_permutation_counter[9:0][15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/iterative_solver_tb/uut/fake_col_permutation_collector" type="array">
+      <obj_property name="ElementShortName">fake_col_permutation_collector[150:0][19:0]</obj_property>
+      <obj_property name="ObjectShortName">fake_col_permutation_collector[150:0][19:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/iterative_solver_tb/uut/fake_row_permutation_collector" type="array">
+      <obj_property name="ElementShortName">fake_row_permutation_collector[150:0][19:0]</obj_property>
+      <obj_property name="ObjectShortName">fake_row_permutation_collector[150:0][19:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject fp_name="/iterative_solver_tb/uut/fake_col_permutation_counter" type="array">
+      <obj_property name="ElementShortName">fake_col_permutation_counter[9:0][15:0]</obj_property>
+      <obj_property name="ObjectShortName">fake_col_permutation_counter[9:0][15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/iterative_solver_tb/uut/can_do" type="array">
+      <obj_property name="ElementShortName">can_do[9:0][19:0]</obj_property>
+      <obj_property name="ObjectShortName">can_do[9:0][19:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/iterative_solver_tb/uut/can_do[9]" type="array">
+         <obj_property name="ElementShortName">[9][19:0]</obj_property>
+         <obj_property name="ObjectShortName">[9][19:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/iterative_solver_tb/uut/can_do[8]" type="array">
+         <obj_property name="ElementShortName">[8][19:0]</obj_property>
+         <obj_property name="ObjectShortName">[8][19:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/iterative_solver_tb/uut/can_do[7]" type="array">
+         <obj_property name="ElementShortName">[7][19:0]</obj_property>
+         <obj_property name="ObjectShortName">[7][19:0]</obj_property>
+         <obj_property name="isExpanded"></obj_property>
+      </wvobject>
+      <wvobject fp_name="/iterative_solver_tb/uut/can_do[6]" type="array">
+         <obj_property name="ElementShortName">[6][19:0]</obj_property>
+         <obj_property name="ObjectShortName">[6][19:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/iterative_solver_tb/uut/can_do[5]" type="array">
+         <obj_property name="ElementShortName">[5][19:0]</obj_property>
+         <obj_property name="ObjectShortName">[5][19:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/iterative_solver_tb/uut/can_do[4]" type="array">
+         <obj_property name="ElementShortName">[4][19:0]</obj_property>
+         <obj_property name="ObjectShortName">[4][19:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/iterative_solver_tb/uut/can_do[3]" type="array">
+         <obj_property name="ElementShortName">[3][19:0]</obj_property>
+         <obj_property name="ObjectShortName">[3][19:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/iterative_solver_tb/uut/can_do[2]" type="array">
+         <obj_property name="ElementShortName">[2][19:0]</obj_property>
+         <obj_property name="ObjectShortName">[2][19:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/iterative_solver_tb/uut/can_do[1]" type="array">
+         <obj_property name="ElementShortName">[1][19:0]</obj_property>
+         <obj_property name="ObjectShortName">[1][19:0]</obj_property>
+         <obj_property name="isExpanded"></obj_property>
+      </wvobject>
+      <wvobject fp_name="/iterative_solver_tb/uut/can_do[0]" type="array">
+         <obj_property name="ElementShortName">[0][19:0]</obj_property>
+         <obj_property name="ObjectShortName">[0][19:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/iterative_solver_tb/uut/row_start_addresses" type="array">
+      <obj_property name="ElementShortName">row_start_addresses[9:0][8:0]</obj_property>
+      <obj_property name="ObjectShortName">row_start_addresses[9:0][8:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/iterative_solver_tb/uut/column_start_addresses" type="array">
+      <obj_property name="ElementShortName">column_start_addresses[9:0][8:0]</obj_property>
+      <obj_property name="ObjectShortName">column_start_addresses[9:0][8:0]</obj_property>
+      <wvobject fp_name="/iterative_solver_tb/uut/column_start_addresses[9]" type="array">
+         <obj_property name="ElementShortName">[9][8:0]</obj_property>
+         <obj_property name="ObjectShortName">[9][8:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/iterative_solver_tb/uut/column_start_addresses[8]" type="array">
+         <obj_property name="ElementShortName">[8][8:0]</obj_property>
+         <obj_property name="ObjectShortName">[8][8:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/iterative_solver_tb/uut/column_start_addresses[7]" type="array">
+         <obj_property name="ElementShortName">[7][8:0]</obj_property>
+         <obj_property name="ObjectShortName">[7][8:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/iterative_solver_tb/uut/column_start_addresses[6]" type="array">
+         <obj_property name="ElementShortName">[6][8:0]</obj_property>
+         <obj_property name="ObjectShortName">[6][8:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/iterative_solver_tb/uut/column_start_addresses[5]" type="array">
+         <obj_property name="ElementShortName">[5][8:0]</obj_property>
+         <obj_property name="ObjectShortName">[5][8:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/iterative_solver_tb/uut/column_start_addresses[4]" type="array">
+         <obj_property name="ElementShortName">[4][8:0]</obj_property>
+         <obj_property name="ObjectShortName">[4][8:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/iterative_solver_tb/uut/column_start_addresses[3]" type="array">
+         <obj_property name="ElementShortName">[3][8:0]</obj_property>
+         <obj_property name="ObjectShortName">[3][8:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/iterative_solver_tb/uut/column_start_addresses[2]" type="array">
+         <obj_property name="ElementShortName">[2][8:0]</obj_property>
+         <obj_property name="ObjectShortName">[2][8:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/iterative_solver_tb/uut/column_start_addresses[1]" type="array">
+         <obj_property name="ElementShortName">[1][8:0]</obj_property>
+         <obj_property name="ObjectShortName">[1][8:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/iterative_solver_tb/uut/column_start_addresses[0]" type="array">
+         <obj_property name="ElementShortName">[0][8:0]</obj_property>
+         <obj_property name="ObjectShortName">[0][8:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/iterative_solver_tb/uut/range_w_i" type="array">
+      <obj_property name="ElementShortName">range_w_i[3:0]</obj_property>
+      <obj_property name="ObjectShortName">range_w_i[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/iterative_solver_tb/uut/for_range_w_started" type="logic">
+      <obj_property name="ElementShortName">for_range_w_started</obj_property>
+      <obj_property name="ObjectShortName">for_range_w_started</obj_property>
+   </wvobject>
+   <wvobject fp_name="/iterative_solver_tb/uut/blob" type="logic">
+      <obj_property name="ElementShortName">blob</obj_property>
+      <obj_property name="ObjectShortName">blob</obj_property>
+   </wvobject>
+   <wvobject fp_name="/iterative_solver_tb/uut/blab" type="logic">
+      <obj_property name="ElementShortName">blab</obj_property>
+      <obj_property name="ObjectShortName">blab</obj_property>
+   </wvobject>
+   <wvobject fp_name="/iterative_solver_tb/uut/for_c_coln_counter" type="array">
+      <obj_property name="ElementShortName">for_c_coln_counter[7:0]</obj_property>
+      <obj_property name="ObjectShortName">for_c_coln_counter[7:0]</obj_property>
+   </wvobject>
+</wave_config>

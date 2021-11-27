@@ -12,8 +12,8 @@ nonogram_max_column = 10
 nonogram_max_row = 10
 
 #size of the entry fore the colum assingemtn for ht estorign of numebrs in the binary 
-nonogram_entry_size =  800 #2*8 bit number (2x2 nonogram), change to 800 for a default
-dimensions_entry_size= 8 #number of bits for one dimension i nthe fimensison field (so size of the whole field is 2* this)
+nonogram_entry_size =  20 #2*8 bit number (2x2 nonogram), change to 800 for a default
+dimensions_entry_size= 4 #number of bits for one dimension i nthe fimensison field (so size of the whole field is 2* this)
 
 def generate_coe(nonograms):
     #passes a list of abstraction of nonograms as the input
@@ -61,13 +61,13 @@ def generate_coe(nonograms):
         print("create")
         rows = n[1]  #get row assingemtns for a given nonogram
         cols = n[2]  #get col assingemtns for a given nonogram
-        print(rows,cols)
+        print("rwos,cols", rows,cols)
         a = []
         r_as = []
         c_as = []
         for row in rows:
             #print("row", row)
-            el1 = [format(r, '#010b')[2:] for r in row]
+            el1 = [format(r, '#06b')[2:] for r in row]
             #print("el", el)
             #print([format(r, '#010b')[2:] for r in row])
 
@@ -78,13 +78,15 @@ def generate_coe(nonograms):
 
         for col in cols:
             
-            el2 = [format(c, '#010b')[2:] for c in col]
+            el2 = [format(c, '#06b')[2:] for c in col]
            # print("el", el)
 
             el2 = produce_given_length("".join(el2),nonogram_entry_size)
             col_assignments.append(el2)
             c_as.append(el2)
         assignments += r_as+ c_as #all_rows + all_columns
+        
+    print("output")
     print(col_assignments, len(col_assignments))
     print(row_assignments, len(row_assignments))
     print(assignments, len(assignments))
@@ -251,7 +253,17 @@ def decode_nonogram(index):
 
 
 if __name__ == "__main__":
-    nonograms = [nonogram_music_note]
+    print()
+    nonograms = [
+    
+    [[10,10],
+    [[3], [1,2], [2,3], [2, 2], [6], [5,1], [6], [1], [2], [0]],
+    [[2,1], [1,3], [ 5,1], [ 1,7], [5], [3], [4], [3], [0], [0]]]
+ 
+ 
+    
+]
+
     a = generate_coe(nonograms)
     #decode_nonogram(1)
     
