@@ -4,14 +4,15 @@ module filter(
                     input wire clk_in,
                     input wire reset_in,
                     input wire start_in, //when asserte, start accumulating
-                    input [320:0] wire [240:0] photo_in,
+                    input wire [319:0] photo_in [239:0] ,
                     output logic done, //320 by 240
-                    output logic [40:0] rescaled_out [30:0]//for the sake of testing // since thre are 10 fields and each field has two bits (3 states) > 10*2 = 20
+                    output  logic  rescaled_out [39:0][29:0] //for the sake of testing // since thre are 10 fields and each field has two bits (3 states) > 10*2 = 20
 
     ); 
 
 
-    logic [320:0] photo_stored [240:0];
+    logic [319:0] photo_stored [239:0];
+    logic  rescaled_out_internal [39:0][29:0];
     logic start_rescaling;
 
     parameter [6:0] new_h = 30;
@@ -20,6 +21,18 @@ module filter(
     parameter [6:0] number_shifts_w = 3;
 
     logic solution_out;
+    logic start_i_for_loop;
+    logic end_i_for_loop;
+    logic [5:0] i;
+    logic [5:0] j;
+    logic [9:0] x;
+    logic [9:0] y;
+    
+    logic start_j_for_loop;
+    logic processing_part;
+    logic  end_j_for_loop;
+    logic if_statement_part;
+    logic multiplication_processing_done;
 
 
 
@@ -30,6 +43,14 @@ module filter(
             start_i_for_loop <=0;
             end_i_for_loop <=0;
             solution_out <=0;
+            start_j_for_loop <=0;
+            i<=0;
+            j<=0;
+            processing_part <=0;
+            end_j_for_loop <=0;
+            if_statement_part<=0;
+            multiplication_processing_done <=0;
+             
             
         end else begin
 
@@ -37,6 +58,9 @@ module filter(
 
                 photo_stored <= photo_in;
                 start_i_for_loop <=1;
+                i<=0;
+                j<=0;
+                processing_part <=0;
 
 
             end else if (start_i_for_loop) begin
@@ -47,7 +71,7 @@ module filter(
                     i<=0;
                 end else begin
                     start_i_for_loop <=0;
-                    start_j_for_loop <1=;
+                    start_j_for_loop <=1;
 
                 end
 
@@ -81,8 +105,8 @@ module filter(
                 if(~multiplication_processing_done) begin
                     multiplication_processing_done <=1;
                     if_statement_part <=1;
-                    x <= i << number_shifts_h;
-                    y <= j << number_shifts_w;
+                    x <= (i << number_shifts_h);
+                    y <= (j << number_shifts_w);
 
 
 

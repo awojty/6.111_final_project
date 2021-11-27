@@ -4,17 +4,17 @@ module constraint_generator(
                     input wire clk_in,
                     input wire reset_in,
                     input wire start_in, //when asserte, start accumulating
-                    input wire [39:0] image_in [29:0],
-                    output  logic [119:0] constraints_out [69:0],
+                    input wire [39:0][29:0] image_in ,
+                    output  logic [119:0][69:0] constraints_out ,
                     output logic done //320 by 240
 
     ); 
 
-    logic [39:0] image_stored [29:0];
+    logic  [39:0][29:0] image_stored;
 //    logic [39:0] column_constraint_storage [39:0];
 //    logic [39:0] row_constraint_storage [29:0];
 
-    logic [119:0] constraint_storage [69:0];
+    logic [119:0] [69:0] constraint_storage;
 
 
     parameter [5:0] height = 30;

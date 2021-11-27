@@ -2,8 +2,9 @@ module top_level_solver(
     input wire clk_in,
     input wire start_in, // assered when in the correct stata
     input wire reset_in,
+    input wire get_output,
     input wire [15:0] sw,
-    
+    output logic [19:0] assignment_out,
     output logic [9:0] row1_out,
     output logic [9:0] row2_out, 
     output logic [9:0] row3_out, 
@@ -74,7 +75,7 @@ module top_level_solver(
         .clk_in(clk_in), 
         .reset_in(reset_in), 
         .start_in(start_getting_assignment),
-        .address_in(sw[15:0]), 
+        .address_in(sw[15:3]), 
         .assignment_out(assignment_in_solver),
         .sending(sending),
         .counter_out(counter_out),
@@ -160,6 +161,24 @@ module top_level_solver(
         
 
     end else begin
+        assignment_out_done <=0;
+
+        if(get_output && ~start_getting_output) begin
+            
+            start_getting_output <= 1;
+            start_getting_assignment <= 1;
+            index <= 0;
+
+        end else if (sending && start_getting_output) begin
+
+            assignment_out <= assignment_in_solver;
+            
+        end else if (~sending && start_getting_output) begin
+
+            assignment_out_done <= 1;
+            start_getting_output <= 0;
+        
+        end
 
 
         if(start_in && ~in_progress) begin
