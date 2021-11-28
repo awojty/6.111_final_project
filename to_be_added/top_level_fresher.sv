@@ -201,15 +201,15 @@ module top_level_fresher(
                     .sw(sw),
                     .assignment_out,
                     .row1_out(row1_out),
-                    .row2_out(row1_out),
-                    .row3_out(row1_out),
-                    .row4_out(row1_out),
-                    .row5_out(row1_out),
-                    .row6_out(row1_out),
-                    .row7_out(row1_out),
-                    .row8_out(row1_out),
-                    .row9_out(row1_out),
-                    .row10_out(row1_out),
+                    .row2_out(row2_out),
+                    .row3_out(row3_out),
+                    .row4_out(row4_out),
+                    .row5_out(row5_out),
+                    .row6_out(row6_out),
+                    .row7_out(row7_out),
+                    .row8_out(row8_out),
+                    .row9_out(row9_out),
+                    .row10_out(row10_out),
                     .top_level_solver_done(solver_done),
                     .assignment_out_done(output_assignment_done)
 
@@ -230,17 +230,35 @@ module top_level_fresher(
 
 
      //correct
-    solved_disp(
-            .clock(clk_65mhz), 
-            .reset(reset), 
-            .done(done),
-            .left_vals(left), 
-            .top_vals(top),
-            .grid_vals(sol_vals),
-            .hcount(hcount),
-            .vcount(vcount), 
-            .switch(sw), 
-            .pixel_out(pixel_solution_disp));
+
+     logic [19:0] constraint_vals;
+     logic start_sending_constraints;
+
+
+
+
+     solved_disp mysolved_disp(
+                .clock(clk_65mhz),
+                .reset(reset),
+                .solver_done(solver_done), //solver done
+                .memory_read_start(start_sending_constraints),
+                .constraint_vals(constraint_vals),
+                .grid_vals(row1_out),
+                .grid_vals1(row1_out),
+                .grid_vals2(row2_out),
+                .grid_vals3(row3_out),
+                .grid_vals4(row4_out),
+                .grid_vals5(row5_out),
+                .grid_vals6(row6_out),
+                .grid_vals7(row7_out),
+                .grid_vals8(row8_out),
+                .grid_vals9(row9_out),
+                .grid_vals10(row10_out),
+                .hcount(hcount),
+                .vcount(vcount), 
+                .switch(sw), 
+                .pixel_out(pixel_solution_disp));
+
     
 
                                         
