@@ -21,10 +21,10 @@ module assignment_registry_tb;
        //one_hz_period changed to 4 cycles so simulations don't take forever.
         assignments_registry uut(   
                     .clk_in(clk),
-                    .confirm_in(confirm_in),
+                    .start_in(confirm_in),
                     .reset_in(rst_in),
-                    .row_number_in(row_number_in),
-                    .col_number_in(col_number_in),
+                    
+                    
                     .address_in(address_in),
                    .assignment_out(assignment_out),
                    .done(done)

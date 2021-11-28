@@ -1,4 +1,4 @@
-module camera_read(
+module camera_read_fresh(
 	input  p_clock_in,
 	input  vsync_in,
 	input  href_in,
@@ -6,8 +6,7 @@ module camera_read(
 	input  [7:0] p_data_in,
 	output logic [15:0] pixel_data_out,
 	output logic pixel_valid_out,
-	output logic frame_done_out,
-	output logic photo_finished
+	output logic frame_done_out
     );
 	 
 	
@@ -22,25 +21,22 @@ module camera_read(
 	always_ff@(posedge p_clock_in) begin 
 		case(FSM_state)
 
-			WAIT_BUTTON_PRESS: begin 
+			WAIT_BUTTON_PRESS: begin //wait for VSYNC
 				FSM_state <= (button_press) ? WAIT_FRAME_START : WAIT_BUTTON_PRESS;
 				frame_done_out <= 0;
 				pixel_half <= 0;
 				pixel_valid_out <=0;
-				photo_finished <=0;
 			end
 		
 			WAIT_FRAME_START: begin //wait for VSYNC
 				FSM_state <= (!vsync_in) ? ROW_CAPTURE : WAIT_FRAME_START;
 				frame_done_out <= 0;
 				pixel_half <= 0;
-				photo_finished <=0;
 			end
 	
 			ROW_CAPTURE: begin 
 			FSM_state <= vsync_in ? WAIT_BUTTON_PRESS : ROW_CAPTURE;
 			frame_done_out <= vsync_in ? 1 : 0;
-			photo_finished <=1;
 			pixel_valid_out <= (href_in && pixel_half) ? 1 : 0; 
 			if (href_in) begin
 				pixel_half <= ~ pixel_half;

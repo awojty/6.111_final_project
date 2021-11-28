@@ -4,6 +4,7 @@ module top_level_solver(
     input wire reset_in,
     input wire get_output,
     input wire [15:0] sw,
+    output logic sending_assignment,
     output logic [19:0] assignment_out,
     output logic [9:0] row1_out,
     output logic [9:0] row2_out, 
@@ -15,7 +16,8 @@ module top_level_solver(
     output logic [9:0] row8_out,
     output logic [9:0] row9_out, 
     output logic [9:0] row10_out, 
-    output logic top_level_solver_done
+    output logic top_level_solver_done,
+    output logic assignment_out_done
 
    );
 
@@ -75,7 +77,7 @@ module top_level_solver(
         .clk_in(clk_in), 
         .reset_in(reset_in), 
         .start_in(start_getting_assignment),
-        .address_in(sw[15:3]), 
+        .address_in(0), 
         .assignment_out(assignment_in_solver),
         .sending(sending),
         .counter_out(counter_out),
@@ -124,6 +126,8 @@ module top_level_solver(
 
    logic [5:0] index;
    logic take_in;
+   logic start_getting_output;
+   logic start_getting_assignment1;
 
 
 
@@ -158,6 +162,9 @@ module top_level_solver(
         assignment_out1<=0;
         counter_out <=0;
         index <=0;
+        start_getting_output <= 0;
+        start_getting_assignment1 <= 0;
+        sending_assignment<=0;
         
 
     end else begin
@@ -172,11 +179,15 @@ module top_level_solver(
         end else if (sending && start_getting_output) begin
 
             assignment_out <= assignment_in_solver;
+            start_getting_assignment1 <= 1;
+            sending_assignment<=1;
             
-        end else if (~sending && start_getting_output) begin
+        end else if (~sending && start_getting_assignment1) begin
+            start_getting_assignment1 <= 0;
 
             assignment_out_done <= 1;
             start_getting_output <= 0;
+            sending_assignment <=0;
         
         end
 

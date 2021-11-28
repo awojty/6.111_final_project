@@ -1,0 +1,1 @@
+This moduel contatins new code for filter and generator that works with the camera as an indivdiaul project - currently code in the main proejct has differnet filter and gerantor code wchih doont work

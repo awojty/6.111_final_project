@@ -112,9 +112,9 @@ with open("bit_image.txt", "w") as f:
 # To read image from disk, we use
 # cv2.imread function, in below method,
 
-# cv2.imshow("Cute Kitens", ans)
+cv2.imshow("Cute Kitens", ans)
 
-# cv2.waitKey(0)
+cv2.waitKey(0)
 
 
 
