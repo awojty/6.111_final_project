@@ -191,6 +191,11 @@ module top_level_fresher(
     logic [9:0] row10_out;
     logic solver_done;
     logic output_assignment_done;
+    logic [19:0] assignment_out;
+    logic sending_assignment;
+
+
+
 
 
     top_level_solver my_top_level_solver(
@@ -199,7 +204,7 @@ module top_level_fresher(
                     .reset_in(reset),
                     .get_output(get_constraints),
                     .sw(sw),
-                    .assignment_out,
+                    .assignment_out(assignment_out),
                     .row1_out(row1_out),
                     .row2_out(row2_out),
                     .row3_out(row3_out),
@@ -211,7 +216,8 @@ module top_level_fresher(
                     .row9_out(row9_out),
                     .row10_out(row10_out),
                     .top_level_solver_done(solver_done),
-                    .assignment_out_done(output_assignment_done)
+                    .assignment_out_done(output_assignment_done),
+                    .sending_assignment(sending_assignment)
 
    );
 
