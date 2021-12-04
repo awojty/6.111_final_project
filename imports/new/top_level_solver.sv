@@ -55,7 +55,7 @@ module top_level_solver(
                     .column_number_in(4'd10), //grid size - max 10
                     .row_number_in(4'd10), //grid size - max 10
                     .assignment_in(assignment_in_solver), // array of cosntraitnrs in - max of 20 btis since 4 btis * 5 slots
-                    .start_sending_nonogram(sending), //if asserted to 1, im in the rpcoess of sendifg the puzzle
+                    .start_sending_nonogram(sending && nonogram_part), //if asserted to 1, im in the rpcoess of sendifg the puzzle
                     .solution_out(nonogram_solver_done),
                     .row1(row1_in_translator),
                     .row2(row2_in_translator),
@@ -128,6 +128,7 @@ module top_level_solver(
    logic take_in;
    logic start_getting_output;
    logic start_getting_assignment1;
+   logic nonogram_part;
 
 
 
@@ -165,6 +166,7 @@ module top_level_solver(
         start_getting_output <= 0;
         start_getting_assignment1 <= 0;
         sending_assignment<=0;
+        nonogram_part <=0;
         
 
     end else begin
@@ -184,7 +186,6 @@ module top_level_solver(
             
         end else if (~sending && start_getting_assignment1) begin
             start_getting_assignment1 <= 0;
-
             assignment_out_done <= 1;
             start_getting_output <= 0;
             sending_assignment <=0;
@@ -197,11 +198,12 @@ module top_level_solver(
             start_getting_assignment <=1;
             in_progress <=1;
             index <=0;
+            nonogram_part <=1;
 
 
-            
-        end else if (sending) begin
+        end else if (sending && in_progress) begin
             start_sending_nonogram<=1;
+            nonogram_part <=1;
             //assignment_in_solver <=assignment_out1;
             temporary_storage[index] <= assignment_in_solver;
             index <=index + 1;
@@ -212,6 +214,7 @@ module top_level_solver(
         end else if (~sending && start_sending_nonogram ) begin
             start_sending_nonogram<=0;
             take_in <=0;
+            nonogram_part <=0;
             
         end else if (nonogram_solver_done && ~move_to_translator) begin
 
