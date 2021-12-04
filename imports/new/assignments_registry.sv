@@ -39,8 +39,11 @@ module assignments_registry(
 
     logic [19:0] assignment_out1;
     logic [19:0] assignment_buffer;
+    logic [19:0] assignment_buffer1;
     logic just_started;
     logic hello;
+    logic [1:0] lol;
+    logic acquired_address;
 
 
     assignments_rom  my_assignment_rom(.clka(clk_in), .addra(address_input), .douta(assignment_out1));
@@ -58,21 +61,29 @@ module assignments_registry(
             limit <=0;
             just_started <=0;
            // assignment_out1 <=0;
+           acquired_address <=0;
+           assignment_buffer1 <=0;
             
         end else begin
-            if(start_in && ~started) begin
-                address_input <= address_in[15:14] * 20 +1; //switch 15 adn 14 serve as adressing to select nonogram - so 4 in total to select from
-                started <=1;
-                counter_out <= 0;
-                assignment_buffer <= assignment_out1;
-                assignment_out <= assignment_out1;
-                
-                
-               
+            if(start_in && ~acquired_address  && ~started) begin
+                //address_input <= 21;
+                lol <=address_in[15:14];
+                address_input <= address_in[15:14] * 5'd20; //switch 15 adn 14 serve as adressing to select nonogram - so 4 in total to select from
+                acquired_address <=1;
+
                 limit <= 20;
                 just_started <=1;
                 //assignment_out <= assignment_out1;
                 //assignment_buffer <= assignment_out1;
+            end else if (acquired_address) begin
+                address_input <=address_input+1;
+                started <=1;
+                counter_out <= 0;
+                //assignment_buffer <= assignment_out1;
+                //assignment_out <= assignment_out1;
+                acquired_address <=0;
+            
+//            end
             
             end else if (started) begin
 
@@ -82,7 +93,8 @@ module assignments_registry(
                     address_input <=address_input+1;
                     counter_out <=  counter_out;
                     assignment_buffer <= assignment_out1;
-                    assignment_out <= assignment_out1;
+                    assignment_buffer1 <= assignment_buffer;
+                    assignment_out <= assignment_buffer1;
                     hello <=1;
                     
                 end else begin
@@ -100,8 +112,9 @@ module assignments_registry(
                         counter_out <=  counter_out+1;
                         end
                         
-                        assignment_buffer <= assignment_out1;
-                        assignment_out <= assignment_out1;
+                       assignment_buffer <= assignment_out1;
+                    assignment_buffer1 <= assignment_buffer;
+                    assignment_out <= assignment_out1;
 
                     end
 
