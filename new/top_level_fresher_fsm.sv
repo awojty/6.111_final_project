@@ -311,7 +311,7 @@ module top_level_fresher_fsm(
                 .solver_done(solver_done), //solver done
                 .memory_read_start(sending_assignment),
                 .constraint_vals(assignment_out),
-                .grid_vals(row1_out),
+                
                 .grid_vals1(row1_out),
                 .grid_vals2(row2_out),
                 .grid_vals3(row3_out),
@@ -948,8 +948,4 @@ module top_level_fresher_fsm(
 
 endmodule
 
-////////////////////////////////////////////////////////////////////////////////
-//
-// pong_game: the game itself!
-//
 ////////////////////////////////////////////////////////////////////////////////
