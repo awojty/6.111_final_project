@@ -186,6 +186,24 @@ module top_level_fresher_fsm(
         old_clean <= clean;  //for rising edge detection
     end
     
+    logic [119:0] contraint_sent_manual;
+    logic [11:0] pixel_3040_manual;
+    
+    manual_disp_30_40 my_manual_disp_30_40(
+                   .clock(clk_65mhz),
+                  .reset(reset),
+                   .left(left),
+                   .right(right),
+                   .up(up),
+                   .down(down),
+                   .center(center),
+                   .start_sending_constraint(),
+                  .constraint_vals(contraint_sent_manual),
+                   .hcount(hcount),
+                   .vcount(vcount),
+                   .switch(sw),
+                   .pixel_out(pixel_3040_manual));
+    
     return_UI my_return_UI(
                    .clk_in(clk_65mhz),
                    .reset_in(reset),
@@ -240,6 +258,9 @@ module top_level_fresher_fsm(
     
         if ((state_pixel == GET_CAMERA_OUTPUT) &&((hcount<320) &&  (vcount<240))) begin
             cam = frame_buff_out;
+            
+        end else if (state_pixel ==DISPLAY_MANUAL_30_40) begin
+            cam = pixel_3040_manual;
             
         end else if ((state_pixel == DISPLAY_MANUAL_10_10)) begin
             cam = pixel_solution_disp; // probably sth else sith ther eis a manual modue ?
@@ -570,7 +591,8 @@ module top_level_fresher_fsm(
             b <= blank;
          //rgb <= pixel;
        end else if (state_FSM == DISPLAY_EMPTY_NONOGRAM) begin
-        state_pixel <=DISPLAY_EMPTY_NONOGRAM;
+        state_pixel =DISPLAY_MANUAL_30_40;
+        //todo - start sending constraints
         
          
        end else if (state_FSM == IDLE &&((sw[12] ==0) && (sw[3] ==0))) begin
@@ -926,3 +948,8 @@ module top_level_fresher_fsm(
 
 endmodule
 
+////////////////////////////////////////////////////////////////////////////////
+//
+// pong_game: the game itself!
+//
+////////////////////////////////////////////////////////////////////////////////
