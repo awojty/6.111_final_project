@@ -204,6 +204,33 @@ module top_level_fresher_fsm(
     
     logic [11:0] pixel_UI;
     
+    //solution parser inputs
+    logic reset; //reset
+    logic left;
+    logic top;
+    logic sol_vals;
+    logic done;
+    logic [11:0] pixel_solution_disp;
+
+    //solver
+    logic start_solver;
+    logic get_constraints;
+    logic [19:0] constraint_out;
+    logic [9:0] row1_out;
+    logic [9:0] row2_out;
+    logic [9:0] row3_out;
+    logic [9:0] row4_out;
+    logic [9:0] row5_out;
+    logic [9:0] row6_out;
+    logic [9:0] row7_out;
+    logic [9:0] row8_out;
+    logic [9:0] row9_out;
+    logic [9:0] row10_out;
+    
+    logic output_assignment_done;
+    logic [19:0] assignment_out;
+    logic sending_assignment;
+    
     //assign  pixel_UI = 12'b000011110000;
     
     
@@ -320,7 +347,7 @@ module top_level_fresher_fsm(
                           .frame_done_out(frame_done_out));
    
     // UP and DOWN buttons for pong paddle
-    wire up,down,left,right,center;
+    wire up,down,right,center;
     debounce db2(.reset_in(reset),.clock_in(clk_65mhz),.noisy_in(btnu),.clean_out(up));
     debounce db3(.reset_in(reset),.clock_in(clk_65mhz),.noisy_in(btnd),.clean_out(down));
     debounce db4(.reset_in(reset),.clock_in(clk_65mhz),.noisy_in(btnl),.clean_out(left));
@@ -339,6 +366,8 @@ module top_level_fresher_fsm(
     logic start_filter;
     logic generator_done, start_generator;
     logic [39:0] constrain_input;
+    
+    
                    
                    
    
@@ -927,9 +956,3 @@ module top_level_fresher_fsm(
     assign vga_vs = ~vs;
 
 endmodule
-
-////////////////////////////////////////////////////////////////////////////////
-//
-// pong_game: the game itself!
-//
-////////////////////////////////////////////////////////////////////////////////
