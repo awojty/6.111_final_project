@@ -1,12 +1,10 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-
 
 
 module return_UI(
                    input wire clk_in,
                    input wire reset_in,
-                   input wire state,
+                   input wire [3:0] state,
                    input wire [12:0] hcount,
                    input wire [12:0] vcount,
                    input wire [15:0] switch,
@@ -39,10 +37,10 @@ module return_UI(
     always_ff @(posedge clk_in) begin
         if ((hcount < (WIDTH)) && (vcount < (HEIGHT))) begin
             if(state ==0) begin
+            
                 if (manual_image_bits == 2'b00) begin
                     pixel_out <= {4'b0000, 4'b0000,4'b0000}; // greyscale
 
-                    
                 end else if (manual_image_bits == 2'b01) begin
                     pixel_out <= {4'b1111, 4'b0000,4'b0000}; // greyscale
 
