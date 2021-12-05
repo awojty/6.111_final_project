@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2019.2 (64-bit)
+# SW Build 2708876 on Wed Nov  6 21:40:23 MST 2019
+# IP Build 2700528 on Thu Nov  7 00:09:20 MST 2019
+# Start of session at: Wed Dec  1 15:45:02 2021
+# Process ID: 8848
+# Current directory: C:/Users/jules/Documents/nonogram_solver/final_project_current.runs/small_one_red_rom_synth_1
+# Command line: vivado.exe -log small_one_red_rom.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source small_one_red_rom.tcl
+# Log file: C:/Users/jules/Documents/nonogram_solver/final_project_current.runs/small_one_red_rom_synth_1/small_one_red_rom.vds
+# Journal file: C:/Users/jules/Documents/nonogram_solver/final_project_current.runs/small_one_red_rom_synth_1\vivado.jou
+#-----------------------------------------------------------
+source small_one_red_rom.tcl -notrace

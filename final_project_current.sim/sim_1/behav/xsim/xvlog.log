@@ -1,0 +1,147 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_nine_red_rom/sim/small_nine_red_rom.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module small_nine_red_rom
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_nine_rom/sim/small_nine_rom.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module small_nine_rom
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_eight_red_rom/sim/small_eight_red_rom.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module small_eight_red_rom
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_eight_rom/sim/small_eight_rom.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module small_eight_rom
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_seven_red_rom/sim/small_seven_red_rom.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module small_seven_red_rom
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_seven_rom/sim/small_seven_rom.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module small_seven_rom
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_six_red_rom/sim/small_six_red_rom.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module small_six_red_rom
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_six_rom/sim/small_six_rom.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module small_six_rom
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_five_red_rom/sim/small_five_red_rom.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module small_five_red_rom
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_five_rom/sim/small_five_rom.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module small_five_rom
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_four_red_rom/sim/small_four_red_rom.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module small_four_red_rom
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_four_rom/sim/small_four_rom.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module small_four_rom
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_three_red_rom/sim/small_three_red_rom.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module small_three_red_rom
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_three_rom/sim/small_three_rom.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module small_three_rom
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_two_red_rom/sim/small_two_red_rom.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module small_two_red_rom
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_two_rom/sim/small_two_rom.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module small_two_rom
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_one_red_rom/sim/small_one_red_rom.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module small_one_red_rom
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_one_rom/sim/small_one_rom.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module small_one_rom
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/assignments_rom/sim/assignments_rom.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module assignments_rom
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/assignments_registry.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module assignments_registry
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/create_a_row.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module create_a_row
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/eights_pixels.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module eights_pixels
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/fives_pixels.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module fives_pixels
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/fours_pixels.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module fours_pixels
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/generate_rows.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module generate_rows
+WARNING: [VRFC 10-3248] data object 'number_of_breaks' is already declared [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/generate_rows.sv:53]
+WARNING: [VRFC 10-3703] second declaration of 'number_of_breaks' ignored [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/generate_rows.sv:53]
+WARNING: [VRFC 10-3248] data object 'space_to_fill_left' is already declared [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/generate_rows.sv:54]
+WARNING: [VRFC 10-3703] second declaration of 'space_to_fill_left' ignored [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/generate_rows.sv:54]
+WARNING: [VRFC 10-3248] data object 'new_row1' is already declared [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/generate_rows.sv:100]
+WARNING: [VRFC 10-3703] second declaration of 'new_row1' ignored [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/generate_rows.sv:100]
+WARNING: [VRFC 10-3248] data object 'min_length' is already declared [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/generate_rows.sv:149]
+WARNING: [VRFC 10-3703] second declaration of 'min_length' ignored [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/generate_rows.sv:149]
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/get_permutations.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module get_permutations
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/iterative_solver_wth_reset.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module iterative_solver_wth_reset
+WARNING: [VRFC 10-3248] data object 'mod_cols_in' is already declared [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/iterative_solver_wth_reset.sv:242]
+WARNING: [VRFC 10-3703] second declaration of 'mod_cols_in' ignored [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/iterative_solver_wth_reset.sv:242]
+WARNING: [VRFC 10-3248] data object 'mod_rows_in' is already declared [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/iterative_solver_wth_reset.sv:243]
+WARNING: [VRFC 10-3703] second declaration of 'mod_rows_in' ignored [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/iterative_solver_wth_reset.sv:243]
+WARNING: [VRFC 10-3248] data object 'start_enumerate_for_loop_row_h' is already declared [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/iterative_solver_wth_reset.sv:360]
+WARNING: [VRFC 10-3703] second declaration of 'start_enumerate_for_loop_row_h' ignored [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/iterative_solver_wth_reset.sv:360]
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/nines_pixels.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module nines_pixels
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/ones_pixels.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ones_pixels
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/sevens_pixels.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module sevens_pixels
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/sixes_pixels.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module sixes_pixels
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/solved_disp.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module solved_disp
+WARNING: [VRFC 10-543] converting concatenation to assignment pattern [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/solved_disp.sv:102]
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/threes_pixels.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module threes_pixels
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module top_level_solver
+INFO: [VRFC 10-2458] undeclared symbol start_in_translator, assumed default net type wire [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:27]
+INFO: [VRFC 10-2458] undeclared symbol row1_in_translator, assumed default net type wire [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:28]
+INFO: [VRFC 10-2458] undeclared symbol row2_in_translator, assumed default net type wire [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:29]
+INFO: [VRFC 10-2458] undeclared symbol row3_in_translator, assumed default net type wire [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:30]
+INFO: [VRFC 10-2458] undeclared symbol row4_in_translator, assumed default net type wire [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:31]
+INFO: [VRFC 10-2458] undeclared symbol row5_in_translator, assumed default net type wire [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:32]
+INFO: [VRFC 10-2458] undeclared symbol row6_in_translator, assumed default net type wire [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:33]
+INFO: [VRFC 10-2458] undeclared symbol row7_in_translator, assumed default net type wire [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:34]
+INFO: [VRFC 10-2458] undeclared symbol row8_in_translator, assumed default net type wire [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:35]
+INFO: [VRFC 10-2458] undeclared symbol row9_in_translator, assumed default net type wire [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:36]
+INFO: [VRFC 10-2458] undeclared symbol row10_in_translator, assumed default net type wire [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:37]
+INFO: [VRFC 10-2458] undeclared symbol row1_out_translator, assumed default net type wire [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:38]
+INFO: [VRFC 10-2458] undeclared symbol row2_out_translator, assumed default net type wire [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:39]
+INFO: [VRFC 10-2458] undeclared symbol row3_out_translator, assumed default net type wire [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:40]
+INFO: [VRFC 10-2458] undeclared symbol row4_out_translator, assumed default net type wire [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:41]
+INFO: [VRFC 10-2458] undeclared symbol row5_out_translator, assumed default net type wire [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:42]
+INFO: [VRFC 10-2458] undeclared symbol row6_out_translator, assumed default net type wire [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:43]
+INFO: [VRFC 10-2458] undeclared symbol row7_out_translator, assumed default net type wire [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:44]
+INFO: [VRFC 10-2458] undeclared symbol row8_out_translator, assumed default net type wire [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:45]
+INFO: [VRFC 10-2458] undeclared symbol row9_out_translator, assumed default net type wire [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:46]
+INFO: [VRFC 10-2458] undeclared symbol row10_out_translator, assumed default net type wire [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:47]
+INFO: [VRFC 10-2458] undeclared symbol translator_done, assumed default net type wire [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:48]
+INFO: [VRFC 10-2458] undeclared symbol counter_out, assumed default net type wire [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:54]
+INFO: [VRFC 10-2458] undeclared symbol assignment_in_solver, assumed default net type wire [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:57]
+INFO: [VRFC 10-2458] undeclared symbol sending, assumed default net type wire [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:58]
+INFO: [VRFC 10-2458] undeclared symbol nonogram_solver_done, assumed default net type wire [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:59]
+INFO: [VRFC 10-2458] undeclared symbol start_getting_assignment, assumed default net type wire [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:79]
+INFO: [VRFC 10-2458] undeclared symbol done, assumed default net type wire [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:84]
+WARNING: [VRFC 10-2938] 'nonogram_solver_done' is already implicitly declared on line 59 [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:87]
+WARNING: [VRFC 10-2938] 'start_in_translator' is already implicitly declared on line 27 [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:89]
+WARNING: [VRFC 10-2938] 'row1_in_translator' is already implicitly declared on line 28 [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:91]
+WARNING: [VRFC 10-2938] 'row2_in_translator' is already implicitly declared on line 29 [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:92]
+WARNING: [VRFC 10-2938] 'row3_in_translator' is already implicitly declared on line 30 [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:93]
+WARNING: [VRFC 10-2938] 'row4_in_translator' is already implicitly declared on line 31 [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:94]
+WARNING: [VRFC 10-2938] 'row5_in_translator' is already implicitly declared on line 32 [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:95]
+WARNING: [VRFC 10-2938] 'row6_in_translator' is already implicitly declared on line 33 [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:96]
+WARNING: [VRFC 10-2938] 'row7_in_translator' is already implicitly declared on line 34 [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:97]
+WARNING: [VRFC 10-2938] 'row8_in_translator' is already implicitly declared on line 35 [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:98]
+WARNING: [VRFC 10-2938] 'row9_in_translator' is already implicitly declared on line 36 [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:99]
+WARNING: [VRFC 10-2938] 'row10_in_translator' is already implicitly declared on line 37 [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:100]
+WARNING: [VRFC 10-2938] 'row1_out_translator' is already implicitly declared on line 38 [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:102]
+WARNING: [VRFC 10-2938] 'row2_out_translator' is already implicitly declared on line 39 [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:103]
+WARNING: [VRFC 10-2938] 'row3_out_translator' is already implicitly declared on line 40 [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:104]
+WARNING: [VRFC 10-2938] 'row4_out_translator' is already implicitly declared on line 41 [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:105]
+WARNING: [VRFC 10-2938] 'row5_out_translator' is already implicitly declared on line 42 [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:106]
+WARNING: [VRFC 10-2938] 'row6_out_translator' is already implicitly declared on line 43 [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:107]
+WARNING: [VRFC 10-2938] 'row7_out_translator' is already implicitly declared on line 44 [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:108]
+WARNING: [VRFC 10-2938] 'row8_out_translator' is already implicitly declared on line 45 [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:109]
+WARNING: [VRFC 10-2938] 'row9_out_translator' is already implicitly declared on line 46 [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:110]
+WARNING: [VRFC 10-2938] 'row10_out_translator' is already implicitly declared on line 47 [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:111]
+WARNING: [VRFC 10-2938] 'assignment_in_solver' is already implicitly declared on line 57 [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:116]
+WARNING: [VRFC 10-2938] 'start_getting_assignment' is already implicitly declared on line 79 [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:117]
+WARNING: [VRFC 10-2938] 'sending' is already implicitly declared on line 58 [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:120]
+WARNING: [VRFC 10-2938] 'counter_out' is already implicitly declared on line 54 [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:125]
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/translator.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module translator
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/twos_pixels.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module twos_pixels
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sim_1/new/top_level_solver_tb.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module top_level_nonogram_solver_tb
+INFO: [VRFC 10-2458] undeclared symbol hcount, assumed default net type wire [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sim_1/new/top_level_solver_tb.sv:73]
+INFO: [VRFC 10-2458] undeclared symbol vcount, assumed default net type wire [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sim_1/new/top_level_solver_tb.sv:74]
+INFO: [VRFC 10-2458] undeclared symbol switch, assumed default net type wire [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sim_1/new/top_level_solver_tb.sv:75]
+INFO: [VRFC 10-2458] undeclared symbol pixel_out, assumed default net type wire [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sim_1/new/top_level_solver_tb.sv:76]

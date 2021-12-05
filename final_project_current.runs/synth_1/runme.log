@@ -1,0 +1,2041 @@
+
+*** Running vivado
+    with args -log top_level_fresher.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source top_level_fresher.tcl
+
+
+****** Vivado v2019.2 (64-bit)
+  **** SW Build 2708876 on Wed Nov  6 21:40:23 MST 2019
+  **** IP Build 2700528 on Thu Nov  7 00:09:20 MST 2019
+    ** Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+
+source top_level_fresher.tcl -notrace
+Command: synth_design -top top_level_fresher -part xc7a100tcsg324-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Device 21-403] Loading part xc7a100tcsg324-1
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 11372 
+WARNING: [Synth 8-976] number_of_breaks has already been declared [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/generate_rows.sv:53]
+WARNING: [Synth 8-2654] second declaration of number_of_breaks ignored [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/generate_rows.sv:53]
+INFO: [Synth 8-994] number_of_breaks is declared here [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/generate_rows.sv:32]
+WARNING: [Synth 8-976] space_to_fill_left has already been declared [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/generate_rows.sv:54]
+WARNING: [Synth 8-2654] second declaration of space_to_fill_left ignored [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/generate_rows.sv:54]
+INFO: [Synth 8-994] space_to_fill_left is declared here [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/generate_rows.sv:33]
+WARNING: [Synth 8-976] new_row1 has already been declared [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/generate_rows.sv:100]
+WARNING: [Synth 8-2654] second declaration of new_row1 ignored [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/generate_rows.sv:100]
+INFO: [Synth 8-994] new_row1 is declared here [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/generate_rows.sv:42]
+WARNING: [Synth 8-976] min_length has already been declared [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/generate_rows.sv:149]
+WARNING: [Synth 8-2654] second declaration of min_length ignored [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/generate_rows.sv:149]
+INFO: [Synth 8-994] min_length is declared here [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/generate_rows.sv:86]
+WARNING: [Synth 8-976] mod_cols_in has already been declared [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/iterative_solver_wth_reset.sv:242]
+WARNING: [Synth 8-2654] second declaration of mod_cols_in ignored [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/iterative_solver_wth_reset.sv:242]
+INFO: [Synth 8-994] mod_cols_in is declared here [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/iterative_solver_wth_reset.sv:56]
+WARNING: [Synth 8-976] mod_rows_in has already been declared [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/iterative_solver_wth_reset.sv:243]
+WARNING: [Synth 8-2654] second declaration of mod_rows_in ignored [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/iterative_solver_wth_reset.sv:243]
+INFO: [Synth 8-994] mod_rows_in is declared here [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/iterative_solver_wth_reset.sv:54]
+WARNING: [Synth 8-976] start_enumerate_for_loop_row_h has already been declared [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/iterative_solver_wth_reset.sv:360]
+WARNING: [Synth 8-2654] second declaration of start_enumerate_for_loop_row_h ignored [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/iterative_solver_wth_reset.sv:360]
+INFO: [Synth 8-994] start_enumerate_for_loop_row_h is declared here [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/iterative_solver_wth_reset.sv:347]
+WARNING: [Synth 8-976] count2 has already been declared [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_10x10.sv:145]
+WARNING: [Synth 8-2654] second declaration of count2 ignored [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_10x10.sv:145]
+INFO: [Synth 8-994] count2 is declared here [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_10x10.sv:138]
+WARNING: [Synth 8-976] count_num has already been declared [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_10x10.sv:147]
+WARNING: [Synth 8-2654] second declaration of count_num ignored [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_10x10.sv:147]
+INFO: [Synth 8-994] count_num is declared here [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_10x10.sv:18]
+WARNING: [Synth 8-976] center_old has already been declared [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_10x10.sv:150]
+WARNING: [Synth 8-2654] second declaration of center_old ignored [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_10x10.sv:150]
+INFO: [Synth 8-994] center_old is declared here [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_10x10.sv:53]
+WARNING: [Synth 8-976] center_old has already been declared [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_30_40.sv:139]
+WARNING: [Synth 8-2654] second declaration of center_old ignored [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_30_40.sv:139]
+INFO: [Synth 8-994] center_old is declared here [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_30_40.sv:53]
+WARNING: [Synth 8-6716] converting concatenation to assignment pattern [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/solved_disp.sv:111]
+WARNING: [Synth 8-992] nonogram_solver_done is already implicitly declared earlier [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:87]
+WARNING: [Synth 8-992] start_in_translator is already implicitly declared earlier [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:89]
+WARNING: [Synth 8-992] row1_in_translator is already implicitly declared earlier [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:91]
+WARNING: [Synth 8-992] row2_in_translator is already implicitly declared earlier [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:92]
+WARNING: [Synth 8-992] row3_in_translator is already implicitly declared earlier [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:93]
+WARNING: [Synth 8-992] row4_in_translator is already implicitly declared earlier [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:94]
+WARNING: [Synth 8-992] row5_in_translator is already implicitly declared earlier [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:95]
+WARNING: [Synth 8-992] row6_in_translator is already implicitly declared earlier [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:96]
+WARNING: [Synth 8-992] row7_in_translator is already implicitly declared earlier [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:97]
+WARNING: [Synth 8-992] row8_in_translator is already implicitly declared earlier [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:98]
+WARNING: [Synth 8-992] row9_in_translator is already implicitly declared earlier [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:99]
+WARNING: [Synth 8-992] row10_in_translator is already implicitly declared earlier [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:100]
+WARNING: [Synth 8-992] row1_out_translator is already implicitly declared earlier [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:102]
+WARNING: [Synth 8-992] row2_out_translator is already implicitly declared earlier [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:103]
+WARNING: [Synth 8-992] row3_out_translator is already implicitly declared earlier [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:104]
+WARNING: [Synth 8-992] row4_out_translator is already implicitly declared earlier [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:105]
+WARNING: [Synth 8-992] row5_out_translator is already implicitly declared earlier [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:106]
+WARNING: [Synth 8-992] row6_out_translator is already implicitly declared earlier [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:107]
+WARNING: [Synth 8-992] row7_out_translator is already implicitly declared earlier [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:108]
+WARNING: [Synth 8-992] row8_out_translator is already implicitly declared earlier [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:109]
+WARNING: [Synth 8-992] row9_out_translator is already implicitly declared earlier [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:110]
+WARNING: [Synth 8-992] row10_out_translator is already implicitly declared earlier [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:111]
+WARNING: [Synth 8-992] assignment_in_solver is already implicitly declared earlier [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:116]
+WARNING: [Synth 8-992] start_getting_assignment is already implicitly declared earlier [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:117]
+WARNING: [Synth 8-992] sending is already implicitly declared earlier [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:120]
+WARNING: [Synth 8-992] counter_out is already implicitly declared earlier [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:125]
+WARNING: [Synth 8-992] reset is already implicitly declared earlier [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_fresher.sv:63]
+WARNING: [Synth 8-976] reset has already been declared [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_fresher.sv:183]
+WARNING: [Synth 8-2654] second declaration of reset ignored [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_fresher.sv:183]
+INFO: [Synth 8-994] reset is declared here [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_fresher.sv:63]
+WARNING: [Synth 8-992] up is already implicitly declared earlier [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_fresher.sv:300]
+WARNING: [Synth 8-992] down is already implicitly declared earlier [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_fresher.sv:300]
+WARNING: [Synth 8-992] right is already implicitly declared earlier [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_fresher.sv:300]
+WARNING: [Synth 8-976] left has already been declared [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_fresher.sv:300]
+WARNING: [Synth 8-2654] second declaration of left ignored [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_fresher.sv:300]
+INFO: [Synth 8-994] left is declared here [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_fresher.sv:184]
+WARNING: [Synth 8-6901] identifier 'row1_out' is used before its declaration [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_fresher.sv:47]
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 896.961 ; gain = 238.586
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'top_level_fresher' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_fresher.sv:3]
+	Parameter CALL_GENERATOR bound to: 4'b0001 
+	Parameter DISPLAY_EMPTY_NONOGRAM bound to: 4'b0010 
+	Parameter START_FILTER bound to: 4'b0100 
+INFO: [Synth 8-6157] synthesizing module 'clk_wiz_lab3' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/clk_wiz_lab3.v:67]
+INFO: [Synth 8-6157] synthesizing module 'IBUF' [C:/Xilinx/Vivado/2019.2/scripts/rt/data/unisim_comp.v:32937]
+	Parameter CAPACITANCE bound to: DONT_CARE - type: string 
+	Parameter IBUF_DELAY_VALUE bound to: 0 - type: string 
+	Parameter IBUF_LOW_PWR bound to: TRUE - type: string 
+	Parameter IFD_DELAY_VALUE bound to: AUTO - type: string 
+	Parameter IOSTANDARD bound to: DEFAULT - type: string 
+INFO: [Synth 8-6155] done synthesizing module 'IBUF' (1#1) [C:/Xilinx/Vivado/2019.2/scripts/rt/data/unisim_comp.v:32937]
+INFO: [Synth 8-6157] synthesizing module 'MMCME2_ADV' [C:/Xilinx/Vivado/2019.2/scripts/rt/data/unisim_comp.v:39940]
+	Parameter BANDWIDTH bound to: OPTIMIZED - type: string 
+	Parameter CLKFBOUT_MULT_F bound to: 50.375000 - type: double 
+	Parameter CLKFBOUT_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKFBOUT_USE_FINE_PS bound to: FALSE - type: string 
+	Parameter CLKIN1_PERIOD bound to: 10.000000 - type: double 
+	Parameter CLKIN2_PERIOD bound to: 0.000000 - type: double 
+	Parameter CLKOUT0_DIVIDE_F bound to: 15.500000 - type: double 
+	Parameter CLKOUT0_DUTY_CYCLE bound to: 0.500000 - type: double 
+	Parameter CLKOUT0_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKOUT0_USE_FINE_PS bound to: FALSE - type: string 
+	Parameter CLKOUT1_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT1_DUTY_CYCLE bound to: 0.500000 - type: double 
+	Parameter CLKOUT1_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKOUT1_USE_FINE_PS bound to: FALSE - type: string 
+	Parameter CLKOUT2_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT2_DUTY_CYCLE bound to: 0.500000 - type: double 
+	Parameter CLKOUT2_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKOUT2_USE_FINE_PS bound to: FALSE - type: string 
+	Parameter CLKOUT3_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT3_DUTY_CYCLE bound to: 0.500000 - type: double 
+	Parameter CLKOUT3_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKOUT3_USE_FINE_PS bound to: FALSE - type: string 
+	Parameter CLKOUT4_CASCADE bound to: FALSE - type: string 
+	Parameter CLKOUT4_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT4_DUTY_CYCLE bound to: 0.500000 - type: double 
+	Parameter CLKOUT4_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKOUT4_USE_FINE_PS bound to: FALSE - type: string 
+	Parameter CLKOUT5_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT5_DUTY_CYCLE bound to: 0.500000 - type: double 
+	Parameter CLKOUT5_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKOUT5_USE_FINE_PS bound to: FALSE - type: string 
+	Parameter CLKOUT6_DIVIDE bound to: 1 - type: integer 
+	Parameter CLKOUT6_DUTY_CYCLE bound to: 0.500000 - type: double 
+	Parameter CLKOUT6_PHASE bound to: 0.000000 - type: double 
+	Parameter CLKOUT6_USE_FINE_PS bound to: FALSE - type: string 
+	Parameter COMPENSATION bound to: ZHOLD - type: string 
+	Parameter DIVCLK_DIVIDE bound to: 5 - type: integer 
+	Parameter IS_CLKINSEL_INVERTED bound to: 1'b0 
+	Parameter IS_PSEN_INVERTED bound to: 1'b0 
+	Parameter IS_PSINCDEC_INVERTED bound to: 1'b0 
+	Parameter IS_PWRDWN_INVERTED bound to: 1'b0 
+	Parameter IS_RST_INVERTED bound to: 1'b0 
+	Parameter REF_JITTER1 bound to: 0.010000 - type: double 
+	Parameter REF_JITTER2 bound to: 0.010000 - type: double 
+	Parameter SS_EN bound to: FALSE - type: string 
+	Parameter SS_MODE bound to: CENTER_HIGH - type: string 
+	Parameter SS_MOD_PERIOD bound to: 10000 - type: integer 
+	Parameter STARTUP_WAIT bound to: FALSE - type: string 
+INFO: [Synth 8-6155] done synthesizing module 'MMCME2_ADV' (2#1) [C:/Xilinx/Vivado/2019.2/scripts/rt/data/unisim_comp.v:39940]
+INFO: [Synth 8-6157] synthesizing module 'BUFG' [C:/Xilinx/Vivado/2019.2/scripts/rt/data/unisim_comp.v:1075]
+INFO: [Synth 8-6155] done synthesizing module 'BUFG' (3#1) [C:/Xilinx/Vivado/2019.2/scripts/rt/data/unisim_comp.v:1075]
+INFO: [Synth 8-6155] done synthesizing module 'clk_wiz_lab3' (4#1) [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/clk_wiz_lab3.v:67]
+INFO: [Synth 8-6157] synthesizing module 'display_8hex' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/display_hex.sv:1]
+	Parameter bits bound to: 13 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'display_8hex' (5#1) [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/display_hex.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'xvga' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/xvga.sv:1]
+	Parameter DISPLAY_WIDTH bound to: 1024 - type: integer 
+	Parameter DISPLAY_HEIGHT bound to: 768 - type: integer 
+	Parameter H_FP bound to: 24 - type: integer 
+	Parameter H_SYNC_PULSE bound to: 136 - type: integer 
+	Parameter H_BP bound to: 160 - type: integer 
+	Parameter V_FP bound to: 3 - type: integer 
+	Parameter V_SYNC_PULSE bound to: 6 - type: integer 
+	Parameter V_BP bound to: 29 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'xvga' (6#1) [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/xvga.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'debounce' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/debounce.sv:2]
+INFO: [Synth 8-6155] done synthesizing module 'debounce' (7#1) [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/debounce.sv:2]
+INFO: [Synth 8-6157] synthesizing module 'top_level_solver' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'translator' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/translator.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'translator' (8#1) [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/translator.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'iterative_solver_wth_reset' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/iterative_solver_wth_reset.sv:5]
+INFO: [Synth 8-6157] synthesizing module 'generate_rows' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/generate_rows.sv:7]
+	Parameter original bound to: 20'b10101010101010101010 
+INFO: [Synth 8-6157] synthesizing module 'create_a_row' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/create_a_row.sv:1]
+	Parameter limit bound to: 20 - type: integer 
+	Parameter original bound to: 20'b10101010101010101010 
+INFO: [Synth 8-6155] done synthesizing module 'create_a_row' (9#1) [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/create_a_row.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'get_permutations' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/get_permutations.sv:4]
+WARNING: [Synth 8-151] case item 6'b001011 is unreachable [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/get_permutations.sv:578]
+WARNING: [Synth 8-151] case item 6'b001011 is unreachable [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/get_permutations.sv:633]
+INFO: [Synth 8-6155] done synthesizing module 'get_permutations' (10#1) [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/get_permutations.sv:4]
+WARNING: [Synth 8-689] width (12) of port connection 'permutation_out' does not match port width (16) of module 'get_permutations' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/generate_rows.sv:131]
+WARNING: [Synth 8-6014] Unused sequential element shifts_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/generate_rows.sv:176]
+WARNING: [Synth 8-6014] Unused sequential element shifts_limit_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/generate_rows.sv:179]
+WARNING: [Synth 8-6014] Unused sequential element returned_all_permutations_internal_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/generate_rows.sv:189]
+WARNING: [Synth 8-6014] Unused sequential element generate_states_from_permutations_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/generate_rows.sv:200]
+WARNING: [Synth 8-6014] Unused sequential element running_sum_6_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/generate_rows.sv:221]
+WARNING: [Synth 8-6014] Unused sequential element running_sum_7_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/generate_rows.sv:222]
+WARNING: [Synth 8-6014] Unused sequential element running_sum_8_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/generate_rows.sv:223]
+WARNING: [Synth 8-6014] Unused sequential element new_data_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/generate_rows.sv:319]
+INFO: [Synth 8-6155] done synthesizing module 'generate_rows' (11#1) [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/generate_rows.sv:7]
+WARNING: [Synth 8-6014] Unused sequential element counter_out_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/iterative_solver_wth_reset.sv:376]
+WARNING: [Synth 8-6014] Unused sequential element started_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/iterative_solver_wth_reset.sv:377]
+WARNING: [Synth 8-6014] Unused sequential element column_number_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/iterative_solver_wth_reset.sv:378]
+WARNING: [Synth 8-6014] Unused sequential element row_number_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/iterative_solver_wth_reset.sv:379]
+WARNING: [Synth 8-6014] Unused sequential element write_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/iterative_solver_wth_reset.sv:380]
+WARNING: [Synth 8-6014] Unused sequential element reset_internal_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/iterative_solver_wth_reset.sv:382]
+WARNING: [Synth 8-6014] Unused sequential element range_h_i_index_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/iterative_solver_wth_reset.sv:385]
+WARNING: [Synth 8-6014] Unused sequential element allowable_counter_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/iterative_solver_wth_reset.sv:410]
+WARNING: [Synth 8-6014] Unused sequential element addr_constraint_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/iterative_solver_wth_reset.sv:413]
+WARNING: [Synth 8-6014] Unused sequential element starter_marker_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/iterative_solver_wth_reset.sv:429]
+WARNING: [Synth 8-6014] Unused sequential element starter_marker_h_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/iterative_solver_wth_reset.sv:430]
+WARNING: [Synth 8-6014] Unused sequential element saving_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/iterative_solver_wth_reset.sv:434]
+WARNING: [Synth 8-6014] Unused sequential element move_to_solving_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/iterative_solver_wth_reset.sv:435]
+WARNING: [Synth 8-6014] Unused sequential element old_index_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/iterative_solver_wth_reset.sv:456]
+WARNING: [Synth 8-6014] Unused sequential element limit_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/iterative_solver_wth_reset.sv:463]
+WARNING: [Synth 8-6014] Unused sequential element write_constraint_column_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/iterative_solver_wth_reset.sv:465]
+WARNING: [Synth 8-6014] Unused sequential element data_to_row_bram_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/iterative_solver_wth_reset.sv:478]
+WARNING: [Synth 8-6014] Unused sequential element write_constraint_row_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/iterative_solver_wth_reset.sv:516]
+WARNING: [Synth 8-6014] Unused sequential element data_to_column_bram_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/iterative_solver_wth_reset.sv:534]
+WARNING: [Synth 8-6014] Unused sequential element write_permutation_count_column_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/iterative_solver_wth_reset.sv:575]
+WARNING: [Synth 8-6014] Unused sequential element write_permutation_count_row_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/iterative_solver_wth_reset.sv:587]
+WARNING: [Synth 8-6014] Unused sequential element data_to_row_permutation_bram_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/iterative_solver_wth_reset.sv:624]
+WARNING: [Synth 8-6014] Unused sequential element write_permutation_column_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/iterative_solver_wth_reset.sv:626]
+WARNING: [Synth 8-6014] Unused sequential element write_permutation_row_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/iterative_solver_wth_reset.sv:627]
+WARNING: [Synth 8-6014] Unused sequential element data_to_column_permutation_bram_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/iterative_solver_wth_reset.sv:634]
+WARNING: [Synth 8-6014] Unused sequential element data_to_permutation_count_row_bram_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/iterative_solver_wth_reset.sv:668]
+WARNING: [Synth 8-6014] Unused sequential element data_to_permutation_count_column_bram_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/iterative_solver_wth_reset.sv:681]
+WARNING: [Synth 8-6014] Unused sequential element addr_row_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/iterative_solver_wth_reset.sv:701]
+WARNING: [Synth 8-6014] Unused sequential element addr_column_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/iterative_solver_wth_reset.sv:702]
+WARNING: [Synth 8-6014] Unused sequential element can_do_seq_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/iterative_solver_wth_reset.sv:736]
+WARNING: [Synth 8-6014] Unused sequential element blob_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/iterative_solver_wth_reset.sv:851]
+WARNING: [Synth 8-6014] Unused sequential element blab_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/iterative_solver_wth_reset.sv:852]
+INFO: [Synth 8-6155] done synthesizing module 'iterative_solver_wth_reset' (12#1) [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/iterative_solver_wth_reset.sv:5]
+INFO: [Synth 8-6157] synthesizing module 'assignments_registry' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/assignments_registry.sv:3]
+	Parameter ADDRESS_SIZE bound to: 31 - type: integer 
+	Parameter SAMPLE_COUNT bound to: 2082 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'assignments_rom' [C:/Users/jules/Documents/nonogram_solver/final_project_current.runs/synth_1/.Xil/Vivado-24920-DESKTOP-64THS4F/realtime/assignments_rom_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'assignments_rom' (13#1) [C:/Users/jules/Documents/nonogram_solver/final_project_current.runs/synth_1/.Xil/Vivado-24920-DESKTOP-64THS4F/realtime/assignments_rom_stub.v:6]
+WARNING: [Synth 8-689] width (32) of port connection 'addra' does not match port width (6) of module 'assignments_rom' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/assignments_registry.sv:46]
+WARNING: [Synth 8-6014] Unused sequential element assignment_buffer_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/assignments_registry.sv:67]
+INFO: [Synth 8-6155] done synthesizing module 'assignments_registry' (14#1) [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/assignments_registry.sv:3]
+WARNING: [Synth 8-6014] Unused sequential element take_in_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:151]
+WARNING: [Synth 8-6014] Unused sequential element assignment_out1_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:162]
+WARNING: [Synth 8-6014] Unused sequential element index_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:164]
+WARNING: [Synth 8-6014] Unused sequential element temporary_storage_reg was removed. 
+INFO: [Synth 8-6155] done synthesizing module 'top_level_solver' (15#1) [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'solved_disp' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/solved_disp.sv:2]
+INFO: [Synth 8-6157] synthesizing module 'ones_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/ones_pixels.v:1]
+	Parameter WIDTH bound to: 16 - type: integer 
+	Parameter HEIGHT bound to: 16 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'small_one_rom' [C:/Users/jules/Documents/nonogram_solver/final_project_current.runs/synth_1/.Xil/Vivado-24920-DESKTOP-64THS4F/realtime/small_one_rom_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'small_one_rom' (16#1) [C:/Users/jules/Documents/nonogram_solver/final_project_current.runs/synth_1/.Xil/Vivado-24920-DESKTOP-64THS4F/realtime/small_one_rom_stub.v:6]
+WARNING: [Synth 8-689] width (16) of port connection 'addra' does not match port width (8) of module 'small_one_rom' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/ones_pixels.v:14]
+INFO: [Synth 8-6157] synthesizing module 'small_one_red_rom' [C:/Users/jules/Documents/nonogram_solver/final_project_current.runs/synth_1/.Xil/Vivado-24920-DESKTOP-64THS4F/realtime/small_one_red_rom_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'small_one_red_rom' (17#1) [C:/Users/jules/Documents/nonogram_solver/final_project_current.runs/synth_1/.Xil/Vivado-24920-DESKTOP-64THS4F/realtime/small_one_red_rom_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'ones_pixels' (18#1) [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/ones_pixels.v:1]
+WARNING: [Synth 8-689] width (13) of port connection 'hcount_in' does not match port width (11) of module 'ones_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/solved_disp.sv:59]
+WARNING: [Synth 8-689] width (13) of port connection 'vcount_in' does not match port width (10) of module 'ones_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/solved_disp.sv:59]
+INFO: [Synth 8-6157] synthesizing module 'twos_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/twos_pixels.sv:1]
+	Parameter WIDTH bound to: 16 - type: integer 
+	Parameter HEIGHT bound to: 16 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'small_two_rom' [C:/Users/jules/Documents/nonogram_solver/final_project_current.runs/synth_1/.Xil/Vivado-24920-DESKTOP-64THS4F/realtime/small_two_rom_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'small_two_rom' (19#1) [C:/Users/jules/Documents/nonogram_solver/final_project_current.runs/synth_1/.Xil/Vivado-24920-DESKTOP-64THS4F/realtime/small_two_rom_stub.v:6]
+WARNING: [Synth 8-689] width (16) of port connection 'addra' does not match port width (8) of module 'small_two_rom' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/twos_pixels.sv:14]
+INFO: [Synth 8-6157] synthesizing module 'small_two_red_rom' [C:/Users/jules/Documents/nonogram_solver/final_project_current.runs/synth_1/.Xil/Vivado-24920-DESKTOP-64THS4F/realtime/small_two_red_rom_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'small_two_red_rom' (20#1) [C:/Users/jules/Documents/nonogram_solver/final_project_current.runs/synth_1/.Xil/Vivado-24920-DESKTOP-64THS4F/realtime/small_two_red_rom_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'twos_pixels' (21#1) [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/twos_pixels.sv:1]
+WARNING: [Synth 8-689] width (13) of port connection 'hcount_in' does not match port width (11) of module 'twos_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/solved_disp.sv:60]
+WARNING: [Synth 8-689] width (13) of port connection 'vcount_in' does not match port width (10) of module 'twos_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/solved_disp.sv:60]
+INFO: [Synth 8-6157] synthesizing module 'threes_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/threes_pixels.sv:1]
+	Parameter WIDTH bound to: 16 - type: integer 
+	Parameter HEIGHT bound to: 16 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'small_three_rom' [C:/Users/jules/Documents/nonogram_solver/final_project_current.runs/synth_1/.Xil/Vivado-24920-DESKTOP-64THS4F/realtime/small_three_rom_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'small_three_rom' (22#1) [C:/Users/jules/Documents/nonogram_solver/final_project_current.runs/synth_1/.Xil/Vivado-24920-DESKTOP-64THS4F/realtime/small_three_rom_stub.v:6]
+WARNING: [Synth 8-689] width (16) of port connection 'addra' does not match port width (8) of module 'small_three_rom' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/threes_pixels.sv:14]
+INFO: [Synth 8-6157] synthesizing module 'small_three_red_rom' [C:/Users/jules/Documents/nonogram_solver/final_project_current.runs/synth_1/.Xil/Vivado-24920-DESKTOP-64THS4F/realtime/small_three_red_rom_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'small_three_red_rom' (23#1) [C:/Users/jules/Documents/nonogram_solver/final_project_current.runs/synth_1/.Xil/Vivado-24920-DESKTOP-64THS4F/realtime/small_three_red_rom_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'threes_pixels' (24#1) [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/threes_pixels.sv:1]
+WARNING: [Synth 8-689] width (13) of port connection 'hcount_in' does not match port width (11) of module 'threes_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/solved_disp.sv:61]
+WARNING: [Synth 8-689] width (13) of port connection 'vcount_in' does not match port width (10) of module 'threes_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/solved_disp.sv:61]
+INFO: [Synth 8-6157] synthesizing module 'fours_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/fours_pixels.sv:1]
+	Parameter WIDTH bound to: 16 - type: integer 
+	Parameter HEIGHT bound to: 16 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'small_four_rom' [C:/Users/jules/Documents/nonogram_solver/final_project_current.runs/synth_1/.Xil/Vivado-24920-DESKTOP-64THS4F/realtime/small_four_rom_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'small_four_rom' (25#1) [C:/Users/jules/Documents/nonogram_solver/final_project_current.runs/synth_1/.Xil/Vivado-24920-DESKTOP-64THS4F/realtime/small_four_rom_stub.v:6]
+WARNING: [Synth 8-689] width (16) of port connection 'addra' does not match port width (8) of module 'small_four_rom' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/fours_pixels.sv:14]
+INFO: [Synth 8-6157] synthesizing module 'small_four_red_rom' [C:/Users/jules/Documents/nonogram_solver/final_project_current.runs/synth_1/.Xil/Vivado-24920-DESKTOP-64THS4F/realtime/small_four_red_rom_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'small_four_red_rom' (26#1) [C:/Users/jules/Documents/nonogram_solver/final_project_current.runs/synth_1/.Xil/Vivado-24920-DESKTOP-64THS4F/realtime/small_four_red_rom_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'fours_pixels' (27#1) [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/fours_pixels.sv:1]
+WARNING: [Synth 8-689] width (13) of port connection 'hcount_in' does not match port width (11) of module 'fours_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/solved_disp.sv:62]
+WARNING: [Synth 8-689] width (13) of port connection 'vcount_in' does not match port width (10) of module 'fours_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/solved_disp.sv:62]
+INFO: [Synth 8-6157] synthesizing module 'fives_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/fives_pixels.sv:1]
+	Parameter WIDTH bound to: 16 - type: integer 
+	Parameter HEIGHT bound to: 16 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'small_five_rom' [C:/Users/jules/Documents/nonogram_solver/final_project_current.runs/synth_1/.Xil/Vivado-24920-DESKTOP-64THS4F/realtime/small_five_rom_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'small_five_rom' (28#1) [C:/Users/jules/Documents/nonogram_solver/final_project_current.runs/synth_1/.Xil/Vivado-24920-DESKTOP-64THS4F/realtime/small_five_rom_stub.v:6]
+WARNING: [Synth 8-689] width (16) of port connection 'addra' does not match port width (8) of module 'small_five_rom' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/fives_pixels.sv:14]
+INFO: [Synth 8-6157] synthesizing module 'small_five_red_rom' [C:/Users/jules/Documents/nonogram_solver/final_project_current.runs/synth_1/.Xil/Vivado-24920-DESKTOP-64THS4F/realtime/small_five_red_rom_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'small_five_red_rom' (29#1) [C:/Users/jules/Documents/nonogram_solver/final_project_current.runs/synth_1/.Xil/Vivado-24920-DESKTOP-64THS4F/realtime/small_five_red_rom_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'fives_pixels' (30#1) [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/fives_pixels.sv:1]
+WARNING: [Synth 8-689] width (13) of port connection 'hcount_in' does not match port width (11) of module 'fives_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/solved_disp.sv:63]
+WARNING: [Synth 8-689] width (13) of port connection 'vcount_in' does not match port width (10) of module 'fives_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/solved_disp.sv:63]
+INFO: [Synth 8-6157] synthesizing module 'sixes_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/sixes_pixels.sv:1]
+	Parameter WIDTH bound to: 16 - type: integer 
+	Parameter HEIGHT bound to: 16 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'small_six_rom' [C:/Users/jules/Documents/nonogram_solver/final_project_current.runs/synth_1/.Xil/Vivado-24920-DESKTOP-64THS4F/realtime/small_six_rom_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'small_six_rom' (31#1) [C:/Users/jules/Documents/nonogram_solver/final_project_current.runs/synth_1/.Xil/Vivado-24920-DESKTOP-64THS4F/realtime/small_six_rom_stub.v:6]
+WARNING: [Synth 8-689] width (16) of port connection 'addra' does not match port width (8) of module 'small_six_rom' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/sixes_pixels.sv:14]
+INFO: [Synth 8-6157] synthesizing module 'small_six_red_rom' [C:/Users/jules/Documents/nonogram_solver/final_project_current.runs/synth_1/.Xil/Vivado-24920-DESKTOP-64THS4F/realtime/small_six_red_rom_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'small_six_red_rom' (32#1) [C:/Users/jules/Documents/nonogram_solver/final_project_current.runs/synth_1/.Xil/Vivado-24920-DESKTOP-64THS4F/realtime/small_six_red_rom_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'sixes_pixels' (33#1) [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/sixes_pixels.sv:1]
+WARNING: [Synth 8-689] width (13) of port connection 'hcount_in' does not match port width (11) of module 'sixes_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/solved_disp.sv:64]
+WARNING: [Synth 8-689] width (13) of port connection 'vcount_in' does not match port width (10) of module 'sixes_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/solved_disp.sv:64]
+INFO: [Synth 8-6157] synthesizing module 'sevens_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/sevens_pixels.sv:1]
+	Parameter WIDTH bound to: 16 - type: integer 
+	Parameter HEIGHT bound to: 16 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'small_seven_rom' [C:/Users/jules/Documents/nonogram_solver/final_project_current.runs/synth_1/.Xil/Vivado-24920-DESKTOP-64THS4F/realtime/small_seven_rom_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'small_seven_rom' (34#1) [C:/Users/jules/Documents/nonogram_solver/final_project_current.runs/synth_1/.Xil/Vivado-24920-DESKTOP-64THS4F/realtime/small_seven_rom_stub.v:6]
+WARNING: [Synth 8-689] width (16) of port connection 'addra' does not match port width (8) of module 'small_seven_rom' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/sevens_pixels.sv:14]
+INFO: [Synth 8-6157] synthesizing module 'small_seven_red_rom' [C:/Users/jules/Documents/nonogram_solver/final_project_current.runs/synth_1/.Xil/Vivado-24920-DESKTOP-64THS4F/realtime/small_seven_red_rom_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'small_seven_red_rom' (35#1) [C:/Users/jules/Documents/nonogram_solver/final_project_current.runs/synth_1/.Xil/Vivado-24920-DESKTOP-64THS4F/realtime/small_seven_red_rom_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'sevens_pixels' (36#1) [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/sevens_pixels.sv:1]
+WARNING: [Synth 8-689] width (13) of port connection 'hcount_in' does not match port width (11) of module 'sevens_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/solved_disp.sv:65]
+WARNING: [Synth 8-689] width (13) of port connection 'vcount_in' does not match port width (10) of module 'sevens_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/solved_disp.sv:65]
+INFO: [Synth 8-6157] synthesizing module 'eights_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/eights_pixels.sv:1]
+	Parameter WIDTH bound to: 16 - type: integer 
+	Parameter HEIGHT bound to: 16 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'small_eight_rom' [C:/Users/jules/Documents/nonogram_solver/final_project_current.runs/synth_1/.Xil/Vivado-24920-DESKTOP-64THS4F/realtime/small_eight_rom_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'small_eight_rom' (37#1) [C:/Users/jules/Documents/nonogram_solver/final_project_current.runs/synth_1/.Xil/Vivado-24920-DESKTOP-64THS4F/realtime/small_eight_rom_stub.v:6]
+WARNING: [Synth 8-689] width (16) of port connection 'addra' does not match port width (8) of module 'small_eight_rom' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/eights_pixels.sv:14]
+INFO: [Synth 8-6157] synthesizing module 'small_eight_red_rom' [C:/Users/jules/Documents/nonogram_solver/final_project_current.runs/synth_1/.Xil/Vivado-24920-DESKTOP-64THS4F/realtime/small_eight_red_rom_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'small_eight_red_rom' (38#1) [C:/Users/jules/Documents/nonogram_solver/final_project_current.runs/synth_1/.Xil/Vivado-24920-DESKTOP-64THS4F/realtime/small_eight_red_rom_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'eights_pixels' (39#1) [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/eights_pixels.sv:1]
+WARNING: [Synth 8-689] width (13) of port connection 'hcount_in' does not match port width (11) of module 'eights_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/solved_disp.sv:66]
+WARNING: [Synth 8-689] width (13) of port connection 'vcount_in' does not match port width (10) of module 'eights_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/solved_disp.sv:66]
+INFO: [Synth 8-6157] synthesizing module 'nines_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/nines_pixels.sv:1]
+	Parameter WIDTH bound to: 16 - type: integer 
+	Parameter HEIGHT bound to: 16 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'small_nine_rom' [C:/Users/jules/Documents/nonogram_solver/final_project_current.runs/synth_1/.Xil/Vivado-24920-DESKTOP-64THS4F/realtime/small_nine_rom_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'small_nine_rom' (40#1) [C:/Users/jules/Documents/nonogram_solver/final_project_current.runs/synth_1/.Xil/Vivado-24920-DESKTOP-64THS4F/realtime/small_nine_rom_stub.v:6]
+WARNING: [Synth 8-689] width (16) of port connection 'addra' does not match port width (8) of module 'small_nine_rom' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/nines_pixels.sv:14]
+INFO: [Synth 8-6157] synthesizing module 'small_nine_red_rom' [C:/Users/jules/Documents/nonogram_solver/final_project_current.runs/synth_1/.Xil/Vivado-24920-DESKTOP-64THS4F/realtime/small_nine_red_rom_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'small_nine_red_rom' (41#1) [C:/Users/jules/Documents/nonogram_solver/final_project_current.runs/synth_1/.Xil/Vivado-24920-DESKTOP-64THS4F/realtime/small_nine_red_rom_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'nines_pixels' (42#1) [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/nines_pixels.sv:1]
+WARNING: [Synth 8-689] width (13) of port connection 'hcount_in' does not match port width (11) of module 'nines_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/solved_disp.sv:67]
+WARNING: [Synth 8-689] width (13) of port connection 'vcount_in' does not match port width (10) of module 'nines_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/solved_disp.sv:67]
+WARNING: [Synth 8-5856] 3D RAM constraints_reg  for this pattern/configuration is not supported. This will most likely be implemented in registers
+WARNING: [Synth 8-5856] 3D RAM vals_reg  for this pattern/configuration is not supported. This will most likely be implemented in registers
+WARNING: [Synth 8-6014] Unused sequential element count_grid_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/solved_disp.sv:175]
+WARNING: [Synth 8-6014] Unused sequential element done_old_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/solved_disp.sv:177]
+WARNING: [Synth 8-6014] Unused sequential element receiving_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/solved_disp.sv:178]
+INFO: [Synth 8-6155] done synthesizing module 'solved_disp' (43#1) [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/solved_disp.sv:2]
+INFO: [Synth 8-6157] synthesizing module 'manual_disp_10x10' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_10x10.sv:2]
+WARNING: [Synth 8-689] width (13) of port connection 'hcount_in' does not match port width (11) of module 'ones_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_10x10.sv:56]
+WARNING: [Synth 8-689] width (13) of port connection 'vcount_in' does not match port width (10) of module 'ones_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_10x10.sv:56]
+WARNING: [Synth 8-689] width (13) of port connection 'hcount_in' does not match port width (11) of module 'twos_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_10x10.sv:57]
+WARNING: [Synth 8-689] width (13) of port connection 'vcount_in' does not match port width (10) of module 'twos_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_10x10.sv:57]
+WARNING: [Synth 8-689] width (13) of port connection 'hcount_in' does not match port width (11) of module 'threes_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_10x10.sv:58]
+WARNING: [Synth 8-689] width (13) of port connection 'vcount_in' does not match port width (10) of module 'threes_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_10x10.sv:58]
+WARNING: [Synth 8-689] width (13) of port connection 'hcount_in' does not match port width (11) of module 'fours_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_10x10.sv:59]
+WARNING: [Synth 8-689] width (13) of port connection 'vcount_in' does not match port width (10) of module 'fours_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_10x10.sv:59]
+WARNING: [Synth 8-689] width (13) of port connection 'hcount_in' does not match port width (11) of module 'fives_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_10x10.sv:60]
+WARNING: [Synth 8-689] width (13) of port connection 'vcount_in' does not match port width (10) of module 'fives_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_10x10.sv:60]
+WARNING: [Synth 8-689] width (13) of port connection 'hcount_in' does not match port width (11) of module 'sixes_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_10x10.sv:61]
+WARNING: [Synth 8-689] width (13) of port connection 'vcount_in' does not match port width (10) of module 'sixes_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_10x10.sv:61]
+WARNING: [Synth 8-689] width (13) of port connection 'hcount_in' does not match port width (11) of module 'sevens_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_10x10.sv:62]
+WARNING: [Synth 8-689] width (13) of port connection 'vcount_in' does not match port width (10) of module 'sevens_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_10x10.sv:62]
+WARNING: [Synth 8-689] width (13) of port connection 'hcount_in' does not match port width (11) of module 'eights_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_10x10.sv:63]
+WARNING: [Synth 8-689] width (13) of port connection 'vcount_in' does not match port width (10) of module 'eights_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_10x10.sv:63]
+WARNING: [Synth 8-689] width (13) of port connection 'hcount_in' does not match port width (11) of module 'nines_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_10x10.sv:64]
+WARNING: [Synth 8-689] width (13) of port connection 'vcount_in' does not match port width (10) of module 'nines_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_10x10.sv:64]
+WARNING: [Synth 8-5856] 3D RAM constraints_reg  for this pattern/configuration is not supported. This will most likely be implemented in registers
+WARNING: [Synth 8-5856] 3D RAM vals_reg  for this pattern/configuration is not supported. This will most likely be implemented in registers
+WARNING: [Synth 8-6014] Unused sequential element count_grid_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_10x10.sv:163]
+WARNING: [Synth 8-6014] Unused sequential element receiving_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_10x10.sv:165]
+INFO: [Synth 8-6155] done synthesizing module 'manual_disp_10x10' (44#1) [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_10x10.sv:2]
+INFO: [Synth 8-6157] synthesizing module 'manual_disp_30_40' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_30_40.sv:2]
+WARNING: [Synth 8-689] width (13) of port connection 'hcount_in' does not match port width (11) of module 'ones_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_30_40.sv:55]
+WARNING: [Synth 8-689] width (13) of port connection 'vcount_in' does not match port width (10) of module 'ones_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_30_40.sv:55]
+WARNING: [Synth 8-689] width (13) of port connection 'hcount_in' does not match port width (11) of module 'twos_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_30_40.sv:56]
+WARNING: [Synth 8-689] width (13) of port connection 'vcount_in' does not match port width (10) of module 'twos_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_30_40.sv:56]
+WARNING: [Synth 8-689] width (13) of port connection 'hcount_in' does not match port width (11) of module 'threes_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_30_40.sv:57]
+WARNING: [Synth 8-689] width (13) of port connection 'vcount_in' does not match port width (10) of module 'threes_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_30_40.sv:57]
+WARNING: [Synth 8-689] width (13) of port connection 'hcount_in' does not match port width (11) of module 'fours_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_30_40.sv:58]
+WARNING: [Synth 8-689] width (13) of port connection 'vcount_in' does not match port width (10) of module 'fours_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_30_40.sv:58]
+WARNING: [Synth 8-689] width (13) of port connection 'hcount_in' does not match port width (11) of module 'fives_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_30_40.sv:59]
+WARNING: [Synth 8-689] width (13) of port connection 'vcount_in' does not match port width (10) of module 'fives_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_30_40.sv:59]
+WARNING: [Synth 8-689] width (13) of port connection 'hcount_in' does not match port width (11) of module 'sixes_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_30_40.sv:60]
+WARNING: [Synth 8-689] width (13) of port connection 'vcount_in' does not match port width (10) of module 'sixes_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_30_40.sv:60]
+WARNING: [Synth 8-689] width (13) of port connection 'hcount_in' does not match port width (11) of module 'sevens_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_30_40.sv:61]
+WARNING: [Synth 8-689] width (13) of port connection 'vcount_in' does not match port width (10) of module 'sevens_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_30_40.sv:61]
+WARNING: [Synth 8-689] width (13) of port connection 'hcount_in' does not match port width (11) of module 'eights_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_30_40.sv:62]
+WARNING: [Synth 8-689] width (13) of port connection 'vcount_in' does not match port width (10) of module 'eights_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_30_40.sv:62]
+WARNING: [Synth 8-689] width (13) of port connection 'hcount_in' does not match port width (11) of module 'nines_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_30_40.sv:63]
+WARNING: [Synth 8-689] width (13) of port connection 'vcount_in' does not match port width (10) of module 'nines_pixels' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_30_40.sv:63]
+WARNING: [Synth 8-5856] 3D RAM constraints_reg  for this pattern/configuration is not supported. This will most likely be implemented in registers
+WARNING: [Synth 8-5856] 3D RAM vals_reg  for this pattern/configuration is not supported. This will most likely be implemented in registers
+WARNING: [Synth 8-6014] Unused sequential element receiving_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_30_40.sv:154]
+INFO: [Synth 8-6155] done synthesizing module 'manual_disp_30_40' (45#1) [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_30_40.sv:2]
+WARNING: [Synth 8-6014] Unused sequential element state_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_fresher.sv:360]
+WARNING: [Synth 8-6014] Unused sequential element index_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_fresher.sv:361]
+WARNING: [Synth 8-6014] Unused sequential element index_rescale_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_fresher.sv:362]
+WARNING: [Synth 8-6014] Unused sequential element started_filter_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_fresher.sv:363]
+WARNING: [Synth 8-6014] Unused sequential element index_c_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_fresher.sv:364]
+WARNING: [Synth 8-6014] Unused sequential element generator_started_reg was removed.  [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_fresher.sv:365]
+WARNING: [Synth 8-3848] Net xclk_count in module/entity top_level_fresher does not have driver. [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_fresher.sv:76]
+INFO: [Synth 8-6155] done synthesizing module 'top_level_fresher' (46#1) [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_fresher.sv:3]
+WARNING: [Synth 8-3917] design top_level_fresher has port dp driven by constant 1
+WARNING: [Synth 8-3331] design manual_disp_30_40 has unconnected port switch[15]
+WARNING: [Synth 8-3331] design manual_disp_30_40 has unconnected port switch[14]
+WARNING: [Synth 8-3331] design manual_disp_30_40 has unconnected port switch[13]
+WARNING: [Synth 8-3331] design manual_disp_30_40 has unconnected port switch[12]
+WARNING: [Synth 8-3331] design manual_disp_30_40 has unconnected port switch[11]
+WARNING: [Synth 8-3331] design manual_disp_30_40 has unconnected port switch[10]
+WARNING: [Synth 8-3331] design manual_disp_30_40 has unconnected port switch[9]
+WARNING: [Synth 8-3331] design manual_disp_30_40 has unconnected port switch[8]
+WARNING: [Synth 8-3331] design manual_disp_30_40 has unconnected port switch[7]
+WARNING: [Synth 8-3331] design manual_disp_30_40 has unconnected port switch[6]
+WARNING: [Synth 8-3331] design manual_disp_30_40 has unconnected port switch[5]
+WARNING: [Synth 8-3331] design manual_disp_30_40 has unconnected port switch[4]
+WARNING: [Synth 8-3331] design manual_disp_30_40 has unconnected port switch[3]
+WARNING: [Synth 8-3331] design manual_disp_30_40 has unconnected port switch[2]
+WARNING: [Synth 8-3331] design manual_disp_30_40 has unconnected port switch[1]
+WARNING: [Synth 8-3331] design manual_disp_30_40 has unconnected port switch[0]
+WARNING: [Synth 8-3331] design manual_disp_10x10 has unconnected port switch[15]
+WARNING: [Synth 8-3331] design manual_disp_10x10 has unconnected port switch[14]
+WARNING: [Synth 8-3331] design manual_disp_10x10 has unconnected port switch[13]
+WARNING: [Synth 8-3331] design manual_disp_10x10 has unconnected port switch[12]
+WARNING: [Synth 8-3331] design manual_disp_10x10 has unconnected port switch[11]
+WARNING: [Synth 8-3331] design manual_disp_10x10 has unconnected port switch[10]
+WARNING: [Synth 8-3331] design manual_disp_10x10 has unconnected port switch[9]
+WARNING: [Synth 8-3331] design manual_disp_10x10 has unconnected port switch[8]
+WARNING: [Synth 8-3331] design manual_disp_10x10 has unconnected port switch[7]
+WARNING: [Synth 8-3331] design manual_disp_10x10 has unconnected port switch[6]
+WARNING: [Synth 8-3331] design manual_disp_10x10 has unconnected port switch[5]
+WARNING: [Synth 8-3331] design manual_disp_10x10 has unconnected port switch[4]
+WARNING: [Synth 8-3331] design manual_disp_10x10 has unconnected port switch[3]
+WARNING: [Synth 8-3331] design manual_disp_10x10 has unconnected port switch[2]
+WARNING: [Synth 8-3331] design manual_disp_10x10 has unconnected port switch[1]
+WARNING: [Synth 8-3331] design manual_disp_10x10 has unconnected port switch[0]
+WARNING: [Synth 8-3331] design solved_disp has unconnected port grid_vals4[5]
+WARNING: [Synth 8-3331] design solved_disp has unconnected port grid_vals4[0]
+WARNING: [Synth 8-3331] design solved_disp has unconnected port grid_vals5[0]
+WARNING: [Synth 8-3331] design solved_disp has unconnected port grid_vals10[5]
+WARNING: [Synth 8-3331] design solved_disp has unconnected port switch[15]
+WARNING: [Synth 8-3331] design solved_disp has unconnected port switch[14]
+WARNING: [Synth 8-3331] design solved_disp has unconnected port switch[13]
+WARNING: [Synth 8-3331] design solved_disp has unconnected port switch[12]
+WARNING: [Synth 8-3331] design solved_disp has unconnected port switch[11]
+WARNING: [Synth 8-3331] design solved_disp has unconnected port switch[10]
+WARNING: [Synth 8-3331] design solved_disp has unconnected port switch[9]
+WARNING: [Synth 8-3331] design solved_disp has unconnected port switch[8]
+WARNING: [Synth 8-3331] design solved_disp has unconnected port switch[7]
+WARNING: [Synth 8-3331] design solved_disp has unconnected port switch[6]
+WARNING: [Synth 8-3331] design solved_disp has unconnected port switch[5]
+WARNING: [Synth 8-3331] design solved_disp has unconnected port switch[4]
+WARNING: [Synth 8-3331] design solved_disp has unconnected port switch[3]
+WARNING: [Synth 8-3331] design solved_disp has unconnected port switch[2]
+WARNING: [Synth 8-3331] design solved_disp has unconnected port switch[1]
+WARNING: [Synth 8-3331] design solved_disp has unconnected port switch[0]
+WARNING: [Synth 8-3331] design iterative_solver_wth_reset has unconnected port column_number_in[3]
+WARNING: [Synth 8-3331] design iterative_solver_wth_reset has unconnected port column_number_in[2]
+WARNING: [Synth 8-3331] design iterative_solver_wth_reset has unconnected port column_number_in[1]
+WARNING: [Synth 8-3331] design iterative_solver_wth_reset has unconnected port column_number_in[0]
+WARNING: [Synth 8-3331] design iterative_solver_wth_reset has unconnected port row_number_in[3]
+WARNING: [Synth 8-3331] design iterative_solver_wth_reset has unconnected port row_number_in[2]
+WARNING: [Synth 8-3331] design iterative_solver_wth_reset has unconnected port row_number_in[1]
+WARNING: [Synth 8-3331] design iterative_solver_wth_reset has unconnected port row_number_in[0]
+WARNING: [Synth 8-3331] design top_level_solver has unconnected port sw[15]
+WARNING: [Synth 8-3331] design top_level_solver has unconnected port sw[14]
+WARNING: [Synth 8-3331] design top_level_solver has unconnected port sw[13]
+WARNING: [Synth 8-3331] design top_level_solver has unconnected port sw[12]
+WARNING: [Synth 8-3331] design top_level_solver has unconnected port sw[11]
+WARNING: [Synth 8-3331] design top_level_solver has unconnected port sw[10]
+WARNING: [Synth 8-3331] design top_level_solver has unconnected port sw[9]
+WARNING: [Synth 8-3331] design top_level_solver has unconnected port sw[8]
+WARNING: [Synth 8-3331] design top_level_solver has unconnected port sw[7]
+WARNING: [Synth 8-3331] design top_level_solver has unconnected port sw[6]
+WARNING: [Synth 8-3331] design top_level_solver has unconnected port sw[5]
+WARNING: [Synth 8-3331] design top_level_solver has unconnected port sw[4]
+WARNING: [Synth 8-3331] design top_level_solver has unconnected port sw[3]
+WARNING: [Synth 8-3331] design top_level_solver has unconnected port sw[2]
+WARNING: [Synth 8-3331] design top_level_solver has unconnected port sw[1]
+WARNING: [Synth 8-3331] design top_level_solver has unconnected port sw[0]
+WARNING: [Synth 8-3331] design top_level_fresher has unconnected port led[15]
+WARNING: [Synth 8-3331] design top_level_fresher has unconnected port led[14]
+WARNING: [Synth 8-3331] design top_level_fresher has unconnected port led[13]
+WARNING: [Synth 8-3331] design top_level_fresher has unconnected port led[12]
+WARNING: [Synth 8-3331] design top_level_fresher has unconnected port led[11]
+WARNING: [Synth 8-3331] design top_level_fresher has unconnected port led[10]
+WARNING: [Synth 8-3331] design top_level_fresher has unconnected port ja[7]
+WARNING: [Synth 8-3331] design top_level_fresher has unconnected port ja[6]
+WARNING: [Synth 8-3331] design top_level_fresher has unconnected port ja[5]
+WARNING: [Synth 8-3331] design top_level_fresher has unconnected port ja[4]
+WARNING: [Synth 8-3331] design top_level_fresher has unconnected port ja[3]
+WARNING: [Synth 8-3331] design top_level_fresher has unconnected port ja[2]
+WARNING: [Synth 8-3331] design top_level_fresher has unconnected port ja[1]
+WARNING: [Synth 8-3331] design top_level_fresher has unconnected port ja[0]
+WARNING: [Synth 8-3331] design top_level_fresher has unconnected port jb[2]
+WARNING: [Synth 8-3331] design top_level_fresher has unconnected port jb[1]
+WARNING: [Synth 8-3331] design top_level_fresher has unconnected port jb[0]
+WARNING: [Synth 8-3331] design top_level_fresher has unconnected port jd[2]
+WARNING: [Synth 8-3331] design top_level_fresher has unconnected port jd[1]
+WARNING: [Synth 8-3331] design top_level_fresher has unconnected port jd[0]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:01:41 ; elapsed = 00:01:42 . Memory (MB): peak = 1870.254 ; gain = 1211.879
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:50 ; elapsed = 00:01:51 . Memory (MB): peak = 1888.043 ; gain = 1229.668
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:01:50 ; elapsed = 00:01:51 . Memory (MB): peak = 1888.043 ; gain = 1229.668
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.714 . Memory (MB): peak = 1888.043 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 1 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 1 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_one_rom/small_one_rom/small_one_rom_in_context.xdc] for cell 'mysolved_disp/one/rom1'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_one_rom/small_one_rom/small_one_rom_in_context.xdc] for cell 'mysolved_disp/one/rom1'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_one_rom/small_one_rom/small_one_rom_in_context.xdc] for cell 'mymanual10x10/one/rom1'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_one_rom/small_one_rom/small_one_rom_in_context.xdc] for cell 'mymanual10x10/one/rom1'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_one_rom/small_one_rom/small_one_rom_in_context.xdc] for cell 'mymanual30_40/one/rom1'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_one_rom/small_one_rom/small_one_rom_in_context.xdc] for cell 'mymanual30_40/one/rom1'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_one_red_rom/small_one_red_rom/small_one_red_rom_in_context.xdc] for cell 'mysolved_disp/one/rcm'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_one_red_rom/small_one_red_rom/small_one_red_rom_in_context.xdc] for cell 'mysolved_disp/one/rcm'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_one_red_rom/small_one_red_rom/small_one_red_rom_in_context.xdc] for cell 'mymanual10x10/one/rcm'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_one_red_rom/small_one_red_rom/small_one_red_rom_in_context.xdc] for cell 'mymanual10x10/one/rcm'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_one_red_rom/small_one_red_rom/small_one_red_rom_in_context.xdc] for cell 'mymanual30_40/one/rcm'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_one_red_rom/small_one_red_rom/small_one_red_rom_in_context.xdc] for cell 'mymanual30_40/one/rcm'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_two_rom/small_two_rom/small_two_rom_in_context.xdc] for cell 'mysolved_disp/two/rom1'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_two_rom/small_two_rom/small_two_rom_in_context.xdc] for cell 'mysolved_disp/two/rom1'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_two_rom/small_two_rom/small_two_rom_in_context.xdc] for cell 'mymanual10x10/two/rom1'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_two_rom/small_two_rom/small_two_rom_in_context.xdc] for cell 'mymanual10x10/two/rom1'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_two_rom/small_two_rom/small_two_rom_in_context.xdc] for cell 'mymanual30_40/two/rom1'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_two_rom/small_two_rom/small_two_rom_in_context.xdc] for cell 'mymanual30_40/two/rom1'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_two_red_rom/small_two_red_rom/small_two_red_rom_in_context.xdc] for cell 'mysolved_disp/two/rcm'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_two_red_rom/small_two_red_rom/small_two_red_rom_in_context.xdc] for cell 'mysolved_disp/two/rcm'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_two_red_rom/small_two_red_rom/small_two_red_rom_in_context.xdc] for cell 'mymanual10x10/two/rcm'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_two_red_rom/small_two_red_rom/small_two_red_rom_in_context.xdc] for cell 'mymanual10x10/two/rcm'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_two_red_rom/small_two_red_rom/small_two_red_rom_in_context.xdc] for cell 'mymanual30_40/two/rcm'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_two_red_rom/small_two_red_rom/small_two_red_rom_in_context.xdc] for cell 'mymanual30_40/two/rcm'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_three_red_rom/small_three_red_rom/small_three_red_rom_in_context.xdc] for cell 'mysolved_disp/three/rcm'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_three_red_rom/small_three_red_rom/small_three_red_rom_in_context.xdc] for cell 'mysolved_disp/three/rcm'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_three_red_rom/small_three_red_rom/small_three_red_rom_in_context.xdc] for cell 'mymanual10x10/three/rcm'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_three_red_rom/small_three_red_rom/small_three_red_rom_in_context.xdc] for cell 'mymanual10x10/three/rcm'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_three_red_rom/small_three_red_rom/small_three_red_rom_in_context.xdc] for cell 'mymanual30_40/three/rcm'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_three_red_rom/small_three_red_rom/small_three_red_rom_in_context.xdc] for cell 'mymanual30_40/three/rcm'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_four_rom/small_four_rom/small_four_rom_in_context.xdc] for cell 'mysolved_disp/four/rom1'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_four_rom/small_four_rom/small_four_rom_in_context.xdc] for cell 'mysolved_disp/four/rom1'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_four_rom/small_four_rom/small_four_rom_in_context.xdc] for cell 'mymanual10x10/four/rom1'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_four_rom/small_four_rom/small_four_rom_in_context.xdc] for cell 'mymanual10x10/four/rom1'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_four_rom/small_four_rom/small_four_rom_in_context.xdc] for cell 'mymanual30_40/four/rom1'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_four_rom/small_four_rom/small_four_rom_in_context.xdc] for cell 'mymanual30_40/four/rom1'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_three_rom/small_three_rom/small_three_rom_in_context.xdc] for cell 'mysolved_disp/three/rom1'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_three_rom/small_three_rom/small_three_rom_in_context.xdc] for cell 'mysolved_disp/three/rom1'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_three_rom/small_three_rom/small_three_rom_in_context.xdc] for cell 'mymanual10x10/three/rom1'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_three_rom/small_three_rom/small_three_rom_in_context.xdc] for cell 'mymanual10x10/three/rom1'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_three_rom/small_three_rom/small_three_rom_in_context.xdc] for cell 'mymanual30_40/three/rom1'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_three_rom/small_three_rom/small_three_rom_in_context.xdc] for cell 'mymanual30_40/three/rom1'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_four_red_rom/small_four_red_rom/small_four_red_rom_in_context.xdc] for cell 'mysolved_disp/four/rcm'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_four_red_rom/small_four_red_rom/small_four_red_rom_in_context.xdc] for cell 'mysolved_disp/four/rcm'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_four_red_rom/small_four_red_rom/small_four_red_rom_in_context.xdc] for cell 'mymanual10x10/four/rcm'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_four_red_rom/small_four_red_rom/small_four_red_rom_in_context.xdc] for cell 'mymanual10x10/four/rcm'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_four_red_rom/small_four_red_rom/small_four_red_rom_in_context.xdc] for cell 'mymanual30_40/four/rcm'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_four_red_rom/small_four_red_rom/small_four_red_rom_in_context.xdc] for cell 'mymanual30_40/four/rcm'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_five_rom/small_five_rom/small_five_rom_in_context.xdc] for cell 'mysolved_disp/five/rom1'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_five_rom/small_five_rom/small_five_rom_in_context.xdc] for cell 'mysolved_disp/five/rom1'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_five_rom/small_five_rom/small_five_rom_in_context.xdc] for cell 'mymanual10x10/five/rom1'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_five_rom/small_five_rom/small_five_rom_in_context.xdc] for cell 'mymanual10x10/five/rom1'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_five_rom/small_five_rom/small_five_rom_in_context.xdc] for cell 'mymanual30_40/five/rom1'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_five_rom/small_five_rom/small_five_rom_in_context.xdc] for cell 'mymanual30_40/five/rom1'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_five_red_rom/small_five_red_rom/small_five_red_rom_in_context.xdc] for cell 'mysolved_disp/five/rcm'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_five_red_rom/small_five_red_rom/small_five_red_rom_in_context.xdc] for cell 'mysolved_disp/five/rcm'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_five_red_rom/small_five_red_rom/small_five_red_rom_in_context.xdc] for cell 'mymanual10x10/five/rcm'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_five_red_rom/small_five_red_rom/small_five_red_rom_in_context.xdc] for cell 'mymanual10x10/five/rcm'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_five_red_rom/small_five_red_rom/small_five_red_rom_in_context.xdc] for cell 'mymanual30_40/five/rcm'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_five_red_rom/small_five_red_rom/small_five_red_rom_in_context.xdc] for cell 'mymanual30_40/five/rcm'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_six_rom/small_six_rom/small_six_rom_in_context.xdc] for cell 'mysolved_disp/six/rom1'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_six_rom/small_six_rom/small_six_rom_in_context.xdc] for cell 'mysolved_disp/six/rom1'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_six_rom/small_six_rom/small_six_rom_in_context.xdc] for cell 'mymanual10x10/six/rom1'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_six_rom/small_six_rom/small_six_rom_in_context.xdc] for cell 'mymanual10x10/six/rom1'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_six_rom/small_six_rom/small_six_rom_in_context.xdc] for cell 'mymanual30_40/six/rom1'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_six_rom/small_six_rom/small_six_rom_in_context.xdc] for cell 'mymanual30_40/six/rom1'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_six_red_rom/small_six_red_rom/small_six_red_rom_in_context.xdc] for cell 'mysolved_disp/six/rcm'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_six_red_rom/small_six_red_rom/small_six_red_rom_in_context.xdc] for cell 'mysolved_disp/six/rcm'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_six_red_rom/small_six_red_rom/small_six_red_rom_in_context.xdc] for cell 'mymanual10x10/six/rcm'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_six_red_rom/small_six_red_rom/small_six_red_rom_in_context.xdc] for cell 'mymanual10x10/six/rcm'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_six_red_rom/small_six_red_rom/small_six_red_rom_in_context.xdc] for cell 'mymanual30_40/six/rcm'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_six_red_rom/small_six_red_rom/small_six_red_rom_in_context.xdc] for cell 'mymanual30_40/six/rcm'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_seven_rom/small_seven_rom/small_seven_rom_in_context.xdc] for cell 'mysolved_disp/seven/rom1'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_seven_rom/small_seven_rom/small_seven_rom_in_context.xdc] for cell 'mysolved_disp/seven/rom1'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_seven_rom/small_seven_rom/small_seven_rom_in_context.xdc] for cell 'mymanual10x10/seven/rom1'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_seven_rom/small_seven_rom/small_seven_rom_in_context.xdc] for cell 'mymanual10x10/seven/rom1'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_seven_rom/small_seven_rom/small_seven_rom_in_context.xdc] for cell 'mymanual30_40/seven/rom1'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_seven_rom/small_seven_rom/small_seven_rom_in_context.xdc] for cell 'mymanual30_40/seven/rom1'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_seven_red_rom/small_seven_red_rom/small_seven_red_rom_in_context.xdc] for cell 'mysolved_disp/seven/rcm'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_seven_red_rom/small_seven_red_rom/small_seven_red_rom_in_context.xdc] for cell 'mysolved_disp/seven/rcm'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_seven_red_rom/small_seven_red_rom/small_seven_red_rom_in_context.xdc] for cell 'mymanual10x10/seven/rcm'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_seven_red_rom/small_seven_red_rom/small_seven_red_rom_in_context.xdc] for cell 'mymanual10x10/seven/rcm'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_seven_red_rom/small_seven_red_rom/small_seven_red_rom_in_context.xdc] for cell 'mymanual30_40/seven/rcm'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_seven_red_rom/small_seven_red_rom/small_seven_red_rom_in_context.xdc] for cell 'mymanual30_40/seven/rcm'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_eight_rom/small_eight_rom/small_eight_rom_in_context.xdc] for cell 'mysolved_disp/eight/rom1'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_eight_rom/small_eight_rom/small_eight_rom_in_context.xdc] for cell 'mysolved_disp/eight/rom1'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_eight_rom/small_eight_rom/small_eight_rom_in_context.xdc] for cell 'mymanual10x10/eight/rom1'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_eight_rom/small_eight_rom/small_eight_rom_in_context.xdc] for cell 'mymanual10x10/eight/rom1'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_eight_rom/small_eight_rom/small_eight_rom_in_context.xdc] for cell 'mymanual30_40/eight/rom1'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_eight_rom/small_eight_rom/small_eight_rom_in_context.xdc] for cell 'mymanual30_40/eight/rom1'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_eight_red_rom/small_eight_red_rom/small_eight_red_rom_in_context.xdc] for cell 'mysolved_disp/eight/rcm'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_eight_red_rom/small_eight_red_rom/small_eight_red_rom_in_context.xdc] for cell 'mysolved_disp/eight/rcm'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_eight_red_rom/small_eight_red_rom/small_eight_red_rom_in_context.xdc] for cell 'mymanual10x10/eight/rcm'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_eight_red_rom/small_eight_red_rom/small_eight_red_rom_in_context.xdc] for cell 'mymanual10x10/eight/rcm'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_eight_red_rom/small_eight_red_rom/small_eight_red_rom_in_context.xdc] for cell 'mymanual30_40/eight/rcm'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_eight_red_rom/small_eight_red_rom/small_eight_red_rom_in_context.xdc] for cell 'mymanual30_40/eight/rcm'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_nine_rom/small_nine_rom/small_nine_rom_in_context.xdc] for cell 'mysolved_disp/nine/rom1'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_nine_rom/small_nine_rom/small_nine_rom_in_context.xdc] for cell 'mysolved_disp/nine/rom1'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_nine_rom/small_nine_rom/small_nine_rom_in_context.xdc] for cell 'mymanual10x10/nine/rom1'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_nine_rom/small_nine_rom/small_nine_rom_in_context.xdc] for cell 'mymanual10x10/nine/rom1'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_nine_rom/small_nine_rom/small_nine_rom_in_context.xdc] for cell 'mymanual30_40/nine/rom1'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_nine_rom/small_nine_rom/small_nine_rom_in_context.xdc] for cell 'mymanual30_40/nine/rom1'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_nine_red_rom/small_nine_red_rom/small_nine_red_rom_in_context.xdc] for cell 'mysolved_disp/nine/rcm'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_nine_red_rom/small_nine_red_rom/small_nine_red_rom_in_context.xdc] for cell 'mysolved_disp/nine/rcm'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_nine_red_rom/small_nine_red_rom/small_nine_red_rom_in_context.xdc] for cell 'mymanual10x10/nine/rcm'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_nine_red_rom/small_nine_red_rom/small_nine_red_rom_in_context.xdc] for cell 'mymanual10x10/nine/rcm'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_nine_red_rom/small_nine_red_rom/small_nine_red_rom_in_context.xdc] for cell 'mymanual30_40/nine/rcm'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/small_nine_red_rom/small_nine_red_rom/small_nine_red_rom_in_context.xdc] for cell 'mymanual30_40/nine/rcm'
+Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/assignments_rom/assignments_rom/assignments_rom_in_context.xdc] for cell 'my_top_level_solver/my_assignments_registry/my_assignment_rom'
+Finished Parsing XDC File [c:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/ip/assignments_rom/assignments_rom/assignments_rom_in_context.xdc] for cell 'my_top_level_solver/my_assignments_registry/my_assignment_rom'
+Parsing XDC File [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/constrs_1/new/constraints.xdc]
+Finished Parsing XDC File [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/constrs_1/new/constraints.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/constrs_1/new/constraints.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/top_level_fresher_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/top_level_fresher_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+INFO: [Timing 38-2] Deriving generated clocks
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.013 . Memory (MB): peak = 1888.043 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.258 . Memory (MB): peak = 1888.043 ; gain = 0.000
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'my_top_level_solver/my_assignments_registry/my_assignment_rom' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mymanual10x10/eight/rcm' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mymanual10x10/eight/rom1' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mymanual10x10/five/rcm' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mymanual10x10/five/rom1' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mymanual10x10/four/rcm' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mymanual10x10/four/rom1' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mymanual10x10/nine/rcm' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mymanual10x10/nine/rom1' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mymanual10x10/one/rcm' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mymanual10x10/one/rom1' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mymanual10x10/seven/rcm' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mymanual10x10/seven/rom1' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mymanual10x10/six/rcm' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mymanual10x10/six/rom1' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mymanual10x10/three/rcm' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mymanual10x10/three/rom1' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mymanual10x10/two/rcm' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mymanual10x10/two/rom1' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mymanual30_40/eight/rcm' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mymanual30_40/eight/rom1' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mymanual30_40/five/rcm' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mymanual30_40/five/rom1' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mymanual30_40/four/rcm' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mymanual30_40/four/rom1' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mymanual30_40/nine/rcm' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mymanual30_40/nine/rom1' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mymanual30_40/one/rcm' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mymanual30_40/one/rom1' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mymanual30_40/seven/rcm' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mymanual30_40/seven/rom1' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mymanual30_40/six/rcm' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mymanual30_40/six/rom1' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mymanual30_40/three/rcm' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mymanual30_40/three/rom1' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mymanual30_40/two/rcm' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mymanual30_40/two/rom1' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mysolved_disp/eight/rcm' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mysolved_disp/eight/rom1' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mysolved_disp/five/rcm' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mysolved_disp/five/rom1' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mysolved_disp/four/rcm' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mysolved_disp/four/rom1' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mysolved_disp/nine/rcm' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mysolved_disp/nine/rom1' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mysolved_disp/one/rcm' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mysolved_disp/one/rom1' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mysolved_disp/seven/rcm' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mysolved_disp/seven/rom1' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mysolved_disp/six/rcm' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mysolved_disp/six/rom1' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mysolved_disp/three/rcm' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mysolved_disp/three/rom1' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mysolved_disp/two/rcm' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mysolved_disp/two/rom1' at clock pin 'clka' is different from the actual clock period '15.385', this can lead to different synthesis results.
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:02:10 ; elapsed = 00:02:11 . Memory (MB): peak = 1888.043 ; gain = 1229.668
+---------------------------------------------------------------------------------
+INFO: [Synth 8-5580] Multithreading enabled for synth_design using a maximum of 2 processes.
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a100tcsg324-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:02:10 ; elapsed = 00:02:11 . Memory (MB): peak = 1888.043 ; gain = 1229.668
+---------------------------------------------------------------------------------
+INFO: [Synth 8-5546] ROM "permutation_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "permutation_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "permutation_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "permutation_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5587] ROM size for "permutation_out" is below threshold of ROM address width. It will be mapped to LUTs
+INFO: [Synth 8-5546] ROM "permutation_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "permutation_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "permutation_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "permutation_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "permutation_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "permutation_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "permutation_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "permutation_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "permutation_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "permutation_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "permutation_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5587] ROM size for "permutation_out" is below threshold of ROM address width. It will be mapped to LUTs
+INFO: [Synth 8-5546] ROM "permutation_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "permutation_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "permutation_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "permutation_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "permutation_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "permutation_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "permutation_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "permutation_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "permutation_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-4471] merging register 'sending_assignment_reg' into 'start_getting_assignment1_reg' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_solver.sv:167]
+INFO: [Synth 8-4471] merging register 'vals_reg[3][9]' into 'vals_reg[0][9]' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/solved_disp.sv:165]
+INFO: [Synth 8-4471] merging register 'vals_reg[4][9]' into 'vals_reg[0][9]' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/solved_disp.sv:165]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_10x10.sv:223]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/manual_disp_30_40.sv:295]
+INFO: [Synth 8-4471] merging register 'get_constraints_reg' into 'start_solver_reg' [C:/Users/jules/Documents/nonogram_solver/final_project_current.srcs/sources_1/new/top_level_fresher.sv:216]
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:03:53 ; elapsed = 00:03:58 . Memory (MB): peak = 1888.043 ; gain = 1229.668
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++------+------------------------+------------+----------+
+|      |RTL Partition           |Replication |Instances |
++------+------------------------+------------+----------+
+|1     |clk_wiz_lab3__GC0       |           1|         3|
+|2     |manual_disp_30_40__GB0  |           1|     31588|
+|3     |manual_disp_30_40__GB1  |           1|     10046|
+|4     |manual_disp_30_40__GB2  |           1|      9251|
+|5     |top_level_fresher__GCB0 |           1|     35863|
+|6     |manual_disp_10x10       |           1|      7109|
++------+------------------------+------------+----------+
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     32 Bit       Adders := 13    
+	   3 Input     16 Bit       Adders := 27    
+	   3 Input     13 Bit       Adders := 27    
+	   3 Input     12 Bit       Adders := 27    
+	   6 Input     12 Bit       Adders := 2     
+	   5 Input     12 Bit       Adders := 1     
+	   2 Input     11 Bit       Adders := 1     
+	   2 Input     10 Bit       Adders := 2     
+	   2 Input      9 Bit       Adders := 1     
+	   2 Input      8 Bit       Adders := 8     
+	   2 Input      7 Bit       Adders := 17    
+	   3 Input      7 Bit       Adders := 1     
+	   4 Input      7 Bit       Adders := 1     
+	   2 Input      6 Bit       Adders := 29    
+	   3 Input      6 Bit       Adders := 7     
+	   4 Input      6 Bit       Adders := 1     
+	   2 Input      5 Bit       Adders := 17    
+	   9 Input      5 Bit       Adders := 1     
+	  11 Input      5 Bit       Adders := 1     
+	   7 Input      5 Bit       Adders := 1     
+	   5 Input      5 Bit       Adders := 1     
+	  10 Input      5 Bit       Adders := 1     
+	   2 Input      4 Bit       Adders := 5     
+	   2 Input      3 Bit       Adders := 2     
+	   3 Input      3 Bit       Adders := 1     
+	   4 Input      3 Bit       Adders := 1     
+	   5 Input      3 Bit       Adders := 2     
++---Registers : 
+	               32 Bit    Registers := 1     
+	               20 Bit    Registers := 44    
+	               16 Bit    Registers := 3     
+	               12 Bit    Registers := 28    
+	               11 Bit    Registers := 1     
+	               10 Bit    Registers := 34    
+	                9 Bit    Registers := 3     
+	                8 Bit    Registers := 6     
+	                7 Bit    Registers := 12    
+	                6 Bit    Registers := 15    
+	                5 Bit    Registers := 17    
+	                4 Bit    Registers := 9     
+	                3 Bit    Registers := 5     
+	                1 Bit    Registers := 10695 
++---RAMs : 
+	               2K Bit         RAMs := 2     
+	              820 Bit         RAMs := 2     
+	              697 Bit         RAMs := 1     
+	              205 Bit         RAMs := 1     
+	              200 Bit         RAMs := 2     
+	              160 Bit         RAMs := 2     
+	               90 Bit         RAMs := 2     
++---Muxes : 
+	   4 Input     32 Bit        Muxes := 1     
+	   2 Input     20 Bit        Muxes := 326   
+	  11 Input     20 Bit        Muxes := 3     
+	   9 Input     20 Bit        Muxes := 1     
+	   3 Input     20 Bit        Muxes := 2     
+	   6 Input     20 Bit        Muxes := 2     
+	   5 Input     20 Bit        Muxes := 2     
+	   7 Input     20 Bit        Muxes := 1     
+	   8 Input     20 Bit        Muxes := 1     
+	   2 Input     19 Bit        Muxes := 5     
+	   3 Input     19 Bit        Muxes := 1     
+	   2 Input     16 Bit        Muxes := 7     
+	  13 Input     16 Bit        Muxes := 1     
+	   5 Input     16 Bit        Muxes := 2     
+	   7 Input     16 Bit        Muxes := 1     
+	   4 Input     16 Bit        Muxes := 1     
+	   2 Input     13 Bit        Muxes := 1     
+	   4 Input     13 Bit        Muxes := 1     
+	  58 Input     13 Bit        Muxes := 1     
+	   2 Input     12 Bit        Muxes := 38    
+	   3 Input     12 Bit        Muxes := 8     
+	   2 Input     11 Bit        Muxes := 4     
+	   2 Input     10 Bit        Muxes := 36    
+	   7 Input     10 Bit        Muxes := 1     
+	   5 Input     10 Bit        Muxes := 1     
+	   8 Input     10 Bit        Muxes := 1     
+	   2 Input      9 Bit        Muxes := 3     
+	   4 Input      9 Bit        Muxes := 1     
+	   3 Input      9 Bit        Muxes := 1     
+	   8 Input      8 Bit        Muxes := 1     
+	   2 Input      8 Bit        Muxes := 2     
+	   8 Input      7 Bit        Muxes := 1     
+	   2 Input      7 Bit        Muxes := 18    
+	  10 Input      7 Bit        Muxes := 1     
+	   6 Input      7 Bit        Muxes := 2     
+	   3 Input      7 Bit        Muxes := 7     
+	   7 Input      7 Bit        Muxes := 1     
+	   5 Input      7 Bit        Muxes := 1     
+	   4 Input      7 Bit        Muxes := 2     
+	  11 Input      6 Bit        Muxes := 1     
+	   2 Input      6 Bit        Muxes := 25    
+	   9 Input      6 Bit        Muxes := 2     
+	   8 Input      6 Bit        Muxes := 1     
+	   4 Input      6 Bit        Muxes := 5     
+	   7 Input      6 Bit        Muxes := 1     
+	   3 Input      6 Bit        Muxes := 1     
+	   2 Input      5 Bit        Muxes := 11    
+	   9 Input      4 Bit        Muxes := 1     
+	   2 Input      4 Bit        Muxes := 7     
+	   4 Input      4 Bit        Muxes := 1     
+	   2 Input      3 Bit        Muxes := 10    
+	   4 Input      3 Bit        Muxes := 1     
+	   6 Input      3 Bit        Muxes := 2     
+	  10 Input      3 Bit        Muxes := 2     
+	   7 Input      3 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 2     
+	   4 Input      2 Bit        Muxes := 1     
+	   7 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 1747  
+	   5 Input      1 Bit        Muxes := 4     
+	   6 Input      1 Bit        Muxes := 1     
+	   8 Input      1 Bit        Muxes := 1     
+	   4 Input      1 Bit        Muxes := 10    
+	   3 Input      1 Bit        Muxes := 4     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module top_level_fresher 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     10 Bit       Adders := 1     
++---Registers : 
+	               32 Bit    Registers := 1     
+	               12 Bit    Registers := 1     
+	               10 Bit    Registers := 1     
+	                1 Bit    Registers := 5     
++---Muxes : 
+	   4 Input     32 Bit        Muxes := 1     
+	   2 Input     12 Bit        Muxes := 2     
+	   8 Input     10 Bit        Muxes := 1     
+	   2 Input     10 Bit        Muxes := 1     
+	   2 Input      4 Bit        Muxes := 3     
+	  10 Input      3 Bit        Muxes := 1     
+Module ones_pixels__xdcDup__2 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     16 Bit       Adders := 1     
+	   3 Input     13 Bit       Adders := 1     
+	   3 Input     12 Bit       Adders := 1     
++---Registers : 
+	               12 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     12 Bit        Muxes := 1     
+Module twos_pixels__xdcDup__2 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     16 Bit       Adders := 1     
+	   3 Input     13 Bit       Adders := 1     
+	   3 Input     12 Bit       Adders := 1     
++---Registers : 
+	               12 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     12 Bit        Muxes := 1     
+Module threes_pixels__xdcDup__2 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     16 Bit       Adders := 1     
+	   3 Input     13 Bit       Adders := 1     
+	   3 Input     12 Bit       Adders := 1     
++---Registers : 
+	               12 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     12 Bit        Muxes := 1     
+Module fours_pixels__xdcDup__2 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     16 Bit       Adders := 1     
+	   3 Input     13 Bit       Adders := 1     
+	   3 Input     12 Bit       Adders := 1     
++---Registers : 
+	               12 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     12 Bit        Muxes := 1     
+Module fives_pixels__xdcDup__2 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     16 Bit       Adders := 1     
+	   3 Input     13 Bit       Adders := 1     
+	   3 Input     12 Bit       Adders := 1     
++---Registers : 
+	               12 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     12 Bit        Muxes := 1     
+Module sixes_pixels__xdcDup__2 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     16 Bit       Adders := 1     
+	   3 Input     13 Bit       Adders := 1     
+	   3 Input     12 Bit       Adders := 1     
++---Registers : 
+	               12 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     12 Bit        Muxes := 1     
+Module sevens_pixels__xdcDup__2 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     16 Bit       Adders := 1     
+	   3 Input     13 Bit       Adders := 1     
+	   3 Input     12 Bit       Adders := 1     
++---Registers : 
+	               12 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     12 Bit        Muxes := 1     
+Module eights_pixels__xdcDup__2 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     16 Bit       Adders := 1     
+	   3 Input     13 Bit       Adders := 1     
+	   3 Input     12 Bit       Adders := 1     
++---Registers : 
+	               12 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     12 Bit        Muxes := 1     
+Module nines_pixels__xdcDup__2 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     16 Bit       Adders := 1     
+	   3 Input     13 Bit       Adders := 1     
+	   3 Input     12 Bit       Adders := 1     
++---Registers : 
+	               12 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     12 Bit        Muxes := 1     
+Module manual_disp_10x10 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     32 Bit       Adders := 2     
+	   6 Input     12 Bit       Adders := 1     
+	   2 Input      7 Bit       Adders := 1     
+	   2 Input      6 Bit       Adders := 3     
++---Registers : 
+	                7 Bit    Registers := 1     
+	                6 Bit    Registers := 1     
+	                1 Bit    Registers := 505   
++---Muxes : 
+	   2 Input     12 Bit        Muxes := 3     
+	   3 Input     12 Bit        Muxes := 3     
+	  11 Input      6 Bit        Muxes := 1     
+	   2 Input      6 Bit        Muxes := 3     
+	   9 Input      6 Bit        Muxes := 1     
+	   9 Input      4 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 153   
+Module nines_pixels 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     16 Bit       Adders := 1     
+	   3 Input     13 Bit       Adders := 1     
+	   3 Input     12 Bit       Adders := 1     
++---Registers : 
+	               12 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     12 Bit        Muxes := 1     
+Module eights_pixels 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     16 Bit       Adders := 1     
+	   3 Input     13 Bit       Adders := 1     
+	   3 Input     12 Bit       Adders := 1     
++---Registers : 
+	               12 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     12 Bit        Muxes := 1     
+Module sevens_pixels 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     16 Bit       Adders := 1     
+	   3 Input     13 Bit       Adders := 1     
+	   3 Input     12 Bit       Adders := 1     
++---Registers : 
+	               12 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     12 Bit        Muxes := 1     
+Module sixes_pixels 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     16 Bit       Adders := 1     
+	   3 Input     13 Bit       Adders := 1     
+	   3 Input     12 Bit       Adders := 1     
++---Registers : 
+	               12 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     12 Bit        Muxes := 1     
+Module fives_pixels 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     16 Bit       Adders := 1     
+	   3 Input     13 Bit       Adders := 1     
+	   3 Input     12 Bit       Adders := 1     
++---Registers : 
+	               12 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     12 Bit        Muxes := 1     
+Module fours_pixels 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     16 Bit       Adders := 1     
+	   3 Input     13 Bit       Adders := 1     
+	   3 Input     12 Bit       Adders := 1     
++---Registers : 
+	               12 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     12 Bit        Muxes := 1     
+Module threes_pixels 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     16 Bit       Adders := 1     
+	   3 Input     13 Bit       Adders := 1     
+	   3 Input     12 Bit       Adders := 1     
++---Registers : 
+	               12 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     12 Bit        Muxes := 1     
+Module twos_pixels 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     16 Bit       Adders := 1     
+	   3 Input     13 Bit       Adders := 1     
+	   3 Input     12 Bit       Adders := 1     
++---Registers : 
+	               12 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     12 Bit        Muxes := 1     
+Module ones_pixels 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     16 Bit       Adders := 1     
+	   3 Input     13 Bit       Adders := 1     
+	   3 Input     12 Bit       Adders := 1     
++---Registers : 
+	               12 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     12 Bit        Muxes := 1     
+Module manual_disp_30_40 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     32 Bit       Adders := 2     
+	   6 Input     12 Bit       Adders := 1     
+	   2 Input      7 Bit       Adders := 4     
++---Registers : 
+	                7 Bit    Registers := 2     
+	                1 Bit    Registers := 9605  
++---Muxes : 
+	   2 Input     12 Bit        Muxes := 3     
+	   3 Input     12 Bit        Muxes := 3     
+	   8 Input      7 Bit        Muxes := 1     
+	   2 Input      7 Bit        Muxes := 3     
+	  10 Input      7 Bit        Muxes := 1     
+	   8 Input      6 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 1311  
+Module display_8hex 
+Detailed RTL Component Info : 
++---Registers : 
+	                8 Bit    Registers := 1     
+	                7 Bit    Registers := 1     
++---Muxes : 
+	   8 Input      8 Bit        Muxes := 1     
+Module xvga 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     11 Bit       Adders := 1     
+	   2 Input     10 Bit       Adders := 1     
++---Registers : 
+	               11 Bit    Registers := 1     
+	               10 Bit    Registers := 1     
+	                1 Bit    Registers := 5     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 2     
+Module debounce__1 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 4     
+Module translator 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      5 Bit       Adders := 3     
++---Registers : 
+	               20 Bit    Registers := 10    
+	               10 Bit    Registers := 20    
+	                5 Bit    Registers := 2     
+	                1 Bit    Registers := 4     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 4     
+Module create_a_row 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input      6 Bit       Adders := 7     
+	   4 Input      6 Bit       Adders := 1     
+	   2 Input      6 Bit       Adders := 8     
+	   2 Input      5 Bit       Adders := 1     
++---Registers : 
+	               20 Bit    Registers := 2     
+	                6 Bit    Registers := 8     
+	                5 Bit    Registers := 2     
+	                1 Bit    Registers := 3     
++---Muxes : 
+	   2 Input     20 Bit        Muxes := 2     
+	  11 Input     20 Bit        Muxes := 1     
+	   9 Input     20 Bit        Muxes := 1     
+	   2 Input     19 Bit        Muxes := 1     
+	   2 Input      4 Bit        Muxes := 1     
+	   4 Input      4 Bit        Muxes := 1     
+	   2 Input      3 Bit        Muxes := 3     
+	   2 Input      1 Bit        Muxes := 6     
+	   5 Input      1 Bit        Muxes := 1     
+Module get_permutations 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      6 Bit       Adders := 10    
++---Registers : 
+	               16 Bit    Registers := 1     
+	                6 Bit    Registers := 2     
+	                3 Bit    Registers := 2     
+	                1 Bit    Registers := 3     
++---Muxes : 
+	   2 Input     16 Bit        Muxes := 7     
+	  13 Input     16 Bit        Muxes := 1     
+	   5 Input     16 Bit        Muxes := 2     
+	   7 Input     16 Bit        Muxes := 1     
+	   4 Input     16 Bit        Muxes := 1     
+	   2 Input     13 Bit        Muxes := 1     
+	   4 Input     13 Bit        Muxes := 1     
+	  58 Input     13 Bit        Muxes := 1     
+	   2 Input     11 Bit        Muxes := 4     
+	   2 Input     10 Bit        Muxes := 2     
+	   7 Input     10 Bit        Muxes := 1     
+	   2 Input      9 Bit        Muxes := 2     
+	   4 Input      9 Bit        Muxes := 1     
+	   2 Input      7 Bit        Muxes := 1     
+	   6 Input      7 Bit        Muxes := 1     
+	   2 Input      6 Bit        Muxes := 20    
+	   9 Input      6 Bit        Muxes := 1     
+	   4 Input      6 Bit        Muxes := 5     
+	   7 Input      6 Bit        Muxes := 1     
+	   3 Input      6 Bit        Muxes := 1     
+	   2 Input      5 Bit        Muxes := 3     
+	   2 Input      3 Bit        Muxes := 7     
+	   4 Input      3 Bit        Muxes := 1     
+	   6 Input      3 Bit        Muxes := 1     
+	  10 Input      3 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 2     
+	   2 Input      1 Bit        Muxes := 30    
+	   5 Input      1 Bit        Muxes := 2     
+	   6 Input      1 Bit        Muxes := 1     
+	   8 Input      1 Bit        Muxes := 1     
+Module generate_rows 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     32 Bit       Adders := 2     
+	   2 Input      7 Bit       Adders := 11    
+	   3 Input      7 Bit       Adders := 1     
+	   4 Input      7 Bit       Adders := 1     
+	   2 Input      6 Bit       Adders := 4     
+	   2 Input      5 Bit       Adders := 2     
+	   9 Input      5 Bit       Adders := 1     
+	  11 Input      5 Bit       Adders := 1     
+	   7 Input      5 Bit       Adders := 1     
+	   5 Input      5 Bit       Adders := 1     
+	   2 Input      3 Bit       Adders := 2     
+	   3 Input      3 Bit       Adders := 1     
+	   4 Input      3 Bit       Adders := 1     
+	   5 Input      3 Bit       Adders := 2     
++---Registers : 
+	               20 Bit    Registers := 5     
+	               16 Bit    Registers := 1     
+	                7 Bit    Registers := 7     
+	                6 Bit    Registers := 3     
+	                5 Bit    Registers := 5     
+	                4 Bit    Registers := 5     
+	                3 Bit    Registers := 3     
+	                1 Bit    Registers := 15    
++---RAMs : 
+	              820 Bit         RAMs := 2     
+	              697 Bit         RAMs := 1     
+	              205 Bit         RAMs := 1     
++---Muxes : 
+	   3 Input     20 Bit        Muxes := 1     
+	   2 Input     20 Bit        Muxes := 45    
+	   6 Input     20 Bit        Muxes := 1     
+	  11 Input     20 Bit        Muxes := 2     
+	   5 Input     20 Bit        Muxes := 1     
+	   7 Input     20 Bit        Muxes := 1     
+	   3 Input     19 Bit        Muxes := 1     
+	   2 Input     19 Bit        Muxes := 4     
+	   3 Input      7 Bit        Muxes := 7     
+	   7 Input      7 Bit        Muxes := 1     
+	   5 Input      7 Bit        Muxes := 1     
+	   2 Input      7 Bit        Muxes := 14    
+	   6 Input      7 Bit        Muxes := 1     
+	   4 Input      7 Bit        Muxes := 2     
+	   2 Input      6 Bit        Muxes := 2     
+	   2 Input      5 Bit        Muxes := 5     
+	   6 Input      3 Bit        Muxes := 1     
+	   7 Input      3 Bit        Muxes := 1     
+	   4 Input      2 Bit        Muxes := 1     
+	   7 Input      2 Bit        Muxes := 1     
+	   5 Input      1 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 76    
+	   4 Input      1 Bit        Muxes := 1     
+Module iterative_solver_wth_reset 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     32 Bit       Adders := 4     
+	   2 Input      9 Bit       Adders := 1     
+	   2 Input      8 Bit       Adders := 8     
+	   2 Input      7 Bit       Adders := 1     
+	   2 Input      6 Bit       Adders := 3     
+	   2 Input      5 Bit       Adders := 10    
+	  10 Input      5 Bit       Adders := 1     
+	   2 Input      4 Bit       Adders := 5     
++---Registers : 
+	               20 Bit    Registers := 25    
+	               16 Bit    Registers := 1     
+	               10 Bit    Registers := 2     
+	                9 Bit    Registers := 2     
+	                8 Bit    Registers := 5     
+	                7 Bit    Registers := 1     
+	                5 Bit    Registers := 7     
+	                4 Bit    Registers := 4     
+	                1 Bit    Registers := 28    
++---RAMs : 
+	               2K Bit         RAMs := 2     
+	              200 Bit         RAMs := 2     
+	              160 Bit         RAMs := 2     
+	               90 Bit         RAMs := 2     
++---Muxes : 
+	   2 Input     20 Bit        Muxes := 279   
+	   8 Input     20 Bit        Muxes := 1     
+	   3 Input     20 Bit        Muxes := 1     
+	   6 Input     20 Bit        Muxes := 1     
+	   5 Input     20 Bit        Muxes := 1     
+	   2 Input     10 Bit        Muxes := 33    
+	   5 Input     10 Bit        Muxes := 1     
+	   2 Input      9 Bit        Muxes := 1     
+	   2 Input      8 Bit        Muxes := 2     
+	   2 Input      5 Bit        Muxes := 3     
+	   2 Input      4 Bit        Muxes := 3     
+	   2 Input      1 Bit        Muxes := 90    
+	   3 Input      1 Bit        Muxes := 4     
+	   4 Input      1 Bit        Muxes := 9     
+Module assignments_registry 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     32 Bit       Adders := 1     
+	   2 Input      6 Bit       Adders := 1     
++---Registers : 
+	               20 Bit    Registers := 1     
+	                9 Bit    Registers := 1     
+	                6 Bit    Registers := 1     
+	                1 Bit    Registers := 5     
++---Muxes : 
+	   3 Input      9 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 5     
+Module top_level_solver 
+Detailed RTL Component Info : 
++---Registers : 
+	               20 Bit    Registers := 1     
+	               10 Bit    Registers := 10    
+	                1 Bit    Registers := 9     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 9     
+Module ones_pixels__xdcDup__1 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     16 Bit       Adders := 1     
+	   3 Input     13 Bit       Adders := 1     
+	   3 Input     12 Bit       Adders := 1     
++---Registers : 
+	               12 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     12 Bit        Muxes := 1     
+Module twos_pixels__xdcDup__1 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     16 Bit       Adders := 1     
+	   3 Input     13 Bit       Adders := 1     
+	   3 Input     12 Bit       Adders := 1     
++---Registers : 
+	               12 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     12 Bit        Muxes := 1     
+Module threes_pixels__xdcDup__1 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     16 Bit       Adders := 1     
+	   3 Input     13 Bit       Adders := 1     
+	   3 Input     12 Bit       Adders := 1     
++---Registers : 
+	               12 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     12 Bit        Muxes := 1     
+Module fours_pixels__xdcDup__1 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     16 Bit       Adders := 1     
+	   3 Input     13 Bit       Adders := 1     
+	   3 Input     12 Bit       Adders := 1     
++---Registers : 
+	               12 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     12 Bit        Muxes := 1     
+Module fives_pixels__xdcDup__1 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     16 Bit       Adders := 1     
+	   3 Input     13 Bit       Adders := 1     
+	   3 Input     12 Bit       Adders := 1     
++---Registers : 
+	               12 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     12 Bit        Muxes := 1     
+Module sixes_pixels__xdcDup__1 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     16 Bit       Adders := 1     
+	   3 Input     13 Bit       Adders := 1     
+	   3 Input     12 Bit       Adders := 1     
++---Registers : 
+	               12 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     12 Bit        Muxes := 1     
+Module sevens_pixels__xdcDup__1 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     16 Bit       Adders := 1     
+	   3 Input     13 Bit       Adders := 1     
+	   3 Input     12 Bit       Adders := 1     
++---Registers : 
+	               12 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     12 Bit        Muxes := 1     
+Module eights_pixels__xdcDup__1 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     16 Bit       Adders := 1     
+	   3 Input     13 Bit       Adders := 1     
+	   3 Input     12 Bit       Adders := 1     
++---Registers : 
+	               12 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     12 Bit        Muxes := 1     
+Module nines_pixels__xdcDup__1 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     16 Bit       Adders := 1     
+	   3 Input     13 Bit       Adders := 1     
+	   3 Input     12 Bit       Adders := 1     
++---Registers : 
+	               12 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     12 Bit        Muxes := 1     
+Module solved_disp 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     32 Bit       Adders := 2     
+	   5 Input     12 Bit       Adders := 1     
+	   2 Input      5 Bit       Adders := 1     
++---Registers : 
+	                5 Bit    Registers := 1     
+	                1 Bit    Registers := 498   
++---Muxes : 
+	   2 Input     12 Bit        Muxes := 3     
+	   3 Input     12 Bit        Muxes := 2     
+	   2 Input      1 Bit        Muxes := 41    
+Module debounce__2 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 4     
+Module debounce__3 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 4     
+Module debounce__4 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 4     
+Module debounce 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 4     
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 240 (col length:80)
+BRAMs: 270 (col length: RAMB18 80 RAMB36 40)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+Warning: Parallel synthesis criteria is not met 
+INFO: [Synth 8-5544] ROM "p_1_out0" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "p_0_out" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+WARNING: [Synth 8-3917] design top_level_fresher has port dp driven by constant 1
+WARNING: [Synth 8-3331] design top_level_fresher has unconnected port led[15]
+WARNING: [Synth 8-3331] design top_level_fresher has unconnected port led[14]
+WARNING: [Synth 8-3331] design top_level_fresher has unconnected port led[13]
+WARNING: [Synth 8-3331] design top_level_fresher has unconnected port led[12]
+INFO: [Common 17-14] Message 'Synth 8-3331' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/nine/pixel_out_reg[0]' (FD) to 'mymanual10x10/nine/pixel_out_reg[4]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/eight/pixel_out_reg[0]' (FD) to 'mymanual10x10/eight/pixel_out_reg[4]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/seven/pixel_out_reg[0]' (FD) to 'mymanual10x10/seven/pixel_out_reg[4]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/six/pixel_out_reg[0]' (FD) to 'mymanual10x10/six/pixel_out_reg[4]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/five/pixel_out_reg[0]' (FD) to 'mymanual10x10/five/pixel_out_reg[4]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/four/pixel_out_reg[0]' (FD) to 'mymanual10x10/four/pixel_out_reg[4]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/three/pixel_out_reg[0]' (FD) to 'mymanual10x10/three/pixel_out_reg[4]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/two/pixel_out_reg[0]' (FD) to 'mymanual10x10/two/pixel_out_reg[4]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/one/pixel_out_reg[0]' (FD) to 'mymanual10x10/one/pixel_out_reg[4]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/nine/pixel_out_reg[1]' (FD) to 'mymanual10x10/nine/pixel_out_reg[5]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/eight/pixel_out_reg[1]' (FD) to 'mymanual10x10/eight/pixel_out_reg[5]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/seven/pixel_out_reg[1]' (FD) to 'mymanual10x10/seven/pixel_out_reg[5]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/six/pixel_out_reg[1]' (FD) to 'mymanual10x10/six/pixel_out_reg[5]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/five/pixel_out_reg[1]' (FD) to 'mymanual10x10/five/pixel_out_reg[5]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/four/pixel_out_reg[1]' (FD) to 'mymanual10x10/four/pixel_out_reg[5]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/three/pixel_out_reg[1]' (FD) to 'mymanual10x10/three/pixel_out_reg[5]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/two/pixel_out_reg[1]' (FD) to 'mymanual10x10/two/pixel_out_reg[5]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/one/pixel_out_reg[1]' (FD) to 'mymanual10x10/one/pixel_out_reg[5]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/nine/pixel_out_reg[2]' (FD) to 'mymanual10x10/nine/pixel_out_reg[6]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/eight/pixel_out_reg[2]' (FD) to 'mymanual10x10/eight/pixel_out_reg[6]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/seven/pixel_out_reg[2]' (FD) to 'mymanual10x10/seven/pixel_out_reg[6]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/six/pixel_out_reg[2]' (FD) to 'mymanual10x10/six/pixel_out_reg[6]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/five/pixel_out_reg[2]' (FD) to 'mymanual10x10/five/pixel_out_reg[6]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/four/pixel_out_reg[2]' (FD) to 'mymanual10x10/four/pixel_out_reg[6]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/three/pixel_out_reg[2]' (FD) to 'mymanual10x10/three/pixel_out_reg[6]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/two/pixel_out_reg[2]' (FD) to 'mymanual10x10/two/pixel_out_reg[6]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/one/pixel_out_reg[2]' (FD) to 'mymanual10x10/one/pixel_out_reg[6]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/nine/pixel_out_reg[3]' (FD) to 'mymanual10x10/nine/pixel_out_reg[7]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/eight/pixel_out_reg[3]' (FD) to 'mymanual10x10/eight/pixel_out_reg[7]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/seven/pixel_out_reg[3]' (FD) to 'mymanual10x10/seven/pixel_out_reg[7]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/six/pixel_out_reg[3]' (FD) to 'mymanual10x10/six/pixel_out_reg[7]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/five/pixel_out_reg[3]' (FD) to 'mymanual10x10/five/pixel_out_reg[7]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/four/pixel_out_reg[3]' (FD) to 'mymanual10x10/four/pixel_out_reg[7]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/three/pixel_out_reg[3]' (FD) to 'mymanual10x10/three/pixel_out_reg[7]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/two/pixel_out_reg[3]' (FD) to 'mymanual10x10/two/pixel_out_reg[7]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/one/pixel_out_reg[3]' (FD) to 'mymanual10x10/one/pixel_out_reg[7]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/nine/pixel_out_reg[4]' (FD) to 'mymanual10x10/nine/pixel_out_reg[8]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/eight/pixel_out_reg[4]' (FD) to 'mymanual10x10/eight/pixel_out_reg[8]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/seven/pixel_out_reg[4]' (FD) to 'mymanual10x10/seven/pixel_out_reg[8]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/six/pixel_out_reg[4]' (FD) to 'mymanual10x10/six/pixel_out_reg[8]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/five/pixel_out_reg[4]' (FD) to 'mymanual10x10/five/pixel_out_reg[8]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/four/pixel_out_reg[4]' (FD) to 'mymanual10x10/four/pixel_out_reg[8]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/three/pixel_out_reg[4]' (FD) to 'mymanual10x10/three/pixel_out_reg[8]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/two/pixel_out_reg[4]' (FD) to 'mymanual10x10/two/pixel_out_reg[8]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/one/pixel_out_reg[4]' (FD) to 'mymanual10x10/one/pixel_out_reg[8]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/nine/pixel_out_reg[5]' (FD) to 'mymanual10x10/nine/pixel_out_reg[9]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/eight/pixel_out_reg[5]' (FD) to 'mymanual10x10/eight/pixel_out_reg[9]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/seven/pixel_out_reg[5]' (FD) to 'mymanual10x10/seven/pixel_out_reg[9]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/six/pixel_out_reg[5]' (FD) to 'mymanual10x10/six/pixel_out_reg[9]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/five/pixel_out_reg[5]' (FD) to 'mymanual10x10/five/pixel_out_reg[9]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/four/pixel_out_reg[5]' (FD) to 'mymanual10x10/four/pixel_out_reg[9]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/three/pixel_out_reg[5]' (FD) to 'mymanual10x10/three/pixel_out_reg[9]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/two/pixel_out_reg[5]' (FD) to 'mymanual10x10/two/pixel_out_reg[9]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/one/pixel_out_reg[5]' (FD) to 'mymanual10x10/one/pixel_out_reg[9]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/nine/pixel_out_reg[6]' (FD) to 'mymanual10x10/nine/pixel_out_reg[10]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/eight/pixel_out_reg[6]' (FD) to 'mymanual10x10/eight/pixel_out_reg[10]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/seven/pixel_out_reg[6]' (FD) to 'mymanual10x10/seven/pixel_out_reg[10]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/six/pixel_out_reg[6]' (FD) to 'mymanual10x10/six/pixel_out_reg[10]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/five/pixel_out_reg[6]' (FD) to 'mymanual10x10/five/pixel_out_reg[10]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/four/pixel_out_reg[6]' (FD) to 'mymanual10x10/four/pixel_out_reg[10]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/three/pixel_out_reg[6]' (FD) to 'mymanual10x10/three/pixel_out_reg[10]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/two/pixel_out_reg[6]' (FD) to 'mymanual10x10/two/pixel_out_reg[10]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/one/pixel_out_reg[6]' (FD) to 'mymanual10x10/one/pixel_out_reg[10]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/nine/pixel_out_reg[7]' (FD) to 'mymanual10x10/nine/pixel_out_reg[11]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/eight/pixel_out_reg[7]' (FD) to 'mymanual10x10/eight/pixel_out_reg[11]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/seven/pixel_out_reg[7]' (FD) to 'mymanual10x10/seven/pixel_out_reg[11]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/six/pixel_out_reg[7]' (FD) to 'mymanual10x10/six/pixel_out_reg[11]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/five/pixel_out_reg[7]' (FD) to 'mymanual10x10/five/pixel_out_reg[11]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/four/pixel_out_reg[7]' (FD) to 'mymanual10x10/four/pixel_out_reg[11]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/three/pixel_out_reg[7]' (FD) to 'mymanual10x10/three/pixel_out_reg[11]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/two/pixel_out_reg[7]' (FD) to 'mymanual10x10/two/pixel_out_reg[11]'
+INFO: [Synth 8-3886] merging instance 'mymanual10x10/one/pixel_out_reg[7]' (FD) to 'mymanual10x10/one/pixel_out_reg[11]'
+INFO: [Synth 8-3886] merging instance 'mymanual30_40i_3/nine/pixel_out_reg[0]' (FD) to 'mymanual30_40i_3/nine/pixel_out_reg[4]'
+INFO: [Synth 8-3886] merging instance 'mymanual30_40i_3/eight/pixel_out_reg[0]' (FD) to 'mymanual30_40i_3/eight/pixel_out_reg[4]'
+INFO: [Synth 8-3886] merging instance 'mymanual30_40i_3/seven/pixel_out_reg[0]' (FD) to 'mymanual30_40i_3/seven/pixel_out_reg[4]'
+INFO: [Synth 8-3886] merging instance 'mymanual30_40i_3/six/pixel_out_reg[0]' (FD) to 'mymanual30_40i_3/six/pixel_out_reg[4]'
+INFO: [Synth 8-3886] merging instance 'mymanual30_40i_3/five/pixel_out_reg[0]' (FD) to 'mymanual30_40i_3/five/pixel_out_reg[4]'
+INFO: [Synth 8-3886] merging instance 'mymanual30_40i_3/four/pixel_out_reg[0]' (FD) to 'mymanual30_40i_3/four/pixel_out_reg[4]'
+INFO: [Synth 8-3886] merging instance 'mymanual30_40i_3/three/pixel_out_reg[0]' (FD) to 'mymanual30_40i_3/three/pixel_out_reg[4]'
+INFO: [Synth 8-3886] merging instance 'mymanual30_40i_3/two/pixel_out_reg[0]' (FD) to 'mymanual30_40i_3/two/pixel_out_reg[4]'
+INFO: [Synth 8-3886] merging instance 'mymanual30_40i_3/one/pixel_out_reg[0]' (FD) to 'mymanual30_40i_3/one/pixel_out_reg[4]'
+INFO: [Synth 8-3886] merging instance 'mymanual30_40i_3/nine/pixel_out_reg[1]' (FD) to 'mymanual30_40i_3/nine/pixel_out_reg[5]'
+INFO: [Synth 8-3886] merging instance 'mymanual30_40i_3/eight/pixel_out_reg[1]' (FD) to 'mymanual30_40i_3/eight/pixel_out_reg[5]'
+INFO: [Synth 8-3886] merging instance 'mymanual30_40i_3/seven/pixel_out_reg[1]' (FD) to 'mymanual30_40i_3/seven/pixel_out_reg[5]'
+INFO: [Synth 8-3886] merging instance 'mymanual30_40i_3/six/pixel_out_reg[1]' (FD) to 'mymanual30_40i_3/six/pixel_out_reg[5]'
+INFO: [Synth 8-3886] merging instance 'mymanual30_40i_3/five/pixel_out_reg[1]' (FD) to 'mymanual30_40i_3/five/pixel_out_reg[5]'
+INFO: [Synth 8-3886] merging instance 'mymanual30_40i_3/four/pixel_out_reg[1]' (FD) to 'mymanual30_40i_3/four/pixel_out_reg[5]'
+INFO: [Synth 8-3886] merging instance 'mymanual30_40i_3/three/pixel_out_reg[1]' (FD) to 'mymanual30_40i_3/three/pixel_out_reg[5]'
+INFO: [Synth 8-3886] merging instance 'mymanual30_40i_3/two/pixel_out_reg[1]' (FD) to 'mymanual30_40i_3/two/pixel_out_reg[5]'
+INFO: [Synth 8-3886] merging instance 'mymanual30_40i_3/one/pixel_out_reg[1]' (FD) to 'mymanual30_40i_3/one/pixel_out_reg[5]'
+INFO: [Synth 8-3886] merging instance 'mymanual30_40i_3/nine/pixel_out_reg[2]' (FD) to 'mymanual30_40i_3/nine/pixel_out_reg[6]'
+INFO: [Synth 8-3886] merging instance 'mymanual30_40i_3/eight/pixel_out_reg[2]' (FD) to 'mymanual30_40i_3/eight/pixel_out_reg[6]'
+INFO: [Synth 8-3886] merging instance 'mymanual30_40i_3/seven/pixel_out_reg[2]' (FD) to 'mymanual30_40i_3/seven/pixel_out_reg[6]'
+INFO: [Synth 8-3886] merging instance 'mymanual30_40i_3/six/pixel_out_reg[2]' (FD) to 'mymanual30_40i_3/six/pixel_out_reg[6]'
+INFO: [Synth 8-3886] merging instance 'mymanual30_40i_3/five/pixel_out_reg[2]' (FD) to 'mymanual30_40i_3/five/pixel_out_reg[6]'
+INFO: [Synth 8-3886] merging instance 'mymanual30_40i_3/four/pixel_out_reg[2]' (FD) to 'mymanual30_40i_3/four/pixel_out_reg[6]'
+INFO: [Synth 8-3886] merging instance 'mymanual30_40i_3/three/pixel_out_reg[2]' (FD) to 'mymanual30_40i_3/three/pixel_out_reg[6]'
+INFO: [Synth 8-3886] merging instance 'mymanual30_40i_3/two/pixel_out_reg[2]' (FD) to 'mymanual30_40i_3/two/pixel_out_reg[6]'
+INFO: [Synth 8-3886] merging instance 'mymanual30_40i_3/one/pixel_out_reg[2]' (FD) to 'mymanual30_40i_3/one/pixel_out_reg[6]'
+INFO: [Synth 8-3886] merging instance 'mymanual30_40i_3/nine/pixel_out_reg[3]' (FD) to 'mymanual30_40i_3/nine/pixel_out_reg[7]'
+INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_0/\my_top_level_solver/my_iterative_solver /my_generate_rows/my_create_a_row/i0_inferred/\i_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_0/\my_top_level_solver/my_iterative_solver /my_generate_rows/\running_sum_2_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_0/\my_top_level_solver/my_iterative_solver /my_generate_rows/my_create_a_row/\running_sum_8_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_0/\my_top_level_solver/my_iterative_solver /range_w_i_index0_inferred/\range_w_i_index_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_0/\my_top_level_solver/my_iterative_solver /allowed_thing_index_counter0_inferred/\allowed_thing_index_counter_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_0/\my_top_level_solver/my_iterative_solver /allowed_thing_index_counter_h0_inferred/\allowed_thing_index_counter_h_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_0/\my_top_level_solver/my_translator/i_big0_inferred /\my_top_level_solver/my_translator/i_big_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_0/\my_top_level_solver/my_assignments_registry/limit_reg[8] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_0/\data_reg[31] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[9][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[8][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[7][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[6][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[5][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[4][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[3][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[2][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[1][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[0][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[57][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[56][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[55][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[54][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[53][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[52][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[51][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[50][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[49][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[48][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[47][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[46][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[45][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[44][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[43][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[42][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[69][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[68][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[67][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[66][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[65][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[64][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[63][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[62][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[61][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[60][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[59][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[58][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[41][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[40][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[39][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[38][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[37][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[36][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[35][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[34][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[33][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[32][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[31][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[30][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[29][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[28][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[27][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[26][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[25][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[24][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[23][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[22][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[21][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[20][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[19][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[18][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[17][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[16][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[15][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[14][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[13][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[12][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[11][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_2/\constraints_reg[10][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_4/\constraints_reg[9][99] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_4/\constraints_reg[8][99] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_4/\constraints_reg[7][99] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_4/\constraints_reg[6][99] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_4/\constraints_reg[5][99] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_4/\constraints_reg[4][99] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_4/\constraints_reg[3][99] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_4/\constraints_reg[2][99] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_4/\constraints_reg[1][99] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_4/\constraints_reg[0][99] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_4/\constraints_reg[57][99] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_4/\constraints_reg[56][99] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_4/\constraints_reg[55][99] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_4/\constraints_reg[54][99] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_4/\constraints_reg[53][99] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_4/\constraints_reg[52][99] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_4/\constraints_reg[51][99] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_4/\constraints_reg[50][99] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_4/\constraints_reg[49][99] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_4/\constraints_reg[48][99] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mymanual30_40i_4/\constraints_reg[47][99] )
+INFO: [Common 17-14] Message 'Synth 8-3333' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:06:33 ; elapsed = 00:06:41 . Memory (MB): peak = 1888.043 ; gain = 1229.668
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+Distributed RAM: Preliminary Mapping	Report (see note below)
++---------------------------------------------------------------+------------------------------------+-----------+----------------------+--------------------------------------------------------+
+|Module Name                                                    | RTL Object                         | Inference | Size (Depth x Width) | Primitives                                             | 
++---------------------------------------------------------------+------------------------------------+-----------+----------------------+--------------------------------------------------------+
+|i_0/\my_top_level_solver/my_iterative_solver /my_generate_rows | permutations_min_length_list_reg   | Implied   | 64 x 5               | RAM64M x 2	                                            | 
+|i_0/\my_top_level_solver/my_iterative_solver /my_generate_rows | basic_row_storage_reg              | Implied   | 64 x 20              | RAM64M x 7	                                            | 
+|i_0/\my_top_level_solver/my_iterative_solver /my_generate_rows | all_row_storage_reg                | Implied   | 64 x 20              | RAM64M x 7	                                            | 
+|i_0/\my_top_level_solver/my_iterative_solver /my_generate_rows | permutations_list_reg              | Implied   | 64 x 12              | RAM64M x 6	                                            | 
+|i_0/\my_top_level_solver/my_iterative_solver                   | fake_row_permutation_counter_reg   | Implied   | 16 x 7               | RAM32M x 6	                                            | 
+|i_0/\my_top_level_solver/my_iterative_solver                   | fake_col_permutation_counter_reg   | Implied   | 16 x 7               | RAM32M x 3	                                            | 
+|i_0/\my_top_level_solver/my_iterative_solver                   | row_start_addresses_reg            | Implied   | 16 x 8               | RAM32M x 2	                                            | 
+|i_0/\my_top_level_solver/my_iterative_solver                   | fake_row_permutation_collector_reg | Implied   | 256 x 20             | RAM16X1D x 40	RAM64X1D x 6	RAM128X1D x 20	RAM64M x 18	 | 
+|i_0/\my_top_level_solver/my_iterative_solver                   | column_start_addresses_reg         | Implied   | 16 x 8               | RAM32M x 2	                                            | 
+|i_0/\my_top_level_solver/my_iterative_solver                   | fake_col_permutation_collector_reg | Implied   | 256 x 20             | RAM16X1D x 40	RAM64X1D x 6	RAM128X1D x 20	RAM64M x 18	 | 
+|i_0/\my_top_level_solver/my_iterative_solver                   | fake_row_assignment_collector_reg  | Implied   | 16 x 20              | RAM16X1S x 20	                                         | 
+|i_0/\my_top_level_solver/my_iterative_solver                   | fake_col_assignment_collector_reg  | Implied   | 16 x 20              | RAM16X1S x 20	                                         | 
++---------------------------------------------------------------+------------------------------------+-----------+----------------------+--------------------------------------------------------+
+
+Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++------+------------------------+------------+----------+
+|      |RTL Partition           |Replication |Instances |
++------+------------------------+------------+----------+
+|1     |clk_wiz_lab3__GC0       |           1|         3|
+|2     |manual_disp_30_40__GB0  |           1|      8917|
+|3     |manual_disp_30_40__GB1  |           1|       518|
+|4     |manual_disp_30_40__GB2  |           1|      1480|
+|5     |top_level_fresher__GCB0 |           1|     12771|
+|6     |manual_disp_10x10       |           1|      3115|
++------+------------------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:06:41 ; elapsed = 00:06:49 . Memory (MB): peak = 1888.043 ; gain = 1229.668
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:07:48 ; elapsed = 00:07:56 . Memory (MB): peak = 1888.043 ; gain = 1229.668
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+Distributed RAM: Final Mapping	Report
++---------------------------------------------------------------+------------------------------------+-----------+----------------------+--------------------------------------------------------+
+|Module Name                                                    | RTL Object                         | Inference | Size (Depth x Width) | Primitives                                             | 
++---------------------------------------------------------------+------------------------------------+-----------+----------------------+--------------------------------------------------------+
+|i_0/\my_top_level_solver/my_iterative_solver /my_generate_rows | permutations_min_length_list_reg   | Implied   | 64 x 5               | RAM64M x 2	                                            | 
+|i_0/\my_top_level_solver/my_iterative_solver /my_generate_rows | basic_row_storage_reg              | Implied   | 64 x 20              | RAM64M x 7	                                            | 
+|i_0/\my_top_level_solver/my_iterative_solver /my_generate_rows | all_row_storage_reg                | Implied   | 64 x 20              | RAM64M x 7	                                            | 
+|i_0/\my_top_level_solver/my_iterative_solver /my_generate_rows | permutations_list_reg              | Implied   | 64 x 12              | RAM64M x 6	                                            | 
+|i_0/\my_top_level_solver/my_iterative_solver                   | fake_row_permutation_counter_reg   | Implied   | 16 x 7               | RAM32M x 6	                                            | 
+|i_0/\my_top_level_solver/my_iterative_solver                   | fake_col_permutation_counter_reg   | Implied   | 16 x 7               | RAM32M x 3	                                            | 
+|i_0/\my_top_level_solver/my_iterative_solver                   | row_start_addresses_reg            | Implied   | 16 x 8               | RAM32M x 2	                                            | 
+|i_0/\my_top_level_solver/my_iterative_solver                   | fake_row_permutation_collector_reg | Implied   | 256 x 20             | RAM16X1D x 40	RAM64X1D x 6	RAM128X1D x 20	RAM64M x 18	 | 
+|i_0/\my_top_level_solver/my_iterative_solver                   | column_start_addresses_reg         | Implied   | 16 x 8               | RAM32M x 2	                                            | 
+|i_0/\my_top_level_solver/my_iterative_solver                   | fake_col_permutation_collector_reg | Implied   | 256 x 20             | RAM16X1D x 40	RAM64X1D x 6	RAM128X1D x 20	RAM64M x 18	 | 
+|i_0/\my_top_level_solver/my_iterative_solver                   | fake_row_assignment_collector_reg  | Implied   | 16 x 20              | RAM16X1S x 20	                                         | 
+|i_0/\my_top_level_solver/my_iterative_solver                   | fake_col_assignment_collector_reg  | Implied   | 16 x 20              | RAM16X1S x 20	                                         | 
++---------------------------------------------------------------+------------------------------------+-----------+----------------------+--------------------------------------------------------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++------+----------------------+------------+----------+
+|      |RTL Partition         |Replication |Instances |
++------+----------------------+------------+----------+
+|1     |clk_wiz_lab3__GC0     |           1|         3|
+|2     |manual_disp_10x10     |           1|      3115|
+|3     |top_level_fresher_GT0 |           1|     20152|
++------+----------------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:08:01 ; elapsed = 00:08:10 . Memory (MB): peak = 1888.043 ; gain = 1229.668
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:08:06 ; elapsed = 00:08:14 . Memory (MB): peak = 1888.043 ; gain = 1229.668
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:08:06 ; elapsed = 00:08:14 . Memory (MB): peak = 1888.043 ; gain = 1229.668
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:08:07 ; elapsed = 00:08:15 . Memory (MB): peak = 1888.043 ; gain = 1229.668
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:08:07 ; elapsed = 00:08:15 . Memory (MB): peak = 1888.043 ; gain = 1229.668
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:08:08 ; elapsed = 00:08:17 . Memory (MB): peak = 1888.043 ; gain = 1229.668
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:08:09 ; elapsed = 00:08:17 . Memory (MB): peak = 1888.043 ; gain = 1229.668
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++------+--------------------+----------+
+|      |BlackBox name       |Instances |
++------+--------------------+----------+
+|1     |assignments_rom     |         1|
+|2     |small_eight_rom     |         3|
+|3     |small_eight_red_rom |         3|
+|4     |small_five_rom      |         3|
+|5     |small_five_red_rom  |         3|
+|6     |small_four_rom      |         3|
+|7     |small_four_red_rom  |         3|
+|8     |small_nine_rom      |         3|
+|9     |small_nine_red_rom  |         3|
+|10    |small_one_rom       |         3|
+|11    |small_one_red_rom   |         3|
+|12    |small_seven_rom     |         3|
+|13    |small_seven_red_rom |         3|
+|14    |small_six_rom       |         3|
+|15    |small_six_red_rom   |         3|
+|16    |small_three_rom     |         3|
+|17    |small_three_red_rom |         3|
+|18    |small_two_rom       |         3|
+|19    |small_two_red_rom   |         3|
++------+--------------------+----------+
+
+Report Cell Usage: 
++------+-----------------------+------+
+|      |Cell                   |Count |
++------+-----------------------+------+
+|1     |assignments_rom        |     1|
+|2     |small_eight_red_rom    |     1|
+|3     |small_eight_red_rom__3 |     1|
+|4     |small_eight_red_rom__4 |     1|
+|5     |small_eight_rom        |     1|
+|6     |small_eight_rom__3     |     1|
+|7     |small_eight_rom__4     |     1|
+|8     |small_five_red_rom     |     1|
+|9     |small_five_red_rom__3  |     1|
+|10    |small_five_red_rom__4  |     1|
+|11    |small_five_rom         |     1|
+|12    |small_five_rom__3      |     1|
+|13    |small_five_rom__4      |     1|
+|14    |small_four_red_rom     |     1|
+|15    |small_four_red_rom__3  |     1|
+|16    |small_four_red_rom__4  |     1|
+|17    |small_four_rom         |     1|
+|18    |small_four_rom__3      |     1|
+|19    |small_four_rom__4      |     1|
+|20    |small_nine_red_rom     |     1|
+|21    |small_nine_red_rom__3  |     1|
+|22    |small_nine_red_rom__4  |     1|
+|23    |small_nine_rom         |     1|
+|24    |small_nine_rom__3      |     1|
+|25    |small_nine_rom__4      |     1|
+|26    |small_one_red_rom      |     1|
+|27    |small_one_red_rom__3   |     1|
+|28    |small_one_red_rom__4   |     1|
+|29    |small_one_rom          |     1|
+|30    |small_one_rom__3       |     1|
+|31    |small_one_rom__4       |     1|
+|32    |small_seven_red_rom    |     1|
+|33    |small_seven_red_rom__3 |     1|
+|34    |small_seven_red_rom__4 |     1|
+|35    |small_seven_rom        |     1|
+|36    |small_seven_rom__3     |     1|
+|37    |small_seven_rom__4     |     1|
+|38    |small_six_red_rom      |     1|
+|39    |small_six_red_rom__3   |     1|
+|40    |small_six_red_rom__4   |     1|
+|41    |small_six_rom          |     1|
+|42    |small_six_rom__3       |     1|
+|43    |small_six_rom__4       |     1|
+|44    |small_three_red_rom    |     1|
+|45    |small_three_red_rom__3 |     1|
+|46    |small_three_red_rom__4 |     1|
+|47    |small_three_rom        |     1|
+|48    |small_three_rom__3     |     1|
+|49    |small_three_rom__4     |     1|
+|50    |small_two_red_rom      |     1|
+|51    |small_two_red_rom__3   |     1|
+|52    |small_two_red_rom__4   |     1|
+|53    |small_two_rom          |     1|
+|54    |small_two_rom__3       |     1|
+|55    |small_two_rom__4       |     1|
+|56    |BUFG                   |     2|
+|57    |CARRY4                 |   250|
+|58    |LUT1                   |   238|
+|59    |LUT2                   |   623|
+|60    |LUT3                   |   485|
+|61    |LUT4                   |   456|
+|62    |LUT5                   |  1552|
+|63    |LUT6                   |  3460|
+|64    |MMCME2_ADV             |     1|
+|65    |MUXF7                  |   403|
+|66    |MUXF8                  |    59|
+|67    |RAM128X1D              |    40|
+|68    |RAM16X1D               |    80|
+|69    |RAM16X1S               |    40|
+|70    |RAM32M                 |    13|
+|71    |RAM64M                 |    57|
+|72    |RAM64X1D               |    12|
+|73    |FDRE                   |  4155|
+|74    |FDSE                   |     4|
+|75    |IBUF                   |    12|
+|76    |OBUF                   |    46|
+|77    |OBUFT                  |     8|
++------+-----------------------+------+
+
+Report Instance Areas: 
++------+----------------------------+---------------------------+------+
+|      |Instance                    |Module                     |Cells |
++------+----------------------------+---------------------------+------+
+|1     |top                         |                           | 12448|
+|2     |  clkdivider                |clk_wiz_lab3               |     4|
+|3     |  db1                       |debounce                   |    36|
+|4     |  db2                       |debounce_0                 |    36|
+|5     |  db3                       |debounce_1                 |    36|
+|6     |  db4                       |debounce_2                 |    36|
+|7     |  db5                       |debounce_3                 |    36|
+|8     |  display                   |display_8hex               |    65|
+|9     |  my_top_level_solver       |top_level_solver           |  4805|
+|10    |    my_assignments_registry |assignments_registry       |    93|
+|11    |    my_iterative_solver     |iterative_solver_wth_reset |  4009|
+|12    |      my_generate_rows      |generate_rows              |  1443|
+|13    |        my_create_a_row     |create_a_row               |   292|
+|14    |        my_get_permutations |get_permutations           |   257|
+|15    |    my_translator           |translator                 |   520|
+|16    |  mymanual10x10             |manual_disp_10x10          |  1493|
+|17    |    eight                   |eights_pixels__xdcDup__2   |    27|
+|18    |    five                    |fives_pixels__xdcDup__2    |    23|
+|19    |    four                    |fours_pixels__xdcDup__2    |    23|
+|20    |    nine                    |nines_pixels__xdcDup__2    |    23|
+|21    |    one                     |ones_pixels__xdcDup__2     |   243|
+|22    |    seven                   |sevens_pixels__xdcDup__2   |    27|
+|23    |    six                     |sixes_pixels__xdcDup__2    |    23|
+|24    |    three                   |threes_pixels__xdcDup__2   |    56|
+|25    |    two                     |twos_pixels__xdcDup__2     |    23|
+|26    |  mymanual30_40             |manual_disp_30_40          |  3782|
+|27    |    eight                   |eights_pixels              |    16|
+|28    |    five                    |fives_pixels               |    16|
+|29    |    four                    |fours_pixels               |    16|
+|30    |    nine                    |nines_pixels               |    16|
+|31    |    one                     |ones_pixels                |    16|
+|32    |    seven                   |sevens_pixels              |    16|
+|33    |    six                     |sixes_pixels               |    16|
+|34    |    three                   |threes_pixels              |    16|
+|35    |    two                     |twos_pixels                |    16|
+|36    |  mysolved_disp             |solved_disp                |  1131|
+|37    |    eight                   |eights_pixels__xdcDup__1   |    31|
+|38    |    five                    |fives_pixels__xdcDup__1    |    23|
+|39    |    four                    |fours_pixels__xdcDup__1    |    23|
+|40    |    nine                    |nines_pixels__xdcDup__1    |    23|
+|41    |    one                     |ones_pixels__xdcDup__1     |    23|
+|42    |    seven                   |sevens_pixels__xdcDup__1   |    31|
+|43    |    six                     |sixes_pixels__xdcDup__1    |    23|
+|44    |    three                   |threes_pixels__xdcDup__1   |    42|
+|45    |    two                     |twos_pixels__xdcDup__1     |    23|
+|46    |  xvga1                     |xvga                       |   848|
++------+----------------------------+---------------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:08:09 ; elapsed = 00:08:17 . Memory (MB): peak = 1888.043 ; gain = 1229.668
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 21 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:06:08 ; elapsed = 00:08:06 . Memory (MB): peak = 1888.043 ; gain = 1229.668
+Synthesis Optimization Complete : Time (s): cpu = 00:08:09 ; elapsed = 00:08:18 . Memory (MB): peak = 1888.043 ; gain = 1229.668
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.150 . Memory (MB): peak = 1888.043 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 955 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1888.043 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 242 instances were transformed.
+  RAM128X1D => RAM128X1D (MUXF7(x2), RAMD64E(x4)): 40 instances
+  RAM16X1D => RAM32X1D (RAMD32(x2)): 80 instances
+  RAM16X1S => RAM32X1S (RAMS32): 40 instances
+  RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 13 instances
+  RAM64M => RAM64M (RAMD64E(x4)): 57 instances
+  RAM64X1D => RAM64X1D (RAMD64E(x2)): 12 instances
+
+INFO: [Common 17-83] Releasing license: Synthesis
+358 Infos, 346 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:08:16 ; elapsed = 00:08:25 . Memory (MB): peak = 1888.043 ; gain = 1526.570
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1888.043 ; gain = 0.000
+WARNING: [Constraints 18-5210] No constraints selected for write.
+Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
+INFO: [Common 17-1381] The checkpoint 'C:/Users/jules/Documents/nonogram_solver/final_project_current.runs/synth_1/top_level_fresher.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file top_level_fresher_utilization_synth.rpt -pb top_level_fresher_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Thu Dec  2 14:57:34 2021...
