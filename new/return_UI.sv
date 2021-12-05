@@ -22,7 +22,11 @@ module return_UI(
     logic [15:0] generate_image_addr;
     logic [20:0] image_addr;   // num of bits for 256*240 ROM
     logic [7:0] image_bits, red_mapped, green_mapped, blue_mapped;
-
+    //functionality states
+//    parameter IDLE = 4'b0000;
+//    parameter SOLVER_STATE = 4'b0001;
+//    parameter MANUAL_STATE = 4'b0010;
+//    parameter GENERATE_STATE = 4'b0011;
 
     assign image_addr = (hcount) + (vcount) * WIDTH;
 
@@ -36,26 +40,26 @@ module return_UI(
 
     always_ff @(posedge clk_in) begin
         if ((hcount < (WIDTH)) && (vcount < (HEIGHT))) begin
-            if(state ==0) begin
-            
-                if (manual_image_bits == 2'b00) begin
+            if(state ==4'd3) begin
+                if (generate_image_bits == 2'b00) begin
                     pixel_out <= {4'b0000, 4'b0000,4'b0000}; // greyscale
 
-                end else if (manual_image_bits == 2'b01) begin
+                end else if (generate_image_bits == 2'b01) begin
                     pixel_out <= {4'b1111, 4'b0000,4'b0000}; // greyscale
 
-                end else if (manual_image_bits == 2'b10) begin
+                end else if (generate_image_bits == 2'b10) begin
                     pixel_out <= {4'b0000, 4'b0000,4'b1111}; // greyscale
 
-                end else if (manual_image_bits == 2'b11) begin
+                end else if (generate_image_bits == 2'b11) begin
                     pixel_out <= {4'b0000, 4'b1111,4'b0000}; // greyscale
 
                 end else begin
                     pixel_out <= {4'b0000, 4'b0000,4'b0000}; // greyscale
 
                 end
+           
  
-            end else if (state ==1) begin
+            end else if (state ==4'd2) begin
                 if (solver_image_bits == 2'b00) begin
                     pixel_out <= {4'b0000, 4'b0000,4'b0000}; // greyscale
 
@@ -74,26 +78,41 @@ module return_UI(
 
                 end
 
-            end else if (state ==2) begin
-                if (generate_image_bits == 2'b00) begin
+            end else if (state ==4'd1) begin
+               if (manual_image_bits == 2'b00) begin
                     pixel_out <= {4'b0000, 4'b0000,4'b0000}; // greyscale
 
-                    
-                end else if (generate_image_bits == 2'b01) begin
+                end else if (manual_image_bits == 2'b01) begin
                     pixel_out <= {4'b1111, 4'b0000,4'b0000}; // greyscale
 
-                end else if (generate_image_bits == 2'b10) begin
+                end else if (manual_image_bits == 2'b10) begin
                     pixel_out <= {4'b0000, 4'b0000,4'b1111}; // greyscale
 
-                end else if (generate_image_bits == 2'b11) begin
+                end else if (manual_image_bits == 2'b11) begin
+                    pixel_out <= {4'b0000, 4'b1111,4'b0000}; // greyscale
+
+                end else begin
+                    pixel_out <= {4'b0000, 4'b0000,4'b0000}; // greyscale
+
+                end 
+                
+            end else begin
+                 if (manual_image_bits == 2'b00) begin
+                    pixel_out <= {4'b0000, 4'b0000,4'b0000}; // greyscale
+
+                end else if (manual_image_bits == 2'b01) begin
+                    pixel_out <= {4'b1111, 4'b0000,4'b0000}; // greyscale
+
+                end else if (manual_image_bits == 2'b10) begin
+                    pixel_out <= {4'b0000, 4'b0000,4'b1111}; // greyscale
+
+                end else if (manual_image_bits == 2'b11) begin
                     pixel_out <= {4'b0000, 4'b1111,4'b0000}; // greyscale
 
                 end else begin
                     pixel_out <= {4'b0000, 4'b0000,4'b0000}; // greyscale
 
                 end
-            end else begin
-                pixel_out <= 0;
             end
             
         end else begin
