@@ -233,8 +233,7 @@ module top_level_fresher_fsm(
     logic [19:0] assignment_out;
     logic sending_assignment;
     
-    //assign  pixel_UI = 12'b000011110000;
-    
+
     
     always_comb begin
     
@@ -439,8 +438,8 @@ module top_level_fresher_fsm(
 
     //functionality states
     parameter IDLE = 4'b0000;
-    parameter SOLVER_STATE = 4'b0001;
-    parameter MANUAL_STATE = 4'b0010;
+    parameter MANUAL_STATE = 4'b0001;
+    parameter SOLVER_STATE = 4'b0010;
     parameter GENERATE_STATE = 4'b0011;
 
     
@@ -924,4 +923,3 @@ module top_level_fresher_fsm(
 endmodule
 
 ////////////////////////////////////////////////////////////////////////////////
-//
