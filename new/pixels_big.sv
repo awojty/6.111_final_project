@@ -21,12 +21,20 @@ module ten_pixels
    //blue_coe bcm (.clka(pixel_clk_in), .addra(image_bits), .douta(blue_mapped));
    // note the one clock cycle delay in pixel!
    always_ff @ (posedge pixel_clk_in) begin
-     if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) &&
-          (vcount_in >= y_in && vcount_in < (y_in+HEIGHT)))
-        // use MSB 4 bits
-        pixel_out <= {red_mapped[7:4], red_mapped[7:4], red_mapped[7:4]}; // greyscale
-        //pixel_out <= {red_mapped[7:4], 8h'0}; // only red hues
-        else pixel_out <= 0;
+        if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) && (vcount_in >= y_in && vcount_in < (y_in+HEIGHT))) begin
+            
+            if (red_mapped == 1'b0) begin
+                pixel_out <= {4'b0000, 4'b0000,4'b0000}; // black
+
+            end else begin
+                pixel_out <= {4'b1111, 4'b1111,4'b1111}; // white
+            end
+
+        else  begin
+            pixel_out <= 0;
+                
+        end
+
    end
 endmodule
 
@@ -53,12 +61,20 @@ module eleven_pixels
    //blue_coe bcm (.clka(pixel_clk_in), .addra(image_bits), .douta(blue_mapped));
    // note the one clock cycle delay in pixel!
    always_ff @ (posedge pixel_clk_in) begin
-     if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) &&
-          (vcount_in >= y_in && vcount_in < (y_in+HEIGHT)))
-        // use MSB 4 bits
-        pixel_out <= {red_mapped[7:4], red_mapped[7:4], red_mapped[7:4]}; // greyscale
-        //pixel_out <= {red_mapped[7:4], 8h'0}; // only red hues
-        else pixel_out <= 0;
+        if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) && (vcount_in >= y_in && vcount_in < (y_in+HEIGHT))) begin
+            
+            if (red_mapped == 1'b0) begin
+                pixel_out <= {4'b0000, 4'b0000,4'b0000}; // black
+
+            end else begin
+                pixel_out <= {4'b1111, 4'b1111,4'b1111}; // white
+            end
+
+        else  begin
+            pixel_out <= 0;
+                
+        end
+
    end
 endmodule
 
@@ -85,12 +101,20 @@ module twelve_pixels
    //blue_coe bcm (.clka(pixel_clk_in), .addra(image_bits), .douta(blue_mapped));
    // note the one clock cycle delay in pixel!
    always_ff @ (posedge pixel_clk_in) begin
-     if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) &&
-          (vcount_in >= y_in && vcount_in < (y_in+HEIGHT)))
-        // use MSB 4 bits
-        pixel_out <= {red_mapped[7:4], red_mapped[7:4], red_mapped[7:4]}; // greyscale
-        //pixel_out <= {red_mapped[7:4], 8h'0}; // only red hues
-        else pixel_out <= 0;
+        if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) && (vcount_in >= y_in && vcount_in < (y_in+HEIGHT))) begin
+            
+            if (red_mapped == 1'b0) begin
+                pixel_out <= {4'b0000, 4'b0000,4'b0000}; // black
+
+            end else begin
+                pixel_out <= {4'b1111, 4'b1111,4'b1111}; // white
+            end
+
+        else  begin
+            pixel_out <= 0;
+                
+        end
+
    end
 endmodule
 
@@ -118,12 +142,20 @@ module thirteen_pixels
    //blue_coe bcm (.clka(pixel_clk_in), .addra(image_bits), .douta(blue_mapped));
    // note the one clock cycle delay in pixel!
    always_ff @ (posedge pixel_clk_in) begin
-     if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) &&
-          (vcount_in >= y_in && vcount_in < (y_in+HEIGHT)))
-        // use MSB 4 bits
-        pixel_out <= {red_mapped[7:4], red_mapped[7:4], red_mapped[7:4]}; // greyscale
-        //pixel_out <= {red_mapped[7:4], 8h'0}; // only red hues
-        else pixel_out <= 0;
+        if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) && (vcount_in >= y_in && vcount_in < (y_in+HEIGHT))) begin
+            
+            if (red_mapped == 1'b0) begin
+                pixel_out <= {4'b0000, 4'b0000,4'b0000}; // black
+
+            end else begin
+                pixel_out <= {4'b1111, 4'b1111,4'b1111}; // white
+            end
+
+        else  begin
+            pixel_out <= 0;
+                
+        end
+
    end
 endmodule
 
@@ -150,12 +182,21 @@ module fourteen_pixels
    //blue_coe bcm (.clka(pixel_clk_in), .addra(image_bits), .douta(blue_mapped));
    // note the one clock cycle delay in pixel!
    always_ff @ (posedge pixel_clk_in) begin
-     if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) &&
-          (vcount_in >= y_in && vcount_in < (y_in+HEIGHT)))
-        // use MSB 4 bits
-        pixel_out <= {red_mapped[7:4], red_mapped[7:4], red_mapped[7:4]}; // greyscale
-        //pixel_out <= {red_mapped[7:4], 8h'0}; // only red hues
-        else pixel_out <= 0;
+
+        if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) && (vcount_in >= y_in && vcount_in < (y_in+HEIGHT))) begin
+            
+            if (red_mapped == 1'b0) begin
+                pixel_out <= {4'b0000, 4'b0000,4'b0000}; // black
+
+            end else begin
+                pixel_out <= {4'b1111, 4'b1111,4'b1111}; // white
+            end
+
+        else  begin
+            pixel_out <= 0;
+                
+        end
+
    end
 endmodule
 
@@ -183,12 +224,21 @@ module fifteen_pixels
    //blue_coe bcm (.clka(pixel_clk_in), .addra(image_bits), .douta(blue_mapped));
    // note the one clock cycle delay in pixel!
    always_ff @ (posedge pixel_clk_in) begin
-     if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) &&
-          (vcount_in >= y_in && vcount_in < (y_in+HEIGHT)))
-        // use MSB 4 bits
-        pixel_out <= {red_mapped[7:4], red_mapped[7:4], red_mapped[7:4]}; // greyscale
-        //pixel_out <= {red_mapped[7:4], 8h'0}; // only red hues
-        else pixel_out <= 0;
+
+        if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) && (vcount_in >= y_in && vcount_in < (y_in+HEIGHT))) begin
+            
+            if (red_mapped == 1'b0) begin
+                pixel_out <= {4'b0000, 4'b0000,4'b0000}; // black
+
+            end else begin
+                pixel_out <= {4'b1111, 4'b1111,4'b1111}; // white
+            end
+
+        else  begin
+            pixel_out <= 0;
+                
+        end
+
    end
 endmodule
 
@@ -216,12 +266,21 @@ module sixteen_pixels
    //blue_coe bcm (.clka(pixel_clk_in), .addra(image_bits), .douta(blue_mapped));
    // note the one clock cycle delay in pixel!
    always_ff @ (posedge pixel_clk_in) begin
-     if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) &&
-          (vcount_in >= y_in && vcount_in < (y_in+HEIGHT)))
-        // use MSB 4 bits
-        pixel_out <= {red_mapped[7:4], red_mapped[7:4], red_mapped[7:4]}; // greyscale
-        //pixel_out <= {red_mapped[7:4], 8h'0}; // only red hues
-        else pixel_out <= 0;
+
+        if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) && (vcount_in >= y_in && vcount_in < (y_in+HEIGHT))) begin
+            
+            if (red_mapped == 1'b0) begin
+                pixel_out <= {4'b0000, 4'b0000,4'b0000}; // black
+
+            end else begin
+                pixel_out <= {4'b1111, 4'b1111,4'b1111}; // white
+            end
+
+        else  begin
+            pixel_out <= 0;
+                
+        end
+
    end
 endmodule
 
@@ -249,12 +308,20 @@ module seventeen_pixels
    //blue_coe bcm (.clka(pixel_clk_in), .addra(image_bits), .douta(blue_mapped));
    // note the one clock cycle delay in pixel!
    always_ff @ (posedge pixel_clk_in) begin
-     if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) &&
-          (vcount_in >= y_in && vcount_in < (y_in+HEIGHT)))
-        // use MSB 4 bits
-        pixel_out <= {red_mapped[7:4], red_mapped[7:4], red_mapped[7:4]}; // greyscale
-        //pixel_out <= {red_mapped[7:4], 8h'0}; // only red hues
-        else pixel_out <= 0;
+        if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) && (vcount_in >= y_in && vcount_in < (y_in+HEIGHT))) begin
+            
+            if (red_mapped == 1'b0) begin
+                pixel_out <= {4'b0000, 4'b0000,4'b0000}; // black
+
+            end else begin
+                pixel_out <= {4'b1111, 4'b1111,4'b1111}; // white
+            end
+
+        else  begin
+            pixel_out <= 0;
+                
+        end
+
    end
 endmodule
 
@@ -282,12 +349,20 @@ module eightteen_pixels
    //blue_coe bcm (.clka(pixel_clk_in), .addra(image_bits), .douta(blue_mapped));
    // note the one clock cycle delay in pixel!
    always_ff @ (posedge pixel_clk_in) begin
-     if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) &&
-          (vcount_in >= y_in && vcount_in < (y_in+HEIGHT)))
-        // use MSB 4 bits
-        pixel_out <= {red_mapped[7:4], red_mapped[7:4], red_mapped[7:4]}; // greyscale
-        //pixel_out <= {red_mapped[7:4], 8h'0}; // only red hues
-        else pixel_out <= 0;
+        if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) && (vcount_in >= y_in && vcount_in < (y_in+HEIGHT))) begin
+            
+            if (red_mapped == 1'b0) begin
+                pixel_out <= {4'b0000, 4'b0000,4'b0000}; // black
+
+            end else begin
+                pixel_out <= {4'b1111, 4'b1111,4'b1111}; // white
+            end
+
+        else  begin
+            pixel_out <= 0;
+                
+        end
+
    end
 endmodule
 
@@ -315,12 +390,20 @@ module nineteen_pixels
    //blue_coe bcm (.clka(pixel_clk_in), .addra(image_bits), .douta(blue_mapped));
    // note the one clock cycle delay in pixel!
    always_ff @ (posedge pixel_clk_in) begin
-     if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) &&
-          (vcount_in >= y_in && vcount_in < (y_in+HEIGHT)))
-        // use MSB 4 bits
-        pixel_out <= {red_mapped[7:4], red_mapped[7:4], red_mapped[7:4]}; // greyscale
-        //pixel_out <= {red_mapped[7:4], 8h'0}; // only red hues
-        else pixel_out <= 0;
+        if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) && (vcount_in >= y_in && vcount_in < (y_in+HEIGHT))) begin
+            
+            if (red_mapped == 1'b0) begin
+                pixel_out <= {4'b0000, 4'b0000,4'b0000}; // black
+
+            end else begin
+                pixel_out <= {4'b1111, 4'b1111,4'b1111}; // white
+            end
+
+        else  begin
+            pixel_out <= 0;
+                
+        end
+
    end
 endmodule
 
@@ -348,12 +431,20 @@ module twenty_pixels
    //blue_coe bcm (.clka(pixel_clk_in), .addra(image_bits), .douta(blue_mapped));
    // note the one clock cycle delay in pixel!
    always_ff @ (posedge pixel_clk_in) begin
-     if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) &&
-          (vcount_in >= y_in && vcount_in < (y_in+HEIGHT)))
-        // use MSB 4 bits
-        pixel_out <= {red_mapped[7:4], red_mapped[7:4], red_mapped[7:4]}; // greyscale
-        //pixel_out <= {red_mapped[7:4], 8h'0}; // only red hues
-        else pixel_out <= 0;
+        if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) && (vcount_in >= y_in && vcount_in < (y_in+HEIGHT))) begin
+            
+            if (red_mapped == 1'b0) begin
+                pixel_out <= {4'b0000, 4'b0000,4'b0000}; // black
+
+            end else begin
+                pixel_out <= {4'b1111, 4'b1111,4'b1111}; // white
+            end
+
+        else  begin
+            pixel_out <= 0;
+                
+        end
+
    end
 endmodule
 
@@ -381,12 +472,20 @@ module twentyone_pixels
    //blue_coe bcm (.clka(pixel_clk_in), .addra(image_bits), .douta(blue_mapped));
    // note the one clock cycle delay in pixel!
    always_ff @ (posedge pixel_clk_in) begin
-     if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) &&
-          (vcount_in >= y_in && vcount_in < (y_in+HEIGHT)))
-        // use MSB 4 bits
-        pixel_out <= {red_mapped[7:4], red_mapped[7:4], red_mapped[7:4]}; // greyscale
-        //pixel_out <= {red_mapped[7:4], 8h'0}; // only red hues
-        else pixel_out <= 0;
+        if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) && (vcount_in >= y_in && vcount_in < (y_in+HEIGHT))) begin
+            
+            if (red_mapped == 1'b0) begin
+                pixel_out <= {4'b0000, 4'b0000,4'b0000}; // black
+
+            end else begin
+                pixel_out <= {4'b1111, 4'b1111,4'b1111}; // white
+            end
+
+        else  begin
+            pixel_out <= 0;
+                
+        end
+
    end
 endmodule
 
@@ -414,12 +513,21 @@ module twentytwo_pixels
    //blue_coe bcm (.clka(pixel_clk_in), .addra(image_bits), .douta(blue_mapped));
    // note the one clock cycle delay in pixel!
    always_ff @ (posedge pixel_clk_in) begin
-     if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) &&
-          (vcount_in >= y_in && vcount_in < (y_in+HEIGHT)))
-        // use MSB 4 bits
-        pixel_out <= {red_mapped[7:4], red_mapped[7:4], red_mapped[7:4]}; // greyscale
-        //pixel_out <= {red_mapped[7:4], 8h'0}; // only red hues
-        else pixel_out <= 0;
+
+        if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) && (vcount_in >= y_in && vcount_in < (y_in+HEIGHT))) begin
+            
+            if (red_mapped == 1'b0) begin
+                pixel_out <= {4'b0000, 4'b0000,4'b0000}; // black
+
+            end else begin
+                pixel_out <= {4'b1111, 4'b1111,4'b1111}; // white
+            end
+
+        else  begin
+            pixel_out <= 0;
+                
+        end
+
    end
 endmodule
 
@@ -447,12 +555,21 @@ module twentythree_pixels
    //blue_coe bcm (.clka(pixel_clk_in), .addra(image_bits), .douta(blue_mapped));
    // note the one clock cycle delay in pixel!
    always_ff @ (posedge pixel_clk_in) begin
-     if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) &&
-          (vcount_in >= y_in && vcount_in < (y_in+HEIGHT)))
-        // use MSB 4 bits
-        pixel_out <= {red_mapped[7:4], red_mapped[7:4], red_mapped[7:4]}; // greyscale
-        //pixel_out <= {red_mapped[7:4], 8h'0}; // only red hues
-        else pixel_out <= 0;
+
+        if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) && (vcount_in >= y_in && vcount_in < (y_in+HEIGHT))) begin
+            
+            if (red_mapped == 1'b0) begin
+                pixel_out <= {4'b0000, 4'b0000,4'b0000}; // black
+
+            end else begin
+                pixel_out <= {4'b1111, 4'b1111,4'b1111}; // white
+            end
+
+        else  begin
+            pixel_out <= 0;
+                
+        end
+
    end
 endmodule
 
@@ -480,12 +597,21 @@ module twentyfour_pixels
    //blue_coe bcm (.clka(pixel_clk_in), .addra(image_bits), .douta(blue_mapped));
    // note the one clock cycle delay in pixel!
    always_ff @ (posedge pixel_clk_in) begin
-     if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) &&
-          (vcount_in >= y_in && vcount_in < (y_in+HEIGHT)))
-        // use MSB 4 bits
-        pixel_out <= {red_mapped[7:4], red_mapped[7:4], red_mapped[7:4]}; // greyscale
-        //pixel_out <= {red_mapped[7:4], 8h'0}; // only red hues
-        else pixel_out <= 0;
+
+        if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) && (vcount_in >= y_in && vcount_in < (y_in+HEIGHT))) begin
+            
+            if (red_mapped == 1'b0) begin
+                pixel_out <= {4'b0000, 4'b0000,4'b0000}; // black
+
+            end else begin
+                pixel_out <= {4'b1111, 4'b1111,4'b1111}; // white
+            end
+
+        else  begin
+            pixel_out <= 0;
+                
+        end
+
    end
 endmodule
 
@@ -513,12 +639,20 @@ module twentyfive_pixels
    //blue_coe bcm (.clka(pixel_clk_in), .addra(image_bits), .douta(blue_mapped));
    // note the one clock cycle delay in pixel!
    always_ff @ (posedge pixel_clk_in) begin
-     if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) &&
-          (vcount_in >= y_in && vcount_in < (y_in+HEIGHT)))
-        // use MSB 4 bits
-        pixel_out <= {red_mapped[7:4], red_mapped[7:4], red_mapped[7:4]}; // greyscale
-        //pixel_out <= {red_mapped[7:4], 8h'0}; // only red hues
-        else pixel_out <= 0;
+        if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) && (vcount_in >= y_in && vcount_in < (y_in+HEIGHT))) begin
+            
+            if (red_mapped == 1'b0) begin
+                pixel_out <= {4'b0000, 4'b0000,4'b0000}; // black
+
+            end else begin
+                pixel_out <= {4'b1111, 4'b1111,4'b1111}; // white
+            end
+
+        else  begin
+            pixel_out <= 0;
+                
+        end
+
    end
 endmodule
 
@@ -546,12 +680,20 @@ module twentysix_pixels
    //blue_coe bcm (.clka(pixel_clk_in), .addra(image_bits), .douta(blue_mapped));
    // note the one clock cycle delay in pixel!
    always_ff @ (posedge pixel_clk_in) begin
-     if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) &&
-          (vcount_in >= y_in && vcount_in < (y_in+HEIGHT)))
-        // use MSB 4 bits
-        pixel_out <= {red_mapped[7:4], red_mapped[7:4], red_mapped[7:4]}; // greyscale
-        //pixel_out <= {red_mapped[7:4], 8h'0}; // only red hues
-        else pixel_out <= 0;
+        if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) && (vcount_in >= y_in && vcount_in < (y_in+HEIGHT))) begin
+            
+            if (red_mapped == 1'b0) begin
+                pixel_out <= {4'b0000, 4'b0000,4'b0000}; // black
+
+            end else begin
+                pixel_out <= {4'b1111, 4'b1111,4'b1111}; // white
+            end
+
+        else  begin
+            pixel_out <= 0;
+                
+        end
+
    end
 endmodule
 
@@ -579,12 +721,20 @@ module twentyseven_pixels
    //blue_coe bcm (.clka(pixel_clk_in), .addra(image_bits), .douta(blue_mapped));
    // note the one clock cycle delay in pixel!
    always_ff @ (posedge pixel_clk_in) begin
-     if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) &&
-          (vcount_in >= y_in && vcount_in < (y_in+HEIGHT)))
-        // use MSB 4 bits
-        pixel_out <= {red_mapped[7:4], red_mapped[7:4], red_mapped[7:4]}; // greyscale
-        //pixel_out <= {red_mapped[7:4], 8h'0}; // only red hues
-        else pixel_out <= 0;
+        if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) && (vcount_in >= y_in && vcount_in < (y_in+HEIGHT))) begin
+            
+            if (red_mapped == 1'b0) begin
+                pixel_out <= {4'b0000, 4'b0000,4'b0000}; // black
+
+            end else begin
+                pixel_out <= {4'b1111, 4'b1111,4'b1111}; // white
+            end
+
+        else  begin
+            pixel_out <= 0;
+                
+        end
+
    end
 endmodule
 
@@ -612,12 +762,20 @@ module twentyeight_pixels
    //blue_coe bcm (.clka(pixel_clk_in), .addra(image_bits), .douta(blue_mapped));
    // note the one clock cycle delay in pixel!
    always_ff @ (posedge pixel_clk_in) begin
-     if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) &&
-          (vcount_in >= y_in && vcount_in < (y_in+HEIGHT)))
-        // use MSB 4 bits
-        pixel_out <= {red_mapped[7:4], red_mapped[7:4], red_mapped[7:4]}; // greyscale
-        //pixel_out <= {red_mapped[7:4], 8h'0}; // only red hues
-        else pixel_out <= 0;
+        if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) && (vcount_in >= y_in && vcount_in < (y_in+HEIGHT))) begin
+            
+            if (red_mapped == 1'b0) begin
+                pixel_out <= {4'b0000, 4'b0000,4'b0000}; // black
+
+            end else begin
+                pixel_out <= {4'b1111, 4'b1111,4'b1111}; // white
+            end
+
+        else  begin
+            pixel_out <= 0;
+                
+        end
+
    end
 endmodule
 
@@ -645,12 +803,20 @@ module twentynine_pixels
    //blue_coe bcm (.clka(pixel_clk_in), .addra(image_bits), .douta(blue_mapped));
    // note the one clock cycle delay in pixel!
    always_ff @ (posedge pixel_clk_in) begin
-     if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) &&
-          (vcount_in >= y_in && vcount_in < (y_in+HEIGHT)))
-        // use MSB 4 bits
-        pixel_out <= {red_mapped[7:4], red_mapped[7:4], red_mapped[7:4]}; // greyscale
-        //pixel_out <= {red_mapped[7:4], 8h'0}; // only red hues
-        else pixel_out <= 0;
+        if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) && (vcount_in >= y_in && vcount_in < (y_in+HEIGHT))) begin
+            
+            if (red_mapped == 1'b0) begin
+                pixel_out <= {4'b0000, 4'b0000,4'b0000}; // black
+
+            end else begin
+                pixel_out <= {4'b1111, 4'b1111,4'b1111}; // white
+            end
+
+        else  begin
+            pixel_out <= 0;
+                
+        end
+
    end
 endmodule
 
@@ -678,12 +844,20 @@ module thirty_pixels
    //blue_coe bcm (.clka(pixel_clk_in), .addra(image_bits), .douta(blue_mapped));
    // note the one clock cycle delay in pixel!
    always_ff @ (posedge pixel_clk_in) begin
-     if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) &&
-          (vcount_in >= y_in && vcount_in < (y_in+HEIGHT)))
-        // use MSB 4 bits
-        pixel_out <= {red_mapped[7:4], red_mapped[7:4], red_mapped[7:4]}; // greyscale
-        //pixel_out <= {red_mapped[7:4], 8h'0}; // only red hues
-        else pixel_out <= 0;
+        if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) && (vcount_in >= y_in && vcount_in < (y_in+HEIGHT))) begin
+            
+            if (red_mapped == 1'b0) begin
+                pixel_out <= {4'b0000, 4'b0000,4'b0000}; // black
+
+            end else begin
+                pixel_out <= {4'b1111, 4'b1111,4'b1111}; // white
+            end
+
+        else  begin
+            pixel_out <= 0;
+                
+        end
+
    end
 endmodule
 
@@ -711,12 +885,20 @@ module thirtyone_pixels
    //blue_coe bcm (.clka(pixel_clk_in), .addra(image_bits), .douta(blue_mapped));
    // note the one clock cycle delay in pixel!
    always_ff @ (posedge pixel_clk_in) begin
-     if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) &&
-          (vcount_in >= y_in && vcount_in < (y_in+HEIGHT)))
-        // use MSB 4 bits
-        pixel_out <= {red_mapped[7:4], red_mapped[7:4], red_mapped[7:4]}; // greyscale
-        //pixel_out <= {red_mapped[7:4], 8h'0}; // only red hues
-        else pixel_out <= 0;
+        if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) && (vcount_in >= y_in && vcount_in < (y_in+HEIGHT))) begin
+            
+            if (red_mapped == 1'b0) begin
+                pixel_out <= {4'b0000, 4'b0000,4'b0000}; // black
+
+            end else begin
+                pixel_out <= {4'b1111, 4'b1111,4'b1111}; // white
+            end
+
+        else  begin
+            pixel_out <= 0;
+                
+        end
+
    end
 endmodule
 
@@ -743,12 +925,20 @@ module thirtytwo_pixels
    //blue_coe bcm (.clka(pixel_clk_in), .addra(image_bits), .douta(blue_mapped));
    // note the one clock cycle delay in pixel!
    always_ff @ (posedge pixel_clk_in) begin
-     if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) &&
-          (vcount_in >= y_in && vcount_in < (y_in+HEIGHT)))
-        // use MSB 4 bits
-        pixel_out <= {red_mapped[7:4], red_mapped[7:4], red_mapped[7:4]}; // greyscale
-        //pixel_out <= {red_mapped[7:4], 8h'0}; // only red hues
-        else pixel_out <= 0;
+        if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) && (vcount_in >= y_in && vcount_in < (y_in+HEIGHT))) begin
+            
+            if (red_mapped == 1'b0) begin
+                pixel_out <= {4'b0000, 4'b0000,4'b0000}; // black
+
+            end else begin
+                pixel_out <= {4'b1111, 4'b1111,4'b1111}; // white
+            end
+
+        else  begin
+            pixel_out <= 0;
+                
+        end
+
    end
 endmodule
 
@@ -775,12 +965,20 @@ module thirtythree_pixels
    //blue_coe bcm (.clka(pixel_clk_in), .addra(image_bits), .douta(blue_mapped));
    // note the one clock cycle delay in pixel!
    always_ff @ (posedge pixel_clk_in) begin
-     if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) &&
-          (vcount_in >= y_in && vcount_in < (y_in+HEIGHT)))
-        // use MSB 4 bits
-        pixel_out <= {red_mapped[7:4], red_mapped[7:4], red_mapped[7:4]}; // greyscale
-        //pixel_out <= {red_mapped[7:4], 8h'0}; // only red hues
-        else pixel_out <= 0;
+        if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) && (vcount_in >= y_in && vcount_in < (y_in+HEIGHT))) begin
+            
+            if (red_mapped == 1'b0) begin
+                pixel_out <= {4'b0000, 4'b0000,4'b0000}; // black
+
+            end else begin
+                pixel_out <= {4'b1111, 4'b1111,4'b1111}; // white
+            end
+
+        else  begin
+            pixel_out <= 0;
+                
+        end
+
    end
 endmodule
 
@@ -807,12 +1005,20 @@ module thirtyfour_pixels
    //blue_coe bcm (.clka(pixel_clk_in), .addra(image_bits), .douta(blue_mapped));
    // note the one clock cycle delay in pixel!
    always_ff @ (posedge pixel_clk_in) begin
-     if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) &&
-          (vcount_in >= y_in && vcount_in < (y_in+HEIGHT)))
-        // use MSB 4 bits
-        pixel_out <= {red_mapped[7:4], red_mapped[7:4], red_mapped[7:4]}; // greyscale
-        //pixel_out <= {red_mapped[7:4], 8h'0}; // only red hues
-        else pixel_out <= 0;
+        if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) && (vcount_in >= y_in && vcount_in < (y_in+HEIGHT))) begin
+            
+            if (red_mapped == 1'b0) begin
+                pixel_out <= {4'b0000, 4'b0000,4'b0000}; // black
+
+            end else begin
+                pixel_out <= {4'b1111, 4'b1111,4'b1111}; // white
+            end
+
+        else  begin
+            pixel_out <= 0;
+                
+        end
+
    end
 endmodule
 
@@ -839,12 +1045,20 @@ module thirtyfive_pixels
    //blue_coe bcm (.clka(pixel_clk_in), .addra(image_bits), .douta(blue_mapped));
    // note the one clock cycle delay in pixel!
    always_ff @ (posedge pixel_clk_in) begin
-     if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) &&
-          (vcount_in >= y_in && vcount_in < (y_in+HEIGHT)))
-        // use MSB 4 bits
-        pixel_out <= {red_mapped[7:4], red_mapped[7:4], red_mapped[7:4]}; // greyscale
-        //pixel_out <= {red_mapped[7:4], 8h'0}; // only red hues
-        else pixel_out <= 0;
+        if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) && (vcount_in >= y_in && vcount_in < (y_in+HEIGHT))) begin
+            
+            if (red_mapped == 1'b0) begin
+                pixel_out <= {4'b0000, 4'b0000,4'b0000}; // black
+
+            end else begin
+                pixel_out <= {4'b1111, 4'b1111,4'b1111}; // white
+            end
+
+        else  begin
+            pixel_out <= 0;
+                
+        end
+
    end
 endmodule
 
@@ -871,12 +1085,20 @@ module thirtysix_pixels
    //blue_coe bcm (.clka(pixel_clk_in), .addra(image_bits), .douta(blue_mapped));
    // note the one clock cycle delay in pixel!
    always_ff @ (posedge pixel_clk_in) begin
-     if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) &&
-          (vcount_in >= y_in && vcount_in < (y_in+HEIGHT)))
-        // use MSB 4 bits
-        pixel_out <= {red_mapped[7:4], red_mapped[7:4], red_mapped[7:4]}; // greyscale
-        //pixel_out <= {red_mapped[7:4], 8h'0}; // only red hues
-        else pixel_out <= 0;
+        if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) && (vcount_in >= y_in && vcount_in < (y_in+HEIGHT))) begin
+            
+            if (red_mapped == 1'b0) begin
+                pixel_out <= {4'b0000, 4'b0000,4'b0000}; // black
+
+            end else begin
+                pixel_out <= {4'b1111, 4'b1111,4'b1111}; // white
+            end
+
+        else  begin
+            pixel_out <= 0;
+                
+        end
+
    end
 endmodule
 
@@ -903,12 +1125,20 @@ module thirtyseven_pixels
    //blue_coe bcm (.clka(pixel_clk_in), .addra(image_bits), .douta(blue_mapped));
    // note the one clock cycle delay in pixel!
    always_ff @ (posedge pixel_clk_in) begin
-     if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) &&
-          (vcount_in >= y_in && vcount_in < (y_in+HEIGHT)))
-        // use MSB 4 bits
-        pixel_out <= {red_mapped[7:4], red_mapped[7:4], red_mapped[7:4]}; // greyscale
-        //pixel_out <= {red_mapped[7:4], 8h'0}; // only red hues
-        else pixel_out <= 0;
+        if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) && (vcount_in >= y_in && vcount_in < (y_in+HEIGHT))) begin
+            
+            if (red_mapped == 1'b0) begin
+                pixel_out <= {4'b0000, 4'b0000,4'b0000}; // black
+
+            end else begin
+                pixel_out <= {4'b1111, 4'b1111,4'b1111}; // white
+            end
+
+        else  begin
+            pixel_out <= 0;
+                
+        end
+
    end
 endmodule
 
@@ -935,12 +1165,20 @@ module thirtyeight_pixels
    //blue_coe bcm (.clka(pixel_clk_in), .addra(image_bits), .douta(blue_mapped));
    // note the one clock cycle delay in pixel!
    always_ff @ (posedge pixel_clk_in) begin
-     if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) &&
-          (vcount_in >= y_in && vcount_in < (y_in+HEIGHT)))
-        // use MSB 4 bits
-        pixel_out <= {red_mapped[7:4], red_mapped[7:4], red_mapped[7:4]}; // greyscale
-        //pixel_out <= {red_mapped[7:4], 8h'0}; // only red hues
-        else pixel_out <= 0;
+        if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) && (vcount_in >= y_in && vcount_in < (y_in+HEIGHT))) begin
+            
+            if (red_mapped == 1'b0) begin
+                pixel_out <= {4'b0000, 4'b0000,4'b0000}; // black
+
+            end else begin
+                pixel_out <= {4'b1111, 4'b1111,4'b1111}; // white
+            end
+
+        else  begin
+            pixel_out <= 0;
+                
+        end
+
    end
 endmodule
 
@@ -967,13 +1205,22 @@ module thirtynine_pixels
    //blue_coe bcm (.clka(pixel_clk_in), .addra(image_bits), .douta(blue_mapped));
    // note the one clock cycle delay in pixel!
    always_ff @ (posedge pixel_clk_in) begin
-     if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) &&
-          (vcount_in >= y_in && vcount_in < (y_in+HEIGHT)))
-        // use MSB 4 bits
-        pixel_out <= {red_mapped[7:4], red_mapped[7:4], red_mapped[7:4]}; // greyscale
-        //pixel_out <= {red_mapped[7:4], 8h'0}; // only red hues
-        else pixel_out <= 0;
+        if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) && (vcount_in >= y_in && vcount_in < (y_in+HEIGHT))) begin
+            
+            if (red_mapped == 1'b0) begin
+                pixel_out <= {4'b0000, 4'b0000,4'b0000}; // black
+
+            end else begin
+                pixel_out <= {4'b1111, 4'b1111,4'b1111}; // white
+            end
+
+        else  begin
+            pixel_out <= 0;
+                
+        end
+
    end
+
 endmodule
 
 module forty_pixels
@@ -999,11 +1246,19 @@ module forty_pixels
    //blue_coe bcm (.clka(pixel_clk_in), .addra(image_bits), .douta(blue_mapped));
    // note the one clock cycle delay in pixel!
    always_ff @ (posedge pixel_clk_in) begin
-     if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) &&
-          (vcount_in >= y_in && vcount_in < (y_in+HEIGHT)))
-        // use MSB 4 bits
-        pixel_out <= {red_mapped[7:4], red_mapped[7:4], red_mapped[7:4]}; // greyscale
-        //pixel_out <= {red_mapped[7:4], 8h'0}; // only red hues
-        else pixel_out <= 0;
+        if ((hcount_in >= x_in && hcount_in < (x_in+WIDTH)) && (vcount_in >= y_in && vcount_in < (y_in+HEIGHT))) begin
+            
+            if (red_mapped == 1'b0) begin
+                pixel_out <= {4'b0000, 4'b0000,4'b0000}; // black
+
+            end else begin
+                pixel_out <= {4'b1111, 4'b1111,4'b1111}; // white
+            end
+
+        else  begin
+            pixel_out <= 0;
+                
+        end
+
    end
 endmodule
