@@ -1,4 +1,3 @@
-
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////
@@ -42,7 +41,7 @@ module top_level_fresher_fsm(
     assign  dp = 1'b1;  // turn off the period
 
     assign led = sw;                        // turn leds on
-    assign data = {counter_button};   // display 0123456 + sw[3:0]
+    assign data = {state,state_FSM, state_pixel,state_UI,state_button};   // display 0123456 + sw[3:0]
     assign led16_r = btnl;                  // left button -> red led
     assign led16_g = btnc;                  // center button -> green led
     assign led16_b = btnr;                  // right button -> blue led
@@ -128,34 +127,11 @@ module top_level_fresher_fsm(
         pixel_in <= pixel_buff;
         old_output_pixels <= output_pixels;
         xclk_count <= xclk_count + 2'b01;
-        if (sw[3])begin
-            //processed_pixels <= {red_diff<<2, green_diff<<2, blue_diff<<2};
-            processed_pixels <= output_pixels - old_output_pixels;
-        end else if (sw[4]) begin
-            if ((output_pixels[15:12]>4'b1000)&&(output_pixels[10:7]<4'b1000)&&(output_pixels[4:1]<4'b1000))begin
-                processed_pixels <= 12'hF00;
-            end else begin
-                processed_pixels <= 12'h000;
-            end
-        end else if (sw[5]) begin
-            if ((output_pixels[15:12]<4'b1000)&&(output_pixels[10:7]>4'b1000)&&(output_pixels[4:1]<4'b1000))begin
-                processed_pixels <= 12'h0F0;
-            end else begin
-                processed_pixels <= 12'h000;
-            end
-        end else if (sw[6]) begin
-            if ((output_pixels[15:12]<4'b1000)&&(output_pixels[10:7]<4'b1000)&&(output_pixels[4:1]>4'b1000))begin
-                processed_pixels <= 12'h00F;
-            end else begin
-                processed_pixels <= 12'h000;
-            end
-        end else begin
+
         
              if(((output_pixels[15:12] >>2) + (output_pixels[10:7]>>1) + (output_pixels[4:1]>>2))>5) begin
                  processed_pixels <= {4'b1111,4'b1111,4'b1111}; //white
-                 
-                 
-                
+
              end else begin
                  processed_pixels <= {4'b0000,4'b0000,4'b0000};
                  
@@ -169,12 +145,7 @@ module top_level_fresher_fsm(
                 digi_photo[vcount][hcount] <=1'b0;
                 rescaled_photo_stored[(vcount>>3)][(hcount>>3)] <=1'b0;
              end
-        
-        
-        
-        
-            //processed_pixels = {output_pixels[15:12],output_pixels[10:7],output_pixels[4:1]};
-        end
+
             
     end
 //    assign pixel_addr_out = sw[2]?((hcount>>1)+(vcount>>1)*32'd320):hcount+vcount*32'd320;
@@ -188,36 +159,49 @@ module top_level_fresher_fsm(
     
     logic [119:0] contraint_sent_manual;
     logic [11:0] pixel_3040_manual;
+    logic [11:0] pixel_10_10_manual;
     
-    manual_disp_30_40 my_manual_disp_30_40(
+    
+    manual_disp_10x10 my_manual_disp_10x10(
                    .clock(clk_65mhz),
-                  .reset(reset),
+                   .reset(reset),
                    .left(left),
                    .right(right),
                    .up(up),
                    .down(down),
                    .center(center),
-                   .start_sending_constraint(),
-                  .constraint_vals(contraint_sent_manual),
+                   .memory_read_start(sending_assignment),
+                   .constraint_vals(assignment_out),
                    .hcount(hcount),
                    .vcount(vcount),
                    .switch(sw),
-                   .pixel_out(pixel_3040_manual));
+                   .pixel_out(pixel_10_10_manual));
+    
+//    manual_disp_30_40 my_manual_disp_30_40(
+//                   .clock(clk_65mhz),
+//                  .reset(reset),
+//                   .left(left),
+//                   .right(right),
+//                   .up(up),
+//                   .down(down),
+//                   .center(center),
+//                   .start_sending_constraint(),
+//                  .constraint_vals(contraint_sent_manual),
+//                   .hcount(hcount),
+//                   .vcount(vcount),
+//                   .switch(sw),
+//                   .pixel_out(pixel_3040_manual));
     
     return_UI my_return_UI(
                    .clk_in(clk_65mhz),
                    .reset_in(reset),
-                   .state(state_pixel),
+                   .state({2'b00, sw[2:1]}),
                    .hcount(hcount),
                    .vcount(vcount),
                    .switch(sw),
                    .pixel_out(pixel_UI));
     
-    
-    
-    
-//    assign cam = sw[2]&&((hcount<640) &&  (vcount<480))?frame_buff_out:~sw[2]&&((hcount<320) &&  (vcount<240))?frame_buff_out:12'h000;
-    
+
     assign pixel_addr_out = hcount+vcount*32'd320;
     
     logic [11:0] pixel_UI;
@@ -254,20 +238,18 @@ module top_level_fresher_fsm(
     
     always_comb begin
     
-        
-    
+       
         if ((state_pixel == GET_CAMERA_OUTPUT) &&((hcount<320) &&  (vcount<240))) begin
             cam = frame_buff_out;
             
         end else if (state_pixel ==DISPLAY_MANUAL_30_40) begin
             cam = pixel_3040_manual;
             
-        end else if ((state_pixel == DISPLAY_MANUAL_10_10)) begin
-            cam = pixel_solution_disp; // probably sth else sith ther eis a manual modue ?
+        end else if (state_pixel == DISPLAY_MANUAL_10_10) begin
+            cam = pixel_10_10_manual; // probably sth else sith ther eis a manual modue ?
         
         end else if(state_pixel == DISPLAY_SOLUTION_10_10) begin
             cam = pixel_solution_disp;
-        
         
         end else if ((state_pixel == DISPLAY_OPTIONS_10_10)) begin
             cam = pixel_solution_disp;
@@ -292,8 +274,7 @@ module top_level_fresher_fsm(
             end
 //       end else if ((state_FSM == SOLVER_STATE)) begin
 //            cam = frame_buff_out;
-       end else if ((state_FSM == MANUAL_STATE)) begin
-            cam = frame_buff_out;
+
        end else if ((state_FSM == DISPLAY_EMPTY_NONOGRAM)) begin
             cam = {4'b0000,4'b0000,4'b1111};
        end else begin
@@ -333,7 +314,7 @@ module top_level_fresher_fsm(
    assign pixel_addr_out = hcount+vcount*32'd320;
    
    
-       top_level_solver my_top_level_solver(
+    top_level_solver my_top_level_solver(
                     .clk_in(clk_65mhz),
                     .start_in(start_solver), // assered when in the correct stata
                     .reset_in(reset),
@@ -449,43 +430,27 @@ module top_level_fresher_fsm(
     
 
     reg b,hs,vs;
-    logic [31:0] state;
+    logic [3:0] state;
     
     parameter CALL_GENERATOR = 4'b0001;
-    parameter CALL_GENERATOR1 = 4'b0011;
     parameter DISPLAY_EMPTY_NONOGRAM = 4'b0010;
-    parameter START_FILTER = 4'b0100;
-    
-    
-    parameter CALL_GENERATOR_UI = 4'b0001;
-    
+    parameter GET_CAMERA_OUTPUT = 4'b0011;
+    parameter DISPLAY_EMPTY_NONOGRAM_GENERATED = 4'b0100;
 
-    
-    parameter GET_CAMERA_OUTPUT = 4'b100;
-    parameter DISPLAY_EMPTY_NONOGRAM_GENERATED = 4'b101;
-    
-
-    
     //functionality states
-    parameter IDLE = 4'b000;
-    parameter SOLVER_STATE = 4'b001;
-    parameter MANUAL_STATE = 4'b010;
-    parameter GENERATE_STATE = 4'b011;
-    
-    
-    //pixel states - passsed to return UI
-    parameter PIXEL_UI_MANUAL = 4'b00;
-    parameter PIXEL_UI_AUTOMATIC = 4'b01;
-    parameter PIXEL_UI_GENERATE = 4'b10;
+    parameter IDLE = 4'b0000;
+    parameter SOLVER_STATE = 4'b0001;
+    parameter MANUAL_STATE = 4'b0010;
+    parameter GENERATE_STATE = 4'b0011;
+
     
     //states that govern pixel outptu
-    
-    parameter DISPLAY_DIGI_PHOTO  = 4'b1111;
-    parameter DISPLAY_RESCALED_PHOTO = 4'b1110;
-    parameter DISPLAY_MANUAL_30_40 = 4'b1100;
+    parameter DISPLAY_DIGI_PHOTO  = 4'b0101;
+    parameter DISPLAY_RESCALED_PHOTO = 4'b0110;
+    parameter DISPLAY_MANUAL_30_40 = 4'b0111;
     parameter DISPLAY_MANUAL_10_10 = 4'b1000;
-    parameter DISPLAY_OPTIONS_10_10 = 4'b0011;
-    parameter DISPLAY_SOLUTION_10_10 = 4'b0001;
+    parameter DISPLAY_OPTIONS_10_10 = 4'b1001;
+    parameter DISPLAY_SOLUTION_10_10 = 4'b1010;
     
     
     
@@ -502,10 +467,9 @@ module top_level_fresher_fsm(
     logic [9:0] i;
     logic [9:0] j;
     
-    logic [3:0] counter_button;
+    logic [1:0] counter_button;
     
     logic [3:0] state_UI;
-    
     logic [3:0] state_FSM;
     logic [3:0] state_pixel;
     logic center_started;
@@ -514,19 +478,38 @@ module top_level_fresher_fsm(
     logic user_selected_nonogram;
     
     logic [3:0] state_button;
+    logic start_constraint_old;
+    
+    logic start;
+    logic start_old;
+    
+    assign start = sw[11];
+    assign start_constraint = sw[6];
+    logic go_to_solving;
+    logic user_selected_nonogram_sw;
+    logic user_selected_nonogram_sw_old;
+    assign user_selected_nonogram_sw = sw[7];
     
 
-    assign led17_b  = (state_FSM == DISPLAY_EMPTY_NONOGRAM)?1:0;
+    assign led17_b  = solver_done;
     
     always_ff @(posedge clk_65mhz) begin
     
         if(reset) begin
+            
+            start_old <=0;
+            start_constraint_old <=0;
             start_solver<=0;
             get_constraints <=0;
+            go_to_solving <=0;
     
-            state_FSM <=0;
+            state_FSM <=IDLE;
+            user_selected_nonogram_sw_old<=0;
             state <=0;
             state_UI <=0;
+            state_button <=0;
+            state_pixel <=0;
+            
             index <=0;
             index_rescale <=0;
             started_filter <= 0;
@@ -555,11 +538,13 @@ module top_level_fresher_fsm(
             counter <=0;
             counter_out <= 0;
             start_collecting <=0;
+            user_selected_nonogram_sw_old <=0;
             
             last_fill <=0;
             buffer <=0;
             center_started <=0;
             user_selected_nonogram <=0;
+            counter_button<=0;
 
 
 
@@ -570,101 +555,87 @@ module top_level_fresher_fsm(
         vs <= vsync;
         b <= blank;
         
-        if(down) begin
-           if(counter_button == 2) begin
-                counter_button <=0;
-           end else begin
-            counter_button <=counter_button +1;
+           if(down) begin
+               counter_button <=counter_button +1;
            end
-        end
-        
+           
 
-
-
-    
-        if(sw[1] == 1) begin
-        
-        //return an ampty nonogram to solve manually
-            something <=1;
-            hs <= hsync;
-            vs <= vsync;
-            b <= blank;
-         //rgb <= pixel;
-       end else if (state_FSM == DISPLAY_EMPTY_NONOGRAM) begin
-        state_pixel =DISPLAY_MANUAL_30_40;
+           
+        if (state_FSM == DISPLAY_EMPTY_NONOGRAM) begin
+            state_pixel <=DISPLAY_MANUAL_30_40;
         //todo - start sending constraints
         
          
        end else if (state_FSM == IDLE &&((sw[12] ==0) && (sw[3] ==0))) begin
-
-            if(counter_button ==0) begin
-                state_button <= MANUAL_STATE;
-                state_pixel <= PIXEL_UI_MANUAL;
-            end else if (counter_button ==1) begin
-                state_button <= SOLVER_STATE;
-                state_pixel <= PIXEL_UI_AUTOMATIC;
-                
-            end else if (counter_button ==2) begin
-                state_button <= GENERATE_STATE;
-                state_pixel <= PIXEL_UI_GENERATE;
-            end else begin
-                state_button <= MANUAL_STATE;
-                state_pixel <= PIXEL_UI_MANUAL;
-            end
-            
-            //press center to swithc the state of fsm
+       
             
             if(center) begin
-                state_FSM <= state_button;
+                state_FSM <= {2'b00, sw[2:1]};
             end
             
-        end else if (state_FSM == SOLVER_STATE &&((sw[12] ==0) && (sw[3] ==0))) begin
+       end else if (state_FSM == SOLVER_STATE &&((sw[12] ==0) && (sw[3] ==0))) begin
             state_pixel <= DISPLAY_OPTIONS_10_10;
             
-            //once the user choses the nongram to be solved
-            
+            //cofmir the choice of teh nonogram that you are seing rn to be solved
             if(center) begin
                 user_selected_nonogram <=1;
             end
             
             if(user_selected_nonogram) begin
-                state_pixel <= DISPLAY_SOLUTION_10_10; // i assume your thing can return empty and solutin i nthe same tieme, once it go a solution fomr the solver
-                if (left) begin
-                    start_solver <=1;
-                end else begin
-                    start_solver <=0;
-                end
             
-                if (down) begin
+                if (center) begin
                     get_constraints <=1;
                 end else begin
-                    get_constraints <=0;
+                     get_constraints <=0;
                 end
                 
-                if(solver_done)begin
+                if(down) begin
                     user_selected_nonogram <=0;
                 end
-            
+
+                if (!start & start_old != start) begin
+                   start_solver <=1;
+                   if(solver_done)begin
+                       user_selected_nonogram <=0;
+                       go_to_solving<=0;
+                    end
+                end else begin
+                   start_solver <=0;
+                end
+                    
+                
             end
             
             
+            //get cosntraints for a new nonogram to sww
 
-            
-            
-            
-            
-            
-            
+
             //---------------TODO - fill in with teh fsm version for solver ----------
        end else if (state_FSM == MANUAL_STATE &&((sw[12] ==0) && (sw[3] ==0))) begin
        
             state_pixel <= DISPLAY_MANUAL_10_10;
             
-           //---------------TODO - fill in with teh fsm version for solver ----------
+           
+           //cofmir the choice of teh nonogram that you are seing rn to be solved
+            if(center) begin
+                user_selected_nonogram <=1;
+            end
             
+            if(user_selected_nonogram) begin
             
+                if (center) begin
+                    get_constraints <=1;
+                end else begin
+                     get_constraints <=0;
+                end
+                
+                if(sw[4]) begin
+                    user_selected_nonogram <=0;
+                end
+      
+                
+            end
             
-
          
         end else if (state_FSM == GENERATE_STATE &&((sw[12] ==0) && (sw[3] ==0))) begin
             // start generator
@@ -823,7 +794,7 @@ module top_level_fresher_fsm(
                         i<=0;
                         j<=0;
                         state <= DISPLAY_EMPTY_NONOGRAM;
-                        state_FSM <= DISPLAY_EMPTY_NONOGRAM;
+                        state_FSM <= IDLE;
                         center_started <=0;
                     end
 
@@ -935,6 +906,10 @@ module top_level_fresher_fsm(
               
              
         end
+        
+        start_old <= start;
+        start_constraint_old <= start_constraint;
+        user_selected_nonogram_sw_old <= user_selected_nonogram_sw;
      end
 
       
@@ -949,3 +924,4 @@ module top_level_fresher_fsm(
 endmodule
 
 ////////////////////////////////////////////////////////////////////////////////
+//
