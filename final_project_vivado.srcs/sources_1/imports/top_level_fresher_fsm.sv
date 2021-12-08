@@ -92,11 +92,7 @@ module top_level_fresher_fsm(
     
     assign reset = sw[0];
     
-//    assign red_diff = (output_pixels[15:12]>old_output_pixels[15:12])?output_pixels[15:12]-old_output_pixels[15:12]:old_output_pixels[15:12]-output_pixels[15:12];
-//    assign green_diff = (output_pixels[10:7]>old_output_pixels[10:7])?output_pixels[10:7]-old_output_pixels[10:7]:old_output_pixels[10:7]-output_pixels[10:7];
-//    assign blue_diff = (output_pixels[4:1]>old_output_pixels[4:1])?output_pixels[4:1]-old_output_pixels[4:1]:old_output_pixels[4:1]-output_pixels[4:1];
 
-    
     
     blk_mem_gen_0 jojos_bram(.addra(pixel_addr_in), 
                              .clka(pclk_in),
@@ -151,9 +147,7 @@ module top_level_fresher_fsm(
     logic               old_clean;
     
     
-//    always_ff @(posedge clk_100mhz)begin
-//        old_clean <= clean;  //for rising edge detection
-//    end
+
     
     logic [119:0] contraint_sent_manual;
     logic [11:0] pixel_3040_manual;
@@ -161,20 +155,20 @@ module top_level_fresher_fsm(
     logic center_old;
     logic sending_30_40;
     
-//    manual_disp_10x10 my_manual_disp_10x10(
-//                   .clock(clk_65mhz),
-//                   .reset(reset),
-//                   .left(left),
-//                   .right(right),
-//                   .up(up),
-//                   .down(down),
-//                   .center(center),
-//                   .memory_read_start(sending_assignment),
-//                   .constraint_vals(assignment_out),
-//                   .hcount(hcount),
-//                   .vcount(vcount),
-//                   .switch(sw),
-//                   .pixel_out(pixel_10_10_manual));
+   manual_disp_10x10 my_manual_disp_10x10(
+                  .clock(clk_65mhz),
+                  .reset(reset),
+                  .left(left),
+                  .right(right),
+                  .up(up),
+                  .down(down),
+                  .center(center),
+                  .memory_read_start(sending_assignment),
+                  .constraint_vals(assignment_out),
+                  .hcount(hcount),
+                  .vcount(vcount),
+                  .switch(sw),
+                  .pixel_out(pixel_10_10_manual));
     
     manual_disp_30_40 my_manual_disp_30_40(
                    .clock(clk_65mhz),
@@ -285,27 +279,27 @@ module top_level_fresher_fsm(
     //1024x768
     
     
-//         solved_disp mysolved_disp(
-//                .clock(clk_65mhz),
-//                .reset(reset),
-//                .solver_done(solver_done), //solver done
-//                .memory_read_start(sending_assignment),
-//                .constraint_vals(assignment_out),
+        solved_disp mysolved_disp(
+               .clock(clk_65mhz),
+               .reset(reset),
+               .solver_done(solver_done), //solver done
+               .memory_read_start(sending_assignment),
+               .constraint_vals(assignment_out),
                 
-//                .grid_vals1(row1_out),
-//                .grid_vals2(row2_out),
-//                .grid_vals3(row3_out),
-//                .grid_vals4(row4_out),
-//                .grid_vals5(row5_out),
-//                .grid_vals6(row6_out),
-//                .grid_vals7(row7_out),
-//                .grid_vals8(row8_out),
-//                .grid_vals9(row9_out),
-//                .grid_vals10(row10_out),
-//                .hcount(hcount),
-//                .vcount(vcount), 
-//                .switch(sw), 
-//                .pixel_out(pixel_solution_disp));
+               .grid_vals1(row1_out),
+               .grid_vals2(row2_out),
+               .grid_vals3(row3_out),
+               .grid_vals4(row4_out),
+               .grid_vals5(row5_out),
+               .grid_vals6(row6_out),
+               .grid_vals7(row7_out),
+               .grid_vals8(row8_out),
+               .grid_vals9(row9_out),
+               .grid_vals10(row10_out),
+               .hcount(hcount),
+               .vcount(vcount), 
+               .switch(sw), 
+               .pixel_out(pixel_solution_disp));
     
     
     
@@ -313,28 +307,28 @@ module top_level_fresher_fsm(
    assign pixel_addr_out = hcount+vcount*32'd320;
    
    
-//    top_level_solver my_top_level_solver(
-//                    .clk_in(clk_65mhz),
-//                    .start_in(start_solver), // assered when in the correct stata
-//                    .reset_in(reset),
-//                    .get_output(get_constraints),
-//                    .sw(sw),
-//                    .assignment_out(assignment_out),
-//                    .row1_out(row1_out),
-//                    .row2_out(row2_out),
-//                    .row3_out(row3_out),
-//                    .row4_out(row4_out),
-//                    .row5_out(row5_out),
-//                    .row6_out(row6_out),
-//                    .row7_out(row7_out),
-//                    .row8_out(row8_out),
-//                    .row9_out(row9_out),
-//                    .row10_out(row10_out),
-//                    .top_level_solver_done(solver_done),
-//                    .assignment_out_done(output_assignment_done),
-//                    .sending_assignment(sending_assignment)
+   top_level_solver my_top_level_solver(
+                   .clk_in(clk_65mhz),
+                   .start_in(start_solver), // assered when in the correct stata
+                   .reset_in(reset),
+                   .get_output(get_constraints),
+                   .sw(sw),
+                   .assignment_out(assignment_out),
+                   .row1_out(row1_out),
+                   .row2_out(row2_out),
+                   .row3_out(row3_out),
+                   .row4_out(row4_out),
+                   .row5_out(row5_out),
+                   .row6_out(row6_out),
+                   .row7_out(row7_out),
+                   .row8_out(row8_out),
+                   .row9_out(row9_out),
+                   .row10_out(row10_out),
+                   .top_level_solver_done(solver_done),
+                   .assignment_out_done(output_assignment_done),
+                   .sending_assignment(sending_assignment)
 
-//   );
+  );
     
     
    
@@ -357,22 +351,6 @@ module top_level_fresher_fsm(
 
     wire phsync,pvsync,pblank;
 //    logic [11:0] fake_pixel;
-    //logic [119:0] constraint_generator_storage [69:0];
-
-//    wire border = (hcount==0 | hcount==1023 | vcount==0 | vcount==767 |
-//                   hcount == 512 | vcount == 384);
-                   
-    //logic filter_outputing;
-   // logic filter_done;
-    //logic start_filter;
-   // logic generator_done, start_generator;
-   // logic [39:0] constrain_input;
-    
-
-//    ); 
-       
-//    logic [39:0] column_constraint_storage [39:0];
-//    logic [39:0] row_constraint_storage [29:0];
 
     logic [119:0] constraint_storage [69:0];
 
@@ -390,8 +368,7 @@ module top_level_fresher_fsm(
     
     logic process_columns;
 
-//    logic [5:0] i;
-//    logic [5:0] j;
+
     
     logic process_rows;
     
