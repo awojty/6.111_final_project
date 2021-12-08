@@ -1,11 +1,5 @@
 from functools import reduce
 
-"""
-
-question about indexing with input vairabels to verilog or register valeus doe sit work ? 
-
-
-"""
  
 def gen_row(w, s):
     """Create all patterns of a row or col that match given runs."""
@@ -157,24 +151,6 @@ def my_gen_rows(length, setting):
 
     print("ans", ans)
     return ans
-
-
-
-10101
-#brute foerce all teh pemrutaions for space 3 for a given number left
-#000
-#1 > 100 010 001
-#2 > 200 020 002 110 101 011
-#3 > 200 020 002 110 101 011
-#4 > 200 020 002 110 101 011
-#5 > 200 020 002 110 101 011
-#6 > 200 020 002 110 101 011
-#no need to do more for 10 by 10 
-
-# i guess we can brute force all the permutations of the spaces allocation inthe worst case scnarion fro 10 by 10 we need to generate101010101
-#you need to encode each filling of the grad as tow bit sicne we need to accomodate 1,2,3 numbers
-
-        
 
 
  
@@ -410,20 +386,7 @@ def deduce(hr, vr):
     
     """
     
-    
-    # print("lenght of permituaiont", rows_len)
-    # print("titla_count", sum(rows_len))
-        
-    # print("past allowable can do")
-    
-    
-#     lenght of permituaiont [8, 28, 15, 21, 5, 10, 5, 10, 9, 11]
-# titla_count 122
-# past allowable can do
-        
-   # print("lenf cado", len(can_do), can_do, len(rows))
-    
- 
+
     # Initially mark all columns for update.
     mod_rows, mod_cols = set(), set(range(w))
 
@@ -543,70 +506,6 @@ a2 =  [[1, 2], [3, 1], [1, 5], [7, 1], [5], [3], [4], [3], [0], [0]] #column con
 solve([a1,a2])
 
 
-##use this code to generate teh numbers n ipytohn and just store them in registr"
-aaa = []
-def subset_sum(numbers, target, partial=[]):
-    s = sum(partial)
-
-    # check if the partial sum is equals to target
-    if s == target: 
-        print("sum(%s)=%s" % (partial, target))
-        aaa.append(partial)
-    if s >= target:
-        return  # if we reach the number why bother to continue
-    
-    for i in range(len(numbers)):
-        n = numbers[i]
-        remaining = numbers[i+1:]
-        subset_sum(remaining, target, partial + [n]) 
-   
-
-# Python 3 program to print all
-# possible strings of length k
-     
-# The method that prints all
-# possible strings of length k.
-# It is mainly a wrapper over
-# recursive function printAllKLengthRec()
-def printAllKLength(set, k):
- 
-    n = len(set)
-    printAllKLengthRec(set, "", n, k)
- 
-# The main recursive method
-# to print all possible
-# strings of length k
-def printAllKLengthRec(set, prefix, n, k):
-     
-    # Base case: k is 0,
-    # print prefix
-    if (k == 0) :
-        print(prefix)
-        return
- 
-    # One by one add all characters
-    # from set and recursively
-    # call for k equals to k-1
-    for i in range(n):
- 
-        # Next character of input added
-        newPrefix = prefix + set[i]
-         
-        # k is decreased, because
-        # we have added a new character
-        # printAllKLengthRec(set, newPrefix, n, k - 1)
-        
-        #overallping from both sdies
-        
-		# 		int start = solv->row_runs[i][j].s;0
-		# 		int end = solv->row_runs[i][j].e; 10
-		# 		int u = 10 - 0 + 1 - 6; = 6
-
-		# 		for (int k = start + u = 6 ; k <= end - u = 4  8; k++) {
-		# 			int status = solu->set(i, k, p->row_constraints[i][j].color);
-		# 			if (status == CONFLICT) conflict = true;
-		# 			if (status == PROGRESS) progress = true;
-		# 		}
   
   
 s1 = "1010_0101010101010101"

@@ -25,7 +25,7 @@ module iterative_solver_tb;
        logic solution_out;
 
        
-       iterative_solver uut(   
+       iterative_solver_wth_reset uut(   
                     .clk_in(clk),
                    
                     .reset_in(reset_in),
@@ -67,89 +67,104 @@ module iterative_solver_tb;
        start_sending_nonogram =1;
        column_number_in=10;
        row_number_in=10;
+       
+       
+
 
    
        //assignment_in =20'b00000000000000000011;//
-       assignment_in =20'b00000000000000000000;
+       assignment_in =20'b0000000000000000_0000;
        index_in<=0;
        #10;
        
        
         //assignment_in =20'b00000000000000010010;//
-        assignment_in =20'b000000000000000001000;//
+        assignment_in =20'b000000000000_0010_0100;//
         index_in<=1;
        #10;
        
-    assignment_in =20'b0000000000000000001000;//
+    assignment_in =20'b000000000000_0001_0100;//
         index_in<=2;
        #10;
        
-    assignment_in =20'b0000000000000001000;//
+    assignment_in =20'b000000000000_0001_0101;//
         index_in<=3;
        #10;
        
-    assignment_in =20'b00000000000000001000;//
+    assignment_in =20'b0000000000000000_1010;//
         index_in<=4;
        #10;
        
-    assignment_in =20'b0000000000000001000;//
+    assignment_in =20'b0000000000000000_1000;//
         index_in<=5;
        #10;
        
-    assignment_in =20'b00000000000000001000;//
+    assignment_in =20'b0000000000000000_1000;//
         index_in<=6;
        #10;
        
-    assignment_in =20'b0000000000000001000;//
+    assignment_in =20'b0000_0000_0000_0000_1000;//
         index_in<=7;
        #10;
        
-    assignment_in =20'b00000000000000001000;//
+    assignment_in =20'b0000000000000000_1000;//
         index_in<=8;
        #10;
        
-    assignment_in =20'b00000000000000000000;//
+    assignment_in =20'b000000000000_0101_0100;//
         index_in<=9;
        #10;
        
-    assignment_in =20'b00000000000000000000;//
+    assignment_in =20'b000000000000_0001_0010;//
         index_in<=10;
        #10;
        
-    assignment_in =20'b0000000000000001000;//
+    assignment_in =20'b000000000000_0001_0100;//
+    
         index_in<=11;
        #10;
        
-    assignment_in =20'b000000000000001000;//
+    assignment_in =20'b00000000000000001001;//
         index_in<=12;
        #10;
        
-    assignment_in =20'b0000000000000001000;//
+    assignment_in =20'b00000000000000001001;//
         index_in<=13;
        #10;
        
-    assignment_in =20'b0000000000000001000;//
+    assignment_in =20'b00000000000000001000;//
         index_in<=14;
        #10;
        
-    assignment_in =20'b0000000000000001000;//
+    assignment_in =20'b00000000000000000110;//
         index_in<=15;
        #10;
        
-    assignment_in =20'b00000000000000001000;
+    assignment_in =20'b00000000000000000110;
         index_in<=16;
        #10;
        
-    assignment_in =20'b0000000000000001000;
+    assignment_in =20'b0000_0000_0000_0000_0110;
         index_in<=17;
        #10;
        
-    assignment_in =20'b00000000000000001000;
+    assignment_in =20'b00000000000001100001;
         index_in<=18;
        #10;
        
-    assignment_in =20'b00000000000000000000;
+    assignment_in =20'b0000_0000_0000_0000_1001;
         index_in<=19;
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        //////////////////////////////////////////////
        #40;
        start_sending_nonogram =0;
        
