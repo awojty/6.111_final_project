@@ -7,7 +7,10 @@ module manual_disp_30_40(
                    input wire up,
                    input wire down,
                    input wire center,
+                   input wire show_sol,
                    input wire start_sending_constraint,
+                   input wire start_sending_photo,
+                   input wire [39:0] photo_in,
                    input wire [119:0] constraint_vals,
                    input wire [12:0] hcount,
                    input wire [12:0] vcount,
@@ -16,6 +19,8 @@ module manual_disp_30_40(
     
     logic receiving; //lets the system know if it is in receiving mode or not              
     logic [6:0] count_num; //counts from 0-19 to keep track of indexing with clock cycles for the 80x80 constraints
+    logic [6:0] count_num_photo;
+    
     logic [10:0] address_x;
     logic [10:0] address_y;
     logic [10:0] address_x_shift; //coordinates of every 16 pixels, 
@@ -128,6 +133,7 @@ module manual_disp_30_40(
     forties_pixels #(.WIDTH(16), .HEIGHT(16)) forty(.pixel_clk_in(clock), .x_in(x_in), .y_in(y_in), .hcount_in(hcount), .vcount_in(vcount), .pixel_out(forty_pixels));
     
     assign blank_pixels = 12'hfff;
+    logic  solvals [0:29][0:39];
     
    
      //30x40 array to store 1 and 0s of our grid for display
@@ -176,10 +182,13 @@ module manual_disp_30_40(
     assign x_in = address_x << 4;
     assign y_in = address_y << 4;
     
+    //logic [0:39] solvals [0:29];
+    logic [11:0] sol_pixels;
     
-    assign top_val = {constraints[address_x_shift][lower_y +30],constraints[address_x_shift][lower_y +31],//30 added on top because we skip the first 5 tiles (they dont exist)
-                      constraints[address_x_shift][lower_y +32],constraints[address_x_shift][lower_y +33],
-                      constraints[address_x_shift][lower_y +34],constraints[address_x_shift][lower_y+35]};
+    
+    assign top_val = {constraints[address_x_shift+30][lower_y +30],constraints[address_x_shift+30][lower_y +31],//30 added on top because we skip the first 5 tiles (they dont exist)
+                      constraints[address_x_shift+30][lower_y +32],constraints[address_x_shift+30][lower_y +33],
+                      constraints[address_x_shift+30][lower_y +34],constraints[address_x_shift+30][lower_y+35]};
     
     assign left_val = {constraints[address_y_shift][lower_x+0],constraints[address_y_shift][lower_x+1], 
                       constraints[address_y_shift][lower_x+2],constraints[address_y_shift][lower_x+3],
@@ -220,12 +229,16 @@ module manual_disp_30_40(
                          left_val==6'b100011 ? thirtyfive_pixels : left_val==6'b100100 ? thirtysix_pixels : left_val==6'b100101 ?
                          thirtyseven_pixels : left_val==6'b100110 ? thirtyeight_pixels : left_val==6'b100111 ? thirtynine_pixels :
                          left_val==6'b101000 ? forty_pixels :12'hfff : 12'hfff;
+                         
     
     assign grid_pixels = (hcount > 320 | vcount > 240) ? ((hcount % 16 ==0) | (vcount % 16 ==0)) ? 12'h000 : 12'hfff : 12'h000;
     assign tile_pixels = (hcount > 320 & vcount > 240 & hcount < 960 & vcount < 720) ? vals[address_y_shift][address_x_shift] ? 12'h000 : 12'hfff : 12'hfff;
+    assign sol_pixels = show_sol ? (hcount > 320 & vcount > 240 & hcount < 960 & vcount < 720) ? solvals[address_y_shift][address_x_shift] ? 12'h00f : 12'hfff : 12'hfff : 12'hfff;
     assign cursor_pixels = (hcount > 320 & vcount > 240 & hcount < 960 & vcount < 720) ? (address_x_shift == cursor_x & address_y_shift ==cursor_y) ? cursor_color : 12'hfff : 12'hfff;
-    assign pixel_out = (hcount < 961 & vcount < 721) ? ~(~top_pixels + ~left_pixels + ~grid_pixels + ~tile_pixels + ~cursor_pixels) : 12'hfff  ;
     
+    assign pixel_out = (hcount < 961 & vcount < 721) ? ~(~top_pixels + ~left_pixels + ~grid_pixels + ~tile_pixels + ~cursor_pixels + ~sol_pixels) : 12'hfff  ;
+
+
     //logic to generate number grid values
     logic [4:0] count2;
    
@@ -249,7 +262,9 @@ module manual_disp_30_40(
             cursor_x <= 7'd0;
             cursor_y <= 7'd0;
             count_num <= 5'b0;
+            count_num_photo <= 0;
             receiving <= 1'b0;
+            
         end else if (start_sending_constraint && (count_num < 70)) begin
             constraints[count_num][0] <= constraint_vals[119];
             constraints[count_num][1] <= constraint_vals[118];
@@ -371,12 +386,69 @@ module manual_disp_30_40(
             constraints[count_num][117] <= constraint_vals[2];
             constraints[count_num][118] <= constraint_vals[1];
             constraints[count_num][119] <= constraint_vals[0];
-            count_num <= count_num + 5'b1;    
+            count_num <= count_num + 1;    
             
-            if (count_num >= 69) begin
+            if (count_num == 69) begin
                 receiving <= 1'b0;
+                count_num<=0;
     
             end
+            
+            
+            
+            
+        end else if(start_sending_photo && (count_num_photo < 30)) begin
+            
+            solvals[count_num_photo][0] <= photo_in[0];
+            solvals[count_num_photo][1] <= photo_in[1];
+            solvals[count_num_photo][2] <= photo_in[2];
+            solvals[count_num_photo][3] <= photo_in[3];
+            solvals[count_num_photo][4] <= photo_in[4];
+            solvals[count_num_photo][5] <= photo_in[5];
+            solvals[count_num_photo][6] <= photo_in[6];
+            solvals[count_num_photo][7] <= photo_in[7];
+            solvals[count_num_photo][8] <= photo_in[8];
+            solvals[count_num_photo][9] <= photo_in[9];
+            solvals[count_num_photo][10] <= photo_in[10];
+            solvals[count_num_photo][11] <= photo_in[11];
+            solvals[count_num_photo][12] <= photo_in[12];
+            solvals[count_num_photo][13] <= photo_in[13];
+            solvals[count_num_photo][14] <= photo_in[14];
+            solvals[count_num_photo][15] <= photo_in[15];
+            solvals[count_num_photo][16] <= photo_in[16];
+            solvals[count_num_photo][17] <= photo_in[17];
+            solvals[count_num_photo][18] <= photo_in[18];
+            solvals[count_num_photo][19] <= photo_in[19];
+            solvals[count_num_photo][20] <= photo_in[20];
+            solvals[count_num_photo][21] <= photo_in[21];
+            solvals[count_num_photo][22] <= photo_in[22];
+            solvals[count_num_photo][23] <= photo_in[23];
+            solvals[count_num_photo][24] <= photo_in[24];
+            solvals[count_num_photo][25] <= photo_in[25];
+            solvals[count_num_photo][26] <= photo_in[26];
+            solvals[count_num_photo][27] <= photo_in[27];
+            solvals[count_num_photo][28] <= photo_in[28];
+            solvals[count_num_photo][29] <= photo_in[29];
+            solvals[count_num_photo][30] <= photo_in[30];
+            solvals[count_num_photo][31] <= photo_in[31];
+            solvals[count_num_photo][32] <= photo_in[32];
+            solvals[count_num_photo][33] <= photo_in[33];
+            solvals[count_num_photo][34] <= photo_in[34];
+            solvals[count_num_photo][35] <= photo_in[35];
+            solvals[count_num_photo][36] <= photo_in[36];
+            solvals[count_num_photo][37] <= photo_in[37];
+            solvals[count_num_photo][38] <= photo_in[38];
+            solvals[count_num_photo][39] <= photo_in[39];
+            
+            
+            count_num_photo <= count_num_photo +1;
+            
+            if (count_num_photo == 29) begin 
+                count_num_photo <=0;
+                
+            end
+        
+        
     end else begin
             if (select) begin
                 vals[cursor_y][cursor_x] <= ~vals[cursor_y][cursor_x];
