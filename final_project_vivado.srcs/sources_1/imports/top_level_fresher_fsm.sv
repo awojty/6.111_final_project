@@ -94,6 +94,7 @@ module top_level_fresher_fsm(
     
 
     
+    
     blk_mem_gen_0 jojos_bram(.addra(pixel_addr_in), 
                              .clka(pclk_in),
                              .dina(processed_pixels),
@@ -134,7 +135,12 @@ module top_level_fresher_fsm(
              
              if((hcount<320) &&  (vcount<240) && (frame_buff_out  == {4'b0000,4'b0000,4'b0000}) && (sw[10] ==1)) begin
                 digi_photo[vcount][hcount] <=1'b1;
-                rescaled_photo_stored[(vcount>>3)][(hcount>>3)] <=1'b1;
+                if((vcount>>3) == 0 || (hcount>>3) == 0 || (vcount>>3) == 29 || (hcount>>3) == 39 ) begin
+                    rescaled_photo_stored[(vcount>>3)][(hcount>>3)] <=1'b0;
+                end else  begin
+                    rescaled_photo_stored[(vcount>>3)][(hcount>>3)] <=1'b1;
+                end
+                
              end else if ((hcount<320) &&  (vcount<240) && (frame_buff_out  =={4'b1111,4'b1111,4'b1111}) && (sw[10] ==1)) begin
                 digi_photo[vcount][hcount] <=1'b0;
                 rescaled_photo_stored[(vcount>>3)][(hcount>>3)] <=1'b0;
@@ -147,7 +153,9 @@ module top_level_fresher_fsm(
     logic               old_clean;
     
     
-
+//    always_ff @(posedge clk_100mhz)begin
+//        old_clean <= clean;  //for rising edge detection
+//    end
     
     logic [119:0] contraint_sent_manual;
     logic [11:0] pixel_3040_manual;
@@ -155,23 +163,26 @@ module top_level_fresher_fsm(
     logic center_old;
     logic sending_30_40;
     
-   manual_disp_10x10 my_manual_disp_10x10(
-                  .clock(clk_65mhz),
-                  .reset(reset),
-                  .left(left),
-                  .right(right),
-                  .up(up),
-                  .down(down),
-                  .center(center),
-                  .memory_read_start(sending_assignment),
-                  .constraint_vals(assignment_out),
-                  .hcount(hcount),
-                  .vcount(vcount),
-                  .switch(sw),
-                  .pixel_out(pixel_10_10_manual));
-    
-    manual_disp_30_40 my_manual_disp_30_40(
+    manual_disp_10x10 my_manual_disp_10x10(
                    .clock(clk_65mhz),
+                   .reset(reset),
+                   .left(left),
+                   .right(right),
+                   .up(up),
+                   .down(down),
+                   .center(center),
+                   .memory_read_start(sending_assignment),
+                   .constraint_vals(assignment_out),
+                   .hcount(hcount),
+                   .vcount(vcount),
+                   .switch(sw),
+                   .pixel_out(pixel_10_10_manual));
+    
+              manual_disp_30_40 my_manual_disp_30_40(
+                   .clock(clk_65mhz),
+                   .start_sending_photo(sending_digi_30_40),
+                   .photo_in(photo_in_30_40),
+                   .show_sol(sw[7]),
                   .reset(reset),
                    .left(left),
                    .right(right),
@@ -198,6 +209,7 @@ module top_level_fresher_fsm(
     assign pixel_addr_out = hcount+vcount*32'd320;
     
     logic [11:0] pixel_UI;
+   logic [39:0] photo_in_30_40;
     
     //solution parser inputs
     logic reset; //reset
@@ -279,27 +291,27 @@ module top_level_fresher_fsm(
     //1024x768
     
     
-        solved_disp mysolved_disp(
-               .clock(clk_65mhz),
-               .reset(reset),
-               .solver_done(solver_done), //solver done
-               .memory_read_start(sending_assignment),
-               .constraint_vals(assignment_out),
+         solved_disp mysolved_disp(
+                .clock(clk_65mhz),
+                .reset(reset),
+                .solver_done(solver_done), //solver done
+                .memory_read_start(sending_assignment),
+                .constraint_vals(assignment_out),
                 
-               .grid_vals1(row1_out),
-               .grid_vals2(row2_out),
-               .grid_vals3(row3_out),
-               .grid_vals4(row4_out),
-               .grid_vals5(row5_out),
-               .grid_vals6(row6_out),
-               .grid_vals7(row7_out),
-               .grid_vals8(row8_out),
-               .grid_vals9(row9_out),
-               .grid_vals10(row10_out),
-               .hcount(hcount),
-               .vcount(vcount), 
-               .switch(sw), 
-               .pixel_out(pixel_solution_disp));
+                .grid_vals1(row1_out),
+                .grid_vals2(row2_out),
+                .grid_vals3(row3_out),
+                .grid_vals4(row4_out),
+                .grid_vals5(row5_out),
+                .grid_vals6(row6_out),
+                .grid_vals7(row7_out),
+                .grid_vals8(row8_out),
+                .grid_vals9(row9_out),
+                .grid_vals10(row10_out),
+                .hcount(hcount),
+                .vcount(vcount), 
+                .switch(sw), 
+                .pixel_out(pixel_solution_disp));
     
     
     
@@ -307,28 +319,28 @@ module top_level_fresher_fsm(
    assign pixel_addr_out = hcount+vcount*32'd320;
    
    
-   top_level_solver my_top_level_solver(
-                   .clk_in(clk_65mhz),
-                   .start_in(start_solver), // assered when in the correct stata
-                   .reset_in(reset),
-                   .get_output(get_constraints),
-                   .sw(sw),
-                   .assignment_out(assignment_out),
-                   .row1_out(row1_out),
-                   .row2_out(row2_out),
-                   .row3_out(row3_out),
-                   .row4_out(row4_out),
-                   .row5_out(row5_out),
-                   .row6_out(row6_out),
-                   .row7_out(row7_out),
-                   .row8_out(row8_out),
-                   .row9_out(row9_out),
-                   .row10_out(row10_out),
-                   .top_level_solver_done(solver_done),
-                   .assignment_out_done(output_assignment_done),
-                   .sending_assignment(sending_assignment)
+    top_level_solver my_top_level_solver(
+                    .clk_in(clk_65mhz),
+                    .start_in(start_solver), // assered when in the correct stata
+                    .reset_in(reset),
+                    .get_output(get_constraints),
+                    .sw(sw),
+                    .assignment_out(assignment_out),
+                    .row1_out(row1_out),
+                    .row2_out(row2_out),
+                    .row3_out(row3_out),
+                    .row4_out(row4_out),
+                    .row5_out(row5_out),
+                    .row6_out(row6_out),
+                    .row7_out(row7_out),
+                    .row8_out(row8_out),
+                    .row9_out(row9_out),
+                    .row10_out(row10_out),
+                    .top_level_solver_done(solver_done),
+                    .assignment_out_done(output_assignment_done),
+                    .sending_assignment(sending_assignment)
 
-  );
+   );
     
     
    
@@ -351,6 +363,22 @@ module top_level_fresher_fsm(
 
     wire phsync,pvsync,pblank;
 //    logic [11:0] fake_pixel;
+    //logic [119:0] constraint_generator_storage [69:0];
+
+//    wire border = (hcount==0 | hcount==1023 | vcount==0 | vcount==767 |
+//                   hcount == 512 | vcount == 384);
+                   
+    //logic filter_outputing;
+   // logic filter_done;
+    //logic start_filter;
+   // logic generator_done, start_generator;
+   // logic [39:0] constrain_input;
+    
+
+//    ); 
+       
+//    logic [39:0] column_constraint_storage [39:0];
+//    logic [39:0] row_constraint_storage [29:0];
 
     logic [119:0] constraint_storage [69:0];
 
@@ -368,7 +396,8 @@ module top_level_fresher_fsm(
     
     logic process_columns;
 
-
+//    logic [5:0] i;
+//    logic [5:0] j;
     
     logic process_rows;
     
@@ -449,17 +478,25 @@ module top_level_fresher_fsm(
     logic [7:0] c_const;
     
     logic solver_done;
+    logic sending_digi_30_40;
     assign user_selected_nonogram_sw = sw[7];
+    
     
 
     assign led17_b  = solver_done;
+    logic const_done;
+    logic photo_done;
     
 
     logic [7:0] counter_30_40;
+   logic [7:0] counter_digi_30_40;
 
     always_ff @(posedge clk_65mhz) begin
     
         if(reset) begin
+            const_done <=0;
+            sending_digi_30_40 <=0;
+            counter_digi_30_40 <=0;
             
             
             
@@ -514,6 +551,7 @@ module top_level_fresher_fsm(
             counter_button<=0;
             counter_30_40 <=0;
             sending_30_40 <=0;
+            photo_done <=0;
 
 
 
@@ -533,15 +571,36 @@ module top_level_fresher_fsm(
         if (state_FSM == DISPLAY_MANUAL_30_40 &&((sw[12] ==0) && (sw[3] ==0))) begin
             state_pixel <=DISPLAY_MANUAL_30_40;
         //todo - start sending constraints
-
-            if (counter_30_40  == 69) begin
-                sending_30_40 <=0;
-            end else begin
-                sending_30_40 <=1;
-                counter_30_40 <=counter_30_40 +1;
-                contraint_sent_manual <= constraint_storage[counter_30_40];
+        
+        
+            if(~const_done) begin
+                if (counter_30_40  == 69) begin
+                    sending_30_40 <=0;
+                    const_done <=1;
+                    
+                   
+                end else begin
+                    sending_30_40 <=1;
+                    counter_30_40 <=counter_30_40 +1;
+                    contraint_sent_manual <= constraint_storage[counter_30_40];
+    
+                end
+                
+            end else if (~photo_done && const_done) begin
+                if (counter_digi_30_40  == 29) begin
+                    sending_digi_30_40 <=0;
+                    photo_done <=1;
+                end else begin
+                    sending_digi_30_40 <=1;
+                    counter_digi_30_40 <=  counter_digi_30_40 +1;
+                    photo_in_30_40 <= rescaled_photo_stored[ counter_digi_30_40];
+    
+                end
+            
 
             end
+            
+
 
 
         
