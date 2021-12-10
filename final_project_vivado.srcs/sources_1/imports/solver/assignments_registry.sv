@@ -73,20 +73,17 @@ module assignments_registry(
                 acquired_address <=1;
                 limit <= 20;
                 
-                //assignment_out <= assignment_out1;
-                //assignment_buffer <= assignment_out1;
-                
+
                 
             end else if (acquired_address) begin
                 address_input <=address_input+1;
                 started <=1;
                 counter_out <= 0;
-                //assignment_buffer <= assignment_out1;
-                //assignment_out <= assignment_out1;
+                
                 acquired_address <=0;
                 just_started <=1;
             
-//            end
+
             
             end else if (started) begin
                 acquired_address <=0;

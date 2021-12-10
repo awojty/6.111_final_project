@@ -61,22 +61,6 @@ always_ff @(posedge clk_in) begin
 
     end else if (new_data && ~start_counting) begin
         
-        //2 bit encoding 
-
-        //tODO how to map the fact that we have 2 btos per cell ? 
-
-        //TODO : this is wrong since the _len will be udpated in the nextclcockcycle
-
-        //we omit oen sicne create row is never called on one constrni set ups 01.01.01.01.101010100101
-
-//        running_sum_1 <= constrain1 + constrain1 + break1+ break1 +2'd2; // always add tiwce sicne we migrate from 10 to 20
-//            running_sum_2 <= constrain1 + constrain1 + break1+ break1 + constrain2 + constrain2 +2'd2;
-//            running_sum_3 <= constrain1 + constrain1 + break1+ break1 + constrain2 + constrain2 + break2 + break2 +2'd2;
-//            running_sum_4 <= constrain1 + constrain1 + break1+ break1 + constrain2 + constrain2 + break2 + break2 + constrain3 + constrain3 +2'd2;
-//            running_sum_5 <= constrain1 + constrain1 + break1+ break1 + constrain2 + constrain2 + break2 + break2 + constrain3 + constrain3 + break3 + break3 +2'd2;
-//            running_sum_6 <= constrain1 + constrain1 + break1+ break1 + constrain2 + constrain2 + break2 + break2 + constrain3 + constrain3 + break3 + break3 + constrain4 + constrain4 +2'd2;
-//            running_sum_7 <= constrain1 + constrain1 + break1+ break1 + constrain2 + constrain2 + break2 + break2 + constrain3 + constrain3 + break3 + break3 + constrain4 + constrain4 + break4 + break4 +2'd2;
-//            running_sum_8 <= constrain1 + constrain1 + break1+ break1 + constrain2 + constrain2 + break2 + break2 + constrain3 + constrain3 + break3 + break3 + constrain4 + constrain4 + break4 + break4 + constrain5 +constrain5 + 2'd2;
 
 
 
@@ -189,7 +173,7 @@ always_ff @(posedge clk_in) begin
             end 
             
             if(i >=running_sum_8) begin
-                //marked the rest as unmarked ( but will be remvoed anyways ? ) 10.01.01.01.10.10.10.10.01.01
+                //marked the rest as unmarked  10.01.01.01.10.10.10.10.01.01
                 done_counting<=1;
                 
             end

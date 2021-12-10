@@ -74,9 +74,7 @@ module top_level_fresher_fsm(
     logic [15:0] output_pixels;
     logic [15:0] old_output_pixels;
     logic [12:0] processed_pixels;
-//    logic [3:0] red_diff;
-//    logic [3:0] green_diff;
-//    logic [3:0] blue_diff;
+
     logic valid_pixel;
     logic frame_done_out;
     
@@ -153,9 +151,7 @@ module top_level_fresher_fsm(
     logic               old_clean;
     
     
-//    always_ff @(posedge clk_100mhz)begin
-//        old_clean <= clean;  //for rising edge detection
-//    end
+
     
     logic [119:0] contraint_sent_manual;
     logic [11:0] pixel_3040_manual;
@@ -178,7 +174,7 @@ module top_level_fresher_fsm(
                    .switch(sw),
                    .pixel_out(pixel_10_10_manual));
     
-              manual_disp_30_40 my_manual_disp_30_40(
+    manual_disp_30_40 my_manual_disp_30_40(
                    .clock(clk_65mhz),
                    .start_sending_photo(sending_digi_30_40),
                    .photo_in(photo_in_30_40),
@@ -276,8 +272,7 @@ module top_level_fresher_fsm(
             end else begin
                 cam = {4'b1111,4'b0000,4'b1111};
             end
-//       end else if ((state_FSM == SOLVER_STATE)) begin
-//            cam = frame_buff_out;
+
 
        end else if ((state_FSM == DISPLAY_EMPTY_NONOGRAM)) begin
             cam = {4'b0000,4'b0000,4'b1111};
@@ -362,23 +357,7 @@ module top_level_fresher_fsm(
     debounce db6(.reset_in(reset),.clock_in(clk_65mhz),.noisy_in(btnc),.clean_out(center));
 
     wire phsync,pvsync,pblank;
-//    logic [11:0] fake_pixel;
-    //logic [119:0] constraint_generator_storage [69:0];
 
-//    wire border = (hcount==0 | hcount==1023 | vcount==0 | vcount==767 |
-//                   hcount == 512 | vcount == 384);
-                   
-    //logic filter_outputing;
-   // logic filter_done;
-    //logic start_filter;
-   // logic generator_done, start_generator;
-   // logic [39:0] constrain_input;
-    
-
-//    ); 
-       
-//    logic [39:0] column_constraint_storage [39:0];
-//    logic [39:0] row_constraint_storage [29:0];
 
     logic [119:0] constraint_storage [69:0];
 
@@ -649,7 +628,6 @@ module top_level_fresher_fsm(
             //get cosntraints for a new nonogram to sww
 
 
-            //---------------TODO - fill in with teh fsm version for solver ----------
        end else if (state_FSM == MANUAL_STATE &&((sw[12] ==0) && (sw[3] ==0))) begin
        
             state_pixel <= DISPLAY_MANUAL_10_10;
@@ -675,9 +653,7 @@ module top_level_fresher_fsm(
       
                 
             end
-    //    end else if ((state_FSM == DISPLAY_MANUAL_30_4)  && ((sw[12] ==0) && (sw[3] ==0))) begin
-    //        state_pixel <= DISPLAY_MANUAL_30_4;
-            
+
          
         end else if (state_FSM == GENERATE_STATE &&((sw[12] ==0) && (sw[3] ==0))) begin
             // start generator

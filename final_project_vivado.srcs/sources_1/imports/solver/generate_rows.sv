@@ -1,9 +1,5 @@
 `default_nettype none
-// get assginements > gerneate all pemutations (n umerical) for the assingement > based on each permutaion, gernate a basic row > shoft eahc basic row as much as psosible > move to the next basic row
-//implmentation for at most 6 breaks sorry hardcoded
 
-
-//TODO - new data vs start_generaor? 
 module generate_rows(   
                     input wire clk_in,
                     input wire start_in,
@@ -16,15 +12,7 @@ module generate_rows(
                     output logic [6:0] total_count //returns the tola nbumber of optison returend for a given setging
 );  
 
-    //TODO - only start gneraiotn when new start_in is received BC it's possiblr to have two same assigemnet snext to each other and then we would not return anythgin in hat case 
-        // TODO: ^^ might be worn due to how iterative sovler operates  - check how start_in is asserted
 
-    //you cna have state
-
-    //you can keep track if the old assingemtn is the same or differnt to the one passed in the input 
-
-    //frist i will get all the permutation for a given row and then sue them to genrate all tehr rows
-    //returns one row state at  clock cycle
 
     parameter original = 20'b10101010101010101010;
 
@@ -75,7 +63,7 @@ module generate_rows(
     
     
     logic in_progress;
-    logic new_data; //asserete when new input to create_a_row is given 
+    logic new_data; //assereted when new input to create_a_row is given 
     
     logic done_generation;
     logic generating;
@@ -119,7 +107,7 @@ module generate_rows(
         .break4(permutation[15:12]),
         .assignment_out(new_row_from_create_a_row),
         .done(done_generation),
-        .min_length(permutation_min_length) //retusn the min length fomr black to black that covers all blacks
+        .min_length(permutation_min_length) //retusn the min length from filled to filled that covers all filled
     );
 
     get_permutations my_get_permutations(   
@@ -420,12 +408,7 @@ module generate_rows(
 
                     started_shifting <=1;
 
-                    // if(permutations_min_length_list[permutation_counter] <20) begin
-                    //     shifts_limit <= 20 - permutations_min_length_list[permutation_counter] ; //20 - min_length 
-                    //     shifts <=0;
-                    //     started_shifting <=1;
-                        
-                    // end
+
 
                 end else begin
 
@@ -436,9 +419,7 @@ module generate_rows(
                     if(min_length < 5'd20) begin
                     //we are still allowed to shift
                         new_row2 <= {new_row2, 2'b10};
-                        min_length <=min_length+ 2'b10;//01.01.01. 10.10.10.10.01.01.10
-                        // outputing <=1; 01.01.01.  10.10.10.10.10. 01.01
-                        // count <= count +1; 01.01.01.01. 10.10.10.10.01.01
+                        min_length <=min_length+ 2'b10;
                         all_row_storage[all_rows_counter] <= {new_row2, 2'b10};
                         all_rows_counter <=all_rows_counter+1;
                         
@@ -449,7 +430,7 @@ module generate_rows(
 
                         if(permutation_counter == total_permutation_count) begin
 
-                            start_returning <=1; //10.01.01.01101001011010
+                            start_returning <=1; 
                             //done<=1; // finish the whole genratE_row
                             generate_states_from_permutations <=0; // [otenailly need  ozero all the staes here ust to make sure
                     end

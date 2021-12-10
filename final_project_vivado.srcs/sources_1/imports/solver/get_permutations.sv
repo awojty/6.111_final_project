@@ -1,6 +1,5 @@
 `default_nettype none
-//implmentation for at most 6 breaks sorry hardcoded
-//TODO: change alla ecnodings to 16 bits :'(
+
 module get_permutations(   
                     input wire clk_in,
                     input wire reset_in,
@@ -230,7 +229,7 @@ logic [2:0] space_to_fill; // at most 5 space left
                 end else if (space_to_fill ==1) begin
 
                     case(counter)
-                        6'b0: permutation_out<=16'b0000_0000_0000_0001; // each break is encoded by 3 bits
+                        6'b0: permutation_out<=16'b0000_0000_0000_0001; // each break is encoded by 4 bits
                         6'b1: permutation_out<=16'b0000_0000_0001_0000;
                         default: permutation_out<=12'b000000000000;
                     

@@ -42,95 +42,95 @@ module return_UI(
             // IDLE
             if(state ==4'b0000) begin
                 if (manual_image_bits == 2'b00) begin
-                    pixel_out <= {4'b0000, 4'b0000,4'b0000}; // greyscale
+                    pixel_out <= {4'b0000, 4'b0000,4'b0000}; 
 
                 end else if (manual_image_bits == 2'b01) begin
-                    pixel_out <= {4'b0000, 4'b1111,4'b0000}; // greyscale
+                    pixel_out <= {4'b0000, 4'b1111,4'b0000}; 
 
                 end else if (manual_image_bits == 2'b10) begin
-                    pixel_out <= {4'b0000, 4'b0000,4'b1111}; // greyscale
+                    pixel_out <= {4'b0000, 4'b0000,4'b1111}; 
 
                 end else if (manual_image_bits == 2'b11) begin
-                    pixel_out <= {4'b0000, 4'b0000,4'b1111}; // greyscale
+                    pixel_out <= {4'b0000, 4'b0000,4'b1111}; 
 
                 end else begin
-                    pixel_out <= {4'b0000, 4'b0000,4'b0000}; // greyscale
+                    pixel_out <= {4'b0000, 4'b0000,4'b0000}; 
 
                 end
             //manual solving
             end else if (state ==4'b0001) begin
                if (manual_image_bits == 2'b00) begin
-                    pixel_out <= {4'b0000, 4'b0000,4'b0000}; // greyscale
+                    pixel_out <= {4'b0000, 4'b0000,4'b0000}; 
 
                 end else if (manual_image_bits == 2'b01) begin
-                    pixel_out <= {4'b1111, 4'b0000,4'b0000}; // greyscale
+                    pixel_out <= {4'b1111, 4'b0000,4'b0000}; 
 
                 end else if (manual_image_bits == 2'b10) begin
-                    pixel_out <= {4'b0000, 4'b0000,4'b1111}; // greyscale
+                    pixel_out <= {4'b0000, 4'b0000,4'b1111}; 
 
                 end else if (manual_image_bits == 2'b11) begin
-                    pixel_out <= {4'b0000, 4'b1111,4'b0000}; // greyscale
+                    pixel_out <= {4'b0000, 4'b1111,4'b0000}; 
 
                 end else begin
-                    pixel_out <= {4'b0000, 4'b0000,4'b0000}; // greyscale
+                    pixel_out <= {4'b0000, 4'b0000,4'b0000}; 
 
                 end 
             
             //automatic solving
             end else if (state ==4'b0010) begin
                 if (solver_image_bits == 2'b00) begin
-                    pixel_out <= {4'b0000, 4'b0000,4'b0000}; // greyscale
+                    pixel_out <= {4'b0000, 4'b0000,4'b0000}; 
 
                     
                 end else if (solver_image_bits == 2'b01) begin
-                    pixel_out <= {4'b1111, 4'b0000,4'b0000}; // greyscale
+                    pixel_out <= {4'b1111, 4'b0000,4'b0000}; 
 
                 end else if (solver_image_bits == 2'b10) begin
-                    pixel_out <= {4'b0000, 4'b0000,4'b1111}; // greyscale
+                    pixel_out <= {4'b0000, 4'b0000,4'b1111}; 
 
                 end else if (solver_image_bits == 2'b11) begin
-                    pixel_out <= {4'b0000, 4'b1111,4'b0000}; // greyscale
+                    pixel_out <= {4'b0000, 4'b1111,4'b0000}; 
 
                 end else begin
-                    pixel_out <= {4'b0000, 4'b0000,4'b0000}; // greyscale
+                    pixel_out <= {4'b0000, 4'b0000,4'b0000}; 
 
                 end
 
             //generate
             end else if(state ==4'b0011) begin
                 if (generate_image_bits == 2'b00) begin
-                    pixel_out <= {4'b0000, 4'b0000,4'b0000}; // greyscale
+                    pixel_out <= {4'b0000, 4'b0000,4'b0000}; 
 
                 end else if (generate_image_bits == 2'b01) begin
-                    pixel_out <= {4'b1111, 4'b0000,4'b0000}; // greyscale
+                    pixel_out <= {4'b1111, 4'b0000,4'b0000}; 
 
                 end else if (generate_image_bits == 2'b10) begin
-                    pixel_out <= {4'b0000, 4'b0000,4'b1111}; // greyscale
+                    pixel_out <= {4'b0000, 4'b0000,4'b1111}; 
 
                 end else if (generate_image_bits == 2'b11) begin
-                    pixel_out <= {4'b0000, 4'b1111,4'b0000}; // greyscale
+                    pixel_out <= {4'b0000, 4'b1111,4'b0000}; 
 
                 end else begin
-                    pixel_out <= {4'b0000, 4'b0000,4'b0000}; // greyscale
+                    pixel_out <= {4'b0000, 4'b0000,4'b0000}; 
 
                 end
 
             end else begin
                 
                     if (manual_image_bits == 2'b00) begin
-                        pixel_out <= {4'b0000, 4'b0000,4'b0000}; // greyscale
+                        pixel_out <= {4'b0000, 4'b0000,4'b0000}; 
     
                     end else if (manual_image_bits == 2'b01) begin
-                        pixel_out <= {4'b0000, 4'b1111,4'b0000}; // greyscale
+                        pixel_out <= {4'b0000, 4'b1111,4'b0000}; 
     
                     end else if (manual_image_bits == 2'b10) begin
-                        pixel_out <= {4'b0000, 4'b0000,4'b1111}; // greyscale
+                        pixel_out <= {4'b0000, 4'b0000,4'b1111}; 
     
                     end else if (manual_image_bits == 2'b11) begin
-                        pixel_out <= {4'b0000, 4'b0000,4'b1111}; // greyscale
+                        pixel_out <= {4'b0000, 4'b0000,4'b1111}; 
     
                     end else begin
-                        pixel_out <= {4'b0000, 4'b0000,4'b0000}; // greyscale
+                        pixel_out <= {4'b0000, 4'b0000,4'b0000}; 
     
                     end
               end

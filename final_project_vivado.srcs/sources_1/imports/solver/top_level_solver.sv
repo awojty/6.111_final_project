@@ -1,6 +1,6 @@
 module top_level_solver(
     input wire clk_in,
-    input wire start_in, // assered when in the correct stata
+    input wire start_in, // assered when in the correct state
     input wire reset_in,
     input wire get_output,
     input wire [15:0] sw,

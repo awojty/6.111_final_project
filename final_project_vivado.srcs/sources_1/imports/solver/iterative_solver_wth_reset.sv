@@ -170,16 +170,16 @@ module iterative_solver_wth_reset(
     logic [29:0] results [19:0]; 
     logic results_counter;
 
-    logic [19:0] fake_row_assignment_collector  [9:0] ; //collects the constraint assginemtns for bram testing
-    logic [19:0] fake_col_assignment_collector [9:0]; //collects the constraint assginemtns for bram testing
+    logic [19:0] row_assignment_collector  [9:0] ; //collects the constraint assginemtns for bram testing
+    logic [19:0] col_assignment_collector [9:0]; //collects the constraint assginemtns for bram testing
 
 
-    logic [19:0] fake_row_permutation_collector [150:0]; //terrrible naming - the are ROW versions (not numbers)
-    logic [19:0] fake_col_permutation_collector [150:0]; //collects the constraint assginemtns for bram testing
+    logic [19:0] row_permutation_collector [150:0]; //terrrible naming - the are ROW versions (not numbers)
+    logic [19:0] col_permutation_collector [150:0]; //collects the constraint assginemtns for bram testing
 
 
-    logic [15:0] fake_row_permutation_counter [9:0]; //collbram testing - count is whtaever numer fo bits, cna be more since it will trunctae it anyways
-    logic [15:0] fake_col_permutation_counter [9:0]; //collng
+    logic [15:0] row_permutation_counter [9:0]; //collbram testing - count is whtaever numer fo bits, cna be more since it will trunctae it anyways
+    logic [15:0] col_permutation_counter [9:0]; //collng
 
     
     logic row_done;
@@ -437,13 +437,12 @@ module iterative_solver_wth_reset(
 
                         //we have finished sending all the rows, now we are sending all the columsn 
 
-                       // old_index <= index_in;
-//                        if (index_in !=old_index) begin
+
                         write_constraint_column <=1;
                         write_constraint_row <=0;
                         addr_constraint_column <= addr_constraint_column +1;
                        data_to_column_bram  <= assignment_in;
-                        fake_col_assignment_collector[addr_constraint_column] <= assignment_in;
+                        col_assignment_collector[addr_constraint_column] <= assignment_in;
                        
 
                     end else begin
@@ -451,20 +450,14 @@ module iterative_solver_wth_reset(
 
                         //we are still sending rows
 
-                        //old_index <=index_in;
-                        
-//                        if(old_index!= index_in) begin
                         
                             write_constraint_column <=0;
                             
                             write_constraint_row <=1;
                             addr_constraint_row <= addr_constraint_row+1; // selects teh cosntrin the the to that we passed at teh beginign 
                             data_to_row_bram  <= assignment_in; 
-                            fake_row_assignment_collector[addr_constraint_row] <= assignment_in;
-                        
-                        
-                        
-//                        end
+                            row_assignment_collector[addr_constraint_row] <= assignment_in;
+                    
 
 
                     end
@@ -482,7 +475,7 @@ module iterative_solver_wth_reset(
                     
                     if(~row_done) begin
                         //when im currently gerneting rows
-                        selected_assignment <= fake_row_assignment_collector[addr_constraint_row];
+                        selected_assignment <= row_assignment_collector[addr_constraint_row];
                         write_permutation_count_column <=0;
                         row_start_addresses[addr_constraint_row] <= addr_row_permutation;
 
@@ -490,7 +483,7 @@ module iterative_solver_wth_reset(
                     end else begin
                         //when im currently gerneting cols
                         //data_to_permutation_count_column_bram <= n_of_constraints;
-                        selected_assignment <= fake_col_assignment_collector[addr_constraint_column];
+                        selected_assignment <= col_assignment_collector[addr_constraint_column];
 
                         //column_start_addresses[addr_constraint_column] <= addr_column_permutation;
 
@@ -533,7 +526,7 @@ module iterative_solver_wth_reset(
                         addr_row_permutation <= addr_row_permutation+1;
 
                         data_to_row_permutation_bram <= new_row_version;
-                        fake_row_permutation_collector[addr_row_permutation] <= new_row_version; //
+                        row_permutation_collector[addr_row_permutation] <= new_row_version; //
                         write_permutation_column <=0;
                         write_permutation_row <=1;
                         write_permutation_count_row <=0;
@@ -545,7 +538,7 @@ module iterative_solver_wth_reset(
                         data_to_column_permutation_bram <= new_row_version;
                         
                         
-                        fake_col_permutation_collector[addr_column_permutation] <= new_row_version;
+                        col_permutation_collector[addr_column_permutation] <= new_row_version;
 
                         write_permutation_row <=0;
                         write_permutation_column <=1;
@@ -582,7 +575,7 @@ module iterative_solver_wth_reset(
                         write_permutation_count_row <=1;
                         write_permutation_count_column <=0;
 
-                        fake_row_permutation_counter[addr_constraint_row] <= total_n_of_row_versions;
+                        row_permutation_counter[addr_constraint_row] <= total_n_of_row_versions;
 
 
                     end else begin
@@ -595,7 +588,7 @@ module iterative_solver_wth_reset(
                         write_permutation_count_row <=0;
                         write_permutation_count_column <=1;
 
-                        fake_col_permutation_counter[addr_constraint_column] <= total_n_of_row_versions;
+                        col_permutation_counter[addr_constraint_column] <= total_n_of_row_versions;
                     end
 
                     
@@ -635,13 +628,13 @@ module iterative_solver_wth_reset(
                 if (~allowable_for_a_row_started) begin
                     allowable_for_a_row_started <=1;
                     permutation_counter_allowable_section <=0;
-                    current_permutation_count <= fake_row_permutation_counter[row_counter_allowable];
+                    current_permutation_count <= row_permutation_counter[row_counter_allowable];
                     move_to_allowable_section<=1;
                     
                 end else if (allowable_for_a_row_started && ~ save_allowable_result) begin
-                    can_do_seq <=fake_row_permutation_collector[addr_row_permutation];
+                    can_do_seq <=row_permutation_collector[addr_row_permutation];
 
-                    allowable_result <= allowable_result | fake_row_permutation_collector[addr_row_permutation];
+                    allowable_result <= allowable_result | row_permutation_collector[addr_row_permutation];
 
                     permutation_counter_allowable_section <= permutation_counter_allowable_section+1;
 
@@ -753,33 +746,29 @@ module iterative_solver_wth_reset(
                     
 
                     //if whole row is zero that means it has been deled so you can omit it iwith if statement 
-                    if((fake_col_permutation_collector[start_address + for_c_coln_counter]!=10'b0) && (
-                            ( (c[1:0] & fake_col_permutation_collector[start_address + for_c_coln_counter][1:0])     >0) &&
-                            ( (c[3:2] & fake_col_permutation_collector[start_address + for_c_coln_counter][3:2])     >0) &&
-                            ( (c[5:4] & fake_col_permutation_collector[start_address + for_c_coln_counter][5:4])     >0) &&
-                            ( (c[7:6] & fake_col_permutation_collector[start_address + for_c_coln_counter][7:6])     >0) &&
-                            ( (c[9:8] & fake_col_permutation_collector[start_address + for_c_coln_counter][9:8])     >0) &&
-                            ( (c[11:10] & fake_col_permutation_collector[start_address + for_c_coln_counter][11:10]) >0) &&
-                            ( (c[13:12] & fake_col_permutation_collector[start_address + for_c_coln_counter][13:12]) >0) &&
-                            ( (c[15:14] & fake_col_permutation_collector[start_address + for_c_coln_counter][15:14]) >0) &&
-                            ( (c[17:16] & fake_col_permutation_collector[start_address + for_c_coln_counter][17:16]) >0) &&
-                            ( (c[19:18] & fake_col_permutation_collector[start_address + for_c_coln_counter][19:18]) >0)) ) begin
+                    if((col_permutation_collector[start_address + for_c_coln_counter]!=10'b0) && (
+                            ( (c[1:0] & col_permutation_collector[start_address + for_c_coln_counter][1:0])     >0) &&
+                            ( (c[3:2] & col_permutation_collector[start_address + for_c_coln_counter][3:2])     >0) &&
+                            ( (c[5:4] & col_permutation_collector[start_address + for_c_coln_counter][5:4])     >0) &&
+                            ( (c[7:6] & col_permutation_collector[start_address + for_c_coln_counter][7:6])     >0) &&
+                            ( (c[9:8] & col_permutation_collector[start_address + for_c_coln_counter][9:8])     >0) &&
+                            ( (c[11:10] & col_permutation_collector[start_address + for_c_coln_counter][11:10]) >0) &&
+                            ( (c[13:12] & col_permutation_collector[start_address + for_c_coln_counter][13:12]) >0) &&
+                            ( (c[15:14] & col_permutation_collector[start_address + for_c_coln_counter][15:14]) >0) &&
+                            ( (c[17:16] & col_permutation_collector[start_address + for_c_coln_counter][17:16]) >0) &&
+                            ( (c[19:18] & col_permutation_collector[start_address + for_c_coln_counter][19:18]) >0)) ) begin
                             
 
-                        allowed_things <= allowed_things | fake_col_permutation_collector[start_address + for_c_coln_counter]; // range_w_i - why ? 
+                        allowed_things <= allowed_things | col_permutation_collector[start_address + for_c_coln_counter]; // range_w_i - why ? 
                     end else begin
                                 //fit retursn false so decrese teh avilaible numebr of permutations and zero the registr  (as deleted)
-                        
-                       // data_to_results_bram <= 10'b0; //mark as all zeross if deldeted
-                        //permutation_count <= permutation_count-1;
 
-                        fake_col_permutation_collector[start_address + for_c_coln_counter] <=0;
-                        //fake_col_permutation_counter[addr_col] <=fake_col_permutation_counter[addr_col]-1; do we actually need to decrease it? consider zero ??
-                        //allowed_things <= allowed_things || 10'b0;
+                        col_permutation_collector[start_address + for_c_coln_counter] <=0;
+
                     end
 
                         
-                    if(for_c_coln_counter == (fake_col_permutation_counter[range_w_i]-1)) begin
+                    if(for_c_coln_counter == (col_permutation_counter[range_w_i]-1)) begin
                         //we finished the for loop to create resutl array                
                             start_enumerate_for_loop_row <=1;
                             done_create_c_array<=0;
@@ -788,10 +777,8 @@ module iterative_solver_wth_reset(
 
                 end else if (start_enumerate_for_loop_row && ~done_create_c_array) begin
 
-                    //this for loop always gors from 0 to 9 inclsuvei since to goes through the itsm in the allwoablae things which is a single arrya f length 10 
-                    //TODO - remember they are two bit numbers 
-
-
+                    //this for loop always goes from 0 to 9 inclsuvei since to goes through the itsm in the allwoablae things which is a single arrya f length 10 
+                
 
                     if(allowed_thing_counter == 10) begin
 
@@ -847,29 +834,29 @@ module iterative_solver_wth_reset(
                     
 
                     //if whole row is zero that means it has been deled so you can omit it iwith if statement 
-                    if((fake_row_permutation_collector[start_address_h + for_c_row_counter_h]!=10'b0) && (
-                            ( (c[1:0] & fake_row_permutation_collector[start_address_h + for_c_row_counter_h][1:0])     >0) &&
-                            ( (c[3:2] & fake_row_permutation_collector[start_address_h + for_c_row_counter_h][3:2])     >0) &&
-                            ( (c[5:4] & fake_row_permutation_collector[start_address_h + for_c_row_counter_h][5:4])     >0) &&
-                            ( (c[7:6] & fake_row_permutation_collector[start_address_h + for_c_row_counter_h][7:6])     >0) &&
-                            ( (c[9:8] & fake_row_permutation_collector[start_address_h + for_c_row_counter_h][9:8])     >0) &&
-                            ( (c[11:10] & fake_row_permutation_collector[start_address_h + for_c_row_counter_h][11:10]) >0) &&
-                            ( (c[13:12] & fake_row_permutation_collector[start_address_h + for_c_row_counter_h][13:12]) >0) &&
-                            ( (c[15:14] & fake_row_permutation_collector[start_address_h + for_c_row_counter_h][15:14]) >0) &&
-                            ( (c[17:16] & fake_row_permutation_collector[start_address_h + for_c_row_counter_h][17:16]) >0) &&
-                            ( (c[19:18] & fake_row_permutation_collector[start_address_h + for_c_row_counter_h][19:18]) >0)) ) begin
+                    if((row_permutation_collector[start_address_h + for_c_row_counter_h]!=10'b0) && (
+                            ( (c[1:0] & row_permutation_collector[start_address_h + for_c_row_counter_h][1:0])     >0) &&
+                            ( (c[3:2] & row_permutation_collector[start_address_h + for_c_row_counter_h][3:2])     >0) &&
+                            ( (c[5:4] & row_permutation_collector[start_address_h + for_c_row_counter_h][5:4])     >0) &&
+                            ( (c[7:6] & row_permutation_collector[start_address_h + for_c_row_counter_h][7:6])     >0) &&
+                            ( (c[9:8] & row_permutation_collector[start_address_h + for_c_row_counter_h][9:8])     >0) &&
+                            ( (c[11:10] & row_permutation_collector[start_address_h + for_c_row_counter_h][11:10]) >0) &&
+                            ( (c[13:12] & row_permutation_collector[start_address_h + for_c_row_counter_h][13:12]) >0) &&
+                            ( (c[15:14] & row_permutation_collector[start_address_h + for_c_row_counter_h][15:14]) >0) &&
+                            ( (c[17:16] & row_permutation_collector[start_address_h + for_c_row_counter_h][17:16]) >0) &&
+                            ( (c[19:18] & row_permutation_collector[start_address_h + for_c_row_counter_h][19:18]) >0)) ) begin
                             
 
-                        allowed_things_h <= allowed_things_h | fake_row_permutation_collector[start_address_h + for_c_row_counter_h]; // range_w_i - why ? 
+                        allowed_things_h <= allowed_things_h | row_permutation_collector[start_address_h + for_c_row_counter_h]; // range_w_i - why ? 
                     end else begin
                                 
 
-                        fake_row_permutation_collector[start_address_h + for_c_row_counter_h] <=0;
+                        row_permutation_collector[start_address_h + for_c_row_counter_h] <=0;
                         
                     end
 
                         
-                    if(for_c_row_counter_h == (fake_row_permutation_counter[range_h_i]-1)) begin
+                    if(for_c_row_counter_h == (row_permutation_counter[range_h_i]-1)) begin
                         //we finished the for loop to create resutl array                
                             start_enumerate_for_loop_row_h <=1;
                             done_create_c_array_h<=0;
@@ -945,7 +932,7 @@ module iterative_solver_wth_reset(
                         
                     end else begin
                         fix_row_section_started<=0;
-                        //for_range_h_started<=1;
+                        
                         increment_range_h<=1;
                         for_range_h_started<=0;
 
