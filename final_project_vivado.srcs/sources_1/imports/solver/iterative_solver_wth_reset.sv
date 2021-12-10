@@ -1,12 +1,11 @@
 `default_nettype none
-//TESTED on 11/24 - works with chicken and reset - resets the fsm aftersendinfg out BUT the output is still avialiable 
-//iterative_sover.sv DOESNT have a reset on new input but does return a correct output on a single input 
+//TESTED on 11/24 - works with chicken and reset  
 
 module iterative_solver_wth_reset(   
                     input wire clk_in,
                    
                     input wire reset_in,
-                    input wire [5:0] index_in, //idnex of row/col beign send - max is 20 so 6 bits
+                    input wire [5:0] index_in, //index of row/col beign send - max is 20 so 6 bits
                     input wire [3:0] column_number_in, //grid size - max 10
                     input wire [3:0] row_number_in, //grid size - max 10
                     
@@ -36,9 +35,7 @@ module iterative_solver_wth_reset(
     logic started;
     logic [8:0] limit; // limit 200+200 = 400 > 9 bits
 
-    //save to bram temporary nongoram that you accessed from registry
-    //we onlyu save one nongoram to this beram - the oen we are currentyl sovling so we idnesx the elemtne by starting at 0 
-
+    
 
     logic [19:0] data_to_bram; // eacho column is ecnoded by 5*4 > at most 5 numbers, the biggeest is 10 (4bits)
     logic [19:0] data_from_bram;
@@ -55,10 +52,7 @@ module iterative_solver_wth_reset(
 
     logic [9:0] mod_cols_in;
     
-//cosndier storing in 2 brams (one for cosl and one for rows? )
-// 200 entries where each entry is oen row, in each entry there are 200 bits, intilized to lal 0's 
 
-// currently impelentaed as arrya of arrays, maybee it will work better with bram ? 
     logic [9:0] solution [9:0];
 
     logic [31:0] addr_row; //to put all genrated rows into bram
@@ -71,18 +65,8 @@ module iterative_solver_wth_reset(
     logic [19:0] data_from_row_permutation_bram;
     logic write_permutation_row;
 
-    //bram taht stroes all posilbe rows for each row assingemnet given 
-    //row_bram - for all genrated states of cols/rows
-    //height 10*40 = 400
-    //width = 20
-    
-    // row_bram all_possible_rows(
-    //         .addra(addr_row_permutation), 
-    //         .clka(clk_in), 
-    //         .dina(data_to_row_permutation_bram), 
-    //         .douta(data_from_row_permutation_bram), 
-    //         .ena(1), 
-    //         .wea(write_permutation_row));  
+
+
             
             
     logic  [7:0] addr_column_permutation;
@@ -90,16 +74,7 @@ module iterative_solver_wth_reset(
     logic [19:0]data_from_column_permutation_bram;
     logic write_permutation_column;
 
-    //bram taht stroes all posilbe cols states for each col assingemnet given
-    //dows it creat diff sintances of bram ?  
-    // row_bram all_possible_columns(
-    //         .addra(addr_column_permutation), 
-    //         .clka(clk_in), 
-    //         .dina(data_to_column_permutation_bram), 
-    //         .douta(data_from_column_permutation_bram), 
-    //         .ena(1), 
-    //         .wea(write_permutation_column));  
-            
+
 
 
     //stores the count of permutations for the column at each index
@@ -109,41 +84,14 @@ module iterative_solver_wth_reset(
     logic write_permutation_count_column;
     logic [7:0] data_from_permutation_count_column_bram;
     logic [7:0] data_to_permutation_count_column_bram;
-    
-    //permutation_count_bram
-    //height  -10
-    //wodth max 50 > 6 bits width
-    
-    
-    // permutation_count_bram my_permutation_count_bram_column(
-    //         .addra(addr_column), 
-    //         .clka(clk_in), 
-    //         .dina(data_to_permutation_count_column_bram), 
-    //         .douta(data_from_permutation_count_column_bram), 
-    //         .ena(1), 
-    //         .wea(write_permutation_count_column)); 
-            
+
             
     logic data_to_permutation_count_row_bram;
     logic data_from_permutation_count_row_bram;
     logic write_permutation_count_row;
 
-    // permutation_count_bram my_permutation_count_bram_row(
-    //         .addra(addr_row), 
-    //         .clka(clk_in), 
-    //         .dina(data_to_permutation_count_row_bram), 
-    //         .douta(data_from_permutation_count_row_bram), 
-    //         .ena(1), 
-    //         .wea(write_permutation_count_row)); 
 
-    // //stores constraints to eachcolumn (from left to right)
-    // row_bram col_constraints_bram(
-    //         .addra(addr_constraint_column), 
-    //         .clka(clk_in), 
-    //         .dina(data_to_column_bram), 
-    //         .douta(data_from_column_bram), 
-    //         .ena(1), 
-    //         .wea(write_constraint_column)); 
+
             
    logic [4:0] addr_constraint_column; //sicne at most 10 (4 bits)
    
@@ -151,17 +99,7 @@ module iterative_solver_wth_reset(
    logic [19:0] data_from_column_bram;
    logic write_constraint_column;
    
-
-    //stores constraints to each row (from top to bottom)
-    // row_bram row_constraints_bram(
-    //         .addra(addr_constraint_row), 
-    //         .clka(clk_in), 
-    //         .dina(data_to_row_bram), 
-    //         .douta(data_from_row_bram), 
-    //         .ena(1), 
-    //         .wea(write_constraint_row)
-    //         );  
-    logic [19:0] data_to_row_bram;
+   logic [19:0] data_to_row_bram;
    logic [19:0] data_from_row_bram;
    logic write_constraint_row; 
    logic [4:0] addr_constraint_row; //sicne 10 at msot
@@ -191,7 +129,6 @@ module iterative_solver_wth_reset(
 
     logic done_generation; //outptu from generate rows - says if they finsihed returnng all teh eprmutation for a given row
     logic new_permutation;
-    //selected_assignemnt is usead as an imput regsier to geenrate_rows
 
 
     logic [6:0] total_n_of_row_versions;
@@ -203,22 +140,7 @@ module iterative_solver_wth_reset(
     logic [19:0] allowable_input; //20 bits since each cell impelemned as 2 bit number
 
 
-//    solution_bram solution_bram_column(
-//            .addra(addr_column_solution), 
-//            .clka(clk_in), 
-//            .dina(data_to_solution_column_bram), 
-//            .douta(data_from_solution_column_bram), 
-//            .ena(1), 
-//            .wea(write_solution_column)); 
-            
-            
-//    solution_bram solution_bram_row(
-//            .addra(addr_row_solution), 
-//            .clka(clk_in), 
-//            .dina(data_to_solution_row_bram), 
-//            .douta(data_from_solution_row_bram), 
-//            .ena(1), 
-//            .wea(write_solution_row)); 
+        
             
    logic write_solution_row;
    logic data_from_solution_row_bram;
@@ -245,7 +167,7 @@ module iterative_solver_wth_reset(
 
     logic [9:0] allowable_output_rows [19:0]; // 10 roes each is 20 len
 
-    logic [29:0] results [19:0]; // this can potenailly store all the permutations (which is about 30 for 10x10 case)
+    logic [29:0] results [19:0]; 
     logic results_counter;
 
     logic [19:0] fake_row_assignment_collector  [9:0] ; //collects the constraint assginemtns for bram testing
@@ -259,13 +181,6 @@ module iterative_solver_wth_reset(
     logic [15:0] fake_row_permutation_counter [9:0]; //collbram testing - count is whtaever numer fo bits, cna be more since it will trunctae it anyways
     logic [15:0] fake_col_permutation_counter [9:0]; //collng
 
-
-
-
-    // logic [19:0] basic_row_storage [40:0]; //stores actual rows - at most 60 row states 
-
-    // logic [19:0] all_row_storage [40:0]; //stores actual rows - at most 60 row states 
-    
     
     logic row_done;
     logic column_done;
@@ -335,8 +250,7 @@ module iterative_solver_wth_reset(
     logic [19:0] can_do_seq;
     logic move_to_x;
 
-    //TODO tarck with counter not outputing od do one clock cycle delay inoutputing vs done
-                
+       
     logic [6:0] tracker;
 
     logic [8:0] start_address;
@@ -369,7 +283,7 @@ module iterative_solver_wth_reset(
     always_ff @(posedge clk_in) begin
 
         if(reset_in) begin
-            // on init, nitilzie he bram to all zeros :)
+            
             
             done_create_c_array_h <=0;
             start_enumerate_for_loop_row_h <=0;
@@ -481,10 +395,8 @@ module iterative_solver_wth_reset(
 
         end else begin
             if((start_sending_nonogram && ~left_to_rest) || (collecting_puzzle_in_progress && ~left_to_rest)) begin
-                //we have just started sending a nongoram - send constrina lien by csontrint, first rows then columns
-                //addr_constraint_row <= addr_constraint_row+1;
-
-                //TODO - restvall counters here (like do resete but onte rest the hings you are incrementign here)
+                //we have just started sending a nongoram - send constraints line by line, first rows then columns
+  
                 //COUNTERS RESET:-------------------
 
                 solution_out <= 0;
@@ -503,7 +415,6 @@ module iterative_solver_wth_reset(
                 //done_generation <=0; //marked as 0 if we finished generating al states for all comuns and rows
                 limit <= row_number_in + column_number_in; // remebr to subtract 1 sicne we need to zero index
 
-//                fake_row_assignment_collector[addr_constraint_row] <= assignment_in;
 
 //            end else if (saving) begin
                 if(addr_constraint_column >= 10) begin
@@ -622,14 +533,14 @@ module iterative_solver_wth_reset(
                         addr_row_permutation <= addr_row_permutation+1;
 
                         data_to_row_permutation_bram <= new_row_version;
-                        fake_row_permutation_collector[addr_row_permutation] <= new_row_version; // this index is sued o put new states of the row to th sotrgae - can be mroe than one per row
+                        fake_row_permutation_collector[addr_row_permutation] <= new_row_version; //
                         write_permutation_column <=0;
                         write_permutation_row <=1;
                         write_permutation_count_row <=0;
                         write_permutation_count_column <=0;
 
                     end else if ( ~column_done) begin
-                    //if im gerneating columns 10.//11//.01.01.01.01.01.01.//11//.10 ?
+                    //if im gerneating columns 
                         addr_column_permutation <= addr_column_permutation+1;
                         data_to_column_permutation_bram <= new_row_version;
                         
@@ -643,9 +554,7 @@ module iterative_solver_wth_reset(
                         write_permutation_count_column <=0;
                     end
 
-                //end else if (tracker >= total_n_of_row_versions )
 
-                //end else if (tracker >= (total_n_of_row_versions)  ) begin
 
                end else if (done_generation && tracker >= (total_n_of_row_versions-1)  ) begin
                     //generate rows finished outptuing for a gvien assignemtn - save length and mvoe to the sart of fsm 
@@ -692,8 +601,7 @@ module iterative_solver_wth_reset(
                     
                     if(addr_constraint_column == 9) begin
 
-                        //possibel bug that teh alst one is not saved ? 
-
+               
                         row_done <=1;
                         column_done <=1;
                         start_generating <=0;
@@ -712,7 +620,6 @@ module iterative_solver_wth_reset(
                         addr_constraint_row <=0;
                         row_counter_allowable<=0;
 
-                        //counts if we submitted all the permutations
 
                     end
                     
@@ -724,8 +631,6 @@ module iterative_solver_wth_reset(
                     //i have collected all nthe possibel assignements
                         //2) do consolidate allowed rows (allowable function)
 
-
-                        // its deost pick up the first permutation ? 
 
                 if (~allowable_for_a_row_started) begin
                     allowable_for_a_row_started <=1;
@@ -769,12 +674,6 @@ module iterative_solver_wth_reset(
 
                 end
 
-                //we have consdeiredall teh rows
-
-                //10 or 9 ?? >> 10
-
-
-                            
 
 
             end else if(move_to_for_loop_section) begin
@@ -791,8 +690,7 @@ module iterative_solver_wth_reset(
 
             end else if(for_range_w_started) begin
 
-                //add another state to increment the counter after running the fix_col ended
-
+             
                 if (range_w_i ==10) begin
                     for_range_w_ended <=1;
                     for_range_w_started<=0;
@@ -809,10 +707,7 @@ module iterative_solver_wth_reset(
                         for_range_w_started<=0;
                         increment_range_w<=1;
 
-                    end //10.10.10.10.10.10.//01.01.01//.10
-
-                    //10.10.10.10.10.10.//01//.10.//01.01
-                    //10.10...01.01//.10.10.//01.01.01.//10
+                    end 
                     
                     c<=0;
                     allowable_counter<=0;
@@ -829,10 +724,7 @@ module iterative_solver_wth_reset(
 
                 if (~done_create_c_array && ~start_enumerate_for_loop_row) begin 
 
-                    ///THIS asiggns zeros incorrectly??? and breaks it since it  
-
-
-                                                //len_can_do = 9
+                   
                     if(fix_col_counter == 20) begin
 
                         done_create_c_array <=1;
@@ -841,10 +733,7 @@ module iterative_solver_wth_reset(
 
                         start_address <=column_start_addresses[range_w_i];
 
-                        //TODO
-
-                        //starting_address <=starting_address_register[range_w_i]
-                                                                    
+                                                              
                     end else begin
                         fix_col_counter <= fix_col_counter+2;
                         fix_col_counter_small <= fix_col_counter_small+1;
@@ -973,14 +862,10 @@ module iterative_solver_wth_reset(
 
                         allowed_things_h <= allowed_things_h | fake_row_permutation_collector[start_address_h + for_c_row_counter_h]; // range_w_i - why ? 
                     end else begin
-                                //fit retursn false so decrese teh avilaible numebr of permutations and zero the registr  (as deleted)
-                        
-                       // data_to_results_bram <= 10'b0; //mark as all zeross if deldeted
-                        //permutation_count <= permutation_count-1;
+                                
 
                         fake_row_permutation_collector[start_address_h + for_c_row_counter_h] <=0;
-                        //fake_col_permutation_counter[addr_col] <=fake_col_permutation_counter[addr_col]-1; do we actually need to decrease it? consider zero ??
-                        //allowed_things <= allowed_things || 10'b0;
+                        
                     end
 
                         
@@ -995,9 +880,8 @@ module iterative_solver_wth_reset(
 
                 end else if (start_enumerate_for_loop_row_h && ~done_create_c_array_h) begin
 
-                                    //this for loop always gors from 0 to 9 inclsuvei since to goes through the itsm in the allwoablae things which is a single arrya f length 10 
-                    //TODO - remember they are two bit numbers 
-
+                     //this for loop always goes from 0 to 9 inclusive since to goes through the itsm in the allwoablae things which is a single arrya f length 10 
+                    
 
                     if(allowed_thing_counter_h == 10) begin
                         // to increment the  i in for loop 
