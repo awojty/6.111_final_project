@@ -28,7 +28,6 @@ module return_UI(
     assign image_addr = (hcount) + (vcount) * WIDTH;
 
     
-    //idle_rom  rom3(.clka(clk_in), .addra(image_addr), .douta(idle_bits));
     solve_manually_rom  rom2(.clka(clk_in), .addra(image_addr), .douta(manual_image_bits));
     solve_automatically_rom  rom1(.clka(clk_in), .addra(image_addr), .douta(solver_image_bits));
     generate_rom  rom4(.clka(clk_in), .addra(image_addr), .douta(generate_image_bits));
